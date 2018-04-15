@@ -1,0 +1,46 @@
+@font-face {
+  font-family: "<%= fontName %>";
+  src: url('<%= fontPath %><%= fontName %>.<%= timestamp %>.eot');
+  src: url('<%= fontPath %><%= fontName %>.<%= timestamp %>.eot?#iefix') format('eot'),
+    url('<%= fontPath %><%= fontName %>.<%= timestamp %>.woff2') format('woff2'),
+    url('<%= fontPath %><%= fontName %>.<%= timestamp %>.woff') format('woff'),
+    url('<%= fontPath %><%= fontName %>.<%= timestamp %>.ttf') format('truetype'),
+    url('<%= fontPath %><%= fontName %>.<%= timestamp %>.svg#<%= fontName %>') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="<%= className %>-"], [class*=" <%= className %>-"] {
+  line-height: 0;
+}
+
+[class^="<%= className %>-"]:before,
+[class*=" <%= className %>-"]:before {
+  display: inline-block;
+  font-family: "<%= fontName %>";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  speak:none;
+  text-decoration:inherit;
+  text-transform:none;  
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.<%= className %>-lg {
+  font-size: 1.3333333333333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+.<%= className %>-2x { font-size: 2em; }
+.<%= className %>-3x { font-size: 3em; }
+.<%= className %>-4x { font-size: 4em; }
+.<%= className %>-5x { font-size: 5em; }
+.<%= className %>-fw {
+  width: 1.2857142857142858em;
+  text-align: center;
+}
+
+<% _.each(glyphs, function(glyph) { %>.<%= className %>-<%= glyph.name %>:before { content: "\<%= glyph.unicode[0].charCodeAt(0).toString(16).toUpperCase() %>" }
+<% }); %>
