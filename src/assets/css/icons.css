@@ -1,0 +1,48 @@
+@font-face {
+  font-family: "icons";
+  src: url('assets/fonts/icons.121212.eot');
+  src: url('assets/fonts/icons.121212.eot?#iefix') format('eot'),
+    url('assets/fonts/icons.121212.woff2') format('woff2'),
+    url('assets/fonts/icons.121212.woff') format('woff'),
+    url('assets/fonts/icons.121212.ttf') format('truetype'),
+    url('assets/fonts/icons.121212.svg#icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  line-height: 0;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  display: inline-block;
+  font-family: "icons";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  speak:none;
+  text-decoration:inherit;
+  text-transform:none;  
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-lg {
+  font-size: 1.3333333333333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+.icon-2x { font-size: 2em; }
+.icon-3x { font-size: 3em; }
+.icon-4x { font-size: 4em; }
+.icon-5x { font-size: 5em; }
+.icon-fw {
+  width: 1.2857142857142858em;
+  text-align: center;
+}
+
+.icon-close:before { content: "\EA01" }
+.icon-menu:before { content: "\EA02" }
+.icon-next:before { content: "\EA03" }
+.icon-prev:before { content: "\EA04" }
