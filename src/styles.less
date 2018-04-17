@@ -8,14 +8,19 @@ app-root {
   height: 100%;
 }
 
+@navigation-padding: 10px;
+@padding-vertical: 20px;
+@navigation-button-width: 32px;
 
 .image-frame {
+
+
   background-color: black;
-  height: calc(100% - 40px);
+  height: calc(100% - 2*@padding-vertical);
   text-align: center;
   white-space: nowrap;
   font-size: 0;
-  padding: 20px;
+  padding: @padding-vertical 2*@navigation-padding + @navigation-button-width;
 
   &:before {
     content: '';
@@ -33,35 +38,34 @@ app-root {
 
 .navigation-layer {
   position: absolute;
-  top: 10px;
-  bottom: 10px;
-  right: 10px;
-  left: 10px;
+  top: @navigation-padding;
+  bottom: @navigation-padding;
+  right: @navigation-padding;
+  left: @navigation-padding;
   color: #fff;
   font-size: 2rem;
 
-  .prev {
+  .nav-button {
     position: absolute;
-    left: 0;
     top: 50%;
     transform: translate(0, -50%);
-    color: #aaa;
+    color: #555;
+
+    &.prev {
+      left: 0;
+    }
+
+    &.next {
+      right: 0;
+    }
   }
 
-  .next {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translate(0, -50%);
-    color: #aaa;
-  }
-
-  .close {
+  .close-button {
     position: absolute;
     top: 0;
     right: 0;
-    color: #aaa;
     font-size: 1.2rem;
+    color: #555;
   }
 
 }
