@@ -3,14 +3,25 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import {RouterModule, Routes} from "@angular/router";
+import { AlbumComponent } from './album/album.component';
+import { PhotoComponent } from './photo/photo.component';
+import {matchAlbum} from "./AlbumUrlMatcher";
 
+
+const appRoutes: Routes = [
+  { matcher: matchAlbum, component: AlbumComponent }
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AlbumComponent,
+    PhotoComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRoutes,  { enableTracing: false })
   ],
   providers: [],
   bootstrap: [AppComponent]
