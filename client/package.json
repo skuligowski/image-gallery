@@ -1,5 +1,5 @@
 {
-  "name": "serverless-gallery",
+  "name": "serverless-gallery-client",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -34,9 +34,6 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "codelyzer": "^4.0.1",
-    "gulp": "^3.9.1",
-    "gulp-consolidate": "^0.2.0",
-    "gulp-iconfont": "^9.1.0",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~2.0.0",
