@@ -1,0 +1,18 @@
+{
+  "name": "serverless-gallery-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "swagger-parser": "^4.1.0",
+    "swagger-tools": "^0.10.3",
+    "yamljs": "^0.3.0"
+  }
+}

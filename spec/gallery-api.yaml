@@ -1,0 +1,27 @@
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Photo gallery api
+basePath: /api
+schemes:
+- http
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /albums:
+    x-swagger-router-controller: albums
+    get:
+      description: Returns all albums meta definition from the gallery
+      tags:
+        - gallery
+      operationId: getAlbums
+      responses:
+        200:
+          description: offering created
+          schema:
+            $ref: defs/AlbumsResponse.yaml
+definitions: {}
+parameters: {}
+responses: {}
