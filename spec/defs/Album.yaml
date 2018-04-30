@@ -1,0 +1,11 @@
+title: Albums
+type: object
+properties:
+  name:
+    type: string
+    description: albums
+  permalink:
+    type: string
+    description: unique link for album
+required:
+- name
