@@ -10,10 +10,6 @@ export class AlbumComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router) { }
 
-  albums: Album[] = [
-    { permalink: '/2018/best-ever'}
-  ];
-
   photos: Photo[] = [
     {url: 'assets/some_1.jpg', permalink: '2018/best-ever/some_1.jpg'},
     {url: 'assets/some_2.jpg', permalink: '2018/best-ever/some_2.jpg'}
@@ -24,6 +20,7 @@ export class AlbumComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(a => {
       console.log(a);
+      console.log('data', this.route.snapshot.data);
     });
   }
 
