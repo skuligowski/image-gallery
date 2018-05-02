@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import Photo = Definitions.Photo;
 
 @Component({
   selector: 'app-album',
@@ -11,8 +12,8 @@ export class AlbumComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) { }
 
   photos: Photo[] = [
-    {url: 'assets/some_1.jpg', permalink: '2018/best-ever/some_1.jpg'},
-    {url: 'assets/some_2.jpg', permalink: '2018/best-ever/some_2.jpg'}
+    {url: 'assets/some_1.jpg', filename: 'some_1.jpg'},
+    {url: 'assets/some_2.jpg', filename: 'some_2.jpg'}
   ];
 
   currentPhoto: Photo = this.photos[0];
@@ -31,13 +32,4 @@ export class AlbumComponent implements OnInit {
   previous(): void {
     this.router.navigate(['album', '2018', 'best-ever', 'some_1.jpg']);
   }
-}
-
-export interface Photo {
-  url: string;
-  permalink: string;
-}
-
-export interface Album {
-  permalink: string;
 }

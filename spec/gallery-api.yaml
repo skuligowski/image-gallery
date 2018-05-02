@@ -15,13 +15,31 @@ paths:
     get:
       description: Returns all albums meta definition from the gallery
       tags:
-        - gallery
+      - gallery
       operationId: getAlbums
       responses:
         200:
           description: offering created
           schema:
             $ref: defs/AlbumsResponse.yaml
-definitions: {}
-parameters: {}
-responses: {}
+  /albums/{id}:
+    x-swagger-router-controller: albums
+    get:
+      description: Returns album with all photos
+      tags:
+      - gallery
+      operationId: getAlbum
+      responses:
+        200:
+          description: offering created
+          schema:
+            $ref: defs/AlbumDetails.yaml
+definitions:
+  Album:
+    $ref: defs/Album.yaml
+  AlbumsResponse:
+    $ref: defs/AlbumsResponse.yaml
+  AlbumDetails:
+    $ref: defs/AlbumDetails.yaml
+  Photo:
+    $ref: defs/Photo.yaml
