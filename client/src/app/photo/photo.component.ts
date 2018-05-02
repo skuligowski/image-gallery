@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Photo} from '../album/album.component';
+import Photo = Definitions.Photo;
 
 @Component({
   selector: 'app-photo',

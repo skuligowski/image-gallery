@@ -1,0 +1,15 @@
+title: Photo
+type: object
+properties:
+  filename:
+    type: string
+    description: photo
+  url:
+    type: string
+    description: link to reach the photo
+  title:
+    type: string
+    description: title describing the photo
+required:
+- filename
+- url
