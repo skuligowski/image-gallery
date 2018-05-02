@@ -19,9 +19,8 @@ export class AlbumComponent implements OnInit {
   currentPhoto: Photo = this.photos[0];
 
   ngOnInit() {
-    this.route.params.subscribe(a => {
-      console.log(a);
-      console.log('data', this.route.snapshot.data);
+    this.route.data.subscribe(album => {
+      console.log(album);
     });
   }
 
