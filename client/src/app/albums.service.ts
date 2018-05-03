@@ -1,40 +1,24 @@
 import { Injectable } from '@angular/core';
-import Album = Definitions.Album;
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { _throw as throwError } from 'rxjs/observable/throw';
-import { delay, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
+import { AlbumsDataService } from './albums-data.service';
+import Album = Definitions.Album;
 import AlbumDetails = Definitions.AlbumDetails;
-
-
-
-const mockedAlbums = [
-  { permalink: '2018/best-ever', name: 'Best ever album'}
-];
-
-const mockedAlbumDetails: AlbumDetails = {
-  permalink: '2018/best-ever',
-  name: 'Best ever album',
-  photos: [
-    {url: 'assets/some_1.jpg', filename: 'some_1.jpg'},
-    {url: 'assets/some_2.jpg', filename: 'some_2.jpg'}
-  ]
-};
 
 
 @Injectable()
 export class AlbumsService {
 
   private albums: Album[];
+  private albumDetailsMap: {[albumId: string]: AlbumDetails} = {};
 
-  constructor() {}
+  constructor(private albumsData: AlbumsDataService) {}
 
   loadAlbums(): Observable<Album[]> {
-    return of(mockedAlbums).pipe(
-      delay(1000),
-      tap(albums => {
-        this.albums = albums;
-      }));
+    return this.albumsData.getAlbums().pipe(
+      tap(albums => this.albums = albums));
   }
 
   getAlbums(): Album[] {
@@ -42,13 +26,13 @@ export class AlbumsService {
   }
 
   getAlbumDetails(albumPermalink: string): Observable<AlbumDetails> {
-    const existingAlbum = this.albums.find(album => album.permalink === albumPermalink);
-    if (!existingAlbum) {
+    const album = this.albums.find(album => album.permalink === albumPermalink);
+    if (!album) {
       return throwError(new Error('Album does not exist'));
     }
-    return of(mockedAlbumDetails).pipe(
-      delay(1000)
-    );
+    const albumDetails = this.albumDetailsMap[album.id];
+    return albumDetails ? of(albumDetails) : this.albumsData.getAlbumDetails(album.id).pipe(
+      tap(albumDetails => this.albumDetailsMap[albumDetails.id] = albumDetails));
   }
 
 }

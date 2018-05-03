@@ -1,17 +1,12 @@
 title: AlbumsDetails
 type: object
-properties:
-  name:
-    type: string
-    description: albums
-  permalink:
-    type: string
-    description: unique link for album
-  photos:
-    type: array
-    items:
-      $ref: Photo.yaml
-required:
-- name
-- permalink
-- photos
+allOf:
+  - $ref: Album.yaml
+  - object:
+    properties:
+      photos:
+        type: array
+        items:
+          $ref: Photo.yaml
+    required:
+    - photos

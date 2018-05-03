@@ -1,1 +1,8 @@
-<app-photo [photo]="currentPhoto" (next)="next()" (previous)="previous()"></app-photo>
+<app-photo *ngIf="photo" [photo]="photo" (next)="next()" (previous)="previous()" (close)="close()"></app-photo>
+<div *ngIf="!photo">
+  <ul>
+    <li *ngFor="let photo of album.photos; trackBy:photo?.filename">
+      <a [routerLink]="[photo.filename]"><img src="{{photo.url}}"></a>
+    </li>
+  </ul>
+</div>

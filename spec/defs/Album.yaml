@@ -1,6 +1,9 @@
 title: Albums
 type: object
 properties:
+  id:
+    type: string
+    description: unique identifier of the album
   name:
     type: string
     description: albums
@@ -8,4 +11,5 @@ properties:
     type: string
     description: unique link for album
 required:
+- id
 - name

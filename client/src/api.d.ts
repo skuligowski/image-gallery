@@ -1,6 +1,10 @@
 declare namespace Definitions {
     export interface Album {
         /**
+         * unique identifier of the album
+         */
+        id: string;
+        /**
          * albums
          */
         name: string;
@@ -11,13 +15,17 @@ declare namespace Definitions {
     }
     export interface AlbumDetails {
         /**
+         * unique identifier of the album
+         */
+        id: string;
+        /**
          * albums
          */
         name: string;
         /**
          * unique link for album
          */
-        permalink: string;
+        permalink?: string;
         photos: Photo[];
     }
     export interface AlbumsResponse {

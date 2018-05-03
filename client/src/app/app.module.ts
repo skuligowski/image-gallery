@@ -10,6 +10,7 @@ import { AlbumsGuard } from './albums.guard';
 import { AlbumsService } from './albums.service';
 import { IndexComponent } from './index/index.component';
 import { AlbumResolver } from './album.resolver';
+import { AlbumsDataService } from './albums-data.service';
 
 
 const appRoutes: Routes = [
@@ -30,7 +31,7 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(appRoutes,  { enableTracing: false })
   ],
-  providers: [ AlbumResolver, AlbumsService, AlbumsGuard ],
+  providers: [ AlbumResolver, AlbumsService, AlbumsGuard, AlbumsDataService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
