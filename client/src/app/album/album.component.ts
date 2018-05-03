@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CurrentAlbum } from '../album.resolver';
 import Photo = Definitions.Photo;
 
 @Component({
@@ -11,24 +12,26 @@ export class AlbumComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router) { }
 
-  photos: Photo[] = [
-    {url: 'assets/some_1.jpg', filename: 'some_1.jpg'},
-    {url: 'assets/some_2.jpg', filename: 'some_2.jpg'}
-  ];
-
-  currentPhoto: Photo = this.photos[0];
+  album: CurrentAlbum;
+  photo: Photo;
 
   ngOnInit() {
-    this.route.data.subscribe(album => {
-      console.log(album);
+    this.route.data.subscribe(data => {
+      console.log(data);
+      this.album = data.album;
+      this.photo = data.album.photo;
     });
   }
 
   next(): void {
-    this.router.navigate(['album', '2018', 'best-ever', 'some_2.jpg']);
+    this.router.navigate(['albums', '2018', 'best-ever', 'some_2.jpg']);
   }
 
   previous(): void {
-    this.router.navigate(['album', '2018', 'best-ever', 'some_1.jpg']);
+    this.router.navigate(['albums', '2018', 'best-ever', 'some_1.jpg']);
+  }
+
+  close(): void {
+    this.router.navigate(['albums'].concat(this.album.permalink.split('/')));
   }
 }

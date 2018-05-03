@@ -18,6 +18,9 @@ export class PhotoComponent implements OnInit {
   @Output()
   previous: EventEmitter<any> = new EventEmitter<any>();
 
+  @Output()
+  close: EventEmitter<any> = new EventEmitter<any>();
+
   constructor() { }
 
   ngOnInit() {

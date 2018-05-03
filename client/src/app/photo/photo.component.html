@@ -5,7 +5,7 @@
   </div>
 </div>
 <div class="navigation-layer">
-  <a class="close-button icon-close" href=""></a>
+  <a class="close-button icon-close" (click)="this.close.emit()"></a>
   <a class="nav-button prev icon-prev" (click)="this.previous.emit()"></a>
   <a class="nav-button next icon-next" (click)="this.next.emit()"></a>
   <div class="counter">100 / 100</div>
