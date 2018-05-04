@@ -1,5 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import Photo = Definitions.Photo;
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { CurrentPhoto } from '../album.resolver';
 
 @Component({
   selector: 'app-photo',
@@ -10,7 +10,7 @@ export class PhotoComponent implements OnInit {
 
 
   @Input()
-  photo: Photo;
+  photo: CurrentPhoto;
 
   @Output()
   next: EventEmitter<any> = new EventEmitter<any>();

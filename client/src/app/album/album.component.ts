@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CurrentAlbum } from '../album.resolver';
-import Photo = Definitions.Photo;
+import { CurrentAlbum, CurrentPhoto } from '../album.resolver';
 
 @Component({
   selector: 'app-album',
@@ -13,22 +12,26 @@ export class AlbumComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) { }
 
   album: CurrentAlbum;
-  photo: Photo;
+  photo: CurrentPhoto;
 
   ngOnInit() {
     this.route.data.subscribe(data => {
-      console.log(data);
       this.album = data.album;
-      this.photo = data.album.photo;
+      this.photo = this.album.currentPhoto;
+      console.log(this.photo);
     });
   }
 
   next(): void {
-    this.router.navigate(['albums', '2018', 'best-ever', 'some_2.jpg']);
+    if (this.photo.nextPhoto) {
+      this.router.navigate(['albums'].concat(this.album.permalink.split('/')).concat(this.photo.nextPhoto.filename));
+    }
   }
 
   previous(): void {
-    this.router.navigate(['albums', '2018', 'best-ever', 'some_1.jpg']);
+    if (this.photo.previousPhoto) {
+      this.router.navigate(['albums'].concat(this.album.permalink.split('/')).concat(this.photo.previousPhoto.filename));
+    }
   }
 
   close(): void {

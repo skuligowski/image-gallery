@@ -16,7 +16,15 @@ const mockedAlbumDetails: AlbumDetails = {
   name: 'Best ever album',
   photos: [
     {url: 'assets/some_1.jpg', filename: 'some_1.jpg'},
-    {url: 'assets/some_2.jpg', filename: 'some_2.jpg'}
+    {url: 'assets/some_3.jpg', filename: 'some_2.jpg'},
+    {url: 'assets/some_2.jpg', filename: 'some_3.jpg'},
+    {url: 'assets/some_1.jpg', filename: 'some_4.jpg'},
+    {url: 'assets/some_3.jpg', filename: 'some_5.jpg'},
+    {url: 'assets/some_2.jpg', filename: 'some_6.jpg'},
+    {url: 'assets/some_1.jpg', filename: 'some_7.jpg'},
+    {url: 'assets/some_3.jpg', filename: 'some_8.jpg'},
+    {url: 'assets/some_2.jpg', filename: 'some_9.jpg'},
+    {url: 'assets/some_1.jpg', filename: 'some_10.jpg'}
   ]
 };
 
