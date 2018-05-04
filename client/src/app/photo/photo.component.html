@@ -8,6 +8,6 @@
   <a class="close-button icon-close" (click)="this.close.emit()"></a>
   <a class="nav-button prev icon-prev" (click)="this.previous.emit()"></a>
   <a class="nav-button next icon-next" (click)="this.next.emit()"></a>
-  <div class="counter">100 / 100</div>
-  <div class="title">To jest fajny las, w którym byliśmy.</div>
+  <div class="counter">{{photo.currentNumber}} / {{photo.totalNumber}}</div>
+  <div class="title">{{photo.title}}</div>
 </div>

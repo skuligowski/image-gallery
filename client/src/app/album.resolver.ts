@@ -16,11 +16,21 @@ export class AlbumResolver implements Resolve<CurrentAlbum> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<CurrentAlbum> | Promise<CurrentAlbum> | CurrentAlbum {
     return this.albumsService.getAlbumDetails(route.params.albumPermalink).pipe(
       map(album => {
-        const photo: Photo = album.photos.find(photo => photo.filename === route.params.photoFilename);
-        return {... album, photo };
+        const photoIndex: number = album.photos.findIndex(photo => photo.filename === route.params.photoFilename);
+        let currentPhoto: CurrentPhoto;
+        if (photoIndex !== -1) {
+          currentPhoto = {
+            ... album.photos[photoIndex],
+            nextPhoto: album.photos[photoIndex + 1],
+            previousPhoto: album.photos[photoIndex - 1],
+            currentNumber: photoIndex + 1,
+            totalNumber: album.photos.length
+          };
+        }
+        return {... album, currentPhoto };
       }),
       tap( currentAlbum => {
-        if (!currentAlbum.photo && route.params.photoFilename) {
+        if (!currentAlbum.currentPhoto && route.params.photoFilename) {
           this.router.navigateByUrl('/albums/' + currentAlbum.permalink);
         }
       }),
@@ -33,5 +43,12 @@ export class AlbumResolver implements Resolve<CurrentAlbum> {
 }
 
 export interface CurrentAlbum extends AlbumDetails {
-  photo?: Photo;
+  currentPhoto?: CurrentPhoto;
+}
+
+export interface CurrentPhoto extends Photo {
+  nextPhoto?: Photo;
+  previousPhoto?: Photo;
+  currentNumber: number;
+  totalNumber: number;
 }

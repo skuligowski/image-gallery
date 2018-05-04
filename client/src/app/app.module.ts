@@ -16,7 +16,8 @@ import { AlbumsDataService } from './albums-data.service';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { matcher: matchAlbum, component: AlbumComponent, canActivate: [ AlbumsGuard ], resolve: { album: AlbumResolver } },
-  { path: '**', component: IndexComponent, canActivate: [ AlbumsGuard ]}
+  { path: '', component: IndexComponent, canActivate: [ AlbumsGuard ]},
+  { path: '**', redirectTo: ''}
 ];
 
 @NgModule({
