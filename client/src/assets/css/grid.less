@@ -1,0 +1,32 @@
+app-photo-grid {
+  display: block;
+
+  margin: 30px;
+
+  /* clearfix */
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  .grid-sizer,
+  app-photo-grid-item { width: 32.666% }
+
+  .gutter-sizer { width: 1% }
+
+  app-photo-grid-item {
+    float: left;
+    margin-bottom: 5px;
+
+    .image-wrapper {
+      position: relative;
+
+      img {
+        width: 100%;
+        height: auto !important;
+        position: absolute;
+      }
+    }
+  }
+}

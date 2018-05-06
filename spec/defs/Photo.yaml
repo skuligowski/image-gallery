@@ -10,6 +10,14 @@ properties:
   title:
     type: string
     description: title describing the photo
+  width:
+    type: number
+    description: width of the image
+  height:
+    type: number
+    description: height of the image
 required:
 - filename
 - url
+- width
+- height

@@ -22,7 +22,10 @@
         "../node_modules/normalize.css/normalize.css",
         "styles.less"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/imagesloaded/imagesloaded.pkgd.js",
+        "../node_modules/masonry-layout/dist/masonry.pkgd.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
