@@ -1,10 +1,9 @@
 import { AfterViewInit, Component, ElementRef } from '@angular/core';
-import { PhotoGridComponent } from '../photo-grid/photo-grid.component';
+import { PhotoGridComponent } from './photo-grid.component';
 
 @Component({
   selector: 'app-photo-grid-item',
-  templateUrl: './photo-grid-item.component.html',
-  styleUrls: ['./photo-grid-item.component.less']
+  template: '<ng-content></ng-content>',
 })
 export class PhotoGridItemComponent implements AfterViewInit {
 
