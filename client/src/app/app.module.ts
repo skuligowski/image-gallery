@@ -12,7 +12,7 @@ import { IndexComponent } from './index/index.component';
 import { AlbumResolver } from './album.resolver';
 import { AlbumsDataService } from './albums-data.service';
 import { PhotoGridComponent } from './photo-grid/photo-grid.component';
-import { PhotoGridItemComponent } from './photo-grid-item/photo-grid-item.component';
+import { PhotoGridItemComponent } from './photo-grid/photo-grid-item.component';
 
 
 const appRoutes: Routes = [
