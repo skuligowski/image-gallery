@@ -2,11 +2,11 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import * as Masonry from 'masonry-layout';
 
 @Component({
-  selector: 'app-photo-grid',
-  templateUrl: './photo-grid.component.html',
-  styleUrls: ['./photo-grid.component.less']
+  selector: 'app-image-grid',
+  templateUrl: './image-grid.component.html',
+  styleUrls: ['./image-grid.component.less']
 })
-export class PhotoGridComponent implements OnInit {
+export class ImageGridComponent implements OnInit {
 
   private masonry: Masonry;
 
