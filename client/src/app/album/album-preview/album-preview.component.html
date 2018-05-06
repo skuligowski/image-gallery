@@ -1,3 +1,4 @@
+<h1 class="album-name">{{album.name}}</h1>
 <app-image-grid>
   <app-image-grid-item *ngFor="let image of album.images; trackBy:image?.filename">
     <div class="image-wrapper" [style.padding-bottom.%]="image.height/image.width*100">
