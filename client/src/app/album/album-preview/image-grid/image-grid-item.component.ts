@@ -7,10 +7,10 @@ import { ImageGridComponent } from './image-grid.component';
 })
 export class ImageGridItemComponent implements AfterViewInit {
 
-  constructor(private photoGrid: ImageGridComponent, private gridItemElement: ElementRef) { }
+  constructor(private imageGrid: ImageGridComponent, private gridItemElement: ElementRef) { }
 
   ngAfterViewInit(): void {
-    this.photoGrid.append(this.gridItemElement);
+    this.imageGrid.append(this.gridItemElement);
   }
 
 }

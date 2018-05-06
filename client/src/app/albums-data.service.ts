@@ -14,7 +14,7 @@ const mockedAlbumDetails: AlbumDetails = {
   id: '1',
   permalink: '2018/best-ever',
   name: 'Best ever album',
-  photos: [
+  images: [
     {url: 'assets/some_1.jpg', filename: 'some_1.jpg', width: 1500, height: 1000},
     {url: 'assets/some_3.jpg', filename: 'some_2.jpg', width: 1280, height: 1920},
     {url: 'assets/some_2.jpg', filename: 'some_3.jpg', width: 1200, height: 800},

@@ -13,7 +13,7 @@ export function matchAlbum(segments: UrlSegment[]): UrlMatchResult {
       albumPermalink: new UrlSegment(albumPath, {})
     };
     if (isFile) {
-      posParams['photoFilename'] = new UrlSegment(segments[segments.length - 1].path, {});
+      posParams['imageFilename'] = new UrlSegment(segments[segments.length - 1].path, {});
     }
     return { consumed: segments, posParams };
   } else {
