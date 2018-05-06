@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CurrentPhoto } from '../album.resolver';
+import { CurrentPhoto } from '../../album.resolver';
 
 @Component({
-  selector: 'app-photo',
-  templateUrl: './photo.component.html',
-  styleUrls: ['./photo.component.less']
+  selector: 'app-image-preview',
+  templateUrl: './image-preview.component.html',
 })
-export class PhotoComponent implements OnInit {
+export class ImagePreviewComponent implements OnInit {
 
 
   @Input()

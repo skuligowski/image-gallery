@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AlbumComponent } from './album/album.component';
-import { PhotoComponent } from './photo/photo.component';
+import { ImagePreviewComponent } from './album/image-preview/image-preview.component';
 import { matchAlbum } from './albums-url.matcher';
 import { LoginComponent } from './login/login.component';
 import { AlbumsGuard } from './albums.guard';
@@ -11,8 +11,9 @@ import { AlbumsService } from './albums.service';
 import { IndexComponent } from './index/index.component';
 import { AlbumResolver } from './album.resolver';
 import { AlbumsDataService } from './albums-data.service';
-import { PhotoGridComponent } from './photo-grid/photo-grid.component';
-import { PhotoGridItemComponent } from './photo-grid/photo-grid-item.component';
+import { ImageGridComponent } from './album/album-preview/image-grid/image-grid.component';
+import { ImageGridItemComponent } from './album/album-preview/image-grid/image-grid-item.component';
+import { AlbumPreviewComponent } from './album/album-preview/album-preview.component';
 
 
 const appRoutes: Routes = [
@@ -26,11 +27,12 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     AlbumComponent,
-    PhotoComponent,
+    ImagePreviewComponent,
     LoginComponent,
     IndexComponent,
-    PhotoGridComponent,
-    PhotoGridItemComponent,
+    ImageGridComponent,
+    ImageGridItemComponent,
+    AlbumPreviewComponent,
   ],
   imports: [
     BrowserModule,
