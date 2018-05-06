@@ -1,15 +1,15 @@
-title: Photo
+title: Image
 type: object
 properties:
   filename:
     type: string
-    description: photo
+    description: image filename
   url:
     type: string
-    description: link to reach the photo
+    description: link to reach the image
   title:
     type: string
-    description: title describing the photo
+    description: title describing the image
   width:
     type: number
     description: width of the image

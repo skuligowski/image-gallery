@@ -1,7 +1,7 @@
 <app-image-grid>
-  <app-image-grid-item *ngFor="let photo of album.photos; trackBy:photo?.filename">
-    <div class="image-wrapper" [style.padding-bottom.%]="photo.height/photo.width*100">
-      <img [routerLink]="[photo.filename]" src="{{photo.url}}">
+  <app-image-grid-item *ngFor="let image of album.images; trackBy:image?.filename">
+    <div class="image-wrapper" [style.padding-bottom.%]="image.height/image.width*100">
+      <img [routerLink]="[image.filename]" src="{{image.url}}">
     </div>
   </app-image-grid-item>
 </app-image-grid>

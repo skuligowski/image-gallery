@@ -26,7 +26,7 @@ declare namespace Definitions {
          * unique link for album
          */
         permalink?: string;
-        photos: Photo[];
+        images: Image[];
     }
     export interface AlbumsResponse {
         /**
@@ -34,17 +34,17 @@ declare namespace Definitions {
          */
         albums: Album[];
     }
-    export interface Photo {
+    export interface Image {
         /**
-         * photo
+         * image filename
          */
         filename: string;
         /**
-         * link to reach the photo
+         * link to reach the image
          */
         url: string;
         /**
-         * title describing the photo
+         * title describing the image
          */
         title?: string;
         /**

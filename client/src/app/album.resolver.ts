@@ -5,7 +5,7 @@ import { AlbumsService } from './albums.service';
 import { catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import AlbumDetails = Definitions.AlbumDetails;
-import Photo = Definitions.Photo;
+import Image = Definitions.Image;
 
 
 @Injectable()
@@ -16,21 +16,21 @@ export class AlbumResolver implements Resolve<CurrentAlbum> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<CurrentAlbum> | Promise<CurrentAlbum> | CurrentAlbum {
     return this.albumsService.getAlbumDetails(route.params.albumPermalink).pipe(
       map(album => {
-        const photoIndex: number = album.photos.findIndex(photo => photo.filename === route.params.photoFilename);
-        let currentPhoto: CurrentPhoto;
-        if (photoIndex !== -1) {
-          currentPhoto = {
-            ... album.photos[photoIndex],
-            nextPhoto: album.photos[photoIndex + 1],
-            previousPhoto: album.photos[photoIndex - 1],
-            currentNumber: photoIndex + 1,
-            totalNumber: album.photos.length
+        const imageIndex: number = album.images.findIndex(image => image.filename === route.params.imageFilename);
+        let currentImage: CurrentImage;
+        if (imageIndex !== -1) {
+          currentImage = {
+            ... album.images[imageIndex],
+            nextImage: album.images[imageIndex + 1],
+            previousImage: album.images[imageIndex - 1],
+            currentNumber: imageIndex + 1,
+            totalNumber: album.images.length
           };
         }
-        return {... album, currentPhoto };
+        return {... album, currentImage };
       }),
       tap( currentAlbum => {
-        if (!currentAlbum.currentPhoto && route.params.photoFilename) {
+        if (!currentAlbum.currentImage && route.params.imageFilename) {
           this.router.navigateByUrl('/albums/' + currentAlbum.permalink);
         }
       }),
@@ -43,12 +43,12 @@ export class AlbumResolver implements Resolve<CurrentAlbum> {
 }
 
 export interface CurrentAlbum extends AlbumDetails {
-  currentPhoto?: CurrentPhoto;
+  currentImage?: CurrentImage;
 }
 
-export interface CurrentPhoto extends Photo {
-  nextPhoto?: Photo;
-  previousPhoto?: Photo;
+export interface CurrentImage extends Image {
+  nextImage?: Image;
+  previousImage?: Image;
   currentNumber: number;
   totalNumber: number;
 }

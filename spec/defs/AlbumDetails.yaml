@@ -4,9 +4,9 @@ allOf:
   - $ref: Album.yaml
   - object:
     properties:
-      photos:
+      images:
         type: array
         items:
-          $ref: Photo.yaml
+          $ref: Image.yaml
     required:
-    - photos
+    - images
