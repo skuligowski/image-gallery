@@ -47,5 +47,13 @@ declare namespace Definitions {
          * title describing the photo
          */
         title?: string;
+        /**
+         * width of the image
+         */
+        width: number;
+        /**
+         * height of the image
+         */
+        height: number;
     }
 }

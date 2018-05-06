@@ -1,8 +1,10 @@
 <app-photo *ngIf="photo" [photo]="photo" (next)="next()" (previous)="previous()" (close)="close()"></app-photo>
-<div *ngIf="!photo">
-  <div class="photos-grid">
-    <div class="photo-thumbnail" *ngFor="let photo of album.photos; trackBy:photo?.filename">
-      <img [routerLink]="[photo.filename]" src="{{photo.url}}">
-    </div>
-  </div>
-</div>
+<ng-container *ngIf="!photo">
+  <app-photo-grid>
+    <app-photo-grid-item *ngFor="let photo of album.photos; trackBy:photo?.filename">
+      <div class="image-wrapper" [style.padding-bottom.%]="photo.height/photo.width*100">
+        <img [routerLink]="[photo.filename]" src="{{photo.url}}">
+      </div>
+    </app-photo-grid-item>
+  </app-photo-grid>
+</ng-container>
