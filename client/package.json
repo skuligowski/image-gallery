@@ -1,5 +1,5 @@
 {
-  "name": "serverless-gallery-client",
+  "name": "image-gallery-client",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {

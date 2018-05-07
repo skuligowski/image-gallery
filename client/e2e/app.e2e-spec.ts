@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('serverless-gallery App', () => {
+describe('image-gallery App', () => {
   let page: AppPage;
 
   beforeEach(() => {

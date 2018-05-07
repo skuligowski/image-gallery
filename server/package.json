@@ -1,5 +1,5 @@
 {
-  "name": "serverless-gallery-server",
+  "name": "image-gallery-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
