@@ -1,11 +1,11 @@
 @font-face {
   font-family: "icons";
-  src: url('assets/fonts/icons.121212.eot');
-  src: url('assets/fonts/icons.121212.eot?#iefix') format('eot'),
-    url('assets/fonts/icons.121212.woff2') format('woff2'),
-    url('assets/fonts/icons.121212.woff') format('woff'),
-    url('assets/fonts/icons.121212.ttf') format('truetype'),
-    url('assets/fonts/icons.121212.svg#icons') format('svg');
+  src: url('assets/fonts/icons.1525902963936.eot');
+  src: url('assets/fonts/icons.1525902963936.eot?#iefix') format('eot'),
+    url('assets/fonts/icons.1525902963936.woff2') format('woff2'),
+    url('assets/fonts/icons.1525902963936.woff') format('woff'),
+    url('assets/fonts/icons.1525902963936.ttf') format('truetype'),
+    url('assets/fonts/icons.1525902963936.svg#icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -42,7 +42,9 @@
   text-align: center;
 }
 
-.icon-close:before { content: "\EA01" }
-.icon-menu:before { content: "\EA02" }
-.icon-next:before { content: "\EA03" }
-.icon-prev:before { content: "\EA04" }
+.icon-albums:before { content: "\EA01" }
+.icon-close:before { content: "\EA02" }
+.icon-home:before { content: "\EA03" }
+.icon-menu:before { content: "\EA04" }
+.icon-next:before { content: "\EA05" }
+.icon-prev:before { content: "\EA06" }

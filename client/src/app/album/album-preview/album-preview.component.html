@@ -1,4 +1,11 @@
-<h1 class="album-name">{{album.name}}</h1>
+<header>
+  <div class="album-name"><span>{{album.name}}</span></div>
+  <ul class="navigation">
+    <li><a class="select-album-button" (click)="chooseAlbum()"><i class="icon-albums"></i><span class="label">Wybierz album</span></a></li>
+    <li class="separator"><span></span></li>
+    <li><a [routerLink]="['/']" class="icon-home"></a></li>
+  </ul>
+</header>
 <app-image-grid>
   <app-image-grid-item *ngFor="let image of album.images; trackBy:image?.filename">
     <div class="image-wrapper" [style.padding-bottom.%]="image.height/image.width*100">
