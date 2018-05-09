@@ -13,7 +13,7 @@ const mockedAlbums = [
 const mockedAlbumDetails: AlbumDetails = {
   id: '1',
   permalink: '2018/best-ever',
-  name: 'Best ever album',
+  name: 'Best album ever',
   images: [
     {url: 'assets/some_1.jpg', filename: 'some_1.jpg', width: 1500, height: 1000},
     {url: 'assets/some_3.jpg', filename: 'some_2.jpg', width: 1280, height: 1920},

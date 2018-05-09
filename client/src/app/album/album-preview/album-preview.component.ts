@@ -16,4 +16,7 @@ export class AlbumPreviewComponent implements OnInit {
   ngOnInit() {
   }
 
+  chooseAlbum(): void {
+
+  }
 }

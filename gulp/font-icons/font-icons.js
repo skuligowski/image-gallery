@@ -2,9 +2,10 @@ module.exports = gulp => {
   gulp.task(`icons`, function() {
     const iconFont = require('gulp-iconfont');
     const consolidate = require('gulp-consolidate');
-    gulp.src('src/assets/icons/*.svg')
+    const timestamp = new Date().getTime();
+    gulp.src('client/src/assets/icons/*.svg')
       .pipe(iconFont({
-        fontName: 'icons.121212',
+        fontName: `icons.${timestamp}`,
         formats: ['ttf', 'eot', 'woff', 'woff2', 'svg'],
         timestamp: 121212,
         normalize: true,
@@ -18,10 +19,10 @@ module.exports = gulp => {
             fontName: 'icons',
             fontPath: 'assets/fonts/',
             className: 'icon',
-            timestamp: '121212'
+            timestamp: timestamp,
           }))
-          .pipe(gulp.dest(`src/assets/css`));
+          .pipe(gulp.dest(`client/src/assets/css`));
       })
-      .pipe(gulp.dest('src/assets/fonts'))
+      .pipe(gulp.dest('client/src/assets/fonts'))
   });
 };
