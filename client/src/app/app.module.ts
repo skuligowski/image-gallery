@@ -14,10 +14,13 @@ import { AlbumsDataService } from './albums-data.service';
 import { ImageGridComponent } from './album/album-preview/image-grid/image-grid.component';
 import { ImageGridItemComponent } from './album/album-preview/image-grid/image-grid-item.component';
 import { AlbumPreviewComponent } from './album/album-preview/album-preview.component';
+import { AlbumSelectorComponent } from './common/album-selector/album-selector.component';
+import { AlbumSelectorService } from './common/album-selector/album-selector.service';
 
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'album/select', component: AlbumSelectorComponent, outlet: 'modal'},
   { matcher: matchAlbum, component: AlbumComponent, canActivate: [ AlbumsGuard ], resolve: { album: AlbumResolver } },
   { path: '', component: IndexComponent, canActivate: [ AlbumsGuard ]},
   { path: '**', redirectTo: ''}
@@ -33,12 +36,13 @@ const appRoutes: Routes = [
     ImageGridComponent,
     ImageGridItemComponent,
     AlbumPreviewComponent,
+    AlbumSelectorComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes,  { enableTracing: false })
   ],
-  providers: [ AlbumResolver, AlbumsService, AlbumsGuard, AlbumsDataService ],
+  providers: [ AlbumResolver, AlbumsService, AlbumsGuard, AlbumsDataService, AlbumSelectorService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
