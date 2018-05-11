@@ -16,6 +16,8 @@ import { ImageGridItemComponent } from './album/album-preview/image-grid/image-g
 import { AlbumPreviewComponent } from './album/album-preview/album-preview.component';
 import { AlbumSelectorComponent } from './common/album-selector/album-selector.component';
 import { AlbumSelectorService } from './common/album-selector/album-selector.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { animate, style, trigger } from '@angular/animations';
 
 
 const appRoutes: Routes = [
@@ -40,6 +42,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes,  { enableTracing: false })
   ],
   providers: [ AlbumResolver, AlbumsService, AlbumsGuard, AlbumsDataService, AlbumSelectorService ],

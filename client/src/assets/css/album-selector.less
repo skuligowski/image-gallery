@@ -1,12 +1,28 @@
 app-album-selector {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: #666;
+  .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right:0;
+    left: 0;
+    width: 100%;
+    display: block;
+    opacity: 0.6;
+    background: #000;
+  }
 
-  &.closed {
-    display: none;
+  .modal {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 740px;
+    margin: auto;
+    right:0;
+    display: block;
+    background: #666;
+
+    &.closed {
+      display: none;
+    }
   }
 }
