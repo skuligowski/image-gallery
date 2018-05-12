@@ -14,15 +14,14 @@ import { AlbumsDataService } from './albums-data.service';
 import { ImageGridComponent } from './album/album-preview/image-grid/image-grid.component';
 import { ImageGridItemComponent } from './album/album-preview/image-grid/image-grid-item.component';
 import { AlbumPreviewComponent } from './album/album-preview/album-preview.component';
-import { AlbumSelectorComponent } from './common/album-selector/album-selector.component';
+import { AlbumSelectorModalComponent } from './common/album-selector/album-selector-modal.component';
 import { AlbumSelectorService } from './common/album-selector/album-selector.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { animate, style, trigger } from '@angular/animations';
 
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'album/select', component: AlbumSelectorComponent, outlet: 'modal'},
+  { path: 'album/select', component: AlbumSelectorModalComponent, outlet: 'modal'},
   { matcher: matchAlbum, component: AlbumComponent, canActivate: [ AlbumsGuard ], resolve: { album: AlbumResolver } },
   { path: '', component: IndexComponent, canActivate: [ AlbumsGuard ]},
   { path: '**', redirectTo: ''}
@@ -38,7 +37,7 @@ const appRoutes: Routes = [
     ImageGridComponent,
     ImageGridItemComponent,
     AlbumPreviewComponent,
-    AlbumSelectorComponent,
+    AlbumSelectorModalComponent,
   ],
   imports: [
     BrowserModule,
