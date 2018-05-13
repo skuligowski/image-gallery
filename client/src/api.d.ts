@@ -12,6 +12,7 @@ declare namespace Definitions {
          * unique link for album
          */
         permalink?: string;
+        tree: string[];
     }
     export interface AlbumDetails {
         /**
@@ -26,6 +27,7 @@ declare namespace Definitions {
          * unique link for album
          */
         permalink?: string;
+        tree: string[];
         images: Image[];
     }
     export interface AlbumsResponse {

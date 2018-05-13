@@ -1,0 +1,16 @@
+<ul class="main-groups">
+  <li class="main-group" [class.uncategorized]="!group.key" *ngFor="let group of groups">
+    <div class="group-name" *ngIf="group.key">{{group.key}}</div>
+    <ul class="albums">
+      <li class="album" *ngFor="let album of group.albums">
+        <div>
+          <ul class="sub-groups" *ngIf="album.tree.length > 1">
+            <li class="sub-group" *ngFor="let subGroup of album.tree.slice(1)">{{subGroup}}</li>
+          </ul>
+          <span><a (click)="selectAlbum(album)">{{album.name}}</a></span>
+        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+

@@ -7,13 +7,15 @@ import AlbumDetails = Definitions.AlbumDetails;
 
 
 const mockedAlbums = [
-  { id: '1', permalink: '2018/best-ever', name: 'Best ever album'}
+  { id: '1', permalink: '2018/best-ever', name: 'Best ever album', tree: ['2018', 'Best ever']},
+  { id: '2', permalink: '2018/other-album', name: 'Other', tree: ['2018', 'Other album']},
 ];
 
-const mockedAlbumDetails: AlbumDetails = {
+const mockedAlbumDetails: AlbumDetails[] = [{
   id: '1',
   permalink: '2018/best-ever',
   name: 'Best album ever',
+  tree: ['2018', 'Best ever'],
   images: [
     {url: 'assets/some_1.jpg', filename: 'some_1.jpg', width: 1500, height: 1000},
     {url: 'assets/some_3.jpg', filename: 'some_2.jpg', width: 1280, height: 1920},
@@ -26,7 +28,17 @@ const mockedAlbumDetails: AlbumDetails = {
     {url: 'assets/some_2.jpg', filename: 'some_9.jpg', width: 1200, height: 800},
     {url: 'assets/some_1.jpg', filename: 'some_10.jpg', width: 1500, height: 1000}
   ]
-};
+}, {
+  id: '2',
+  permalink: '2018/other-album',
+  name: 'Other album',
+  tree: ['2018', 'Other album'],
+  images: [
+    {url: 'assets/some_3.jpg', filename: 'some_42.jpg', width: 1280, height: 1920},
+    {url: 'assets/some_2.jpg', filename: 'some_52.jpg', width: 1200, height: 800},
+    {url: 'assets/some_1.jpg', filename: 'some_62.jpg', width: 1500, height: 1000},
+  ]
+}];
 
 
 @Injectable()
@@ -39,7 +51,7 @@ export class AlbumsDataService {
   }
 
   getAlbumDetails(albumId: string): Observable<AlbumDetails> {
-    return of(mockedAlbumDetails).pipe(delay(1000));
+    return of(mockedAlbumDetails.find(details => details.id === albumId)).pipe(delay(1000));
   }
 
 }

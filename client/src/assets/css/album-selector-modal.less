@@ -14,18 +14,27 @@ app-album-selector-modal {
     top: 0;
     bottom: 0;
     right: 0;
-    width: 740px;
+    width: 540px;
     margin: auto;
     display: block;
-    background: #666;
+    background: #222;
+    overflow: auto;
 
-    &.closed {
-      display: none;
+    .container {
+      padding: 20px 40px;
+
+      app-album-selector {
+        margin-top: 40px;
+      }
     }
 
-    .for-portrait-only({
+    .for-phone-only({
       width: 100%;
-      left:0;
+      left: 0;
+
+      .container {
+        padding: 20px;
+      }
     });
   }
 }
