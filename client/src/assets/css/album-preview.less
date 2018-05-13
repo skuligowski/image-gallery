@@ -5,73 +5,10 @@ app-album-preview {
   background-color: #000;
   overflow: auto;
 
-  padding: 0 30px 30px 30px;
+  padding: 20px 30px 30px 30px;
 
-  header {
-    display: flex;
-    align-items: center;
-    margin: 20px 0 20px 0;
-    font-size: 0;
-
-    .album-name {
-      flex: 1 0 0;
-      margin: 0;
-
-      & > span {
-        font-size: 1.4rem;
-        font-weight: normal;
-        background-color: #fff;
-        display: inline-block;
-        padding: 5px;
-        text-transform: uppercase;
-      }
-    }
-
-    .navigation {
-      margin: 0;
-      padding: 0;
-
-      display: flex;
-      align-items: center;
-
-      li {
-
-        & > a {
-          display: block;
-          font-size: 0.8rem;
-          font-weight: normal;
-          text-transform: uppercase;
-          text-decoration: none;
-          color: #fff;
-          cursor: pointer;
-
-          &:hover {
-            color: yellow;
-          }
-        }
-
-        .icon-home {
-          font-size: 1rem;
-        }
-
-        .icon-albums {
-          padding-right: 7px;
-        }
-
-        &.separator {
-          @padding: 9px;
-          margin: 0 @padding 0 @padding+1;
-          position: relative;
-          border-left: 1px solid #aaa;
-          height: 16px;
-        }
-      }
-    }
+  app-image-grid {
+    margin-top: 20px;
   }
 
-  .for-phone-only({
-    .select-album-button .label {
-      display: none;
-    }
-  });
 }

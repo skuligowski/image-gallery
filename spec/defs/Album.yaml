@@ -10,6 +10,12 @@ properties:
   permalink:
     type: string
     description: unique link for album
+  tree:
+    type: array
+    descirption: menu tree for the album
+    items:
+      type: string
 required:
 - id
 - name
+- tree

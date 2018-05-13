@@ -17,11 +17,19 @@ import { AlbumPreviewComponent } from './album/album-preview/album-preview.compo
 import { AlbumSelectorModalComponent } from './common/album-selector/album-selector-modal.component';
 import { AlbumSelectorService } from './common/album-selector/album-selector.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AlbumSelectorComponent } from './common/album-selector/album-selector.component';
+import { AlbumsResolver } from './albums.resolver';
 
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'album/select', component: AlbumSelectorModalComponent, outlet: 'modal'},
+  {
+    path: 'album/select',
+    component: AlbumSelectorModalComponent,
+    canActivate: [ AlbumsGuard ],
+    resolve: { albums: AlbumsResolver },
+    outlet: 'modal'
+  },
   { matcher: matchAlbum, component: AlbumComponent, canActivate: [ AlbumsGuard ], resolve: { album: AlbumResolver } },
   { path: '', component: IndexComponent, canActivate: [ AlbumsGuard ]},
   { path: '**', redirectTo: ''}
@@ -38,13 +46,14 @@ const appRoutes: Routes = [
     ImageGridItemComponent,
     AlbumPreviewComponent,
     AlbumSelectorModalComponent,
+    AlbumSelectorComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes,  { enableTracing: false })
   ],
-  providers: [ AlbumResolver, AlbumsService, AlbumsGuard, AlbumsDataService, AlbumSelectorService ],
+  providers: [ AlbumsResolver, AlbumResolver, AlbumsService, AlbumsGuard, AlbumsDataService, AlbumSelectorService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

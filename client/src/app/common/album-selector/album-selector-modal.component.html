@@ -1,7 +1,14 @@
-<div class="overlay">
+<div class="overlay" (click)="close()">
 </div>
 <div class="modal">
-  Album selector
-  <button (click)="close()">Close</button>
+  <div class="container">
+    <header class="layout-header">
+      <div class="title"><span>Select album</span></div>
+      <ul class="navigation">
+        <li><a (click)="close()" class="icon-close"></a></li>
+      </ul>
+    </header>
+    <app-album-selector [albums]="albums"></app-album-selector>
+  </div>
 </div>
 

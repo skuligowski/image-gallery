@@ -1,0 +1,57 @@
+app-album-selector {
+  display: block;
+  color: #fff;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  };
+
+  .main-group {
+    font-size: 1.4rem;
+    font-weight: normal;
+    margin-bottom: 25px;
+
+    .group-name {
+      margin-bottom: 10px;
+    }
+
+    .albums {
+      padding-left: 35px;
+
+      .album {
+        font-size: 1.1rem;
+        line-height: 1.4;
+        cursor: pointer;
+
+        &:hover {
+          color: yellow;
+        }
+      }
+    }
+
+    &.uncategorized .albums {
+      padding-left: 0;
+    }
+  }
+
+  .sub-groups {
+    display: inline-block;
+    margin: 0;
+  }
+
+  .sub-group {
+    display: inline-block;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-right: 5px;
+
+    &:not(:last-child):after {
+      content: '\00B7';
+      margin-left: 5px;
+    }
+  }
+
+}

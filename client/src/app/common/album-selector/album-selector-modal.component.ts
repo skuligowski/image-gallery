@@ -1,6 +1,7 @@
 import { Component, HostBinding } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { animate, group, query, style, transition, trigger } from '@angular/animations';
+import Album = Definitions.Album;
 
 const fadeInAnimation = trigger('fadeInAnimation', [
   transition(':enter', group([
@@ -36,8 +37,12 @@ export class AlbumSelectorModalComponent {
   @HostBinding('class.opened')
   opened: boolean;
 
-  constructor(private router: Router) {
+  albums: Album[];
 
+  constructor(private router: Router, private route: ActivatedRoute) {
+    route.data.subscribe(data => {
+      this.albums = data.albums;
+    });
   }
 
   close(): void {
