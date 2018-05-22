@@ -1,22 +1,11 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy } from '@angular/core';
-import { ImageGridComponent } from './image-grid.component';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-image-grid-item',
   template: '<ng-content></ng-content>',
 })
-export class ImageGridItemComponent implements AfterViewInit, OnDestroy {
+export class ImageGridItemComponent {
 
-  constructor(private imageGrid: ImageGridComponent, private gridItemElement: ElementRef) { }
-
-  ngAfterViewInit(): void {
-    this.imageGrid.append(this.gridItemElement);
-  }
-
-  ngOnDestroy(): void {
-    this.imageGrid.remove(this.gridItemElement);
-  }
-
-
+  constructor() {}
 }
 
