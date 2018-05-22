@@ -1,19 +1,22 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ContentChildren, ElementRef, NgZone, OnInit, QueryList } from '@angular/core';
 import * as Masonry from 'masonry-layout';
-import { Subject } from 'rxjs/Subject';
-import { debounceTime } from 'rxjs/operators';
+import { ImageGridItemComponent } from './image-grid-item.component';
 
 @Component({
   selector: 'app-image-grid',
   templateUrl: './image-grid.component.html',
-  styleUrls: ['./image-grid.component.less']
+  styleUrls: ['./image-grid.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ImageGridComponent implements OnInit {
+export class ImageGridComponent implements OnInit, AfterViewInit {
+
+  @ContentChildren(ImageGridItemComponent, {read: ElementRef})
+  gridItems: QueryList<ElementRef>;
 
   private masonry: Masonry;
-  private layout$: Subject<void> = new Subject();
+  private lastGridItemElements: HTMLElement[];
 
-  constructor(private gridElement: ElementRef) {}
+  constructor(private gridElement: ElementRef, private zone: NgZone) {}
 
   ngOnInit() {
     this.masonry = new Masonry( this.gridElement.nativeElement, {
@@ -21,19 +24,21 @@ export class ImageGridComponent implements OnInit {
       gutter: '.gutter-sizer',
       percentPosition: true,
       horizontalOrder: true,
+      initLayout: true
     });
-
-    this.layout$
-      .pipe(debounceTime(0))
-      .subscribe(() => this.masonry.layout());
   }
 
-  append(gridItemElement: ElementRef): void {
-    this.masonry.appended(gridItemElement.nativeElement);
-  }
-
-  remove(gridItemElement: ElementRef): void {
-    this.masonry.remove(gridItemElement.nativeElement);
-    this.layout$.next();
+  ngAfterViewInit(): void {
+    this.gridItems.changes.subscribe((items: QueryList<ElementRef>) => {
+      this.zone.runOutsideAngular(() => {
+        if (this.lastGridItemElements) {
+          this.masonry.remove(this.lastGridItemElements);
+          this.masonry.layout();
+        }
+        this.lastGridItemElements = items.map(item => item.nativeElement);
+        this.masonry.appended(this.lastGridItemElements);
+      });
+    });
+    this.gridItems.notifyOnChanges();
   }
 }

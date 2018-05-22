@@ -5,7 +5,7 @@ import { CurrentImage } from '../../album.resolver';
   selector: 'app-image-preview',
   templateUrl: './image-preview.component.html',
 })
-export class ImagePreviewComponent implements OnInit {
+export class ImagePreviewComponent {
 
 
   @Input()
@@ -21,8 +21,5 @@ export class ImagePreviewComponent implements OnInit {
   close: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }
