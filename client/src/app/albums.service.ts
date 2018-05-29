@@ -14,11 +14,15 @@ export class AlbumsService {
   private albums: Album[];
   private albumDetailsMap: {[albumId: string]: AlbumDetails} = {};
 
+  private useCache = true;
+
   constructor(private albumsData: AlbumsDataService) {}
 
   loadAlbums(): Observable<Album[]> {
     return this.albumsData.getAlbums().pipe(
-      tap(albums => this.albums = albums));
+      tap(albums => {
+        this.albums = albums;
+      }));
   }
 
   getAlbums(): Album[] {
@@ -31,7 +35,7 @@ export class AlbumsService {
       return throwError(new Error('Album does not exist'));
     }
     const albumDetails = this.albumDetailsMap[album.id];
-    return albumDetails ? of(albumDetails) : this.albumsData.getAlbumDetails(album.id).pipe(
+    return albumDetails && this.useCache ? of(albumDetails) : this.albumsData.getAlbumDetails(album.id).pipe(
       tap(albumDetails => this.albumDetailsMap[albumDetails.id] = albumDetails));
   }
 

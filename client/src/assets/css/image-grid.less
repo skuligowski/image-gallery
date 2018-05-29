@@ -23,8 +23,16 @@ app-image-grid {
         width: 100%;
         height: auto !important;
         position: absolute;
+        outline: none;
       }
     }
+
+    &:hover {
+      transform: scale(1.02);
+      transition: transform 1.3s cubic-bezier(.3,.98,.11,1.0);
+      cursor: pointer;
+    }
+
   }
 
   .for-phone-only({

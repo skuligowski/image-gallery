@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { delay } from 'rxjs/operators';
+import { spinnable } from './common/utils/spinnable';
 import Album = Definitions.Album;
 import AlbumDetails = Definitions.AlbumDetails;
 
@@ -47,11 +48,15 @@ export class AlbumsDataService {
   constructor() {}
 
   getAlbums(): Observable<Album[]> {
-    return of(mockedAlbums).pipe(delay(1000));
+    return spinnable(
+      of(mockedAlbums).pipe(delay(3000))
+    );
   }
 
   getAlbumDetails(albumId: string): Observable<AlbumDetails> {
-    return of(mockedAlbumDetails.find(details => details.id === albumId)).pipe(delay(1000));
+    return spinnable(
+      of(mockedAlbumDetails.find(details => details.id === albumId)).pipe(delay(5000))
+    );
   }
 
 }

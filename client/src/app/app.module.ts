@@ -19,6 +19,8 @@ import { AlbumSelectorService } from './common/album-selector/album-selector.ser
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlbumSelectorComponent } from './common/album-selector/album-selector.component';
 import { AlbumsResolver } from './albums.resolver';
+import { SpinnerComponent } from './common/spinner/spinner.component';
+import { SplashService } from './common/splash/splash.service';
 
 
 const appRoutes: Routes = [
@@ -47,13 +49,14 @@ const appRoutes: Routes = [
     AlbumPreviewComponent,
     AlbumSelectorModalComponent,
     AlbumSelectorComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes,  { enableTracing: false })
   ],
-  providers: [ AlbumsResolver, AlbumResolver, AlbumsService, AlbumsGuard, AlbumsDataService, AlbumSelectorService ],
+  providers: [ AlbumsResolver, AlbumResolver, AlbumsService, AlbumsGuard, AlbumsDataService, AlbumSelectorService, SplashService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
