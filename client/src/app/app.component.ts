@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
+import { AlbumsService } from './albums.service';
+import { SplashService } from './common/splash/splash.service';
 
 @Component({
   selector: 'app-root',
@@ -6,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor(private albumsService: AlbumsService, private container: ViewContainerRef, private splashService: SplashService) {
+    splashService.attachSplash((container.element.nativeElement as HTMLElement).nextElementSibling);
+  }
 }
