@@ -7,7 +7,7 @@
   </ul>
 </header>
 <app-image-grid>
-  <app-image-grid-item *ngFor="let image of album.images; trackBy:image?.filename">
+  <app-image-grid-item *ngFor="let image of album.images;">
     <div class="image-wrapper" [style.padding-bottom.%]="image.height/image.width*100">
       <img [routerLink]="[image.filename]" src="{{image.url}}">
     </div>
