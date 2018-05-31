@@ -1,13 +1,14 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div class="image-frame">
   <div class="image-window">
-    <img src="{{image.url}}" />
+    <ng-container *ngFor="let image of currentAlbum.images">
+      <img [@fadeInAnimation] *ngIf="image.filename == currentImage.filename" src="{{image.url}}" />
+    </ng-container>
   </div>
 </div>
 <div class="navigation-layer">
-  <a class="close-button icon-close" (click)="this.close.emit()"></a>
-  <a class="nav-button prev icon-prev" (click)="this.previous.emit()"></a>
-  <a class="nav-button next icon-next" (click)="this.next.emit()"></a>
-  <div class="counter">{{image.currentNumber}} / {{image.totalNumber}}</div>
-  <div class="title">{{image.title}}</div>
+  <a class="close-button icon-close" (click)="close()"></a>
+  <a class="nav-button prev icon-prev" (click)="previous()"></a>
+  <a class="nav-button next icon-next" (click)="next()"></a>
+  <div class="counter">{{currentImage.currentNumber}} / {{currentImage.totalNumber}}</div>
+  <div class="title">{{currentImage.title}}</div>
 </div>

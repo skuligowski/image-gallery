@@ -1,7 +1,7 @@
 import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
 import { catchError, debounceTime, distinctUntilChanged, map, publish, refCount, switchMap, tap } from 'rxjs/operators';
-import { Subject } from 'rxjs/Subject';
+import { Subject, throwError } from 'rxjs';
 
 
 export enum SpinnerEvent {
@@ -18,7 +18,6 @@ export const spinnerEvents$: Observable<SpinnerEvent> =
       debounceTime(10),
       map(() => spinnerCount > 0 ? SpinnerEvent.START : SpinnerEvent.STOP),
       distinctUntilChanged(),
-      tap(event => console.log(event)),
       publish(),
       refCount()
     );
@@ -34,7 +33,7 @@ export function spinnable<T>(observable: Observable<T>): Observable<T> {
     catchError(e => {
       spinnerCount--;
       spinnerEventsSubject.next();
-      return Observable.throw(e);
+      return throwError(e);
     }),
     tap(() => {
       spinnerCount--;
