@@ -18,23 +18,6 @@ export class AlbumComponent implements OnInit {
     this.route.data.subscribe(data => {
       this.album = data.album;
       this.image = this.album.currentImage;
-      console.log(this.image);
     });
-  }
-
-  next(): void {
-    if (this.image.nextImage) {
-      this.router.navigate(['albums'].concat(this.album.permalink.split('/')).concat(this.image.nextImage.filename));
-    }
-  }
-
-  previous(): void {
-    if (this.image.previousImage) {
-      this.router.navigate(['albums'].concat(this.album.permalink.split('/')).concat(this.image.previousImage.filename));
-    }
-  }
-
-  close(): void {
-    this.router.navigate(['albums'].concat(this.album.permalink.split('/')));
   }
 }

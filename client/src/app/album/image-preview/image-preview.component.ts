@@ -1,25 +1,48 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CurrentImage } from '../../album.resolver';
+import { Component, Input } from '@angular/core';
+import { CurrentAlbum, CurrentImage } from '../../album.resolver';
+import { animate, style, transition, trigger } from '@angular/animations';
+import { Router } from '@angular/router';
+
+const fadeInAnimation = trigger('fadeInAnimation', [
+  transition(':enter', [
+    style({ opacity: 0}),
+    animate('0.7s 10ms cubic-bezier(.3,.98,.11,1.0)', style({ opacity: 1 }))
+  ]),
+]);
+
 
 @Component({
   selector: 'app-image-preview',
   templateUrl: './image-preview.component.html',
+  animations: [ fadeInAnimation ],
 })
 export class ImagePreviewComponent {
 
-
   @Input()
-  image: CurrentImage;
+  set album(album: CurrentAlbum) {
+    this.currentAlbum = album;
+    this.currentImage = album.currentImage;
+  }
 
-  @Output()
-  next: EventEmitter<any> = new EventEmitter<any>();
+  currentAlbum: CurrentAlbum;
+  currentImage: CurrentImage;
 
-  @Output()
-  previous: EventEmitter<any> = new EventEmitter<any>();
+  next(): void {
+    if (this.currentImage.nextImage) {
+      this.router.navigate(['albums'].concat(this.currentAlbum.permalink.split('/')).concat(this.currentImage.nextImage.filename));
+    }
+  }
 
-  @Output()
-  close: EventEmitter<any> = new EventEmitter<any>();
+  previous(): void {
+    if (this.currentImage.previousImage) {
+      this.router.navigate(['albums'].concat(this.currentAlbum.permalink.split('/')).concat(this.currentImage.previousImage.filename));
+    }
+  }
 
-  constructor() { }
+  close(): void {
+    this.router.navigate(['albums'].concat(this.currentAlbum.permalink.split('/')));
+  }
+
+  constructor(private router: Router) { }
 
 }
