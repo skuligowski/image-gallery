@@ -49,13 +49,13 @@ export class AlbumsDataService {
 
   getAlbums(): Observable<Album[]> {
     return spinnable(
-      of(mockedAlbums).pipe(delay(3000))
+      of(mockedAlbums).pipe(delay(0))
     );
   }
 
   getAlbumDetails(albumId: string): Observable<AlbumDetails> {
     return spinnable(
-      of(mockedAlbumDetails.find(details => details.id === albumId)).pipe(delay(5000))
+      of(mockedAlbumDetails.find(details => details.id === albumId)).pipe(delay(0))
     );
   }
 

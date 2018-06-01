@@ -21,6 +21,7 @@ import { AlbumSelectorComponent } from './common/album-selector/album-selector.c
 import { AlbumsResolver } from './albums.resolver';
 import { SpinnerComponent } from './common/spinner/spinner.component';
 import { SplashService } from './common/splash/splash.service';
+import { CurrentImagePipe } from './album/image-preview/current-image.pipe';
 
 
 const appRoutes: Routes = [
@@ -50,6 +51,7 @@ const appRoutes: Routes = [
     AlbumSelectorModalComponent,
     AlbumSelectorComponent,
     SpinnerComponent,
+    CurrentImagePipe,
   ],
   imports: [
     BrowserModule,
