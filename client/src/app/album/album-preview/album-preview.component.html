@@ -1,15 +1,17 @@
-<header class="layout-header">
-  <div class="title"><span>{{album.name}}</span></div>
-  <ul class="navigation">
-    <li><a class="select-album-button" (click)="chooseAlbum()"><i class="icon-albums"></i><span class="label">Select album</span></a></li>
-    <li class="separator"><span></span></li>
-    <li><a [routerLink]="['/']" class="icon-home"></a></li>
-  </ul>
-</header>
-<app-image-grid>
-  <app-image-grid-item *ngFor="let image of album.images;">
-    <div class="image-wrapper" [style.padding-bottom.%]="image.height/image.width*100">
-      <img [routerLink]="[image.filename]" src="{{image.url}}">
-    </div>
-  </app-image-grid-item>
-</app-image-grid>
+<div class="album-preview-layout">
+  <header class="layout-header">
+    <div class="title"><span>{{album.name}}</span></div>
+    <ul class="navigation">
+      <li><a [routerLink]="['/']"><i class="icon-home"></i><span class="label">Home</span></a></li>
+      <li><a (click)="chooseAlbum()"><i class="icon-albums"></i><span class="label">Albums</span></a></li>
+    </ul>
+  </header>
+  <app-image-grid>
+    <app-image-grid-item *ngFor="let image of album.images;">
+      <div class="image-wrapper" [style.padding-bottom.%]="image.height/image.width*100">
+        <img [routerLink]="[image.filename]" src="{{image.url}}">
+      </div>
+    </app-image-grid-item>
+  </app-image-grid>
+</div>
+

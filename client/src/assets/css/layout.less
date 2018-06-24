@@ -1,7 +1,7 @@
 html, body {
   height: 100%;
   box-sizing: border-box;
-  font-family: Verdana;
+  font-family: Roboto;
   overflow: hidden;
   background-color: #000;
 }
@@ -15,27 +15,27 @@ app-root {
 }
 
 .layout-header {
-  color: #000;
   display: flex;
   align-items: center;
   font-size: 0;
+  border-bottom: 1px solid #252525;
+  padding: 20px 0;
 
   .title {
     flex: 1 0 0;
     margin: 0;
 
     & > span {
-      font-size: 1.4rem;
-      font-weight: normal;
-      background-color: #fff;
+      font-size: 2rem;
+      font-weight: 100;
       display: inline-block;
-      padding: 5px;
-      text-transform: uppercase;
+      text-transform: capitalize;
+      color: #bbb;
     }
   }
 
   .navigation {
-    margin: 0;
+    margin: 0 10px 0 0;
     padding: 0;
 
     display: flex;
@@ -45,24 +45,39 @@ app-root {
 
       & > a {
         display: block;
-        font-size: 0.8rem;
-        font-weight: normal;
+        font-size: 1rem;
+        font-weight: 100;
         text-transform: uppercase;
         text-decoration: none;
-        color: #fff;
+        color: #aaa;
         cursor: pointer;
+        margin-left: 20px;
+        margin-right: -10px;
+        line-height: 1;
+        padding: 8px 10px;
+        background-color: #111;
+
+        & > i {
+          display: none;
+        }
 
         &:hover {
-          color: yellow;
+          background-color: #222;
+          color: #ccc;
+          transition: all 0.2s ease-in;
         }
-      }
 
-      .icon-home {
-        font-size: 1rem;
-      }
-
-      .icon-albums {
-        padding-right: 7px;
+        .for-phone-only({
+          & > i {
+            display: inline-block;
+          }
+          & > .label {
+            display: none;
+          }
+          padding: 8px 8px;
+          font-size: 1.3rem;
+          margin-left: 20px;
+        });
       }
 
       &.separator {
@@ -75,9 +90,4 @@ app-root {
     }
   }
 
-  .for-phone-only({
-    .select-album-button .label {
-      display: none;
-    }
-  });
 }
