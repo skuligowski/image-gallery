@@ -1,11 +1,11 @@
 @font-face {
   font-family: "icons";
-  src: url('assets/fonts/icons.1525902963936.eot');
-  src: url('assets/fonts/icons.1525902963936.eot?#iefix') format('eot'),
-    url('assets/fonts/icons.1525902963936.woff2') format('woff2'),
-    url('assets/fonts/icons.1525902963936.woff') format('woff'),
-    url('assets/fonts/icons.1525902963936.ttf') format('truetype'),
-    url('assets/fonts/icons.1525902963936.svg#icons') format('svg');
+  src: url('assets/fonts/icons.1529958479872.eot');
+  src: url('assets/fonts/icons.1529958479872.eot?#iefix') format('eot'),
+    url('assets/fonts/icons.1529958479872.woff2') format('woff2'),
+    url('assets/fonts/icons.1529958479872.woff') format('woff'),
+    url('assets/fonts/icons.1529958479872.ttf') format('truetype'),
+    url('assets/fonts/icons.1529958479872.svg#icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -48,3 +48,4 @@
 .icon-menu:before { content: "\EA04" }
 .icon-next:before { content: "\EA05" }
 .icon-prev:before { content: "\EA06" }
+.icon-search:before { content: "\EA07" }

@@ -7,7 +7,7 @@
           <ul class="sub-groups" *ngIf="album.tree.length > 1">
             <li class="sub-group" *ngFor="let subGroup of album.tree.slice(1)">{{subGroup}}</li>
           </ul>
-          <span><a (click)="selectAlbum(album)">{{album.name}}</a></span>
+          <span class="album-name"><a (click)="selectAlbum(album)">{{album.name}}</a></span>
         </div>
       </li>
     </ul>
