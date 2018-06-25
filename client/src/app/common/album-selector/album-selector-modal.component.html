@@ -1,12 +1,11 @@
-<div class="overlay" (click)="close()">
-</div>
+<div class="overlay" (click)="close()"></div>
 <div class="modal">
   <div class="container">
-    <header class="layout-header">
-      <div class="title"><span>Select album</span></div>
-      <ul class="navigation">
-        <li><a (click)="close()" class="icon-close"></a></li>
-      </ul>
+    <header class="album-selector-header">
+      <div class="query">
+        <i class="icon-search"></i><input type="text" placeholder="search..."/>
+      </div>
+      <a (click)="close()" class="close-button icon-close"></a>
     </header>
     <app-album-selector [albums]="albums"></app-album-selector>
   </div>

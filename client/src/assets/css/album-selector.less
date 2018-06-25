@@ -9,24 +9,29 @@ app-album-selector {
   };
 
   .main-group {
-    font-size: 1.4rem;
-    font-weight: normal;
-    margin-bottom: 25px;
+    font-size: 1.8rem;
+    font-weight: 100;
+    margin-bottom: 20px;
 
     .group-name {
       margin-bottom: 10px;
     }
 
     .albums {
-      padding-left: 35px;
+      padding-left: 20px;
+      font-weight: 300;
 
       .album {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
         line-height: 1.4;
         cursor: pointer;
 
         &:hover {
           color: yellow;
+        }
+
+        .album-name {
+          margin-left: 5px;
         }
       }
     }
@@ -43,7 +48,8 @@ app-album-selector {
 
   .sub-group {
     display: inline-block;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 300;
     text-transform: uppercase;
     color: #aaa;
     margin-right: 5px;
