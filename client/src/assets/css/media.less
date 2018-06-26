@@ -13,3 +13,6 @@
 .for-desktop-up(@content) {
   @media (min-width: 1200px) { @content(); }
 }
+.for-max-width(@max-width, @content) {
+  @media (max-width: @max-width) { @content(); }
+}

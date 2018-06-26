@@ -15,6 +15,9 @@ properties:
     descirption: menu tree for the album
     items:
       type: string
+  thumbUrl:
+    type: string
+    description: entry photo for the album
 required:
 - id
 - name

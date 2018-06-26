@@ -13,6 +13,10 @@ declare namespace Definitions {
          */
         permalink?: string;
         tree: string[];
+        /**
+         * entry photo for the album
+         */
+        thumbUrl?: string;
     }
     export interface AlbumDetails {
         /**
@@ -28,6 +32,10 @@ declare namespace Definitions {
          */
         permalink?: string;
         tree: string[];
+        /**
+         * entry photo for the album
+         */
+        thumbUrl?: string;
         images: Image[];
     }
     export interface AlbumsResponse {

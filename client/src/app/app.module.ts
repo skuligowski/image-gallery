@@ -34,7 +34,7 @@ const appRoutes: Routes = [
     outlet: 'modal'
   },
   { matcher: matchAlbum, component: AlbumComponent, canActivate: [ AlbumsGuard ], resolve: { album: AlbumResolver } },
-  { path: '', component: IndexComponent, canActivate: [ AlbumsGuard ]},
+  { path: '', component: IndexComponent, canActivate: [ AlbumsGuard ], resolve: { albums: AlbumsResolver }},
   { path: '**', redirectTo: ''}
 ];
 
