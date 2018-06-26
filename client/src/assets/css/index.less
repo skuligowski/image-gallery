@@ -6,8 +6,8 @@ app-index {
   overflow: auto;
 
   .random-photo {
-    margin-bottom: 50px;
     margin-top: 30px;
+
     .photo {
       width: 100%;
       height: 300px;
@@ -15,6 +15,32 @@ app-index {
       background-position: 50% 50%;
       background-repeat: no-repeat;
     }
+
+    .for-max-width(600px, {
+      .photo {
+        height: 200px;
+      }
+    });
+
+
+    padding-bottom: 30px;
+  }
+
+  .list {
+    padding: 0 30px;
+  }
+
+  .list-label {
+    color: #666;
+    background: #111;
+    background: linear-gradient(#111, #000);
+
+    font-size: 1rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    padding: 15px 30px ;
+    text-align: left;
+    border-top: 1px solid #222;
   }
 
   .album {
@@ -68,7 +94,7 @@ app-index {
       width: 50%;
     });
 
-    .for-max-width(600px, {
+    .for-max-width(760px, {
       width: 100%;
     });
   }
