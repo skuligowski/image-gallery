@@ -1,0 +1,76 @@
+app-index {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  overflow: auto;
+
+  .random-photo {
+    margin-bottom: 50px;
+    margin-top: 30px;
+    .photo {
+      width: 100%;
+      height: 300px;
+      background-size: cover;
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .album {
+    display: inline-flex;
+    width: 33.3333%;
+    color: #eee;
+    padding: 30px 20px 50px 0;
+
+    .thumbnail {
+      flex: 0 0 100px;
+      width: 100px;
+      height: 100px;
+      background-size: cover;
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      margin-right: 35px;
+    }
+
+    .album-meta {
+
+    }
+
+    .album-name {
+      font-size: 1.5rem;
+      font-weight: 100;
+    }
+
+    .album-size {
+      font-size: 0.8rem;
+      font-weight: 100;
+      color: #999;
+      padding-top: 6px;
+    }
+
+    .album-tree .sub-groups {
+      list-style: none;
+      padding: 0;
+
+      .sub-group {
+        display: inline-block;
+        padding: 5px 8px;
+        background: #151515;
+        color: #999;
+        font-weight: 300;
+        font-size: 0.8rem;
+        margin-right: 5px;
+      }
+    }
+
+    .for-max-width(1140px, {
+      width: 50%;
+    });
+
+    .for-max-width(600px, {
+      width: 100%;
+    });
+  }
+
+}

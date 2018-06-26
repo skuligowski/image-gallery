@@ -8,8 +8,8 @@ import AlbumDetails = Definitions.AlbumDetails;
 
 
 const mockedAlbums = [
-  { id: '1', permalink: '2018/best-ever', name: 'Best ever album', tree: ['2018', 'Best ever']},
-  { id: '2', permalink: '2018/other-album', name: 'Other', tree: ['2018', 'Other album']},
+  { id: '1', permalink: '2018/best-ever', name: 'Best ever album', tree: ['2018', 'Best ever'], thumbUrl: 'assets/some_1.jpg'},
+  { id: '2', permalink: '2018/other-album', name: 'Other', tree: ['2018', 'Other album'], thumbUrl: 'assets/some_3.jpg'},
 ];
 
 const mockedAlbumDetails: AlbumDetails[] = [{

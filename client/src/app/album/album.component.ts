@@ -9,7 +9,7 @@ import { CurrentAlbum, CurrentImage } from '../album.resolver';
 })
 export class AlbumComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute) { }
 
   album: CurrentAlbum;
   image: CurrentImage;
