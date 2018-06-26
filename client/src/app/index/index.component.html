@@ -10,17 +10,21 @@
     <div class="photo" [style.background-image]="getRandomPhotoUrl(albums)"></div>
   </div>
 
-  <div class="album" *ngFor="let album of albums.concat(albums).concat(albums).concat(albums)">
-    <div class="thumbnail" [style.background-image]="getAlbumThumbUrl(album)"></div>
-    <div class="album-meta">
-      <div class="album-name">{{album.name}}</div>
-      <div class="album-size">Photos: 12</div>
-      <div class="album-tree">
-        <ul class="sub-groups" *ngIf="album.tree.length > 1">
-          <li class="sub-group" *ngFor="let subGroup of album.tree">{{subGroup}}</li>
-        </ul>
+  <div class="list-label">Last modified</div>
+  <div class="list">
+    <div class="album" *ngFor="let album of albums.concat(albums).concat(albums).concat(albums)">
+      <div class="thumbnail" [style.background-image]="getAlbumThumbUrl(album)"></div>
+      <div class="album-meta">
+        <div class="album-name">{{album.name}}</div>
+        <div class="album-size">Photos: 12</div>
+        <div class="album-tree">
+          <ul class="sub-groups" *ngIf="album.tree.length > 1">
+            <li class="sub-group" *ngFor="let subGroup of album.tree">{{subGroup}}</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
+
 </div>
 
