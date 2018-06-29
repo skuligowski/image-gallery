@@ -20,15 +20,9 @@ declare namespace Definitions {
         /**
          * size of the album
          */
-        size?: number;
+        size: number;
     }
-    export type AlbumImages = Image[];
-    export interface AlbumsResponse {
-        /**
-         * albums
-         */
-        albums: Album[];
-    }
+    export type AlbumsResponse = Album[];
     export interface Image {
         /**
          * image filename
@@ -51,4 +45,5 @@ declare namespace Definitions {
          */
         height: number;
     }
+    export type ImagesResponse = Image[];
 }
