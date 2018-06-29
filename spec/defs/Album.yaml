@@ -21,8 +21,13 @@ properties:
   size:
     type: number
     description: size of the album
+  lastModified:
+    type: string
+    format: date-time
+    description: last modified date time
 required:
 - id
 - name
 - tree
 - size
+- lastModified

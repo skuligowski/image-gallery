@@ -6,25 +6,25 @@
     </ul>
   </header>
 
-  <div class="random-photo">
-    <div class="photo" [style.background-image]="getRandomPhotoUrl(albums)"></div>
-  </div>
+  <section class="welcome-image">
+    <div class="image" [style.background-image]="getWelcomeImageUrl()"></div>
+  </section>
 
-  <div class="list-label">Last modified</div>
-  <div class="list">
-    <div class="album" *ngFor="let album of albums.concat(albums).concat(albums).concat(albums)">
-      <div class="thumbnail" [style.background-image]="getAlbumThumbUrl(album)"></div>
-      <div class="album-meta">
-        <div class="album-name">{{album.name}}</div>
-        <div class="album-size">{{album.size}}</div>
-        <div class="album-tree">
-          <ul class="sub-groups" *ngIf="album.tree.length > 1">
-            <li class="sub-group" *ngFor="let subGroup of album.tree">{{subGroup}}</li>
+  <section class="last-modified">
+    <header>Last modified</header>
+    <ul class="albums-list">
+      <li class="album" *ngFor="let album of lastModifiedAlbums" (click)="navigateToAlbum(album)">
+        <div class="thumbnail" [style.background-image]="getAlbumThumbUrl(album)"></div>
+        <div class="album-meta">
+          <div class="album-name">{{album.name}}</div>
+          <div class="album-size">{{album.size}}</div>
+          <ul class="album-tree">
+            <li class="tree-item" *ngFor="let treeItem of album.tree">{{treeItem}}</li>
           </ul>
         </div>
-      </div>
-    </div>
-  </div>
+      </li>
+    </ul>
+  </section>
 
 </div>
 
