@@ -61,7 +61,7 @@ export class AlbumsDataService {
     );
   }
 
-  getAlbumImages(albumId: string): Observable<Image[]> {
+  getImages(albumId: string): Observable<Image[]> {
     return spinnable(
       of(albums.find(album => album.id === albumId)).pipe(
         delay(0),
