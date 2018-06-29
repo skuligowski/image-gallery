@@ -28,18 +28,18 @@ paths:
       description: Returns album with all images
       tags:
       - gallery
-      operationId: getAlbumImages
+      operationId: getImages
       responses:
         200:
           description: offering created
           schema:
-            $ref: defs/AlbumImages.yaml
+            $ref: defs/ImagesResponse.yaml
 definitions:
   Album:
     $ref: defs/Album.yaml
-  AlbumsResponse:
-    $ref: defs/AlbumsResponse.yaml
-  AlbumImages:
-    $ref: defs/AlbumImages.yaml
   Image:
     $ref: defs/Image.yaml
+  AlbumsResponse:
+    $ref: defs/AlbumsResponse.yaml
+  ImagesResponse:
+    $ref: defs/ImagesResponse.yaml

@@ -1,10 +1,4 @@
 title: AlbumsResponse
-type: object
-properties:
-  albums:
-    description: albums
-    type: array
-    items:
-      $ref: Album.yaml
-required:
-- albums
+type: array
+items:
+  $ref: Album.yaml

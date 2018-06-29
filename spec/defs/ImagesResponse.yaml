@@ -1,4 +1,4 @@
-title: AlbumImages
+title: ImagesResponse
 type: array
 items:
   $ref: Image.yaml
