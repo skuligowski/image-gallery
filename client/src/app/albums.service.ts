@@ -38,7 +38,7 @@ export class AlbumsService {
     if (albumDetails && this.useCache) {
       return of(albumDetails);
     } else {
-      return this.albumsData.getAlbumImages(album.id).pipe(
+      return this.albumsData.getImages(album.id).pipe(
         map(images => ({
           ...album,
           images
