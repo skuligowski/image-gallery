@@ -13,6 +13,7 @@ interface MockedAlbum {
   name: string;
   tree: string[];
   images: Image[];
+  lastModified: string;
 }
 
 const albums: MockedAlbum[] = [{
@@ -20,6 +21,7 @@ const albums: MockedAlbum[] = [{
   permalink: '2018/best-ever',
   name: 'Best album ever',
   tree: ['2018', 'Best ever'],
+  lastModified: '2018-07-01T20:23:00',
   images: [
     {url: 'assets/some_1.jpg', filename: 'some_1.jpg', width: 1500, height: 1000},
     {url: 'assets/some_3.jpg', filename: 'some_2.jpg', width: 1280, height: 1920},
@@ -37,6 +39,7 @@ const albums: MockedAlbum[] = [{
   permalink: '2018/other-album',
   name: 'Other album',
   tree: ['2018', 'Other album'],
+  lastModified: '2018-03-01T20:23:00',
   images: [
     {url: 'assets/some_3.jpg', filename: 'some_42.jpg', width: 1280, height: 1920},
     {url: 'assets/some_2.jpg', filename: 'some_52.jpg', width: 1200, height: 800},

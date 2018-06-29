@@ -21,6 +21,10 @@ declare namespace Definitions {
          * size of the album
          */
         size: number;
+        /**
+         * last modified date time
+         */
+        lastModified: string; // date-time
     }
     export type AlbumsResponse = Album[];
     export interface Image {

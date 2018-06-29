@@ -8,27 +8,31 @@ import Album = Definitions.Album;
 })
 export class IndexComponent implements OnInit {
 
-  albums: Album[];
+  lastModifiedAlbums: Album[];
 
   constructor(private router: Router, private route: ActivatedRoute) {
     route.data.subscribe(data => {
-      this.albums = data['albums'];
-      console.log(this.albums);
+      this.lastModifiedAlbums = (data['albums'] as Album[])
+        .sort((albumA, albumB) => albumB.lastModified.localeCompare(albumA.lastModified));
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   chooseAlbum(): void {
     this.router.navigate([{outlets: { modal: 'album/select'}}]);
   }
 
-  getAlbumThumbUrl(album: Album) {
+  getAlbumThumbUrl(album: Album): string {
     return `url(${album.thumbUrl})`;
   }
 
-  getRandomPhotoUrl(albums: Album[]) {
-    return this.getAlbumThumbUrl(albums[1]);
+  navigateToAlbum(album: Album): void{
+    this.router.navigateByUrl(`albums/${album.permalink}`);
+  }
+
+  getWelcomeImageUrl(): string {
+    return this.getAlbumThumbUrl(this.lastModifiedAlbums[1]);
   }
 }
