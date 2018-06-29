@@ -18,6 +18,9 @@ properties:
   thumbUrl:
     type: string
     description: entry photo for the album
+  size:
+    type: number
+    description: size of the album
 required:
 - id
 - name

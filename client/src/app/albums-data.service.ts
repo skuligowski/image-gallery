@@ -3,16 +3,19 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { delay } from 'rxjs/operators';
 import { spinnable } from './common/utils/spinnable';
+import Image = Definitions.Image;
 import Album = Definitions.Album;
-import AlbumDetails = Definitions.AlbumDetails;
+import { map } from 'rxjs/internal/operators';
 
+interface MockedAlbum {
+  id: string;
+  permalink: string;
+  name: string;
+  tree: string[];
+  images: Image[];
+}
 
-const mockedAlbums = [
-  { id: '1', permalink: '2018/best-ever', name: 'Best ever album', tree: ['2018', 'Best ever'], thumbUrl: 'assets/some_1.jpg'},
-  { id: '2', permalink: '2018/other-album', name: 'Other', tree: ['2018', 'Other album'], thumbUrl: 'assets/some_3.jpg'},
-];
-
-const mockedAlbumDetails: AlbumDetails[] = [{
+const albums: MockedAlbum[] = [{
   id: '1',
   permalink: '2018/best-ever',
   name: 'Best album ever',
@@ -41,6 +44,11 @@ const mockedAlbumDetails: AlbumDetails[] = [{
   ]
 }];
 
+const mockedAlbums: Album[] = albums.map(album => ({
+  ...album,
+  thumbUrl: album.images[0].url,
+  size: album.images.length
+}));
 
 @Injectable()
 export class AlbumsDataService {
@@ -53,9 +61,12 @@ export class AlbumsDataService {
     );
   }
 
-  getAlbumDetails(albumId: string): Observable<AlbumDetails> {
+  getAlbumImages(albumId: string): Observable<Image[]> {
     return spinnable(
-      of(mockedAlbumDetails.find(details => details.id === albumId)).pipe(delay(0))
+      of(albums.find(album => album.id === albumId)).pipe(
+        delay(0),
+        map(album => album.images)
+      )
     );
   }
 

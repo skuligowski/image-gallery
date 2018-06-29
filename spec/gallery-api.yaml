@@ -22,24 +22,24 @@ paths:
           description: offering created
           schema:
             $ref: defs/AlbumsResponse.yaml
-  /albums/{id}:
+  /albums/{id}/images:
     x-swagger-router-controller: albums
     get:
       description: Returns album with all images
       tags:
       - gallery
-      operationId: getAlbum
+      operationId: getAlbumImages
       responses:
         200:
           description: offering created
           schema:
-            $ref: defs/AlbumDetails.yaml
+            $ref: defs/AlbumImages.yaml
 definitions:
   Album:
     $ref: defs/Album.yaml
   AlbumsResponse:
     $ref: defs/AlbumsResponse.yaml
-  AlbumDetails:
-    $ref: defs/AlbumDetails.yaml
+  AlbumImages:
+    $ref: defs/AlbumImages.yaml
   Image:
     $ref: defs/Image.yaml

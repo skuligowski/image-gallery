@@ -17,27 +17,12 @@ declare namespace Definitions {
          * entry photo for the album
          */
         thumbUrl?: string;
+        /**
+         * size of the album
+         */
+        size?: number;
     }
-    export interface AlbumDetails {
-        /**
-         * unique identifier of the album
-         */
-        id: string;
-        /**
-         * albums
-         */
-        name: string;
-        /**
-         * unique link for album
-         */
-        permalink?: string;
-        tree: string[];
-        /**
-         * entry photo for the album
-         */
-        thumbUrl?: string;
-        images: Image[];
-    }
+    export type AlbumImages = Image[];
     export interface AlbumsResponse {
         /**
          * albums

@@ -1,0 +1,4 @@
+title: AlbumImages
+type: array
+items:
+  $ref: Image.yaml

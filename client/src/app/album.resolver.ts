@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { AlbumsService } from './albums.service';
+import { AlbumDetails, AlbumsService } from './albums.service';
 import { catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
-import AlbumDetails = Definitions.AlbumDetails;
 import Image = Definitions.Image;
 
 
@@ -31,7 +30,7 @@ export class AlbumResolver implements Resolve<CurrentAlbum> {
       }),
       tap( currentAlbum => {
         if (!currentAlbum.currentImage && route.params.imageFilename) {
-          this.router.navigateByUrl('/albums/' + currentAlbum.permalink);
+          this.router.navigateByUrl(`/albums/${currentAlbum.permalink}`);
         }
       }),
       catchError((e) => {

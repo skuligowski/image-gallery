@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { _throw as throwError } from 'rxjs/observable/throw';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { AlbumsDataService } from './albums-data.service';
 import Album = Definitions.Album;
-import AlbumDetails = Definitions.AlbumDetails;
+import Image = Definitions.Image;
 
 
 @Injectable()
@@ -35,8 +35,21 @@ export class AlbumsService {
       return throwError(new Error('Album does not exist'));
     }
     const albumDetails = this.albumDetailsMap[album.id];
-    return albumDetails && this.useCache ? of(albumDetails) : this.albumsData.getAlbumDetails(album.id).pipe(
-      tap(albumDetails => this.albumDetailsMap[albumDetails.id] = albumDetails));
+    if (albumDetails && this.useCache) {
+      return of(albumDetails);
+    } else {
+      return this.albumsData.getAlbumImages(album.id).pipe(
+        map(images => ({
+          ...album,
+          images
+        })),
+        tap(albumDetails => this.albumDetailsMap[albumDetails.id] = albumDetails)
+      );
+    }
   }
 
+}
+
+export interface AlbumDetails extends Album {
+  images: Image[];
 }
