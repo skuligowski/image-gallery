@@ -11,7 +11,10 @@ declare namespace Definitions {
         /**
          * unique link for album
          */
-        permalink?: string;
+        permalink: string;
+        /**
+         * menu tree for the album
+         */
         tree: string[];
         /**
          * entry photo for the album

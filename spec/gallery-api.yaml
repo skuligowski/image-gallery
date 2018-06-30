@@ -29,6 +29,12 @@ paths:
       tags:
       - gallery
       operationId: getImages
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: Id of the album
       responses:
         200:
           description: offering created

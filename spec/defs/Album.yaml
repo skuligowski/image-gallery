@@ -12,7 +12,7 @@ properties:
     description: unique link for album
   tree:
     type: array
-    descirption: menu tree for the album
+    description: menu tree for the album
     items:
       type: string
   thumbUrl:
@@ -28,6 +28,7 @@ properties:
 required:
 - id
 - name
+- permalink
 - tree
 - size
 - lastModified
