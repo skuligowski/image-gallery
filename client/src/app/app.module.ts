@@ -22,6 +22,7 @@ import { AlbumsResolver } from './albums.resolver';
 import { SpinnerComponent } from './common/spinner/spinner.component';
 import { SplashService } from './common/splash/splash.service';
 import { CurrentImagePipe } from './album/image-preview/current-image.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const appRoutes: Routes = [
@@ -55,6 +56,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes,  { enableTracing: false })
   ],

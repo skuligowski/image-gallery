@@ -5,7 +5,7 @@ module.exports = gulp => {
     return swaggerParser.bundle('spec/gallery-api.yaml').then(spec => {
       return dtsgenerator.default([spec]).then(api => {
         const fs = require('fs');
-        return fs.writeFile('client/src/api.d.ts', api);
+        return fs.writeFile('spec/api.d.ts', api);
       });
     });
   });

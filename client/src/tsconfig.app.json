@@ -6,7 +6,8 @@
     "module": "es2015",
     "types": [
       "masonry-layout",
-      "imagesloaded"
+      "imagesloaded",
+      "../../spec/api"
     ]
   },
   "exclude": [
