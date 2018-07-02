@@ -58,7 +58,7 @@ export function getImages(req: Swagger12Request, res: Response): void {
   const albumId = req.swagger.params.id.value;
   const album: MockedAlbum = albums.find(album => album.id === albumId);
   if (!album) {
-    res.sendStatus(404);
+    res.status(404).send()
   } else {
     res.send(album.images);
   }
