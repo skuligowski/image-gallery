@@ -8,7 +8,9 @@ import { SplashService } from '../common/splash/splash.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private splashService: SplashService) { }
+  constructor(private splashService: SplashService) {
+  }
+
 
   ngOnInit() {
     this.splashService.close();
