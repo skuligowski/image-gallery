@@ -32,8 +32,9 @@ export class SplashService {
 
   private closeAndDestroy() {
     if (this.splashElement) {
-      this.destroy(this.splashElement)
-        .then(() => this.splashElement = null);
+      setTimeout(() =>
+        this.destroy(this.splashElement)
+          .then(() => this.splashElement = null));
     }
   }
 
