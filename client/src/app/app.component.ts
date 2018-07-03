@@ -10,6 +10,7 @@ export class AppComponent {
   title = 'app';
 
   constructor(private albumsService: AlbumsService, private container: ViewContainerRef, private splashService: SplashService) {
-    splashService.attachSplash((container.element.nativeElement as HTMLElement).nextElementSibling);
+    splashService.registerSplash((container.element.nativeElement as HTMLElement).nextElementSibling);
+    splashService.closeOnSpinnerEnd();
   }
 }
