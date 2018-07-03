@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SplashService } from '../common/splash/splash.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private splashService: SplashService) { }
 
   ngOnInit() {
+    this.splashService.close();
   }
 
 }
