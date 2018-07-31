@@ -1,5 +1,6 @@
 app-login {
-  padding-top:300px;
+  position: relative;
+  top: 120px;
 
   .login-input,
   .password-input {
@@ -9,4 +10,21 @@ app-login {
     .create-input();
   }
 
+  .submit-button {
+    width: 400px;
+    font-size: 1.2rem;
+    margin: 20px auto auto;
+    height: 50px;
+    display: block;
+    border-radius: 3px;
+    outline-color: #fff;
+    outline-width: 2px;
+    outline-offset: 1px;
+
+
+    &:hover {
+      background-color: #eee;
+      cursor: pointer;
+    }
+  }
 }
