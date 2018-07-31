@@ -17,14 +17,21 @@ app-login {
     height: 50px;
     display: block;
     border-radius: 3px;
-    outline-color: #fff;
-    outline-width: 2px;
-    outline-offset: 1px;
-
+    outline: 0;
+    transition: background-color .15s ease-in-out, border-color .15s ease-in-out;
 
     &:hover {
       background-color: #eee;
       cursor: pointer;
+    }
+
+    &:active {
+      background-color: #bbb;
+      cursor: pointer;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba(0,123,255,.5);
     }
   }
 }
