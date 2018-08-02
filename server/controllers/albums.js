@@ -1,17 +1,5 @@
-import { Request, Response } from 'express';
-import { Swagger12Request } from 'swagger-tools';
-import Image = Definitions.Image;
-
-interface MockedAlbum {
-  id: string;
-  permalink: string;
-  name: string;
-  tree: string[];
-  images: Image[];
-  lastModified: string;
-}
-
-const albums: MockedAlbum[] = [{
+"use strict";
+const albums = [{
   id: '1',
   permalink: '2018/best-ever',
   name: 'Best album ever',
@@ -42,7 +30,7 @@ const albums: MockedAlbum[] = [{
   ]
 }];
 
-export function getAlbums(req: Request, res: Response): void {
+function getAlbums(req, res) {
   res.send(albums.map(album => ({
     id: album.id,
     permalink: album.permalink,
@@ -54,12 +42,16 @@ export function getAlbums(req: Request, res: Response): void {
   })));
 }
 
-export function getImages(req: Swagger12Request, res: Response): void {
+function getImages(req, res) {
   const albumId = req.swagger.params.id.value;
-  const album: MockedAlbum = albums.find(album => album.id === albumId);
+  const album = albums.find(album => album.id === albumId);
   if (!album) {
-    res.status(404).send()
-  } else {
+    res.status(404).send();
+  }
+  else {
     res.send(album.images);
   }
 }
+
+exports.getImages = getImages;
+exports.getAlbums = getAlbums;

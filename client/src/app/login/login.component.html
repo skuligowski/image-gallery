@@ -1,7 +1,7 @@
 <div class="login-input">
-  <i class="icon-login"></i><input type="text" placeholder="Login" autofocus/>
+  <i class="icon-login"></i><input type="text" placeholder="Login" autofocus [(ngModel)]="username" />
 </div>
 <div class="password-input">
-  <i class="icon-password"></i><input type="password" placeholder="Password"/>
+  <i class="icon-password"></i><input type="password" placeholder="Password" [(ngModel)]="password"/>
 </div>
-<button class="submit-button">Sign in</button>
+<button class="submit-button" (click)="login()">Sign in</button>

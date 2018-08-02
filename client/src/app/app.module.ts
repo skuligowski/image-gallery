@@ -23,6 +23,7 @@ import { SpinnerComponent } from './common/spinner/spinner.component';
 import { SplashService } from './common/splash/splash.service';
 import { CurrentImagePipe } from './album/image-preview/current-image.pipe';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 const appRoutes: Routes = [
@@ -58,6 +59,7 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes,  { enableTracing: false })
   ],
   providers: [ AlbumsResolver, AlbumResolver, AlbumsService, AlbumsGuard, AlbumsDataService, AlbumSelectorService, SplashService ],
