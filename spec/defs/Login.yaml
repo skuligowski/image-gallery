@@ -1,0 +1,12 @@
+title: Login
+type: object
+properties:
+  username:
+    type: string
+    description: Username
+  password:
+    type: string
+    description: Password
+required:
+- username
+- password

@@ -43,6 +43,26 @@ paths:
             $ref: defs/ImagesResponse.yaml
         404:
           description: An album with given id was not found
+  /login:
+    x-swagger-router-controller: auth
+    post:
+      description: Logs user into the application
+      tags:
+      - auth
+      operationId: login
+      parameters:
+        - name: LoginRequest
+          in: body
+          description: Login credentials
+          schema:
+            $ref: defs/Login.yaml
+      responses:
+        200:
+          description: User authenticated
+        401:
+          description: User unauthorized
+          schema:
+            type: string
 definitions:
   Album:
     $ref: defs/Album.yaml
@@ -52,3 +72,5 @@ definitions:
     $ref: defs/AlbumsResponse.yaml
   ImagesResponse:
     $ref: defs/ImagesResponse.yaml
+  Login:
+    $ref: defs/Login.yaml
