@@ -63,4 +63,14 @@ declare namespace Definitions {
          */
         password: string;
     }
+    export interface User {
+        /**
+         * Username
+         */
+        username: string;
+        /**
+         * Set to true if the user has administration privileges
+         */
+        admin: boolean;
+    }
 }

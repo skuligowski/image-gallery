@@ -63,6 +63,8 @@ paths:
       responses:
         200:
           description: User authenticated
+          schema:
+            $ref: defs/User.yaml
         401:
           description: User unauthorized
           schema:
@@ -78,3 +80,5 @@ definitions:
     $ref: defs/ImagesResponse.yaml
   Login:
     $ref: defs/Login.yaml
+  User:
+    $ref: defs/User.yaml
