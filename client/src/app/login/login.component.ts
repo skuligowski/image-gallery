@@ -26,10 +26,10 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    this.httpClient.post(`/api/login`, { username: this.username, password: this.password } )
-      .subscribe(() => this.router.navigateByUrl(this.authService.popRedirectUrl('/')), (e) => {
-          console.log(e);
-        });
+    this.authService.login(this.username, this.password)
+      .subscribe(null, (e) => {
+        console.log(e);
+      });
   }
 
 }

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { RouterModule, Routes } from '@angular/router';
+import { CanActivate, RouterModule, Routes } from '@angular/router';
 import { AlbumComponent } from './album/album.component';
 import { ImagePreviewComponent } from './album/image-preview/image-preview.component';
 import { matchAlbum } from './albums-url.matcher';
@@ -25,10 +25,15 @@ import { CurrentImagePipe } from './album/image-preview/current-image.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
+import { AlbumCreateComponent } from './admin/album-create/album-create.component';
+import { AdminGuard } from './admin.guard';
 
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'admin', children: [
+      { path: 'album/create', component: AlbumCreateComponent }
+    ], canActivate: [ AdminGuard ]},
   {
     path: 'album/select',
     component: AlbumSelectorModalComponent,
@@ -38,13 +43,14 @@ const appRoutes: Routes = [
   },
   { matcher: matchAlbum, component: AlbumComponent, canActivate: [ AlbumsGuard ], resolve: { album: AlbumResolver } },
   { path: '', component: IndexComponent, canActivate: [ AlbumsGuard ], resolve: { albums: AlbumsResolver }},
-  { path: '**', redirectTo: '/login'}
+  { path: '**', redirectTo: ''}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     AlbumComponent,
+    AlbumCreateComponent,
     ImagePreviewComponent,
     LoginComponent,
     IndexComponent,
@@ -64,6 +70,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes,  { enableTracing: false })
   ],
   providers: [
+    AdminGuard,
     AlbumsResolver,
     AlbumResolver,
     AlbumsService,

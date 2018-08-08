@@ -1,0 +1,12 @@
+title: User
+type: object
+properties:
+  username:
+    type: string
+    description: Username
+  admin:
+    type: boolean
+    description: Set to true if the user has administration privileges
+required:
+- username
+- admin
