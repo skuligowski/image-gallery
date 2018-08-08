@@ -14,7 +14,8 @@ app.use(compression());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(session({ secret: 'keyboard cat' }));
+app.use(session({ secret: 'keyboard cat', saveUninitialized: true,
+  resave: true, cookie: { secure: false } }));
 
 auth.initialize(app);
 

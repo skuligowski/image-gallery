@@ -24,6 +24,7 @@ import { SplashService } from './common/splash/splash.service';
 import { CurrentImagePipe } from './album/image-preview/current-image.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from './auth.service';
 
 
 const appRoutes: Routes = [
@@ -37,7 +38,7 @@ const appRoutes: Routes = [
   },
   { matcher: matchAlbum, component: AlbumComponent, canActivate: [ AlbumsGuard ], resolve: { album: AlbumResolver } },
   { path: '', component: IndexComponent, canActivate: [ AlbumsGuard ], resolve: { albums: AlbumsResolver }},
-  { path: '**', redirectTo: ''}
+  { path: '**', redirectTo: '/login'}
 ];
 
 @NgModule({
@@ -62,7 +63,15 @@ const appRoutes: Routes = [
     FormsModule,
     RouterModule.forRoot(appRoutes,  { enableTracing: false })
   ],
-  providers: [ AlbumsResolver, AlbumResolver, AlbumsService, AlbumsGuard, AlbumsDataService, AlbumSelectorService, SplashService ],
+  providers: [
+    AlbumsResolver,
+    AlbumResolver,
+    AlbumsService,
+    AlbumsGuard,
+    AlbumsDataService,
+    AlbumSelectorService,
+    AuthService,
+    SplashService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

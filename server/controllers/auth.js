@@ -10,7 +10,15 @@ passport.use(new LocalStrategy((username, password, done) => {
 }));
 
 exports.login = (req, res) => {
-  passport.authenticate('local')(req, res, () => res.status(200).send());
+  passport.authenticate('local', (err, user) => {
+    if (user) {
+      req.login(user, () => {
+        res.status(200).send();
+      });
+    } else {
+      res.status(401).send();
+    }
+  })(req, res);
 };
 
 exports.initialize = (app) => {
