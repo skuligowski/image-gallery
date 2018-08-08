@@ -23,6 +23,10 @@ paths:
           description: offering created
           schema:
             $ref: defs/AlbumsResponse.yaml
+        401:
+          description: User unauthorized
+          schema:
+            type: string
   /albums/{id}/images:
     x-swagger-router-controller: albums
     get:

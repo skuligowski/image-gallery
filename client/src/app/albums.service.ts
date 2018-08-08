@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { _throw as throwError } from 'rxjs/observable/throw';
+import { Observable, of, throwError } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { AlbumsDataService } from './albums-data.service';
 import Album = Definitions.Album;

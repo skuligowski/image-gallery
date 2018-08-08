@@ -31,6 +31,9 @@ const albums = [{
 }];
 
 function getAlbums(req, res) {
+  if (!req.isAuthenticated()) {
+    return res.status(401).send();
+  }
   res.send(albums.map(album => ({
     id: album.id,
     permalink: album.permalink,
@@ -43,6 +46,9 @@ function getAlbums(req, res) {
 }
 
 function getImages(req, res) {
+  if (!req.isAuthenticated()) {
+    return res.status(401).send();
+  }
   const albumId = req.swagger.params.id.value;
   const album = albums.find(album => album.id === albumId);
   if (!album) {

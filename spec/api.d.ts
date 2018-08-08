@@ -53,4 +53,14 @@ declare namespace Definitions {
         height: number;
     }
     export type ImagesResponse = Image[];
+    export interface Login {
+        /**
+         * Username
+         */
+        username: string;
+        /**
+         * Password
+         */
+        password: string;
+    }
 }
