@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SplashService } from '../common/splash/splash.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../core/auth/auth.service';
 
 @Component({
   selector: 'app-login',
