@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-import { AlbumsDataService } from './albums-data.service';
+import { map, switchMap, tap } from 'rxjs/operators';
 import Album = Definitions.Album;
 import Image = Definitions.Image;
+import { spinnable } from './common/utils/spinnable';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
@@ -14,36 +15,39 @@ export class AlbumsService {
 
   private useCache = true;
 
-  constructor(private albumsData: AlbumsDataService) {}
+  constructor(private httpClient: HttpClient) {}
 
-  loadAlbums(): Observable<Album[]> {
-    return this.albumsData.getAlbums().pipe(
-      tap(albums => {
-        this.albums = albums;
-      }));
+  getAlbums(): Observable<Album[]> {
+    return this.albums ? of(this.albums) : spinnable(
+      this.httpClient.get<Album[]>('/api/albums')
+    ).pipe(tap(albums => this.albums = albums));
   }
 
-  getAlbums(): Album[] {
-    return this.albums;
+  getImages(albumId: string): Observable<Image[]> {
+    return spinnable(
+      this.httpClient.get<Image[]>(`/api/albums/${albumId}/images`)
+    );
   }
 
   getAlbumDetails(albumPermalink: string): Observable<AlbumDetails> {
-    const album = this.albums.find(album => album.permalink === albumPermalink);
-    if (!album) {
-      return throwError(new Error('Album does not exist'));
-    }
-    const albumDetails = this.albumDetailsMap[album.id];
-    if (albumDetails && this.useCache) {
-      return of(albumDetails);
-    } else {
-      return this.albumsData.getImages(album.id).pipe(
-        map(images => ({
-          ...album,
-          images
-        })),
-        tap(albumDetails => this.albumDetailsMap[albumDetails.id] = albumDetails)
-      );
-    }
+    return this.getAlbums().pipe(switchMap(albums => {
+      const album = albums.find(album => album.permalink === albumPermalink);
+      if (!album) {
+        return throwError(new Error('Album does not exist'));
+      }
+      const albumDetails = this.albumDetailsMap[album.id];
+      if (albumDetails && this.useCache) {
+        return of(albumDetails);
+      } else {
+        return this.getImages(album.id).pipe(
+          map(images => ({
+            ...album,
+            images
+          })),
+          tap(albumDetails => this.albumDetailsMap[albumDetails.id] = albumDetails)
+        );
+      }
+    }));
   }
 
 }

@@ -3,7 +3,7 @@ import { EMPTY, Observable, of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { spinnable } from './common/utils/spinnable';
+import { spinnable } from '../../common/utils/spinnable';
 import User = Definitions.User;
 
 @Injectable()
@@ -21,7 +21,6 @@ export class AuthService {
         map(() => true), catchError((e: HttpErrorResponse) => {
           if (e.status === 401) {
             this.redirectUrl = redirectUrl;
-            console.log('navigate');
             this.router.navigateByUrl('/login');
           }
           return of(false);
@@ -45,6 +44,15 @@ export class AuthService {
         this.router.navigateByUrl(this.popRedirectUrl('/'));
       }),
       switchMap(() => EMPTY));
+  }
+
+  checkCredentials(redirectUrl: string): Observable<boolean> {
+    return this.user ? of(true) : spinnable(
+      this.httpClient.get<User>('/api/user').pipe(
+        tap( user => this.user = user),
+        this.authenticationHandler(redirectUrl)
+      )
+    );
   }
 
   isUserAdmin(): boolean {

@@ -69,6 +69,22 @@ paths:
           description: User unauthorized
           schema:
             type: string
+  /user:
+    x-swagger-router-controller: auth
+    get:
+      description: Logs user into the application
+      tags:
+      - auth
+      operationId: getUser
+      responses:
+        200:
+          description: User authenticated
+          schema:
+            $ref: defs/User.yaml
+        401:
+          description: User unauthorized
+          schema:
+            type: string
 definitions:
   Album:
     $ref: defs/Album.yaml
