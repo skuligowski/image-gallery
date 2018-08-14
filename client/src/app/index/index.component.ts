@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Album = Definitions.Album;
+import { AuthService } from '../core/auth/auth.service';
 
 @Component({
   selector: 'app-index',
@@ -10,7 +11,7 @@ export class IndexComponent implements OnInit {
 
   lastModifiedAlbums: Album[];
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute, public authService: AuthService) {
     route.data.subscribe(data => {
       this.lastModifiedAlbums = (data['albums'] as Album[])
         .sort((albumA, albumB) => albumB.lastModified.localeCompare(albumA.lastModified));
@@ -22,6 +23,10 @@ export class IndexComponent implements OnInit {
 
   chooseAlbum(): void {
     this.router.navigate([{outlets: { modal: 'album/select'}}]);
+  }
+
+  navigateToAdmin(): void {
+    this.router.navigateByUrl(`admin/albums`);
   }
 
   getAlbumThumbUrl(album: Album): string {
