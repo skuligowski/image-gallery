@@ -59,5 +59,23 @@ function getImages(req, res) {
   }
 }
 
+function uploadFile(req, res) {
+  const file = req.swagger.params.file;
+  const fs = require('fs');
+  const path = require('path');
+  if (file) {
+    fs.writeFile(path.resolve('uploads', file.originalValue.originalname), file.originalValue.buffer, (err, result) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send();
+      } else {
+        console.log(result);
+        res.status(200).send({});
+      }
+    });
+  }
+}
+
 exports.getImages = getImages;
 exports.getAlbums = getAlbums;
+exports.uploadFile = uploadFile;

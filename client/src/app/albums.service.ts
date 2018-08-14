@@ -4,7 +4,7 @@ import { map, switchMap, tap } from 'rxjs/operators';
 import Album = Definitions.Album;
 import Image = Definitions.Image;
 import { spinnable } from './common/utils/spinnable';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
 
 
 @Injectable()
@@ -48,6 +48,21 @@ export class AlbumsService {
         );
       }
     }));
+  }
+
+  upload(files: File): Observable<HttpEvent<any>> {
+    const formData = new FormData();
+    formData.append('file', files);
+
+    const params = new HttpParams();
+
+    const options = {
+      params: params,
+      reportProgress: true,
+    };
+
+    const req = new HttpRequest('POST', '/api/upload', formData, options);
+    return this.httpClient.request(req);
   }
 
 }

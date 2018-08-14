@@ -4,9 +4,8 @@ const swaggerTools = require('swagger-tools');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-var session = require('express-session');
+const session = require('express-session');
 const compression = require('compression');
-const db = require('./controllers/db');
 const auth = require('./controllers/auth');
 
 const app = express();
