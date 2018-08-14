@@ -26,11 +26,13 @@ import { AuthService } from './core/auth/auth.service';
 import { AlbumCreateComponent } from './admin/album-create/album-create.component';
 import { AdminGuard } from './core/auth/admin.guard';
 import { AuthGuard } from './core/auth/auth.guard';
+import { AlbumsManagerComponent } from './admin/albums-manager/albums-manager.component';
 
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'admin', children: [
+      { path: 'albums', component: AlbumsManagerComponent, resolve: { albums: AlbumsResolver } },
       { path: 'album/create', component: AlbumCreateComponent }
     ], canActivate: [ AdminGuard ]},
   {
@@ -60,6 +62,8 @@ const appRoutes: Routes = [
     AlbumSelectorComponent,
     SpinnerComponent,
     CurrentImagePipe,
+
+    AlbumsManagerComponent,
   ],
   imports: [
     BrowserModule,
