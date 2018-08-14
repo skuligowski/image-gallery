@@ -85,6 +85,28 @@ paths:
           description: User unauthorized
           schema:
             type: string
+  /upload:
+    x-swagger-router-controller: albums
+    post:
+      consumes:
+      - multipart/form-data
+      description: Logs user into the application
+      tags:
+      - admin
+      operationId: uploadFile
+      parameters:
+      - in: formData
+        name: file
+        type: file
+      responses:
+        200:
+          description: User authenticated
+          schema:
+            type: object
+        401:
+          description: User unauthorized
+          schema:
+            type: string
 definitions:
   Album:
     $ref: defs/Album.yaml
