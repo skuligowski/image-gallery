@@ -27,12 +27,17 @@ import { AlbumCreateComponent } from './admin/album-create/album-create.componen
 import { AdminGuard } from './core/auth/admin.guard';
 import { AuthGuard } from './core/auth/auth.guard';
 import { AlbumsManagerComponent } from './admin/albums-manager/albums-manager.component';
+import { TableModule } from 'primeng/table';
+import { AlbumDetailsComponent } from './admin/albums-manager/album-details.component';
+import { AlbumDetailsResolver } from './admin/album-details.resolver';
+import { AdminHeaderComponent } from './admin/admin-header/admin-header.component';
 
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'admin', children: [
       { path: 'albums', component: AlbumsManagerComponent, resolve: { albums: AlbumsResolver } },
+      { path: 'albums/:id', component: AlbumDetailsComponent, resolve: { album: AlbumDetailsResolver } },
       { path: 'album/create', component: AlbumCreateComponent }
     ], canActivate: [ AdminGuard ]},
   {
@@ -63,13 +68,16 @@ const appRoutes: Routes = [
     SpinnerComponent,
     CurrentImagePipe,
 
+    AdminHeaderComponent,
     AlbumsManagerComponent,
+    AlbumDetailsComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    TableModule,
     RouterModule.forRoot(appRoutes,  { enableTracing: false })
   ],
   providers: [
@@ -77,6 +85,7 @@ const appRoutes: Routes = [
     AuthGuard,
     AlbumsResolver,
     AlbumResolver,
+    AlbumDetailsResolver,
     AlbumsService,
     AlbumSelectorService,
     AuthService,

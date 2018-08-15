@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
+import { spinnable } from './common/utils/spinnable';
+import { HttpClient, HttpEvent, HttpParams, HttpRequest } from '@angular/common/http';
 import Album = Definitions.Album;
 import Image = Definitions.Image;
-import { spinnable } from './common/utils/spinnable';
-import { HttpClient, HttpEvent, HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
 
 
 @Injectable()
@@ -29,9 +29,17 @@ export class AlbumsService {
     );
   }
 
+  getAlbumDetailsById(albumId: string): Observable<AlbumDetails> {
+    return this.findAlbumDetails(album => album.id === albumId);
+  }
+
   getAlbumDetails(albumPermalink: string): Observable<AlbumDetails> {
+    return this.findAlbumDetails(album => album.permalink === albumPermalink);
+  }
+
+  private findAlbumDetails(albumPredicate: (album) => boolean): Observable<AlbumDetails> {
     return this.getAlbums().pipe(switchMap(albums => {
-      const album = albums.find(album => album.permalink === albumPermalink);
+      const album = albums.find(albumPredicate);
       if (!album) {
         return throwError(new Error('Album does not exist'));
       }

@@ -1,0 +1,25 @@
+<div class="layout-container">
+  <app-admin-header></app-admin-header>
+
+  <p-table [value]="images" dataKey="filename">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width:2.5em"></th>
+        <th>Filename</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-image let-index="rowIndex">
+      <tr *ngIf="index === 0">
+        <td></td>
+        <td>..</td>
+      </tr>
+      <tr [pReorderableRow]="index">
+        <td>
+          <i class="pi pi-bars" pReorderableRowHandle></i>
+        </td>
+        <td>{{image.filename}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
