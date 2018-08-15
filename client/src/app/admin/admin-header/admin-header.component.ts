@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 export class AdminHeaderComponent {
   constructor(private router: Router) {
   }
-]
+
   navigateToGallery(): void {
     this.router.navigateByUrl('/');
   }

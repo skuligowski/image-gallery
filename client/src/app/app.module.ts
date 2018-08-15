@@ -28,7 +28,7 @@ import { AdminGuard } from './core/auth/admin.guard';
 import { AuthGuard } from './core/auth/auth.guard';
 import { AlbumsManagerComponent } from './admin/albums-manager/albums-manager.component';
 import { TableModule } from 'primeng/table';
-import { AlbumDetailsComponent } from './admin/albums-manager/album-details.component';
+import { AlbumDetailsComponent } from './admin/album-details/album-details.component';
 import { AlbumDetailsResolver } from './admin/album-details.resolver';
 import { AdminHeaderComponent } from './admin/admin-header/admin-header.component';
 
