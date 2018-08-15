@@ -19,7 +19,8 @@ export class AlbumsManagerComponent implements OnInit {
   ngOnInit() {
   }
 
-  navigateToGallery(): void {
-      this.router.navigateByUrl('/');
+  onRowSelect(row: any): void {
+    console.log(row.data);
+    this.router.navigateByUrl(`admin/albums/${row.data.id}`);
   }
 }
