@@ -30,7 +30,7 @@ import { AlbumsManagerComponent } from './admin/albums-manager/albums-manager.co
 import { TableModule } from 'primeng/table';
 import { AlbumDetailsComponent } from './admin/album-details/album-details.component';
 import { AlbumDetailsResolver } from './admin/album-details.resolver';
-import { AdminHeaderComponent } from './admin/admin-header/admin-header.component';
+import { ButtonModule } from 'primeng/button';
 
 
 const appRoutes: Routes = [
@@ -68,7 +68,6 @@ const appRoutes: Routes = [
     SpinnerComponent,
     CurrentImagePipe,
 
-    AdminHeaderComponent,
     AlbumsManagerComponent,
     AlbumDetailsComponent,
   ],
@@ -78,6 +77,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     FormsModule,
     TableModule,
+    ButtonModule,
     RouterModule.forRoot(appRoutes,  { enableTracing: false })
   ],
   providers: [

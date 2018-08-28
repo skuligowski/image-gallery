@@ -1,5 +1,13 @@
 <div class="layout-container">
-  <app-admin-header></app-admin-header>
+  <header class="layout-header">
+    <div class="title"><span>Administration</span></div>
+    <ul class="navigation" style="font-size:1rem">
+      <li></li>
+    </ul>
+  </header>
+  <nav>
+    <p-button class="action" label="Create album"></p-button>
+  </nav>
 
   <p-table [value]="albums" selectionMode="single" dataKey="id" (onRowSelect)="onRowSelect($event)">
     <ng-template pTemplate="header">
