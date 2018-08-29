@@ -10,13 +10,24 @@ export class AlbumsManagerComponent implements OnInit {
 
   albums: Album[];
 
+  display: boolean = false;
+  name: string;
+
   constructor(private router: Router, private route: ActivatedRoute) {
     route.data.subscribe(data => {
       this.albums = data.albums;
     });
   }
 
+  openCreateAlbumDialog() {
+    this.display = true;
+  }
+
   ngOnInit() {
+  }
+
+  createAlbum(): void {
+    this.display = false;
   }
 
   onRowSelect(row: any): void {

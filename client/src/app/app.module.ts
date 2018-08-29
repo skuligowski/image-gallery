@@ -31,6 +31,7 @@ import { TableModule } from 'primeng/table';
 import { AlbumDetailsComponent } from './admin/album-details/album-details.component';
 import { AlbumDetailsResolver } from './admin/album-details.resolver';
 import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 
 
 const appRoutes: Routes = [
@@ -78,6 +79,7 @@ const appRoutes: Routes = [
     FormsModule,
     TableModule,
     ButtonModule,
+    DialogModule,
     RouterModule.forRoot(appRoutes,  { enableTracing: false })
   ],
   providers: [
