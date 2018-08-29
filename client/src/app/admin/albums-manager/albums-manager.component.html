@@ -2,11 +2,10 @@
   <header class="layout-header">
     <div class="title"><span>Administration</span></div>
     <ul class="navigation" style="font-size:1rem">
-      <li></li>
     </ul>
   </header>
   <nav>
-    <p-button class="action" label="Create album"></p-button>
+    <p-button class="action" label="Create album" (click)="openCreateAlbumDialog()"></p-button>
   </nav>
 
   <p-table [value]="albums" selectionMode="single" dataKey="id" (onRowSelect)="onRowSelect($event)">
@@ -30,4 +29,24 @@
     </ng-template>
   </p-table>
 </div>
+
+<p-dialog [(visible)]="display" [positionTop]="100" [resizable]="false"
+          [blockScroll]="true" [modal]="true" appendTo="body" [draggable]="false" [width]="500">
+  <p-header>
+    Header content here
+  </p-header>
+  <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+    <div class="ui-grid-row" style="align-items: center">
+      <div class="ui-grid-col-4">
+        Album name *:
+      </div>
+      <div class="ui-grid-col-8">
+        <input pInputText type="text" [(ngModel)]="name" placeholder="Name" required style="width: 100%"/>
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <p-button label="Create album" (click)="createAlbum()"></p-button>
+  </p-footer>
+</p-dialog>
 

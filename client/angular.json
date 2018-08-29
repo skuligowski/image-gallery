@@ -23,7 +23,6 @@
             "styles": [
               "node_modules/normalize.css/normalize.css",
               "src/styles.less",
-              "node_modules/primeng/resources/themes/darkness/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css"
             ],
