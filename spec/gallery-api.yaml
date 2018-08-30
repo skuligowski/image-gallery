@@ -27,6 +27,20 @@ paths:
           description: User unauthorized
           schema:
             type: string
+    post:
+      description: Creates a new album
+      tags:
+      - admin
+      operationId: createAlbum
+      parameters:
+      - name: AlbumCreateRequest
+        in: body
+        description: Album create request
+        schema:
+          $ref: defs/AlbumCreateRequest.yaml
+      responses:
+        201:
+          description: album created
   /albums/{id}/images:
     x-swagger-router-controller: albums
     get:
@@ -110,6 +124,8 @@ paths:
 definitions:
   Album:
     $ref: defs/Album.yaml
+  AlbumCreate:
+    $ref: defs/AlbumCreateRequest.yaml
   Image:
     $ref: defs/Image.yaml
   AlbumsResponse:

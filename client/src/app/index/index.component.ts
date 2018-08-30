@@ -30,7 +30,7 @@ export class IndexComponent implements OnInit {
   }
 
   getAlbumThumbUrl(album: Album): string {
-    return `url(${album.thumbUrl})`;
+    return album.thumbUrl ? `url(${album.thumbUrl})` : undefined;
   }
 
   navigateToAlbum(album: Album): void{

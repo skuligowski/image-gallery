@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Album = Definitions.Album;
+import { AlbumsService } from '../../albums.service';
 
 @Component({
   selector: 'app-albums-manager',
@@ -10,10 +11,12 @@ export class AlbumsManagerComponent implements OnInit {
 
   albums: Album[];
 
-  display: boolean = false;
+  display = false;
   name: string;
+  permalink: string;
+  tree: string;
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute, private albumsService: AlbumsService) {
     route.data.subscribe(data => {
       this.albums = data.albums;
     });
@@ -27,7 +30,11 @@ export class AlbumsManagerComponent implements OnInit {
   }
 
   createAlbum(): void {
-    this.display = false;
+    this.albumsService
+      .createAlbum(this.name, this.permalink, this.tree.split(','))
+      .subscribe(() => {
+        this.display = false;
+      });
   }
 
   onRowSelect(row: any): void {
