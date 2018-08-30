@@ -29,6 +29,12 @@ export class AlbumsService {
     );
   }
 
+  createAlbum(name: string, permalink, tree): Observable<any> {
+    return spinnable(
+      this.httpClient.post<any>('/api/albums', { name, permalink, tree })
+    );
+  }
+
   getAlbumDetailsById(albumId: string): Observable<AlbumDetails> {
     return this.findAlbumDetails(album => album.id === albumId);
   }

@@ -1,0 +1,17 @@
+title: AlbumCreate
+type: object
+properties:
+  name:
+    type: string
+    description: album name
+  permalink:
+    type: string
+    description: album permalink
+  tree:
+    type: array
+    items:
+      type: string
+required:
+- name
+- permalink
+- tree

@@ -1,62 +1,49 @@
 "use strict";
-const albums = [{
-  id: '1',
-  permalink: '2018/best-ever',
-  name: 'Best album ever',
-  tree: ['2018', 'Best ever'],
-  lastModified: '2018-07-01T20:23:00.412Z',
-  images: [
-    {url: 'assets/some_1.jpg', filename: 'some_1.jpg', width: 1500, height: 1000},
-    {url: 'assets/some_3.jpg', filename: 'some_2.jpg', width: 1280, height: 1920},
-    {url: 'assets/some_2.jpg', filename: 'some_3.jpg', width: 1200, height: 800},
-    {url: 'assets/some_3.jpg', filename: 'some_4.jpg', width: 1280, height: 1920},
-    {url: 'assets/some_2.jpg', filename: 'some_5.jpg', width: 1200, height: 800},
-    {url: 'assets/some_1.jpg', filename: 'some_6.jpg', width: 1500, height: 1000},
-    {url: 'assets/some_1.jpg', filename: 'some_7.jpg', width: 1500, height: 1000},
-    {url: 'assets/some_3.jpg', filename: 'some_8.jpg', width: 1280, height: 1920},
-    {url: 'assets/some_2.jpg', filename: 'some_9.jpg', width: 1200, height: 800},
-    {url: 'assets/some_1.jpg', filename: 'some_10.jpg', width: 1500, height: 1000}
-  ]
-}, {
-  id: '2',
-  permalink: '2018/other-album',
-  name: 'Other album',
-  tree: ['2018', 'Other album'],
-  lastModified: '2018-03-01T20:23:00.412Z',
-  images: [
-    {url: 'assets/some_3.jpg', filename: 'some_42.jpg', width: 1280, height: 1920},
-    {url: 'assets/some_2.jpg', filename: 'some_52.jpg', width: 1200, height: 800},
-    {url: 'assets/some_1.jpg', filename: 'some_62.jpg', width: 1500, height: 1000},
-  ]
-}];
+const db = require('./db');
 
 function getAlbums(req, res) {
   if (!req.isAuthenticated()) {
     return res.status(401).send();
   }
-  res.send(albums.map(album => ({
+  db.findAlbums({}).map(album => ({
     id: album.id,
     permalink: album.permalink,
     name: album.name,
     tree: album.tree,
     lastModified: album.lastModified,
-    thumbUrl: album.images[0].url,
+    thumbUrl: album.images[0] ? album.images[0].url : undefined,
     size: album.images.length
-  })));
+  })).then(albums => res.send(albums));
+}
+
+function createAlbum(req, res) {
+  if (!req.isAuthenticated()) {
+    return res.status(401).send();
+  }
+  db.insertAlbum({
+      id: "3",
+      name: req.body.name,
+      permalink: req.body.permalink,
+      tree: req.body.tree,
+      lastModified: '2018-07-01T20:23:00.412Z',
+      images: []
+    })
+    .then(() => res.status(201).send());
 }
 
 function getImages(req, res) {
   if (!req.isAuthenticated()) {
     return res.status(401).send();
   }
-  const albumId = req.swagger.params.id.value;
-  const album = albums.find(album => album.id === albumId);
-  if (!album) {
-    res.status(404).send();
-  }
-  else {
-    res.send(album.images);
-  }
+  const id = req.swagger.params.id.value;
+  db.findAlbum({ id })
+    .then(album => {
+      if (album) {
+        res.send(album.images);
+      } else {
+        res.status(404).send();
+      }
+    });
 }
 
 function uploadFile(req, res) {
@@ -79,3 +66,4 @@ function uploadFile(req, res) {
 exports.getImages = getImages;
 exports.getAlbums = getAlbums;
 exports.uploadFile = uploadFile;
+exports.createAlbum = createAlbum;
