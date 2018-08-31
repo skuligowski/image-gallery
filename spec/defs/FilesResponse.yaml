@@ -1,0 +1,4 @@
+title: FilesResponse
+type: array
+items:
+  $ref: File.yaml

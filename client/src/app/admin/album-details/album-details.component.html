@@ -6,7 +6,7 @@
     </ul>
   </header>
   <nav>
-    <p-button class="action" label="Add photos"></p-button>
+    <p-button class="action" label="Add photos" (click)="openAddPhotosDialog()"></p-button>
     <p-button class="action" label="Modify album"></p-button>
     <p-button class="action" label="Delete album"></p-button>
   </nav>
@@ -32,3 +32,13 @@
   </p-table>
 </div>
 
+<p-dialog [(visible)]="display" [positionTop]="100" [resizable]="false"
+          [blockScroll]="true" [modal]="true" appendTo="body" [draggable]="false" [width]="800">
+  <p-header>
+    Header content here
+  </p-header>
+
+  <p-footer>
+    <p-button label="Add photos"></p-button>
+  </p-footer>
+</p-dialog>

@@ -6,7 +6,7 @@ passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((user, done) => done(null, user));
 
 passport.use(new LocalStrategy((username, password, done) => {
-  db.findUser(username).then(user => done(null, user), () => done(null, false));
+  db.findUser({ username }).then(user => done(null, user), () => done(null, false));
 }));
 
 exports.login = (req, res) => {
@@ -34,8 +34,7 @@ exports.getUser = (req, res) => {
   });
 };
 
-
-exports.initialize = (app) => {
+exports.initialize = app => {
   app.use(passport.initialize());
   app.use(passport.session());
 };

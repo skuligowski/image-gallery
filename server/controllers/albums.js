@@ -63,7 +63,4 @@ function uploadFile(req, res) {
   }
 }
 
-exports.getImages = getImages;
-exports.getAlbums = getAlbums;
-exports.uploadFile = uploadFile;
-exports.createAlbum = createAlbum;
+module.exports = { getImages, getAlbums, uploadFile, createAlbum };
