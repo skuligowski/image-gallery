@@ -29,7 +29,23 @@ declare namespace Definitions {
          */
         lastModified: string; // date-time
     }
+    export interface AlbumCreate {
+        /**
+         * album name
+         */
+        name: string;
+        /**
+         * album permalink
+         */
+        permalink: string;
+        tree: string[];
+    }
     export type AlbumsResponse = Album[];
+    export type FilesResponse = {
+        name: string;
+        dir: boolean;
+        size: number;
+    }[];
     export interface Image {
         /**
          * image filename

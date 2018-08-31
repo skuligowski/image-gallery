@@ -41,6 +41,26 @@ paths:
       responses:
         201:
           description: album created
+  /library/files:
+    x-swagger-router-controller: library
+    get:
+      description: Returns files from the library relative to given node
+      tags:
+      - library
+      operationId: getFiles
+      parameters:
+      - in: query
+        name: parent
+        type: string
+      responses:
+        200:
+          description: Files
+          schema:
+            $ref: defs/FilesResponse.yaml
+        401:
+          description: User unauthorized
+          schema:
+            type: string
   /albums/{id}/images:
     x-swagger-router-controller: albums
     get:
@@ -132,6 +152,8 @@ definitions:
     $ref: defs/AlbumsResponse.yaml
   ImagesResponse:
     $ref: defs/ImagesResponse.yaml
+  FilesResponse:
+    $ref: defs/FilesResponse.yaml
   Login:
     $ref: defs/Login.yaml
   User:

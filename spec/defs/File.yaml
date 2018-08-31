@@ -1,0 +1,13 @@
+title: File
+type: object
+properties:
+  name:
+    type: string
+  dir:
+    type: boolean
+  size:
+    type: number
+required:
+- name
+- dir
+- size
