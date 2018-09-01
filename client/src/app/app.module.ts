@@ -32,7 +32,6 @@ import { AlbumDetailsComponent } from './admin/album-details/album-details.compo
 import { AlbumDetailsResolver } from './admin/album-details.resolver';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
-import { TreeTableModule } from 'primeng/primeng';
 
 
 const appRoutes: Routes = [
@@ -81,7 +80,6 @@ const appRoutes: Routes = [
     TableModule,
     ButtonModule,
     DialogModule,
-    TreeTableModule,
     RouterModule.forRoot(appRoutes,  { enableTracing: false })
   ],
   providers: [

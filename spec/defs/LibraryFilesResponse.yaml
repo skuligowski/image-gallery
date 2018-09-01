@@ -1,0 +1,4 @@
+title: LibraryFilesResponse
+type: array
+items:
+  $ref: LibraryFile.yaml

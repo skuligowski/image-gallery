@@ -56,7 +56,7 @@ paths:
         200:
           description: Files
           schema:
-            $ref: defs/FilesResponse.yaml
+            $ref: defs/LibraryFilesResponse.yaml
         401:
           description: User unauthorized
           schema:
@@ -152,8 +152,10 @@ definitions:
     $ref: defs/AlbumsResponse.yaml
   ImagesResponse:
     $ref: defs/ImagesResponse.yaml
+  LibraryFile:
+    $ref: defs/LibraryFile.yaml
   FilesResponse:
-    $ref: defs/FilesResponse.yaml
+    $ref: defs/LibraryFilesResponse.yaml
   Login:
     $ref: defs/Login.yaml
   User:
