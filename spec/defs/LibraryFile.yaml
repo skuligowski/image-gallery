@@ -1,13 +1,14 @@
-title: File
+title: LibraryFile
 type: object
 properties:
-  name:
+  filename:
+    type: string
+  path:
     type: string
   dir:
     type: boolean
   size:
     type: number
 required:
-- name
+- filename
 - dir
-- size

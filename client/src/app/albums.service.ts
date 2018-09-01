@@ -5,6 +5,7 @@ import { spinnable } from './common/utils/spinnable';
 import { HttpClient, HttpEvent, HttpParams, HttpRequest } from '@angular/common/http';
 import Album = Definitions.Album;
 import Image = Definitions.Image;
+import LibraryFile = Definitions.LibraryFile;
 
 
 @Injectable()
@@ -27,6 +28,14 @@ export class AlbumsService {
     return spinnable(
       this.httpClient.get<Image[]>(`/api/albums/${albumId}/images`)
     );
+  }
+
+  getFiles(parent: string): Observable<LibraryFile[]> {
+    let params: HttpParams;
+    if (parent) {
+      params = new HttpParams().set('parent', parent);
+    }
+    return this.httpClient.get<LibraryFile[]>(`/api/library/files`, { params });
   }
 
   createAlbum(name: string, permalink, tree): Observable<any> {

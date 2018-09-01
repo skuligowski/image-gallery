@@ -41,11 +41,7 @@ declare namespace Definitions {
         tree: string[];
     }
     export type AlbumsResponse = Album[];
-    export type FilesResponse = {
-        name: string;
-        dir: boolean;
-        size: number;
-    }[];
+    export type FilesResponse = LibraryFile[];
     export interface Image {
         /**
          * image filename
@@ -69,6 +65,12 @@ declare namespace Definitions {
         height: number;
     }
     export type ImagesResponse = Image[];
+    export interface LibraryFile {
+        filename: string;
+        path?: string;
+        dir: boolean;
+        size?: number;
+    }
     export interface Login {
         /**
          * Username

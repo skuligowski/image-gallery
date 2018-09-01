@@ -14,16 +14,18 @@ function getFiles(req, res) {
   //}
   const requestedDir = path.join(absoluteLibraryDir, req.query.parent || '');
   const relative = path.relative(absoluteLibraryDir, requestedDir);
+  console.log(absoluteLibraryDir, requestedDir);
   const isValidPath = !relative || (!relative.startsWith('..') && !path.isAbsolute(relative));
   if (isValidPath) {
     readDir(requestedDir)
       .map(file => stat(path.join(requestedDir, file)).then(stats => ({ name: file, stats })))
       .map(file => ({
-        name: file.name,
+        filename: file.name,
+        path: path.join(relative, file.name),
         size: file.stats.size,
         dir: file.stats.isDirectory()
       }))
-      .then(files => res.send(files))
+      .then(files => setTimeout(() => res.send(files), 300))
       .catch(() => res.status(404).send());
   } else {
     res.status(404).send()
