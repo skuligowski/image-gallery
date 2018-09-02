@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Album = Definitions.Album;
 import { AlbumsService } from '../../albums.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-albums-manager',
@@ -34,11 +35,12 @@ export class AlbumsManagerComponent implements OnInit {
       .createAlbum(this.name, this.permalink, this.tree.split(','))
       .subscribe(() => {
         this.display = false;
+        this.router.navigated = false;
+        this.router.navigate([this.router.url]);
       });
   }
 
   onRowSelect(row: any): void {
-    console.log(row.data);
     this.router.navigateByUrl(`admin/albums/${row.data.id}`);
   }
 }

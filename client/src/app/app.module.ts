@@ -39,8 +39,8 @@ import { LibraryService } from './admin/services/library.service';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'admin', children: [
-      { path: 'albums', component: AlbumsManagerComponent, resolve: { albums: AlbumsResolver } },
-      { path: 'albums/:id', component: AlbumDetailsComponent, resolve: { album: AlbumDetailsResolver } },
+      { path: 'albums', component: AlbumsManagerComponent, resolve: { albums: AlbumsResolver }, runGuardsAndResolvers: 'always' },
+      { path: 'albums/:id', component: AlbumDetailsComponent, resolve: { album: AlbumDetailsResolver }, runGuardsAndResolvers: 'always' },
       { path: 'album/create', component: AlbumCreateComponent }
     ], canActivate: [ AdminGuard ]},
   {

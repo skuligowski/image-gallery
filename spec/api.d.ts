@@ -64,6 +64,10 @@ declare namespace Definitions {
          */
         height: number;
     }
+    /**
+     * list of paths of new images for the album
+     */
+    export type ImagesAddRequest = string[];
     export type ImagesResponse = Image[];
     export interface LibraryFile {
         filename: string;

@@ -12,6 +12,7 @@ const getProperty = key => getConfigProperty({ key }).then(property => property.
 const findAlbums = Promise.promisify(db.albums.find, {context: db.albums});
 const findAlbum = Promise.promisify(db.albums.findOne, {context: db.albums});
 const insertAlbum = Promise.promisify(db.albums.insert, {context: db.albums});
+const updateAlbum = Promise.promisify(db.albums.update, {context: db.albums});
 const findUser = Promise.promisify(db.users.findOne, {context: db.users});
 const insertUser = Promise.promisify(db.users.insert, {context: db.users});
 
@@ -22,16 +23,16 @@ const albums = [{
   tree: ['2018', 'Best ever'],
   lastModified: '2018-07-01T20:23:00.412Z',
   images: [
-    {url: 'library/some_1.jpg', filename: 'some_1.jpg', width: 1500, height: 1000},
-    {url: 'library/some_3.jpg', filename: 'some_2.jpg', width: 1280, height: 1920},
-    {url: 'library/some_2.jpg', filename: 'some_3.jpg', width: 1200, height: 800},
-    {url: 'library/some_3.jpg', filename: 'some_4.jpg', width: 1280, height: 1920},
-    {url: 'library/some_2.jpg', filename: 'some_5.jpg', width: 1200, height: 800},
-    {url: 'library/some_1.jpg', filename: 'some_6.jpg', width: 1500, height: 1000},
-    {url: 'library/some_1.jpg', filename: 'some_7.jpg', width: 1500, height: 1000},
-    {url: 'library/some_3.jpg', filename: 'some_8.jpg', width: 1280, height: 1920},
-    {url: 'library/some_2.jpg', filename: 'some_9.jpg', width: 1200, height: 800},
-    {url: 'library/some_1.jpg', filename: 'some_10.jpg', width: 1500, height: 1000}
+    {filename: 'some_1.jpg', url: 'library/some_1.jpg', width: 1500, height: 1000},
+    {filename: 'some_3.jpg', url: 'library/some_3.jpg', width: 1280, height: 1920},
+    {filename: 'some_2.jpg', url: 'library/some_2.jpg', width: 1200, height: 800},
+    {filename: 'some_3.jpg', url: 'library/some_3.jpg', width: 1280, height: 1920},
+    {filename: 'some_2.jpg', url: 'library/some_2.jpg', width: 1200, height: 800},
+    {filename: 'some_1.jpg', url: 'library/some_1.jpg', width: 1500, height: 1000},
+    {filename: 'some_1.jpg', url: 'library/some_1.jpg', width: 1500, height: 1000},
+    {filename: 'some_3.jpg', url: 'library/some_3.jpg', width: 1280, height: 1920},
+    {filename: 'some_2.jpg', url: 'library/some_2.jpg', width: 1200, height: 800},
+    {filename: 'some_1.jpg', url: 'library/some_1.jpg', width: 1500, height: 1000}
   ]
 }, {
   id: '2',
@@ -40,9 +41,9 @@ const albums = [{
   tree: ['2018', 'Other album'],
   lastModified: '2018-03-01T20:23:00.412Z',
   images: [
-    {url: 'library/some_3.jpg', filename: 'some_42.jpg', width: 1280, height: 1920},
-    {url: 'library/some_2.jpg', filename: 'some_52.jpg', width: 1200, height: 800},
-    {url: 'library/some_1.jpg', filename: 'some_62.jpg', width: 1500, height: 1000},
+    {filename: 'some_3.jpg', url: 'library/some_3.jpg', width: 1280, height: 1920},
+    {filename: 'some_2.jpg', url: 'library/some_2.jpg', width: 1200, height: 800},
+    {filename: 'some_1.jpg', url: 'library/some_1.jpg', width: 1500, height: 1000},
   ]
 }];
 
@@ -56,4 +57,4 @@ function initialize() {
   });
 }
 
-module.exports = { getProperty, findAlbums, findAlbum, insertAlbum, findUser, insertUser, initialize };
+module.exports = { getProperty, findAlbums, findAlbum, insertAlbum, updateAlbum, findUser, insertUser, initialize };
