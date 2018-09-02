@@ -31,4 +31,4 @@
     </ng-template>
   </p-table>
 </div>
-<app-library-file-selector #fileSelector></app-library-file-selector>
+<app-library-file-selector #fileSelector (selectFiles)="addImages($event)"></app-library-file-selector>

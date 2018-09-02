@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { AlbumsService } from '../../albums.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { LibraryService } from '../services/library.service';
 
 @Component({
   selector: 'app-album-create',
   templateUrl: 'album-create.component.html'
 })
 export class AlbumCreateComponent implements OnInit {
-  constructor(private albumsService: AlbumsService) {
+  constructor(private libraryService: LibraryService) {
   }
 
   ngOnInit() {
@@ -16,7 +16,7 @@ export class AlbumCreateComponent implements OnInit {
   public onDrop(event: DragEvent): void {
     console.log('drop', event.dataTransfer.files);
     for (let i = 0; i < event.dataTransfer.files.length; i++) {
-      this.albumsService.upload(event.dataTransfer.files[i]).subscribe(
+      this.libraryService.upload(event.dataTransfer.files[i]).subscribe(
         event => {
           console.log(event);
           if (event.type === HttpEventType.UploadProgress) {

@@ -33,6 +33,7 @@ import { AlbumDetailsResolver } from './admin/album-details.resolver';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { LibraryFileSelectorComponent } from './admin/library-file-selector/library-file-selector.component';
+import { LibraryService } from './admin/services/library.service';
 
 
 const appRoutes: Routes = [
@@ -91,6 +92,7 @@ const appRoutes: Routes = [
     AlbumResolver,
     AlbumDetailsResolver,
     AlbumsService,
+    LibraryService,
     AlbumSelectorService,
     AuthService,
     SplashService ],

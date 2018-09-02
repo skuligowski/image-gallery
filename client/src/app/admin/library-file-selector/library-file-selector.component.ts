@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { TreeNode } from 'primeng/api';
-import LibraryFile = Definitions.LibraryFile;
-import { AlbumsService } from '../../albums.service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { spinnable } from '../../common/utils/spinnable';
+import { LibraryService } from '../services/library.service';
+import LibraryFile = Definitions.LibraryFile;
 
 @Component({
   selector: 'app-library-file-selector',
@@ -14,16 +13,25 @@ export class LibraryFileSelectorComponent implements OnInit {
   display: boolean;
   cols: any[];
   loading: boolean;
-  selectedFiles: TreeNode[];
 
-  constructor(private albumsService: AlbumsService) {}
+  selectedFiles: LibraryFile[] = [];
+
+  @Output()
+  selectFiles: EventEmitter<LibraryFile[]> = new EventEmitter();
+
+  constructor(private libraryService: LibraryService) {}
 
   open(): void {
-    spinnable(this.albumsService.getFiles(null))
+    this.selectedFiles = [];
+    spinnable(this.libraryService.getFiles(null))
       .subscribe(files => {
         this.files = files.sort(a => a.dir ? -1 : 1);
         this.display = true;
       });
+  }
+
+  close(): void {
+    this.display = false;
   }
 
   ngOnInit() {
@@ -38,7 +46,7 @@ export class LibraryFileSelectorComponent implements OnInit {
   onDirSelect(dir: LibraryFile): void {
     if (dir) {
       this.loading = true;
-      this.albumsService.getFiles(dir.path)
+      this.libraryService.getFiles(dir.path)
         .subscribe(files => {
           this.files = files.sort(a => a.dir ? -1 : 1);
           if (dir.path) {
@@ -55,6 +63,8 @@ export class LibraryFileSelectorComponent implements OnInit {
   }
 
   addImages(): void {
-    console.log(this.selectedFiles);
+    if (this.selectedFiles.length) {
+      this.selectFiles.emit(this.selectedFiles);
+    }
   }
 }
