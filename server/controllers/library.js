@@ -6,6 +6,8 @@ const Promise = require('bluebird');
 const fs = require('fs');
 const readDir = Promise.promisify(fs.readdir, {context: fs});
 const stat = Promise.promisify(fs.stat, {context: fs});
+const allowedExtensions = ['.jpg', '.jpeg', '.gif', '.png']
+  .reduce((map, key) => { map[key] = true; return map;}, {});
 let absoluteLibraryDir;
 
 function getFiles(req, res) {
@@ -25,11 +27,16 @@ function getFiles(req, res) {
         size: file.stats.size,
         dir: file.stats.isDirectory()
       }))
+      .filter(file => isImage(file.filename) || file.dir)
       .then(files => setTimeout(() => res.send(files), 300))
       .catch(() => res.status(404).send());
   } else {
     res.status(404).send()
   }
+}
+
+function isImage(filename) {
+  return allowedExtensions[path.extname(filename).toLowerCase()];
 }
 
 function getLibraryDir() {
