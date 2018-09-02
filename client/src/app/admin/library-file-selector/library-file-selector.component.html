@@ -10,7 +10,7 @@
         <th style="width: 3em">
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
         </th>
-        <th></th>
+        <th style="width: 60px">Preview</th>
         <th *ngFor="let col of columns">
           {{col.header}}
         </th>
@@ -21,7 +21,7 @@
         <td style="width: 3em; text-align: center;">
           <p-tableCheckbox *ngIf="!rowData.dir" [value]="rowData"></p-tableCheckbox>
         </td>
-        <td>
+        <td style="width: 80px; text-align: center">
           <img src="library/{{rowData.path}}" style="width: 50px;" />
         </td>
         <ng-container *ngIf="!rowData.dir; else dirTemplate">
@@ -38,6 +38,6 @@
     </ng-template>
   </p-table>
   <p-footer>
-    <p-button label="Add images" (click)="addImages()"></p-button>
+    <p-button label="Add images" (click)="addImages()" [disabled]="!selectedFiles.length"></p-button>
   </p-footer>
 </p-dialog>

@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
 import { spinnable } from './common/utils/spinnable';
-import { HttpClient, HttpEvent, HttpParams, HttpRequest } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import Album = Definitions.Album;
 import Image = Definitions.Image;
-import LibraryFile = Definitions.LibraryFile;
 
 
 @Injectable()
@@ -28,14 +27,6 @@ export class AlbumsService {
     return spinnable(
       this.httpClient.get<Image[]>(`/api/albums/${albumId}/images`)
     );
-  }
-
-  getFiles(parent: string): Observable<LibraryFile[]> {
-    let params: HttpParams;
-    if (parent) {
-      params = new HttpParams().set('parent', parent);
-    }
-    return this.httpClient.get<LibraryFile[]>(`/api/library/files`, { params });
   }
 
   createAlbum(name: string, permalink, tree): Observable<any> {
@@ -71,21 +62,6 @@ export class AlbumsService {
         );
       }
     }));
-  }
-
-  upload(files: File): Observable<HttpEvent<any>> {
-    const formData = new FormData();
-    formData.append('file', files);
-
-    const params = new HttpParams();
-
-    const options = {
-      params: params,
-      reportProgress: true,
-    };
-
-    const req = new HttpRequest('POST', '/api/upload', formData, options);
-    return this.httpClient.request(req);
   }
 
 }
