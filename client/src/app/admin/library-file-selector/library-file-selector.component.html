@@ -1,0 +1,43 @@
+<p-dialog [(visible)]="display" [positionTop]="100" [resizable]="false"
+          [blockScroll]="true" [modal]="true" [draggable]="false" [width]="800">
+  <p-header>
+    Select images
+  </p-header>
+  <p-table [value]="files" [columns]="cols" [lazy]="true" [lazyLoadOnInit]="false"
+           [loading]="loading" [scrollable]="true" scrollHeight="200px" [(selection)]="selectedFiles" dataKey="filename">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th style="width: 3em">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th></th>
+        <th *ngFor="let col of columns">
+          {{col.header}}
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pSelectableRow]="!rowData.dir && rowData">
+        <td style="width: 3em; text-align: center;">
+          <p-tableCheckbox *ngIf="!rowData.dir" [value]="rowData"></p-tableCheckbox>
+        </td>
+        <td>
+          <img src="library/{{rowData.path}}" style="width: 50px;" />
+        </td>
+        <ng-container *ngIf="!rowData.dir; else dirTemplate">
+          <td *ngFor="let col of columns;">
+            {{rowData[col.field]}}
+          </td>
+        </ng-container>
+        <ng-template #dirTemplate>
+          <td colspan="3" style="cursor: pointer" (click)="onDirSelect(rowData)">
+            {{rowData.filename}}
+          </td>
+        </ng-template>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-footer>
+    <p-button label="Add images" (click)="addImages()"></p-button>
+  </p-footer>
+</p-dialog>
