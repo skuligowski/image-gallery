@@ -1,0 +1,5 @@
+title: ImagesAddRequest
+type: array
+description: list of paths of new images for the album
+items:
+  type: string

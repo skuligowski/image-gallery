@@ -5,6 +5,7 @@ import { spinnable } from './common/utils/spinnable';
 import { HttpClient } from '@angular/common/http';
 import Album = Definitions.Album;
 import Image = Definitions.Image;
+import ImagesAddRequest = Definitions.ImagesAddRequest;
 
 
 @Injectable()
@@ -29,10 +30,16 @@ export class AlbumsService {
     );
   }
 
+  addImages(albumId: string, imagePaths: string[]) {
+    return spinnable(
+      this.httpClient.post<ImagesAddRequest>(`/api/albums/${albumId}/images`, imagePaths)
+    ).pipe(this.refreshAlbums());
+  }
+
   createAlbum(name: string, permalink, tree): Observable<any> {
     return spinnable(
       this.httpClient.post<any>('/api/albums', { name, permalink, tree })
-    );
+    ).pipe(this.refreshAlbums());
   }
 
   getAlbumDetailsById(albumId: string): Observable<AlbumDetails> {
@@ -64,6 +71,17 @@ export class AlbumsService {
     }));
   }
 
+  private refreshAlbums<T>(): (source: Observable<T>) => Observable<T> {
+    return (source: Observable<T>) => source.pipe(
+      switchMap((value: T) => spinnable(this.httpClient.get<Album[]>('/api/albums')).pipe(
+        tap(albums => {
+          this.albums = albums;
+          this.albumDetailsMap = {};
+        }),
+        switchMap(() => of(value))
+      ))
+    );
+  }
 }
 
 export interface AlbumDetails extends Album {

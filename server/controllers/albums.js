@@ -1,5 +1,7 @@
 "use strict";
 const db = require('./db');
+const library = require('./library');
+const Promise = require('bluebird');
 
 function getAlbums(req, res) {
   if (!req.isAuthenticated()) {
@@ -21,7 +23,7 @@ function createAlbum(req, res) {
     return res.status(401).send();
   }
   db.insertAlbum({
-      id: "3",
+      id: `${new Date().getTime()}`,
       name: req.body.name,
       permalink: req.body.permalink,
       tree: req.body.tree,
@@ -29,6 +31,38 @@ function createAlbum(req, res) {
       images: []
     })
     .then(() => res.status(201).send());
+}
+
+function addImages(req, res) {
+  if (!req.isAuthenticated()) {
+    return res.status(401).send();
+  }
+  const id = req.swagger.params.id.value;
+  const paths = req.body;
+  db.findAlbum({ id })
+    .then(album => Promise.all(paths
+      .map(path => library.getImageDetails(path)))
+      .map(imageDetails => ({
+        filename: imageDetails.filename,
+        url: `library/${imageDetails.path}`,
+        width: imageDetails.width,
+        height: imageDetails.height
+      }))
+      .then(images => {
+        const imagesMap = images.reduce((map, image) => { map[image.url] = image; return map}, {});
+        let newImages = album.images.reduce((list, image) => {
+          list.push(imagesMap[image.url] || image);
+          delete imagesMap[image.url];
+          return list;
+        }, []);
+        return [...newImages, ...Object.values(imagesMap)];
+      })
+      .then(images => db.updateAlbum({_id: album._id}, {...album, images})))
+    .then(() => res.status(201).send())
+    .catch(e => {
+      console.log(e);
+      res.status(400).send();
+    });
 }
 
 function getImages(req, res) {
@@ -63,4 +97,4 @@ function uploadFile(req, res) {
   }
 }
 
-module.exports = { getImages, getAlbums, uploadFile, createAlbum };
+module.exports = { getImages, getAlbums, uploadFile, createAlbum, addImages };
