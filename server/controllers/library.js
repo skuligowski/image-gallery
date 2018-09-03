@@ -15,9 +15,6 @@ const allowedExtensions = ['.jpg', '.jpeg', '.gif', '.png']
 let absoluteLibraryDir;
 
 function getFiles(req, res) {
-  if (!req.isAuthenticated()) {
-    return res.status(401).send();
-  }
   if (isValidPath(req.query.parent)) {
     const absoluteDir = path.join(absoluteLibraryDir, req.query.parent || '');
     const relativeDir = path.relative(absoluteLibraryDir, absoluteDir);
