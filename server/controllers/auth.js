@@ -25,9 +25,6 @@ exports.login = (req, res) => {
 };
 
 exports.getUser = (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.status(401).send();
-  }
   res.status(200).send({
     username: req.user.username,
     admin: req.user.admin

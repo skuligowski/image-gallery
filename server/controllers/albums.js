@@ -4,9 +4,6 @@ const library = require('./library');
 const Promise = require('bluebird');
 
 function getAlbums(req, res) {
-  if (!req.isAuthenticated()) {
-    return res.status(401).send();
-  }
   db.findAlbums({}).map(album => ({
     id: album.id,
     permalink: album.permalink,
@@ -19,9 +16,6 @@ function getAlbums(req, res) {
 }
 
 function createAlbum(req, res) {
-  if (!req.isAuthenticated()) {
-    return res.status(401).send();
-  }
   db.insertAlbum({
       id: `${new Date().getTime()}`,
       name: req.body.name,
@@ -34,9 +28,6 @@ function createAlbum(req, res) {
 }
 
 function addImages(req, res) {
-  if (!req.isAuthenticated()) {
-    return res.status(401).send();
-  }
   const id = req.swagger.params.id.value;
   const paths = req.body;
   db.findAlbum({ id })
@@ -66,9 +57,6 @@ function addImages(req, res) {
 }
 
 function getImages(req, res) {
-  if (!req.isAuthenticated()) {
-    return res.status(401).send();
-  }
   const id = req.swagger.params.id.value;
   db.findAlbum({ id })
     .then(album => {

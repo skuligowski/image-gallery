@@ -14,6 +14,7 @@ paths:
   /albums:
     x-swagger-router-controller: albums
     get:
+      x-authentication-required: true
       description: Returns all albums meta definition from the gallery
       tags:
       - gallery
@@ -28,6 +29,8 @@ paths:
           schema:
             type: string
     post:
+      x-authentication-required: true
+      x-admin-required: true
       description: Creates a new album
       tags:
       - admin
@@ -44,6 +47,8 @@ paths:
   /library/files:
     x-swagger-router-controller: library
     get:
+      x-authentication-required: true
+      x-admin-required: true
       description: Returns files from the library relative to given node
       tags:
       - library
@@ -64,6 +69,7 @@ paths:
   /albums/{id}/images:
     x-swagger-router-controller: albums
     get:
+      x-authentication-required: true
       description: Returns album with all images
       tags:
       - gallery
@@ -82,6 +88,8 @@ paths:
         404:
           description: An album with given id was not found
     post:
+      x-authentication-required: true
+      x-admin-required: true
       description: Adds images to the album
       tags:
       - admin
@@ -129,6 +137,7 @@ paths:
   /user:
     x-swagger-router-controller: auth
     get:
+      x-authentication-required: true
       description: Logs user into the application
       tags:
       - auth
@@ -145,6 +154,8 @@ paths:
   /upload:
     x-swagger-router-controller: albums
     post:
+      x-authentication-required: true
+      x-admin-required: true
       consumes:
       - multipart/form-data
       description: Logs user into the application

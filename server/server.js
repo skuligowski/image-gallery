@@ -9,6 +9,7 @@ const compression = require('compression');
 const db = require('./controllers/db');
 const auth = require('./controllers/auth');
 const library = require('./controllers/library');
+const authMiddleware = require('./utils/auth-middleware');
 
 const app = express();
 app.use(compression());
@@ -35,6 +36,7 @@ db.initialize()
       app.use(middleware.swaggerValidator({
         validateResponse: true
       }));
+      app.use(authMiddleware());
       app.use(middleware.swaggerRouter({ useStubs: false, controllers: './controllers' }));
       app.use(middleware.swaggerUi());
 
