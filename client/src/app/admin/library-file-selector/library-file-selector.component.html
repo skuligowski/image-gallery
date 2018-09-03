@@ -1,16 +1,17 @@
 <p-dialog [(visible)]="display" [positionTop]="100" [resizable]="false"
-          [blockScroll]="true" [modal]="true" [draggable]="false" [width]="800">
+          [blockScroll]="true" [modal]="true" [draggable]="false" [width]="800"
+          [contentStyle]="{'max-height': '500px'}">
   <p-header>
     Select images
   </p-header>
   <p-table [value]="files" [columns]="cols" [lazy]="true" [lazyLoadOnInit]="false"
-           [loading]="loading" [scrollable]="true" scrollHeight="200px" [(selection)]="selectedFiles" dataKey="filename">
+           [loading]="loading" [(selection)]="selectedFiles" dataKey="filename">
     <ng-template pTemplate="header" let-columns>
       <tr>
         <th style="width: 3em">
           <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
         </th>
-        <th style="width: 60px">Preview</th>
+        <th style="width: 100px">Preview</th>
         <th *ngFor="let col of columns">
           {{col.header}}
         </th>
@@ -21,7 +22,7 @@
         <td style="width: 3em; text-align: center;">
           <p-tableCheckbox *ngIf="!rowData.dir" [value]="rowData"></p-tableCheckbox>
         </td>
-        <td style="width: 80px; text-align: center">
+        <td style="width: 100px; text-align: center">
           <img src="library/{{rowData.path}}" style="width: 50px;" />
         </td>
         <ng-container *ngIf="!rowData.dir; else dirTemplate">
