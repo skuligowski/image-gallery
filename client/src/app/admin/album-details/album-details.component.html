@@ -13,20 +13,27 @@
   <p-table [value]="images" dataKey="filename">
     <ng-template pTemplate="header">
       <tr>
-        <th style="width:2.5em"></th>
-        <th style="width:200px">Image</th>
-        <th>Filename</th>
+        <th style="width: 200px">Image</th>
+        <th>Image data</th>
+        <th style="width: 100px">Actions</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-image let-index="rowIndex">
       <tr [pReorderableRow]="index">
         <td>
-          <i class="pi pi-bars" pReorderableRowHandle></i>
-        </td>
-        <td>
           <img class="image-preview" [src]="image.url" />
         </td>
-        <td>{{image.filename}}</td>
+        <td>
+          <ul class="data-list">
+            <li><span class="label">Filename:</span> {{image.filename}}</li>
+            <li><span class="label">Resolution:</span> {{image.width}} x {{image.height}}</li>
+            <li *ngIf="image.title"><span class="label">Title:</span> {{image.title}}</li>
+          </ul>
+        </td>
+        <td class="actions">
+          <i class="pi pi-bars" pReorderableRowHandle></i>
+          <i class="pi pi-trash" (click)="deleteImage(image)"></i>
+        </td>
       </tr>
     </ng-template>
   </p-table>

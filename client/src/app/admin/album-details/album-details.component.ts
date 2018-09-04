@@ -8,7 +8,8 @@ import { AlbumsService } from '../../albums.service';
 
 @Component({
   selector: 'app-album-details',
-  templateUrl: 'album-details.component.html'
+  templateUrl: 'album-details.component.html',
+  styleUrls: [ 'album-details.component.less' ]
 })
 export class AlbumDetailsComponent {
 
@@ -34,5 +35,9 @@ export class AlbumDetailsComponent {
         this.router.navigated = false;
         this.router.navigate([this.router.url]);
       });
+  }
+
+  deleteImage(image: Image[]): void {
+    console.log(image);
   }
 }
