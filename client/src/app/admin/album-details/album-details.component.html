@@ -7,19 +7,26 @@
   </header>
   <nav>
     <p-button class="action" label="Add images" (click)="fileSelector.open()"></p-button>
+    <p-button class="action" [disabled]="!selected.length" label="Delete images" (click)="deleteImages(selected)"></p-button>
     <p-button class="action" label="Modify album"></p-button>
     <p-button class="action" label="Delete album"></p-button>
   </nav>
-  <p-table [value]="images" dataKey="filename">
+  <p-table [value]="images" dataKey="filename" [(selection)]="selected">
     <ng-template pTemplate="header">
       <tr>
+        <th class="checkbox-column">
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
         <th style="width: 200px">Image</th>
         <th>Image data</th>
-        <th style="width: 100px">Actions</th>
+        <th style="width: 80px">Move</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-image let-index="rowIndex">
       <tr [pReorderableRow]="index">
+        <td class="checkbox-column">
+          <p-tableCheckbox [value]="image"></p-tableCheckbox>
+        </td>
         <td>
           <img class="image-preview" [src]="image.url" />
         </td>
@@ -32,7 +39,6 @@
         </td>
         <td class="actions">
           <i class="pi pi-bars" pReorderableRowHandle></i>
-          <i class="pi pi-trash" (click)="deleteImage(image)"></i>
         </td>
       </tr>
     </ng-template>

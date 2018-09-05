@@ -68,6 +68,10 @@ declare namespace Definitions {
      * list of paths of new images for the album
      */
     export type ImagesAddRequest = string[];
+    /**
+     * list of image urls to remove
+     */
+    export type ImagesRemovalRequest = string[];
     export type ImagesResponse = Image[];
     export interface LibraryFile {
         filename: string;

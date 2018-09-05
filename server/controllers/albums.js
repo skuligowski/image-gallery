@@ -56,6 +56,28 @@ function addImages(req, res) {
     });
 }
 
+function removeImages(req, res) {
+  const id = req.swagger.params.id.value;
+  const imageUrls = req.body;
+  console.log(imageUrls);
+  db.findAlbum({ id })
+    .then(album => {
+      const imagesToRemove = imageUrls.reduce((map, imageUrl) => { map[imageUrl] = true; return map}, {});
+      const images = album.images.reduce((newList, image) => {
+        if (!imagesToRemove[image.url]) {
+          newList.push(image);
+        }
+        return newList;
+      }, []);
+      return db.updateAlbum({_id: album._id}, {...album, images});
+    })
+    .then(() => res.status(201).send())
+    .catch(e => {
+      console.log(e);
+      res.status(400).send();
+    });
+}
+
 function getImages(req, res) {
   const id = req.swagger.params.id.value;
   db.findAlbum({ id })
@@ -85,4 +107,4 @@ function uploadFile(req, res) {
   }
 }
 
-module.exports = { getImages, getAlbums, uploadFile, createAlbum, addImages };
+module.exports = { getImages, getAlbums, uploadFile, createAlbum, addImages, removeImages };

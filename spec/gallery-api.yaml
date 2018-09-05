@@ -112,6 +112,31 @@ paths:
             $ref: defs/ImagesResponse.yaml
         404:
           description: An album with given id was not found
+  /albums/{id}/images/removal:
+    x-swagger-router-controller: albums
+    post:
+      x-authentication-required: true
+      x-admin-required: true
+      description: Removes images from the album
+      tags:
+      - admin
+      operationId: removeImages
+      parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: Id of the album
+      - name: ImagesRemovalRequest
+        in: body
+        description: Removing images request
+        schema:
+          $ref: defs/ImagesRemovalRequest.yaml
+      responses:
+        201:
+          description: Action successfull
+        404:
+          description: An album with given id was not found
   /login:
     x-swagger-router-controller: auth
     post:
@@ -188,6 +213,8 @@ definitions:
     $ref: defs/ImagesResponse.yaml
   ImagesAddRequest:
     $ref: defs/ImagesAddRequest.yaml
+  ImagesRemovalRequest:
+    $ref: defs/ImagesRemovalRequest.yaml
   LibraryFile:
     $ref: defs/LibraryFile.yaml
   FilesResponse:
