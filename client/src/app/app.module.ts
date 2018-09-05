@@ -34,6 +34,7 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { LibraryFileSelectorComponent } from './admin/library-file-selector/library-file-selector.component';
 import { LibraryService } from './admin/services/library.service';
+import { ConfirmationService, ConfirmDialogModule } from 'primeng/primeng';
 
 
 const appRoutes: Routes = [
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
   { path: 'admin', children: [
       { path: 'albums', component: AlbumsManagerComponent, resolve: { albums: AlbumsResolver }, runGuardsAndResolvers: 'always' },
       { path: 'albums/:id', component: AlbumDetailsComponent, resolve: { album: AlbumDetailsResolver }, runGuardsAndResolvers: 'always' },
-      { path: 'album/create', component: AlbumCreateComponent }
+      { path: 'album/create', component: AlbumCreateComponent },
+      { path: '**', redirectTo: 'albums'}
     ], canActivate: [ AdminGuard ]},
   {
     path: 'album/select',
@@ -83,6 +85,7 @@ const appRoutes: Routes = [
     TableModule,
     ButtonModule,
     DialogModule,
+    ConfirmDialogModule,
     RouterModule.forRoot(appRoutes,  { enableTracing: false })
   ],
   providers: [
@@ -92,6 +95,7 @@ const appRoutes: Routes = [
     AlbumResolver,
     AlbumDetailsResolver,
     AlbumsService,
+    ConfirmationService,
     LibraryService,
     AlbumSelectorService,
     AuthService,

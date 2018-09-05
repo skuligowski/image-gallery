@@ -49,6 +49,12 @@ export class AlbumsService {
     ).pipe(this.refreshAlbums());
   }
 
+  removeAlbum(albumId: string): Observable<any> {
+    return spinnable(
+      this.httpClient.delete<any>(`/api/albums/${albumId}`)
+    ).pipe(this.refreshAlbums());
+  }
+
   getAlbumDetailsById(albumId: string): Observable<AlbumDetails> {
     return this.findAlbumDetails(album => album.id === albumId);
   }

@@ -78,6 +78,16 @@ function removeImages(req, res) {
     });
 }
 
+function removeAlbum(req, res) {
+  const id = req.swagger.params.id.value;
+  db.removeAlbum({ id })
+    .then(() => res.status(201).send())
+    .catch(e => {
+      console.log(e);
+      res.status(400).send();
+    });
+}
+
 function getImages(req, res) {
   const id = req.swagger.params.id.value;
   db.findAlbum({ id })
@@ -107,4 +117,4 @@ function uploadFile(req, res) {
   }
 }
 
-module.exports = { getImages, getAlbums, uploadFile, createAlbum, addImages, removeImages };
+module.exports = { getImages, getAlbums, uploadFile, createAlbum, removeAlbum, addImages, removeImages };
