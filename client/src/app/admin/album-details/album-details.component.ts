@@ -15,6 +15,7 @@ export class AlbumDetailsComponent {
 
   album: Album;
   images: Image[];
+  selected: Image[] = [];
 
   @ViewChild('fileSelector')
   fileSelector: LibraryFileSelectorComponent;
@@ -37,7 +38,12 @@ export class AlbumDetailsComponent {
       });
   }
 
-  deleteImage(image: Image[]): void {
-    console.log(image);
+  deleteImages(images: Image[]): void {
+    this.albumsService.removeImages(this.album.id, images.map(image => image.url))
+      .subscribe(() => {
+        this.selected = [];
+        this.router.navigated = false;
+        this.router.navigate([this.router.url]);
+      });
   }
 }

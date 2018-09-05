@@ -18,7 +18,7 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-rowData let-columns="columns">
-      <tr [pSelectableRow]="!rowData.dir && rowData">
+      <tr>
         <td style="width: 3em; text-align: center;">
           <p-tableCheckbox *ngIf="!rowData.dir" [value]="rowData"></p-tableCheckbox>
         </td>

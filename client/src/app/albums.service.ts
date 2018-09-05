@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import Album = Definitions.Album;
 import Image = Definitions.Image;
 import ImagesAddRequest = Definitions.ImagesAddRequest;
+import ImagesRemovalRequest = Definitions.ImagesRemovalRequest;
 
 
 @Injectable()
@@ -33,6 +34,12 @@ export class AlbumsService {
   addImages(albumId: string, imagePaths: string[]) {
     return spinnable(
       this.httpClient.post<ImagesAddRequest>(`/api/albums/${albumId}/images`, imagePaths)
+    ).pipe(this.refreshAlbums());
+  }
+
+  removeImages(albumId: string, imageUrls: string[]) {
+    return spinnable(
+      this.httpClient.post<ImagesRemovalRequest>(`/api/albums/${albumId}/images/removal`, imageUrls)
     ).pipe(this.refreshAlbums());
   }
 
