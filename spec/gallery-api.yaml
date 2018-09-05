@@ -66,6 +66,24 @@ paths:
           description: User unauthorized
           schema:
             type: string
+  /albums/{id}:
+    x-swagger-router-controller: albums
+    delete:
+      x-authentication-required: true
+      x-admin-required: true
+      description: Removes album
+      tags:
+      - admin
+      operationId: removeAlbum
+      parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: Id of the album
+      responses:
+        201:
+          description: album deleted
   /albums/{id}/images:
     x-swagger-router-controller: albums
     get:

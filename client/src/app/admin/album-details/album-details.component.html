@@ -7,11 +7,11 @@
   </header>
   <nav>
     <p-button class="action" label="Add images" (click)="fileSelector.open()"></p-button>
-    <p-button class="action" [disabled]="!selected.length" label="Delete images" (click)="deleteImages(selected)"></p-button>
+    <p-button class="action" [disabled]="!selected.length" label="Delete images" (click)="selected.length && removeImages(selected)"></p-button>
     <p-button class="action" label="Modify album"></p-button>
-    <p-button class="action" label="Delete album"></p-button>
+    <p-button class="action" label="Delete album" (click)="removeAlbum(album.id)"></p-button>
   </nav>
-  <p-table [value]="images" dataKey="filename" [(selection)]="selected">
+  <p-table [value]="images" dataKey="url" [(selection)]="selected">
     <ng-template pTemplate="header">
       <tr>
         <th class="checkbox-column">
@@ -45,3 +45,4 @@
   </p-table>
 </div>
 <app-library-file-selector #fileSelector (selectFiles)="addImages($event)"></app-library-file-selector>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" width="425" message="Do you really want to delete this album?"></p-confirmDialog>
