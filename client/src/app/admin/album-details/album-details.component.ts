@@ -62,4 +62,8 @@ export class AlbumDetailsComponent {
       }
     });
   }
+
+  navigateToAlbums(): void {
+    this.router.navigate(['admin', 'albums']);
+  }
 }

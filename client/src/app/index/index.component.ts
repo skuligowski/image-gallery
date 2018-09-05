@@ -9,12 +9,14 @@ import { AuthService } from '../core/auth/auth.service';
 })
 export class IndexComponent implements OnInit {
 
-  lastModifiedAlbums: Album[];
+  lastModifiedAlbums: Album[] = [];
+  albumsCount = 0;
 
   constructor(private router: Router, private route: ActivatedRoute, public authService: AuthService) {
     route.data.subscribe(data => {
-      this.lastModifiedAlbums = (data['albums'] as Album[])
-        .sort((albumA, albumB) => albumB.lastModified.localeCompare(albumA.lastModified));
+      const albums = data['albums'] as Album[];
+      this.lastModifiedAlbums = albums.sort((albumA, albumB) => albumB.lastModified.localeCompare(albumA.lastModified));
+      this.albumsCount = albums.length;
     });
   }
 
@@ -30,7 +32,7 @@ export class IndexComponent implements OnInit {
   }
 
   getAlbumThumbUrl(album: Album): string {
-    return album.thumbUrl ? `url(${album.thumbUrl})` : undefined;
+    return album && album.thumbUrl ? `url(${album.thumbUrl})` : undefined;
   }
 
   navigateToAlbum(album: Album): void{
@@ -38,6 +40,6 @@ export class IndexComponent implements OnInit {
   }
 
   getWelcomeImageUrl(): string {
-    return this.getAlbumThumbUrl(this.lastModifiedAlbums[1]);
+    return this.getAlbumThumbUrl(this.lastModifiedAlbums.length ? this.lastModifiedAlbums[0] : undefined);
   }
 }
