@@ -51,7 +51,9 @@ const albums = [{
 function initialize() {
   return findUser({ _id: 'id1' }).then(user => {
     if (!user) {
-      return insertUser({ _id: 'id1', username: 'admin', password: '1234', admin: true})
+      return insertUser([
+        { _id: 'id1', username: 'admin', password: '1234', admin: true},
+        { _id: 'id2', username: 'user', password: '1234', admin: false}])
         .then(() => insertAlbum(albums))
         .then(() => insertProperty({ key: 'libraryDir', value: 'library' }));
     }
