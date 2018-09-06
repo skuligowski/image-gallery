@@ -22,7 +22,7 @@ function initialize() {
   return getProperty('initialized').then(initialized => {
     if (!initialized) {
       return Promise.resolve()
-        .then(() => insertProperty({ key: 'libraryDir', value: 'library'}))
+        .then(() => insertProperty({ key: 'libraryDir', value: 'resources/library'}))
         .then(() => addUser('admin', '1234', true))
         .then(() => addUser('user', '1234', false))
         .then(() => insertProperty({ key: 'initialized', value: true }));
