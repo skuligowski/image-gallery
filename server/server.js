@@ -6,10 +6,10 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const compression = require('compression');
-const db = require('./controllers/db');
-const auth = require('./controllers/auth');
-const library = require('./controllers/library');
-const authMiddleware = require('./utils/auth-middleware');
+const db = require('./core/db');
+const auth = require('./core/auth');
+const library = require('./core/library');
+const authMiddleware = require('./lib/auth-middleware');
 
 const app = express();
 app.use(compression());
