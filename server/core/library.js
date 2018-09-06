@@ -14,11 +14,11 @@ const allowedExtensions = ['.jpg', '.jpeg', '.gif', '.png']
 
 let absoluteLibraryDir;
 
-function getFiles(req, res) {
-  if (isValidPath(req.query.parent)) {
-    const absoluteDir = path.join(absoluteLibraryDir, req.query.parent || '');
+function getFiles(parentDir) {
+  if (isValidPath(parentDir)) {
+    const absoluteDir = path.join(absoluteLibraryDir, parentDir || '');
     const relativeDir = path.relative(absoluteLibraryDir, absoluteDir);
-    readDir(absoluteDir)
+    return readDir(absoluteDir)
       .map(file => stat(path.join(absoluteDir, file)).then(stats => ({ name: file, stats })))
       .map(file => ({
         filename: file.name,
@@ -26,11 +26,9 @@ function getFiles(req, res) {
         size: file.stats.size,
         dir: file.stats.isDirectory()
       }))
-      .filter(file => isImage(file.filename) || file.dir)
-      .then(files => setTimeout(() => res.send(files), 300))
-      .catch(() => res.status(404).send());
+      .filter(file => isImage(file.filename) || file.dir);
   } else {
-    res.status(404).send()
+    return Promise.reject('Invalid path');
   }
 }
 

@@ -12,7 +12,7 @@ produces:
 - text/plain
 paths:
   /albums:
-    x-swagger-router-controller: albums
+    x-swagger-router-controller: albums.controller
     get:
       x-authentication-required: true
       description: Returns all albums meta definition from the gallery
@@ -45,7 +45,7 @@ paths:
         201:
           description: album created
   /library/files:
-    x-swagger-router-controller: library
+    x-swagger-router-controller: library.controller
     get:
       x-authentication-required: true
       x-admin-required: true
@@ -67,7 +67,7 @@ paths:
           schema:
             type: string
   /albums/{id}:
-    x-swagger-router-controller: albums
+    x-swagger-router-controller: albums.controller
     delete:
       x-authentication-required: true
       x-admin-required: true
@@ -85,7 +85,7 @@ paths:
         201:
           description: album deleted
   /albums/{id}/images:
-    x-swagger-router-controller: albums
+    x-swagger-router-controller: albums.controller
     get:
       x-authentication-required: true
       description: Returns album with all images
@@ -131,7 +131,7 @@ paths:
         404:
           description: An album with given id was not found
   /albums/{id}/images/removal:
-    x-swagger-router-controller: albums
+    x-swagger-router-controller: albums.controller
     post:
       x-authentication-required: true
       x-admin-required: true
@@ -156,7 +156,7 @@ paths:
         404:
           description: An album with given id was not found
   /login:
-    x-swagger-router-controller: auth
+    x-swagger-router-controller: auth.controller
     post:
       description: Logs user into the application
       tags:
@@ -178,7 +178,7 @@ paths:
           schema:
             type: string
   /user:
-    x-swagger-router-controller: auth
+    x-swagger-router-controller: auth.controller
     get:
       x-authentication-required: true
       description: Logs user into the application
@@ -195,7 +195,7 @@ paths:
           schema:
             type: string
   /upload:
-    x-swagger-router-controller: albums
+    x-swagger-router-controller: albums.controller
     post:
       x-authentication-required: true
       x-admin-required: true
