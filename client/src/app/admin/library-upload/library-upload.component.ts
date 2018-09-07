@@ -3,10 +3,10 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { LibraryService } from '../services/library.service';
 
 @Component({
-  selector: 'app-album-create',
-  templateUrl: 'album-create.component.html'
+  selector: 'app-library-upload',
+  templateUrl: 'library-upload.component.html'
 })
-export class AlbumCreateComponent implements OnInit {
+export class LibraryUploadComponent implements OnInit {
   constructor(private libraryService: LibraryService) {
   }
 

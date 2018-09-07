@@ -23,7 +23,7 @@ import { CurrentImagePipe } from './album/image-preview/current-image.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './core/auth/auth.service';
-import { AlbumCreateComponent } from './admin/album-create/album-create.component';
+import { LibraryUploadComponent } from './admin/library-upload/library-upload.component';
 import { AdminGuard } from './core/auth/admin.guard';
 import { AuthGuard } from './core/auth/auth.guard';
 import { AlbumsManagerComponent } from './admin/albums-manager/albums-manager.component';
@@ -42,7 +42,7 @@ const appRoutes: Routes = [
   { path: 'admin', children: [
       { path: 'albums', component: AlbumsManagerComponent, resolve: { albums: AlbumsResolver }, runGuardsAndResolvers: 'always' },
       { path: 'albums/:id', component: AlbumDetailsComponent, resolve: { album: AlbumDetailsResolver }, runGuardsAndResolvers: 'always' },
-      { path: 'album/create', component: AlbumCreateComponent },
+      { path: 'library/upload', component: LibraryUploadComponent },
       { path: '**', redirectTo: 'albums'}
     ], canActivate: [ AdminGuard ]},
   {
@@ -61,7 +61,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     AlbumComponent,
-    AlbumCreateComponent,
+    LibraryUploadComponent,
     ImagePreviewComponent,
     LoginComponent,
     IndexComponent,
