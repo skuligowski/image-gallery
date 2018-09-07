@@ -35,6 +35,7 @@ import { DialogModule } from 'primeng/dialog';
 import { LibraryFileSelectorComponent } from './admin/library-file-selector/library-file-selector.component';
 import { LibraryService } from './admin/services/library.service';
 import { ConfirmationService, ConfirmDialogModule } from 'primeng/primeng';
+import { AlbumCreateComponent } from './admin/album-create/album-create.component';
 
 
 const appRoutes: Routes = [
@@ -74,6 +75,7 @@ const appRoutes: Routes = [
     CurrentImagePipe,
 
     AlbumsManagerComponent,
+    AlbumCreateComponent,
     AlbumDetailsComponent,
     LibraryFileSelectorComponent,
   ],
