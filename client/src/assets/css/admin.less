@@ -1,4 +1,4 @@
-@import (inline) "../../../node_modules/primeng/resources/themes/darkness/theme.css";
+@import  "../../../node_modules/primeng/resources/themes/darkness/theme.css";
 
 .ui-widget {
   font-family: Roboto, Arial, sans-serif;
@@ -10,9 +10,6 @@
   font-weight: 300;
   font-size: 1em; }
 
-.ui-widget input {
-  padding: 0.4rem 0.4rem 0.3rem 0.4rem;
-}
 
 .ui-widget-overlay {
   background-color: #222;
@@ -23,3 +20,11 @@
   width: 100%;
 }
 
+.ui-fluid {
+  button, input, optgroup, select, textarea {
+    line-height: initial;
+  }
+}
+html .ui-widget {
+  line-height: initial !important;
+}

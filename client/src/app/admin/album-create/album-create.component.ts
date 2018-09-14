@@ -1,19 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlbumsService } from '../../albums.service';
+import Album = Definitions.Album;
 
 @Component({
   selector: 'app-album-create',
-  templateUrl: 'album-create.component.html'
+  templateUrl: 'album-create.component.html',
 })
 export class AlbumCreateComponent implements OnInit {
 
   display = false;
   name: string;
   permalink: string;
-  tree: string;
 
-  constructor(private router: Router, private albumsService: AlbumsService) {
+  @Input()
+  albums: Album[] = [];
+
+  groups: string[];
+
+  constructor(private router: Router, private albumsService: AlbumsService, private renderer: Renderer2) {
   }
 
   open() {
@@ -22,7 +27,7 @@ export class AlbumCreateComponent implements OnInit {
 
   createAlbum(): void {
     this.albumsService
-      .createAlbum(this.name, this.permalink, this.tree.split(','))
+      .createAlbum(this.name, this.permalink, this.groups)
       .subscribe(() => {
         this.display = false;
         this.router.navigated = false;
@@ -31,5 +36,10 @@ export class AlbumCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
+
+
+
+
 }

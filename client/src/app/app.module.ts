@@ -34,8 +34,17 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { LibraryFileSelectorComponent } from './admin/library-file-selector/library-file-selector.component';
 import { LibraryService } from './admin/services/library.service';
-import { ConfirmationService, ConfirmDialogModule } from 'primeng/primeng';
+import {
+  AutoCompleteModule,
+  ConfirmationService,
+  ConfirmDialogModule,
+  ContextMenuModule,
+  DropdownModule,
+  TreeModule
+} from 'primeng/primeng';
 import { AlbumCreateComponent } from './admin/album-create/album-create.component';
+import { AlbumGroupSelectorComponent } from './admin/album-group-selector/album-group-selector.component';
+import { EnterDirective } from './common/utils/enter.directive';
 
 
 const appRoutes: Routes = [
@@ -76,7 +85,9 @@ const appRoutes: Routes = [
 
     AlbumsManagerComponent,
     AlbumCreateComponent,
+    AlbumGroupSelectorComponent,
     AlbumDetailsComponent,
+    EnterDirective,
     LibraryFileSelectorComponent,
   ],
   imports: [
@@ -88,6 +99,10 @@ const appRoutes: Routes = [
     ButtonModule,
     DialogModule,
     ConfirmDialogModule,
+    DropdownModule,
+    TreeModule,
+    ContextMenuModule,
+    AutoCompleteModule,
     RouterModule.forRoot(appRoutes,  { enableTracing: false })
   ],
   providers: [

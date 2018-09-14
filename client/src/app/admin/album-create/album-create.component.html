@@ -1,15 +1,16 @@
 <p-dialog [(visible)]="display" [positionTop]="100" [resizable]="false"
-          [blockScroll]="true" [modal]="true" appendTo="body" [draggable]="false" [width]="500">
+          [blockScroll]="true" [modal]="true" appendTo="body" [draggable]="false" [width]="500"
+          [contentStyle]="{'overflow':'visible'}">
   <p-header>
-    Header content here
+    Create new album
   </p-header>
-  <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+  <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid album-create" style="margin: 10px 0px">
     <div class="ui-grid-row" style="align-items: center">
       <div class="ui-grid-col-4">
         Album name *:
       </div>
       <div class="ui-grid-col-8">
-        <input pInputText type="text" [(ngModel)]="name" placeholder="Name" required style="width: 100%"/>
+        <input class="ui-inputtext" pInputText type="text" [(ngModel)]="name" placeholder="Name" required style="width: 100%"/>
       </div>
     </div>
     <div class="ui-grid-row" style="align-items: center">
@@ -17,17 +18,10 @@
         Permalink *:
       </div>
       <div class="ui-grid-col-8">
-        <input pInputText type="text" [(ngModel)]="permalink" placeholder="Permalink" required style="width: 100%"/>
+        <input class="ui-inputtext" pInputText type="text" [(ngModel)]="permalink" placeholder="Permalink" required style="width: 100%"/>
       </div>
     </div>
-    <div class="ui-grid-row" style="align-items: center">
-      <div class="ui-grid-col-4">
-        Tree *:
-      </div>
-      <div class="ui-grid-col-8">
-        <input pInputText type="text" [(ngModel)]="tree" placeholder="Tree" required style="width: 100%"/>
-      </div>
-    </div>
+    <app-album-group-selector [albums]="albums" [(groups)]="groups" class="ui-grid ui-grid-pad"></app-album-group-selector>
   </div>
   <p-footer>
     <p-button label="Create album" (click)="createAlbum()"></p-button>
