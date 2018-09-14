@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TreeNode } from 'primeng/api';
 import Album = Definitions.Album;
-import { AutoComplete } from 'primeng/primeng';
 
 @Component({
   selector: 'app-album-group-selector',
@@ -18,34 +17,21 @@ export class AlbumGroupSelectorComponent implements OnInit {
   @Output()
   groupsChange: EventEmitter<string[]> = new EventEmitter<string[]>();
 
-  @ViewChild('autoComplete')
-  autoComplete: AutoComplete;
-
   groupName: string;
   selectedGroups: TreeNode[] = [];
-  levelGroups: TreeNode[];
   allGroupsTreeNodes: TreeNode[];
 
+  constructor() {}
 
-  constructor() {
-  }
-
-  addGroup(groupOrGroupName): void {
-    let group = groupOrGroupName;
-    if (typeof groupOrGroupName === 'string') {
-      group = this.levelGroups.find(group => group.label === groupOrGroupName);
-      if (!group) {
-        group = {
-          label: groupOrGroupName,
-          expandedIcon: 'fa fa-folder-open',
-          collapsedIcon: 'fa fa-folder',
-          expanded: true,
-          children: []
-        };
-      }
-    }
+  addGroup(groupName): void {
+    const group = {
+      label: groupName,
+      expandedIcon: 'fa fa-folder-open',
+      collapsedIcon: 'fa fa-folder',
+      expanded: true,
+      children: []
+    };
     this.groupName = undefined;
-    this.autoComplete.inputEL.nativeElement.blur();
     this.setGroups(this.selectedGroups.concat(group));
   }
 
@@ -56,24 +42,11 @@ export class AlbumGroupSelectorComponent implements OnInit {
 
   setGroups(groups: TreeNode[]): void {
     this.selectedGroups = groups;
-    this.levelGroups = groups.length ? groups[groups.length - 1].children : [...this.allGroupsTreeNodes];
     this.groupsChange.emit(this.selectedGroups.map(group => group.label));
-  }
-
-  refreshAutocompleteGroups() {
-    this.levelGroups = [...this.levelGroups];
-  }
-
-  showDropdown(a: AutoComplete): void {
-    if (this.levelGroups.length) {
-      this.refreshAutocompleteGroups();
-      a.show();
-    }
   }
 
   ngOnInit() {
     this.allGroupsTreeNodes = this.createGroupTreeNodes(this.albums);
-    this.levelGroups = [...this.allGroupsTreeNodes];
   }
 
   selectGroupNode(event): void {

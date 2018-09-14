@@ -101,8 +101,6 @@ const appRoutes: Routes = [
     ConfirmDialogModule,
     DropdownModule,
     TreeModule,
-    ContextMenuModule,
-    AutoCompleteModule,
     RouterModule.forRoot(appRoutes,  { enableTracing: false })
   ],
   providers: [
