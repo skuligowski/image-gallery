@@ -12,12 +12,8 @@
 <div class="ui-grid-row" style="align-items: center">
   <div class="ui-grid-col-4"></div>
   <div class="ui-grid-col-5">
-    <p-autoComplete [(ngModel)]="groupName" [suggestions]="levelGroups" (completeMethod)="refreshAutocompleteGroups($event)"
-                    placeholder="Add group" field="label" [minLength]="0" (onFocus)="showDropdown(autoComplete)"
-                    #autoComplete [dropdown]="levelGroups.length"
-                    (enter)="groupName && addGroup(groupName)"
-                    (onSelect)="groupName && addGroup(groupName)">
-    </p-autoComplete>
+    <input class="ui-inputtext" pInputText type="text" [(ngModel)]="groupName" placeholder="Add group" style="width: 100%"
+           (enter)="groupName && addGroup(groupName)"/>
   </div>
   <div class="ui-grid-col-3">
     <p-button label="Add" [disabled]="!groupName" (click)="groupName && addGroup(groupName)"></p-button>
