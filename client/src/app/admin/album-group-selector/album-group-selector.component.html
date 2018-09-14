@@ -1,0 +1,34 @@
+<div class="ui-grid-row" style="align-items: center">
+  <div class="ui-grid-col-4">
+    Group:
+  </div>
+  <div class="ui-grid-col-8">
+    <ul class="groups-list" *ngIf="selectedGroups.length; else noneTemplate">
+      <li *ngFor="let group of selectedGroups">{{group.label}}</li>
+    </ul>
+    <ng-template #noneTemplate>None</ng-template>
+  </div>
+</div>
+<div class="ui-grid-row" style="align-items: center">
+  <div class="ui-grid-col-4"></div>
+  <div class="ui-grid-col-5">
+    <p-autoComplete [(ngModel)]="groupName" [suggestions]="levelGroups" (completeMethod)="refreshAutocompleteGroups($event)"
+                    placeholder="Add group" field="label" [minLength]="0" (onFocus)="showDropdown(autoComplete)"
+                    #autoComplete [dropdown]="levelGroups.length"
+                    (enter)="groupName && addGroup(groupName)"
+                    (onSelect)="groupName && addGroup(groupName)">
+    </p-autoComplete>
+  </div>
+  <div class="ui-grid-col-3">
+    <p-button label="Add" [disabled]="!groupName" (click)="groupName && addGroup(groupName)"></p-button>
+    <p-button class="del-button" icon="pi pi-angle-double-left" [disabled]="!selectedGroups.length" (click)="selectedGroups.length && deleteLastGroup()"></p-button>
+  </div>
+</div>
+<div class="ui-grid-row" style="align-items: center">
+  <div class="ui-grid-col-4"></div>
+  <div class="ui-grid-col-8">
+    <span class="select-existing">or select existing...</span>
+    <p-tree [value]="allGroupsTreeNodes" selectionMode="single" (onNodeSelect)="selectGroupNode($event)"></p-tree>
+  </div>
+</div>
+
