@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { TreeNode } from 'primeng/api';
 import Album = Definitions.Album;
 
@@ -6,7 +6,7 @@ import Album = Definitions.Album;
   selector: 'app-album-group-selector',
   templateUrl: 'album-group-selector.component.html'
 })
-export class AlbumGroupSelectorComponent implements OnInit {
+export class AlbumGroupSelectorComponent implements OnInit, OnChanges {
 
   @Input()
   albums: Album[];
@@ -24,15 +24,18 @@ export class AlbumGroupSelectorComponent implements OnInit {
   constructor() {}
 
   addGroup(groupName): void {
-    const group = {
+    const group = this.createGroup(groupName);
+    this.groupName = undefined;
+    this.setGroups(this.selectedGroups.concat(group));
+  }
+
+  createGroup(groupName: string) {
+    return {
       label: groupName,
       expandedIcon: 'fa fa-folder-open',
       collapsedIcon: 'fa fa-folder',
-      expanded: true,
       children: []
     };
-    this.groupName = undefined;
-    this.setGroups(this.selectedGroups.concat(group));
   }
 
   deleteLastGroup(): void {
@@ -72,12 +75,7 @@ export class AlbumGroupSelectorComponent implements OnInit {
     while (groupName) {
       let group = children.find(group => group.label === groupName);
       if (!group) {
-        group = {
-          label: groupName,
-          expandedIcon: 'fa fa-folder-open',
-          collapsedIcon: 'fa fa-folder',
-          children: []
-        };
+        group = this.createGroup(groupName);
         children.push(group);
       }
       groupName = groupNames[++i];
@@ -85,5 +83,11 @@ export class AlbumGroupSelectorComponent implements OnInit {
       key += group.label;
     }
     return groups;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('groups' in changes) {
+      this.selectedGroups = this.groups.map(groupName => this.createGroup(groupName));
+    }
   }
 }

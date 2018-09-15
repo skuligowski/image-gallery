@@ -1,40 +1,53 @@
-import { Component, DoCheck, Input, OnChanges, OnInit, Renderer2, SimpleChanges } from '@angular/core';
-import { Router } from '@angular/router';
-import { AlbumsService } from '../../albums.service';
-import Album = Definitions.Album;
+import { Attribute, Component, DoCheck, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import '@node_modules/unorm/lib/unorm.js';
+import Album = Definitions.Album;
 
 @Component({
   selector: 'app-album-create',
   templateUrl: 'album-create.component.html',
 })
-export class AlbumCreateComponent implements OnInit, OnChanges, DoCheck {
+export class AlbumCreateComponent implements OnInit, DoCheck {
 
   display = false;
   name: string;
   groups: string[] = [];
 
+  isCustomPermalink = false;
   customPermalink: string;
   autoPermalink: string;
 
   @Input()
   albums: Album[] = [];
 
-  constructor(private router: Router, private albumsService: AlbumsService) {
-  }
+  @Output()
+  confirm: EventEmitter<AlbumCreateEvent> = new EventEmitter();
 
-  open() {
+  constructor(@Attribute('headerLabel') public headerLabel) {}
+
+  open(album?: Album): void {
+    if (album) {
+      this.name = album.name;
+      this.groups = album.tree || [];
+      this.autoPermalink = this.composePermalink();
+      this.customPermalink = this.autoPermalink === album.permalink ? undefined : album.permalink;
+      this.isCustomPermalink = !!this.customPermalink;
+      this.autoPermalink = undefined;
+    } else {
+      this.name = undefined;
+      this.groups = [];
+      this.customPermalink = undefined;
+      this.autoPermalink = undefined;
+    }
     this.display = true;
   }
 
-  createAlbum(): void {
-    this.albumsService
-      .createAlbum(this.name, this.customPermalink || this.autoPermalink, this.groups)
-      .subscribe(() => {
-        this.display = false;
-        this.router.navigated = false;
-        this.router.navigate([this.router.url]);
-      });
+  save(): void {
+    this.confirm.emit({
+      name: this.name,
+      permalink: this.isCustomPermalink ? this.customPermalink : this.autoPermalink,
+      groups: this.groups,
+      close: () => this.display = false
+    });
   }
 
   composePermalink(): string {
@@ -64,18 +77,18 @@ export class AlbumCreateComponent implements OnInit, OnChanges, DoCheck {
   }
 
   togglePermalink(): void {
-    if (this.customPermalink !== undefined) {
-      this.customPermalink = undefined;
+    if (!this.isCustomPermalink) {
+      this.customPermalink = this.customPermalink || this.autoPermalink || '';
+      this.isCustomPermalink = true;
     } else {
-      this.customPermalink = this.autoPermalink || '';
+      this.isCustomPermalink = false;
     }
   }
+}
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-  }
-
-
-
-
+export interface AlbumCreateEvent {
+  name: string;
+  permalink: string;
+  groups: string[];
+  close: Function;
 }

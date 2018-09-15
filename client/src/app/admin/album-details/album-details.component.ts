@@ -6,6 +6,7 @@ import LibraryFile = Definitions.LibraryFile;
 import { LibraryFileSelectorComponent } from '../library-file-selector/library-file-selector.component';
 import { AlbumsService } from '../../albums.service';
 import { ConfirmationService } from 'primeng/api';
+import { AlbumCreateEvent } from '../album-create/album-create.component';
 
 @Component({
   selector: 'app-album-details',
@@ -15,6 +16,7 @@ import { ConfirmationService } from 'primeng/api';
 export class AlbumDetailsComponent {
 
   album: Album;
+  albums: Album[];
   images: Image[];
   selected: Image[] = [];
 
@@ -27,6 +29,7 @@ export class AlbumDetailsComponent {
               private confirmationService: ConfirmationService) {
     route.data.subscribe((data: any) => {
       this.album = data.album;
+      this.albums = data.albums;
       this.images = data.album.images;
     });
   }
@@ -65,5 +68,15 @@ export class AlbumDetailsComponent {
 
   navigateToAlbums(): void {
     this.router.navigate(['admin', 'albums']);
+  }
+
+  onUpdateAlbum(event: AlbumCreateEvent): void {
+    this.albumsService
+      .patchAlbum(this.album.id, event.name, event.permalink, event.groups)
+      .subscribe(() => {
+        event.close();
+        this.router.navigated = false;
+        this.router.navigate([this.router.url]);
+      });
   }
 }
