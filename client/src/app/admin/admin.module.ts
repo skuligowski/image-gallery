@@ -6,17 +6,16 @@ import { AlbumDetailsComponent } from './album-details/album-details.component';
 import { LibraryUploadComponent } from './library-upload/library-upload.component';
 import { LibraryFileSelectorComponent } from './library-file-selector/library-file-selector.component';
 import { EnterDirective } from '../common/utils/enter.directive';
-import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ConfirmationService, ConfirmDialogModule, DialogModule, DropdownModule, TreeModule } from 'primeng/primeng';
 import { AdminRoutingModule } from './admin-routing.module';
 import { LibraryService } from './services/library.service';
 import { AlbumDetailsResolver } from './album-details.resolver';
 import { AdminGuard } from '../core/auth/admin.guard';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -30,9 +29,8 @@ import { AdminGuard } from '../core/auth/admin.guard';
     LibraryUploadComponent,
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     HttpClientModule,
-    BrowserAnimationsModule,
     FormsModule,
     TableModule,
     ButtonModule,

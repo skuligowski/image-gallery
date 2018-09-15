@@ -8,7 +8,7 @@ import { LibraryUploadComponent } from './library-upload/library-upload.componen
 import { AdminGuard } from '../core/auth/admin.guard';
 
 const adminRoutes: Routes = [
-  { path: 'admin', children: [
+  { path: '', children: [
       { path: 'albums', component: AlbumsManagerComponent, resolve: { albums: AlbumsResolver }, runGuardsAndResolvers: 'always' },
       { path: 'albums/:id', component: AlbumDetailsComponent, resolve: { album: AlbumDetailsResolver }, runGuardsAndResolvers: 'always' },
       { path: 'library/upload', component: LibraryUploadComponent },
