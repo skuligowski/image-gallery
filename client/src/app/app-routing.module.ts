@@ -18,6 +18,10 @@ const appRoutes: Routes = [
     resolve: { albums: AlbumsResolver },
     outlet: 'modal'
   },
+  {
+    path: 'admin',
+    loadChildren: 'app/admin/admin.module#AdminModule'
+  },
   { matcher: matchAlbum, component: AlbumComponent, canActivate: [ AuthGuard ], resolve: { album: AlbumResolver } },
   { path: '', component: IndexComponent, canActivate: [ AuthGuard ], resolve: { albums: AlbumsResolver }},
   { path: '**', redirectTo: ''}

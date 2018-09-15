@@ -22,8 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './core/auth/auth.service';
 import { AuthGuard } from './core/auth/auth.guard';
-import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -43,10 +43,9 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     FormsModule,
-    AdminModule,
     AppRoutingModule,
   ],
   providers: [
