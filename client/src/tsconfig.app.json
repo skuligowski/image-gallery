@@ -8,7 +8,10 @@
       "masonry-layout",
       "imagesloaded",
       "../../spec/api"
-    ]
+    ],
+    "paths": {
+      "@node_modules/*": ["../node_modules/*"]
+    }
   },
   "exclude": [
     "test.ts",

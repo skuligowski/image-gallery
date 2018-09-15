@@ -35,7 +35,7 @@ export class IndexComponent implements OnInit {
     return album && album.thumbUrl ? `url(${album.thumbUrl})` : undefined;
   }
 
-  navigateToAlbum(album: Album): void{
+  navigateToAlbum(album: Album): void {
     this.router.navigateByUrl(`albums/${album.permalink}`);
   }
 

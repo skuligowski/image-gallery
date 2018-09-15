@@ -1,5 +1,5 @@
 <p-dialog [(visible)]="display" [positionTop]="100" [resizable]="false"
-          [blockScroll]="true" [modal]="true" appendTo="body" [draggable]="false" [width]="500"
+          [blockScroll]="true" [modal]="true" appendTo="body" [draggable]="false" [width]="600"
           [contentStyle]="{'overflow':'visible'}">
   <p-header>
     Create new album
@@ -17,9 +17,20 @@
       <div class="ui-grid-col-4">
         Permalink *:
       </div>
-      <div class="ui-grid-col-8">
-        <input class="ui-inputtext" pInputText type="text" [(ngModel)]="permalink" placeholder="Permalink" required style="width: 100%"/>
-      </div>
+      <ng-container *ngIf="customPermalink === undefined; else customPermalinkTemplate">
+        <div class="ui-grid-col-7">{{autoPermalink || 'Not defined'}}</div>
+        <div class="ui-grid-col-1" style="text-align: right;">
+          <p-button icon="pi pi-pencil" (click)="togglePermalink()"></p-button>
+        </div>
+      </ng-container>
+      <ng-template #customPermalinkTemplate>
+        <div class="ui-grid-col-7">
+          <input class="ui-inputtext" pInputText type="text" [(ngModel)]="customPermalink" placeholder="Permalink" required/>
+        </div>
+        <div class="ui-grid-col-1" style="text-align: right;">
+          <p-button icon="pi pi-times" (click)="togglePermalink()"></p-button>
+        </div>
+      </ng-template>
     </div>
     <app-album-group-selector [albums]="albums" [(groups)]="groups" class="ui-grid ui-grid-pad"></app-album-group-selector>
   </div>
