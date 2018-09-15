@@ -29,6 +29,7 @@
     "primeng": "^6.1.2",
     "rxjs": "^6.2.0",
     "rxjs-compat": "^6.0.0-rc.0",
+    "unorm": "^1.4.1",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
