@@ -1,6 +1,9 @@
 <div class="layout-container">
   <header class="layout-header">
-    <div class="title"><span class="back-button" (click)="navigateToAlbums()">Administration > {{album.name}}</span></div>
+    <div class="title">
+      <i class="back-button pi pi-arrow-circle-left" (click)="navigateToAlbums()"></i>
+      <span>{{album.name}}</span>
+    </div>
     <ul class="navigation" style="font-size:1.2rem">
       <li></li>
     </ul>
