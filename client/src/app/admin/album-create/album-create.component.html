@@ -11,6 +11,7 @@
         <input class="ui-inputtext" pInputText type="text" [(ngModel)]="name" placeholder="Name" name="albumName" required style="width: 100%"/>
       </div>
     </div>
+    <app-album-group-selector [albums]="albums" [(groups)]="groups" class="ui-grid ui-grid-pad"></app-album-group-selector>
     <div class="ui-grid-row" style="align-items: center">
       <div class="ui-grid-col-4">
         Permalink *:
@@ -30,7 +31,6 @@
         </div>
       </ng-template>
     </div>
-    <app-album-group-selector [albums]="albums" [(groups)]="groups" class="ui-grid ui-grid-pad"></app-album-group-selector>
   </div>
   <p-footer>
     <p-button label="Confirm" (click)="albumForm.form.valid && save()" [disabled]="!albumForm.form.valid"></p-button>
