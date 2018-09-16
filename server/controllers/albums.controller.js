@@ -22,6 +22,19 @@ function createAlbum(req, res) {
   }).then(() => res.status(201).send());
 }
 
+function updateAlbum(req, res) {
+  const id = req.swagger.params.id.value;
+  albums.updateAlbum(id, {
+    name: req.body.name,
+    permalink: req.body.permalink,
+    tree: req.body.tree})
+  .then(() => res.status(200).send())
+  .catch(e => {
+    console.log(e);
+    res.status(400).send();
+  });
+}
+
 function addImages(req, res) {
   const id = req.swagger.params.id.value;
   const paths = req.body;
@@ -80,4 +93,4 @@ function uploadFile(req, res) {
   }
 }
 
-module.exports = { getImages, getAlbums, uploadFile, createAlbum, removeAlbum, addImages, removeImages };
+module.exports = { getImages, getAlbums, uploadFile, createAlbum, updateAlbum, removeAlbum, addImages, removeImages };

@@ -13,6 +13,12 @@ function createAlbum({name, permalink, tree}) {
   });
 }
 
+function updateAlbum(id, {name, permalink, tree}) {
+  return db.findAlbum({ id })
+    .then(album => db.updateAlbum({_id: album._id},
+      {...album, name, permalink, tree}));
+}
+
 function addImages(id, paths) {
   return db.findAlbum({ id })
     .then(album => Promise.all(paths
@@ -54,5 +60,5 @@ function removeAlbum(id) {
 }
 
 module.exports = {
-  createAlbum, removeAlbum, addImages, removeImages
+  createAlbum, updateAlbum, removeAlbum, addImages, removeImages
 }
