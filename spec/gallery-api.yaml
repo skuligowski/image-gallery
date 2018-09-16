@@ -84,6 +84,27 @@ paths:
       responses:
         201:
           description: album deleted
+    patch:
+      x-authentication-required: true
+      x-admin-required: true
+      description: Updates existing album
+      tags:
+      - admin
+      operationId: updateAlbum
+      parameters:
+      - in: path
+        name: id
+        type: string
+        required: true
+        description: Id of the album
+      - name: AlbumCreateRequest
+        in: body
+        description: Album create request
+        schema:
+          $ref: defs/AlbumCreateRequest.yaml
+      responses:
+        200:
+          description: album updated
   /albums/{id}/images:
     x-swagger-router-controller: albums.controller
     get:
