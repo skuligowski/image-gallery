@@ -22,15 +22,18 @@
         <td style="width: 3em; text-align: center;">
           <p-tableCheckbox *ngIf="!rowData.dir" [value]="rowData"></p-tableCheckbox>
         </td>
-        <td style="width: 100px; text-align: center">
-          <img src="library/{{rowData.path}}" style="width: 50px;" />
-        </td>
         <ng-container *ngIf="!rowData.dir; else dirTemplate">
+          <td style="width: 100px; text-align: center">
+            <img src="library/{{rowData.path}}" style="width: 50px;" />
+          </td>
           <td *ngFor="let col of columns;">
             {{rowData[col.field]}}
           </td>
         </ng-container>
         <ng-template #dirTemplate>
+          <td style="width: 100px; text-align: center">
+            <i class="icon icon-folder"></i>
+          </td>
           <td colspan="3" style="cursor: pointer" (click)="onDirSelect(rowData)">
             {{rowData.filename}}
           </td>
