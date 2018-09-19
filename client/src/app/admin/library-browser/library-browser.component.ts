@@ -29,7 +29,7 @@ export class LibraryBrowserComponent implements OnInit, OnDestroy {
       .subscribe(files => {
         this.files = files.sort(a => a.dir ? -1 : 1);
         this.loading = false;
-      }, null, () => console.log('complete'));
+      });
   }
 
   constructor(private libraryService: LibraryService) {}
