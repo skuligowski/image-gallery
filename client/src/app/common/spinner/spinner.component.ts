@@ -1,5 +1,4 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { animate, group, query, style, transition, trigger } from '@angular/animations';
 import { spinnerEvents$ } from '../utils/spinnable';
 

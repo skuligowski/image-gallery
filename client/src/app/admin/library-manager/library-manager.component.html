@@ -1,0 +1,15 @@
+<div class="layout-container">
+  <header class="layout-header">
+    <div class="title"><span>Library</span></div>
+    <ul class="navigation" style="font-size:1rem">
+      <li><a (click)="navigateToAlbums()"><i class="icon-albums"></i><span class="label">Albums</span></a></li>
+      <li><a (click)="navigateToGallery()"><i class="icon-albums"></i><span class="label">Gallery</span></a></li>
+    </ul>
+  </header>
+  <nav>
+    <p-button class="action" label="Create directory"></p-button>
+  </nav>
+  <app-library-browser [insideSpinner]="false"></app-library-browser>
+
+</div>
+

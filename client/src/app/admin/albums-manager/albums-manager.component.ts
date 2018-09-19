@@ -38,4 +38,8 @@ export class AlbumsManagerComponent implements OnInit {
   navigateToGallery(): void {
     this.router.navigate(['/']);
   }
+
+  navigateToLibrary(): void {
+    this.router.navigate(['admin', 'library']);
+  }
 }

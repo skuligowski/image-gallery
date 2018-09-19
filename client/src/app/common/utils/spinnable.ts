@@ -1,6 +1,6 @@
 import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
-import { catchError, debounceTime, distinctUntilChanged, map, publish, refCount, switchMap, tap } from 'rxjs/operators';
+import { catchError, debounceTime, distinctUntilChanged, finalize, map, publish, refCount, switchMap, tap } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
 
 
@@ -23,19 +23,17 @@ export const spinnerEvents$: Observable<SpinnerEvent> =
     );
 
 
-export function spinnable<T>(observable: Observable<T>): Observable<T> {
+export function spinnable<T>(observable: Observable<T>, disabled?: boolean): Observable<T> {
+  if (disabled) {
+    return observable;
+  }
   return of(true).pipe(
     tap(() => {
       spinnerCount++;
       spinnerEventsSubject.next();
     }),
     switchMap(() => observable),
-    catchError(e => {
-      spinnerCount--;
-      spinnerEventsSubject.next();
-      return throwError(e);
-    }),
-    tap(() => {
+    finalize(() => {
       spinnerCount--;
       spinnerEventsSubject.next();
     })

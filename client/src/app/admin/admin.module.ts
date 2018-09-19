@@ -16,6 +16,8 @@ import { LibraryService } from './services/library.service';
 import { AlbumDetailsResolver } from './album-details.resolver';
 import { AdminGuard } from '../core/auth/admin.guard';
 import { CommonModule } from '@angular/common';
+import { LibraryManagerComponent } from './library-manager/library-manager.component';
+import { LibraryBrowserComponent } from './library-browser/library-browser.component';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { CommonModule } from '@angular/common';
     AlbumGroupSelectorComponent,
     AlbumDetailsComponent,
     EnterDirective,
+    LibraryBrowserComponent,
+    LibraryManagerComponent,
     LibraryFileSelectorComponent,
     LibraryUploadComponent,
   ],
