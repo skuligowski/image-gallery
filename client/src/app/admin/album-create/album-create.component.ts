@@ -1,5 +1,5 @@
 import { Attribute, Component, DoCheck, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import '@node_modules/unorm/lib/unorm.js';
+import '@unorm/lib/unorm.js';
 import Album = Definitions.Album;
 
 @Component({

@@ -10,7 +10,7 @@
       "../../spec/api"
     ],
     "paths": {
-      "@node_modules/*": ["../node_modules/*"]
+      "@unorm/*": ["../node_modules/unorm/*"]
     }
   },
   "exclude": [
