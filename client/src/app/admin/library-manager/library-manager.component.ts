@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { LibraryDirectoryCreateEvent } from '../library-directory-create/library-directory-create.component';
+import { LibraryService } from '../services/library.service';
+import { LibraryBrowserComponent } from '../library-browser/library-browser.component';
 
 
 @Component({
@@ -8,8 +11,12 @@ import { Router } from '@angular/router';
 })
 export class LibraryManagerComponent implements OnInit {
 
+  @ViewChild('libraryBrowser')
+  libraryBrowser: LibraryBrowserComponent;
 
-  constructor(private router: Router) {
+  private currentDirectory: string;
+
+  constructor(private router: Router, private libraryService: LibraryService) {
   }
 
   ngOnInit() {
@@ -22,5 +29,18 @@ export class LibraryManagerComponent implements OnInit {
 
   navigateToAlbums(): void {
     this.router.navigate(['admin', 'albums']);
+  }
+
+  onCreateDirectory(createEvent: LibraryDirectoryCreateEvent): void {
+    this.libraryService.createDirectory(this.currentDirectory, createEvent.name)
+      .subscribe(() => {
+        createEvent.close();
+        this.libraryBrowser.loadData(this.currentDirectory)
+          .subscribe();
+      });
+  }
+
+  onDirectoryChange(dirName: string): void {
+    this.currentDirectory = dirName;
   }
 }

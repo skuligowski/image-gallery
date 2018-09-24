@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { LibraryService } from '../services/library.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import LibraryFile = Definitions.LibraryFile;
 import { spinnable } from '../../common/utils/spinnable';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-library-browser',
@@ -16,20 +17,31 @@ export class LibraryBrowserComponent implements OnInit, OnDestroy {
   selectedFiles: LibraryFile[] = [];
 
   @Output()
+  directoryChange: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output()
   selectFiles: EventEmitter<LibraryFile[]> = new EventEmitter();
 
   @Input()
   insideSpinner = true;
 
+  private currentDir: LibraryFile;
   private subscription: Subscription = Subscription.EMPTY;
 
   loadInitialData(): void {
+    this.subscription = this.loadData(null)
+      .subscribe();
+  }
+
+  loadData(parentDir?: string): Observable<LibraryFile[]> {
     this.selectedFiles = [];
-    this.subscription = spinnable(this.libraryService.getFiles(null), this.insideSpinner)
-      .subscribe(files => {
-        this.files = files.sort(a => a.dir ? -1 : 1);
+    this.loading = true;
+    return spinnable(this.libraryService.getFiles(parentDir), this.insideSpinner).pipe(
+      tap(files => {
+        this.setFiles(files);
         this.loading = false;
-      });
+      })
+    );
   }
 
   constructor(private libraryService: LibraryService) {}
@@ -48,17 +60,23 @@ export class LibraryBrowserComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
       this.subscription = spinnable(this.libraryService.getFiles(dir.path), this.insideSpinner)
         .subscribe(files => {
-          this.files = files.sort(a => a.dir ? -1 : 1);
-          if (dir.path) {
-            this.files.unshift({
-              filename: '..',
-              path: dir.path.substr(0, dir.path.lastIndexOf('/')),
-              dir: true,
-            });
-          }
+          this.currentDir = dir;
+          this.directoryChange.emit(dir.path);
+          this.setFiles(files);
           this.loading = false;
           this.selectedFiles = [];
         });
+    }
+  }
+
+  private setFiles(files: LibraryFile[]): void {
+    this.files = files.sort(a => a.dir ? -1 : 1);
+    if (this.currentDir && this.currentDir.path) {
+      this.files.unshift({
+        filename: '..',
+        path: this.currentDir.path.substr(0, this.currentDir.path.lastIndexOf('/')),
+        dir: true,
+      });
     }
   }
 

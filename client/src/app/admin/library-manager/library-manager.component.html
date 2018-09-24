@@ -7,9 +7,8 @@
     </ul>
   </header>
   <nav>
-    <p-button class="action" label="Create directory"></p-button>
+    <p-button class="action" label="Create directory" (click)="directoryCreate.open()"></p-button>
   </nav>
-  <app-library-browser [insideSpinner]="false"></app-library-browser>
-
+  <app-library-browser [insideSpinner]="false" (directoryChange)="onDirectoryChange($event)" #libraryBrowser></app-library-browser>
 </div>
-
+<app-library-directory-create #directoryCreate (confirm)="onCreateDirectory($event)"></app-library-directory-create>

@@ -41,6 +41,12 @@ declare namespace Definitions {
         tree: string[];
     }
     export type AlbumsResponse = Album[];
+    export interface DirectoryCreateRequest {
+        /**
+         * directory name
+         */
+        name: string;
+    }
     export type FilesResponse = LibraryFile[];
     export interface Image {
         /**

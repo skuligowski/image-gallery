@@ -6,6 +6,7 @@ const Promise = require('bluebird');
 const fs = require('fs');
 const readDir = Promise.promisify(fs.readdir, {context: fs});
 const stat = Promise.promisify(fs.stat, {context: fs});
+const mkDir = Promise.promisify(fs.mkdir, {context: fs});
 const gm = require('gm').subClass({ imageMagick: true });
 Promise.promisifyAll(gm.prototype);
 
@@ -27,6 +28,15 @@ function getFiles(parentDir) {
         dir: file.stats.isDirectory()
       }))
       .filter(file => isImage(file.filename) || file.dir);
+  } else {
+    return Promise.reject('Invalid path');
+  }
+}
+
+function createDirectory(parentDir, name) {
+  if (isValidPath(path.join(parentDir, name))) {
+    const absoluteDir = path.join(absoluteLibraryDir, parentDir || '', name);
+    return mkDir(absoluteDir);
   } else {
     return Promise.reject('Invalid path');
   }
@@ -82,6 +92,7 @@ function getLibraryDir() {
 }
 
 exports.getFiles = getFiles;
+exports.createDirectory = createDirectory;
 exports.getImageDetails = getImageDetails;
 exports.initialize = app => {
   return getLibraryDir().then(libraryDir => {
