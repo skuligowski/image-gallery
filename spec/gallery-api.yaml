@@ -66,6 +66,31 @@ paths:
           description: User unauthorized
           schema:
             type: string
+  /library/directories:
+    x-swagger-router-controller: library.controller
+    post:
+      x-authentication-required: true
+      x-admin-required: true
+      description: Returns files from the library relative to given node
+      tags:
+      - library
+      operationId: createDirectory
+      parameters:
+      - in: query
+        name: parent
+        type: string
+      - name: AlbumCreateRequest
+        in: body
+        description: Album create request
+        schema:
+          $ref: defs/DirectoryCreateRequest.yaml
+      responses:
+        201:
+          description: Directory created
+        401:
+          description: User unauthorized
+          schema:
+            type: string
   /albums/{id}:
     x-swagger-router-controller: albums.controller
     delete:
@@ -248,6 +273,8 @@ definitions:
     $ref: defs/Image.yaml
   AlbumsResponse:
     $ref: defs/AlbumsResponse.yaml
+  DirectoryCreateRequest:
+    $ref: defs/DirectoryCreateRequest.yaml
   ImagesResponse:
     $ref: defs/ImagesResponse.yaml
   ImagesAddRequest:

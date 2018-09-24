@@ -17,6 +17,14 @@ export class LibraryService {
     return this.httpClient.get<LibraryFile[]>(`/api/library/files`, { params });
   }
 
+  createDirectory(parent: string, name: string): Observable<any> {
+    let params: HttpParams;
+    if (parent) {
+      params = new HttpParams().set('parent', parent);
+    }
+    return this.httpClient.post<any>('/api/library/directories', { name }, { params });
+  }
+
   upload(files: File): Observable<HttpEvent<any>> {
     const formData = new FormData();
     formData.append('file', files);

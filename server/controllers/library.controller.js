@@ -6,5 +6,10 @@ function getFiles(req, res) {
     .catch(() => res.status(404).send());
 }
 
+function createDirectory(req, res) {
+  library.createDirectory(req.query.parent, req.body.name)
+    .then(() => res.status(201).send())
+    .catch(() => res.status(404).send());
+}
 
-module.exports = { getFiles };
+module.exports = { getFiles, createDirectory };
