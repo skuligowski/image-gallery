@@ -50,7 +50,6 @@ export class LibraryBrowserComponent implements OnInit, OnDestroy {
     this.cols = [
       { field: 'filename', header: 'Name' },
       { field: 'size', header: 'Size' },
-      { field: 'type', header: 'Type' }
     ];
   }
 

@@ -16,7 +16,6 @@ import { LibraryService } from './services/library.service';
 import { AlbumDetailsResolver } from './album-details.resolver';
 import { AdminGuard } from '../core/auth/admin.guard';
 import { CommonModule } from '@angular/common';
-import { LibraryManagerComponent } from './library-manager/library-manager.component';
 import { LibraryBrowserComponent } from './library-browser/library-browser.component';
 import { LibraryDirectoryCreateComponent } from './library-directory-create/library-directory-create.component';
 
@@ -30,7 +29,6 @@ import { LibraryDirectoryCreateComponent } from './library-directory-create/libr
     EnterDirective,
     LibraryDirectoryCreateComponent,
     LibraryBrowserComponent,
-    LibraryManagerComponent,
     LibraryFileSelectorComponent,
     LibraryUploadComponent,
   ],
