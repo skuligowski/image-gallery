@@ -4,9 +4,7 @@
   <p-header>
     Select images
   </p-header>
-  <div class="drop-area" (drop)="onDrop($event)" (dragenter)="onDragEnter($event)" (dragover)="onDragOver($event)">
-    <app-library-browser *ngIf="display" (selectFiles)="selectedFiles=$event" (directoryChange)="onDirectoryChange($event)" #libraryBrowser></app-library-browser>
-  </div>
+  <app-library-browser *ngIf="display" (selectFiles)="selectedFiles=$event" (directoryChange)="onDirectoryChange($event)" #libraryBrowser></app-library-browser>
   <p-footer>
     <p-button class="action" label="Upload" (click)="directoryCreate.open()"></p-button>
     <p-button class="action" label="Create directory" (click)="directoryCreate.open()"></p-button>

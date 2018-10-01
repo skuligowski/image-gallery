@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import Image = Definitions.Image;
 import Album = Definitions.Album;
 import LibraryFile = Definitions.LibraryFile;
-import { LibraryFileSelectorComponent } from '../library-file-selector/library-file-selector.component';
+import { LibraryFilesComponent } from '../library-files/library-files.component';
 import { AlbumsService } from '../../albums.service';
 import { ConfirmationService } from 'primeng/api';
 import { AlbumCreateEvent } from '../album-create/album-create.component';
@@ -19,8 +19,8 @@ export class AlbumDetailsComponent {
   images: Image[];
   selected: Image[] = [];
 
-  @ViewChild('fileSelector')
-  fileSelector: LibraryFileSelectorComponent;
+  @ViewChild('libraryFiles')
+  libraryFiles: LibraryFilesComponent;
 
   constructor(private route: ActivatedRoute,
               private albumsService: AlbumsService,
@@ -38,7 +38,7 @@ export class AlbumDetailsComponent {
       .filter(file => !file.dir)
       .map(file => file.path))
       .subscribe(() => {
-        this.fileSelector.close();
+        this.libraryFiles.close();
         this.router.navigated = false;
         this.router.navigate([this.router.url]);
       });
