@@ -4,7 +4,7 @@ import { AlbumGroupSelectorComponent } from './album-group-selector/album-group-
 import { AlbumCreateComponent } from './album-create/album-create.component';
 import { AlbumDetailsComponent } from './album-details/album-details.component';
 import { LibraryUploadComponent } from './library-upload/library-upload.component';
-import { LibraryFileSelectorComponent } from './library-file-selector/library-file-selector.component';
+import { LibraryFilesComponent } from './library-files/library-files.component';
 import { EnterDirective } from '../common/utils/enter.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -29,7 +29,7 @@ import { LibraryDirectoryCreateComponent } from './library-directory-create/libr
     EnterDirective,
     LibraryDirectoryCreateComponent,
     LibraryBrowserComponent,
-    LibraryFileSelectorComponent,
+    LibraryFilesComponent,
     LibraryUploadComponent,
   ],
   imports: [
