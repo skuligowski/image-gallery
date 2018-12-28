@@ -6,9 +6,8 @@
         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
       </th>
       <th style="width: 100px">Preview</th>
-      <th *ngFor="let col of columns">
-        {{col.header}}
-      </th>
+      <th>Name</th>
+      <th>Size</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-rowData let-columns="columns">
@@ -20,9 +19,8 @@
         <td style="width: 100px; text-align: center">
           <img src="library/{{rowData.path}}" style="width: 50px;" />
         </td>
-        <td *ngFor="let col of columns;">
-          {{rowData[col.field]}}
-        </td>
+        <td>{{rowData.filename}}</td>
+        <td>{{rowData.size | size}}</td>
       </ng-container>
       <ng-template #dirTemplate>
         <td style="width: 100px; text-align: center">

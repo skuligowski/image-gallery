@@ -7,6 +7,7 @@ const fs = require('fs');
 const readDir = Promise.promisify(fs.readdir, {context: fs});
 const stat = Promise.promisify(fs.stat, {context: fs});
 const mkDir = Promise.promisify(fs.mkdir, {context: fs});
+const rename = Promise.promisify(fs.rename, {context: fs});
 const gm = require('gm').subClass({ imageMagick: true });
 Promise.promisifyAll(gm.prototype);
 
@@ -91,9 +92,19 @@ function getLibraryDir() {
   });
 }
 
+function addFile(parentDir, filePath) {
+  if (isValidPath(parentDir)) {
+    const newPath = path.join(absoluteLibraryDir, parentDir || '', path.basename(filePath));
+    return rename(filePath, newPath);
+  } else {
+    throw new Error(`Invalid path: ${filePath}`);
+  }
+}
+
 exports.getFiles = getFiles;
 exports.createDirectory = createDirectory;
 exports.getImageDetails = getImageDetails;
+exports.addFile = addFile;
 exports.initialize = app => {
   return getLibraryDir().then(libraryDir => {
     console.log(`Library dir: ${libraryDir}`);

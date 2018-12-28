@@ -17,7 +17,7 @@ export class LibraryFilesComponent {
   @Output()
   selectFiles: EventEmitter<LibraryFile[]> = new EventEmitter();
 
-  private currentDirectory: string;
+  currentDirectory: string;
 
   @ViewChild('libraryBrowser')
   libraryBrowser: LibraryBrowserComponent;

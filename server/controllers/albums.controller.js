@@ -1,6 +1,7 @@
 "use strict";
 const db = require('../core/db');
 const albums = require('../core/albums');
+const library = require('../core/library');
 
 function getAlbums(req, res) {
   db.findAlbums({}).map(album => ({
@@ -83,11 +84,12 @@ function uploadFile(req, res) {
   if (file) {
     fs.writeFile(path.resolve('uploads', file.originalValue.originalname), file.originalValue.buffer, (err, result) => {
       if (err) {
-        console.log(err);
         res.status(500).send();
       } else {
-        console.log(result);
-        res.status(200).send({});
+        library.addFile(req.query.parent, path.join('uploads', file.originalValue.originalname))
+          .then(() => {
+            res.status(200).send({});
+          });
       }
     });
   }
