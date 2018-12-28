@@ -252,9 +252,14 @@ paths:
       - admin
       operationId: uploadFile
       parameters:
+      - in: query
+        name: parent
+        type: string
+        required: true
       - in: formData
         name: file
         type: file
+        required: true
       responses:
         200:
           description: User authenticated

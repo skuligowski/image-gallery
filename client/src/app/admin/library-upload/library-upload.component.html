@@ -1,2 +1,19 @@
-<div>CREATE ALBUM</div>
-<div class="drop-area" (drop)="onDrop($event)" (dragenter)="onDragEnter($event)" (dragover)="onDragOver($event)"></div>
+<p-dialog [(visible)]="display" [positionTop]="120" [resizable]="false"
+          [blockScroll]="true" [modal]="true" [draggable]="false" [width]="600"
+          [contentStyle]="{'max-height': '350px', 'min-height': '300px'}">
+  <p-header>
+    Uploading files...
+  </p-header>
+  <p-table [value]="files">
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+          <td style="width: 70%">{{rowData.name}}</td>
+          <td>progress</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-footer>
+    <p-button class="action" label="Close"></p-button>
+  </p-footer>
+
+</p-dialog>

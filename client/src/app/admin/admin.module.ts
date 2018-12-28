@@ -18,6 +18,7 @@ import { AdminGuard } from '../core/auth/admin.guard';
 import { CommonModule } from '@angular/common';
 import { LibraryBrowserComponent } from './library-browser/library-browser.component';
 import { LibraryDirectoryCreateComponent } from './library-directory-create/library-directory-create.component';
+import { SizePipe } from '../common/utils/size.pipe';
 
 
 @NgModule({
@@ -31,6 +32,8 @@ import { LibraryDirectoryCreateComponent } from './library-directory-create/libr
     LibraryBrowserComponent,
     LibraryFilesComponent,
     LibraryUploadComponent,
+
+    SizePipe,
   ],
   imports: [
     CommonModule,
