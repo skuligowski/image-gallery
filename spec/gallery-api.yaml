@@ -255,7 +255,6 @@ paths:
       - in: query
         name: parent
         type: string
-        required: true
       - in: formData
         name: file
         type: file
