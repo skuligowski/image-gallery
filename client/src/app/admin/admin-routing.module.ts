@@ -4,7 +4,7 @@ import { AlbumsManagerComponent } from './albums-manager/albums-manager.componen
 import { AlbumsResolver } from '../albums.resolver';
 import { AlbumDetailsComponent } from './album-details/album-details.component';
 import { AlbumDetailsResolver } from './album-details.resolver';
-import { LibraryUploadComponent } from './library-upload/library-upload.component';
+import { LibraryUploadComponent } from './library-manager/library-upload/library-upload.component';
 import { AdminGuard } from '../core/auth/admin.guard';
 
 const adminRoutes: Routes = [

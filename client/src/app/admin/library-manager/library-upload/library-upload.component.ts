@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
-import { LibraryService } from '../services/library.service';
+import { LibraryService } from '../../services/library.service';
 import { forkJoin } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -55,25 +55,6 @@ export class LibraryUploadComponent implements OnInit {
       console.log(event);
       this.upload.emit(files);
     });
-    /*for (let i = 0; i < files.length; i++) {
-      const o = forkJoin(of('a'));
-      this.libraryService.upload(this.currentDirectory, files[i]).subscribe(
-        event => {
-          console.log(event);
-          if (event.type === HttpEventType.UploadProgress) {
-            const percentDone = Math.round(100 * event.loaded / event.total);
-            console.log(`File is ${percentDone}% loaded.`);
-          } else if (event instanceof HttpResponse) {
-            console.log('File is completely loaded!');
-          }
-        },
-        (err) => {
-          console.log('Upload Error:', err);
-        }, () => {
-          console.log('Upload done');
-        }
-      );
-    }*/
   }
 
   close(): void {

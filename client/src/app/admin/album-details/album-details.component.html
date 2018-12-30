@@ -48,6 +48,6 @@
     </ng-template>
   </p-table>
 </div>
-<app-library-files #libraryFiles (selectFiles)="addImages($event)"></app-library-files>
+<app-library-files-selector #libraryFiles (selectFiles)="addImages($event)"></app-library-files-selector>
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" width="425" message="Do you really want to delete this album?"></p-confirmDialog>
 <app-album-create #albumModify [albums]="albums" (confirm)="onUpdateAlbum($event)" headerLabel="Modify album"></app-album-create>

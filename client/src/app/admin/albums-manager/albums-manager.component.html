@@ -7,8 +7,8 @@
   </header>
   <nav>
     <p-button class="action" label="Create album" (click)="albumCreate.open()"></p-button>
+    <p-button class="action" label="Library" (click)="libraryManager.open()"></p-button>
   </nav>
-
   <p-table [value]="albums" selectionMode="single" dataKey="id" (onRowSelect)="onRowSelect($event)">
     <ng-template pTemplate="header">
       <tr>
@@ -35,4 +35,4 @@
   </p-table>
 </div>
 <app-album-create #albumCreate [albums]="albums" (confirm)="onCreateAlbum($event)" headerLabel="Create new album"></app-album-create>
-
+<app-library-manager #libraryManager></app-library-manager>
