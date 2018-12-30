@@ -12,4 +12,4 @@
   </p-footer>
 </p-dialog>
 <app-library-directory-create #directoryCreate (confirm)="onCreateDirectory($event)"></app-library-directory-create>
-<app-library-upload #libraryUpload></app-library-upload>
+<app-library-upload #libraryUpload (upload)="onUpload($event)"></app-library-upload>
