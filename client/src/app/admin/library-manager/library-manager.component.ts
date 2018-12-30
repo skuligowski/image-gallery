@@ -1,21 +1,18 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
-import { LibraryDirectoryCreateEvent } from '../library-directory-create/library-directory-create.component';
+import { Component, ViewChild } from '@angular/core';
+import { LibraryDirectoryCreateEvent } from './library-directory-create/library-directory-create.component';
 import { LibraryService } from '../services/library.service';
 import { LibraryBrowserComponent } from '../library-browser/library-browser.component';
 import LibraryFile = Definitions.LibraryFile;
 
 @Component({
-  selector: 'app-library-files',
-  templateUrl: 'library-files.component.html'
+  selector: 'app-library-manager',
+  templateUrl: 'library-manager.component.html'
 })
-export class LibraryFilesComponent {
+export class LibraryManagerComponent {
 
   display: boolean;
 
   selectedFiles: LibraryFile[] = [];
-
-  @Output()
-  selectFiles: EventEmitter<LibraryFile[]> = new EventEmitter();
 
   currentDirectory: string;
 
@@ -31,12 +28,6 @@ export class LibraryFilesComponent {
 
   close(): void {
     this.display = false;
-  }
-
-  addImages(): void {
-    if (this.selectedFiles.length) {
-      this.selectFiles.emit(this.selectedFiles);
-    }
   }
 
   onCreateDirectory(createEvent: LibraryDirectoryCreateEvent): void {

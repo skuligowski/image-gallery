@@ -3,8 +3,7 @@ import { AlbumsManagerComponent } from './albums-manager/albums-manager.componen
 import { AlbumGroupSelectorComponent } from './album-group-selector/album-group-selector.component';
 import { AlbumCreateComponent } from './album-create/album-create.component';
 import { AlbumDetailsComponent } from './album-details/album-details.component';
-import { LibraryUploadComponent } from './library-upload/library-upload.component';
-import { LibraryFilesComponent } from './library-files/library-files.component';
+import { LibraryUploadComponent } from './library-manager/library-upload/library-upload.component';
 import { EnterDirective } from '../common/utils/enter.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -17,8 +16,10 @@ import { AlbumDetailsResolver } from './album-details.resolver';
 import { AdminGuard } from '../core/auth/admin.guard';
 import { CommonModule } from '@angular/common';
 import { LibraryBrowserComponent } from './library-browser/library-browser.component';
-import { LibraryDirectoryCreateComponent } from './library-directory-create/library-directory-create.component';
+import { LibraryDirectoryCreateComponent } from './library-manager/library-directory-create/library-directory-create.component';
 import { SizePipe } from '../common/utils/size.pipe';
+import { LibraryFilesSelectorComponent } from './library-files-selector/library-files-selector.component';
+import { LibraryManagerComponent } from './library-manager/library-manager.component';
 
 
 @NgModule({
@@ -30,8 +31,9 @@ import { SizePipe } from '../common/utils/size.pipe';
     EnterDirective,
     LibraryDirectoryCreateComponent,
     LibraryBrowserComponent,
-    LibraryFilesComponent,
+    LibraryFilesSelectorComponent,
     LibraryUploadComponent,
+    LibraryManagerComponent,
 
     SizePipe,
   ],
