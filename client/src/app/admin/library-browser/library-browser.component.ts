@@ -34,6 +34,7 @@ export class LibraryBrowserComponent implements OnInit, OnDestroy {
   }
 
   loadData(parentDir?: string): Observable<LibraryFile[]> {
+    console.log('refresh');
     this.selectedFiles = [];
     this.loading = true;
     return spinnable(this.libraryService.getFiles(parentDir), this.insideSpinner).pipe(

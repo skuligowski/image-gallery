@@ -52,4 +52,8 @@ export class LibraryFilesComponent {
     this.currentDirectory = dirName;
   }
 
+  onUpload(): void {
+    this.libraryBrowser.loadData(this.currentDirectory)
+      .subscribe();
+  }
 }
