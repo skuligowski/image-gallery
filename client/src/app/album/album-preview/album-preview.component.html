@@ -4,6 +4,7 @@
     <ul class="navigation">
       <li><a [routerLink]="['/']"><i class="icon-home"></i><span class="label">Home</span></a></li>
       <li><a (click)="chooseAlbum()"><i class="icon-albums"></i><span class="label">Albums</span></a></li>
+      <li *ngIf="authService.isUserAdmin()"><a [routerLink]="['/', 'admin', 'albums', album.id]"><i class="icon-albums"></i><span class="label">Edit</span></a></li>
     </ul>
   </header>
   <app-image-grid>

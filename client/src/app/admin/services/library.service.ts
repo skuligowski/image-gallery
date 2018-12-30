@@ -29,10 +29,13 @@ export class LibraryService {
     const formData = new FormData();
     formData.append('file', files);
 
-    const params: HttpParams = new HttpParams().set('parent', parent);
+    let params: HttpParams;
+    if (parent) {
+      params = new HttpParams().set('parent', parent);
+    }
 
     const options = {
-      params: params,
+      params,
       reportProgress: true,
     };
 

@@ -34,7 +34,7 @@ function getFiles(parentDir) {
   }
 }
 
-function createDirectory(parentDir, name) {
+function createDirectory(parentDir = '', name) {
   if (isValidPath(path.join(parentDir, name))) {
     const absoluteDir = path.join(absoluteLibraryDir, parentDir || '', name);
     return mkDir(absoluteDir);
