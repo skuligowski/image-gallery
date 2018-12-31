@@ -8,7 +8,10 @@
     <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr>
           <td style="width: 70%">{{rowData.name}}</td>
-          <td>progress</td>
+          <td class="progress">
+            <div class="progress-bar" [style.width.%]="rowData.progress"></div>
+            <span class="progress-text">{{rowData.progress}} %</span>
+          </td>
       </tr>
     </ng-template>
   </p-table>
