@@ -1,26 +1,23 @@
-import { Component, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
+import { Component, EventEmitter, Output, Renderer2 } from '@angular/core';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { LibraryService } from '../../services/library.service';
-import { forkJoin } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { concat, EMPTY, forkJoin } from 'rxjs';
+import { catchError, tap, toArray } from 'rxjs/operators';
 
 @Component({
   selector: 'app-library-upload',
   templateUrl: 'library-upload.component.html'
 })
-export class LibraryUploadComponent implements OnInit {
+export class LibraryUploadComponent {
 
   display = false;
-  files: FileList = undefined;
+  files: FileItem[] = undefined;
   currentDirectory = '';
 
   @Output()
-  upload: EventEmitter<FileList> = new EventEmitter<FileList>();
+  upload: EventEmitter<FileItem[]> = new EventEmitter<FileItem[]>();
 
   constructor(private libraryService: LibraryService, private renderer: Renderer2) {
-  }
-
-  ngOnInit() {
   }
 
   open(currentDirectory: string): void {
@@ -32,27 +29,37 @@ export class LibraryUploadComponent implements OnInit {
     this.renderer.listen(uploadInput, 'change', () => {
       if (uploadInput.files.length) {
         this.display = true;
-        this.files = uploadInput.files;
+        this.files = Array.from(uploadInput.files as FileList).map(file => ({
+          file,
+          name: file.name,
+          progress: 0,
+          downloaded: false,
+          size: file.size
+        }));
         this.uploadFiles(this.files);
       }
     });
   }
 
-  private uploadFiles(files: FileList): void {
-    const filesUpload$ = Array.from(files).map(file =>
-      this.libraryService.upload(this.currentDirectory, file).pipe(tap(event => {
-        console.log(event);
-        if (event.type === HttpEventType.UploadProgress) {
-          const percentDone = Math.round(100 * event.loaded / event.total);
-          console.log(`File is ${percentDone}% loaded.`);
-        } else if (event instanceof HttpResponse) {
-          console.log('File is completely loaded!');
-        }
-      }))
+  private uploadFiles(files: FileItem[]): void {
+    const filesUpload$ = files.map(file =>
+      this.libraryService.upload(this.currentDirectory, file.file).pipe(
+        tap(event => {
+          if (event.type === HttpEventType.UploadProgress) {
+            file.progress = Math.round(100 * event.loaded / event.total);
+          } else if (event instanceof HttpResponse) {
+            file.downloaded = true;
+          }
+        })),
+        catchError(() => {
+          return EMPTY;
+        })
     );
-    forkJoin(filesUpload$).subscribe(event => {
-      console.log('Done');
-      console.log(event);
+    const chunks = [];
+    for (let i = 0; i < filesUpload$.length; i = i + 4) {
+      chunks.push(forkJoin(filesUpload$.slice(i, i + 4)));
+    }
+    concat(...chunks).pipe(toArray()).subscribe(() => {
       this.upload.emit(files);
     });
   }
@@ -60,4 +67,12 @@ export class LibraryUploadComponent implements OnInit {
   close(): void {
     this.display = false;
   }
+}
+
+interface FileItem {
+  file: File;
+  name: string;
+  progress: number;
+  downloaded: boolean;
+  size: number;
 }
