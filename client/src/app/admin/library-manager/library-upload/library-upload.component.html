@@ -1,4 +1,5 @@
 <p-dialog [(visible)]="display" [positionTop]="120" [resizable]="false"
+          [closable]="closeEnabled"
           [blockScroll]="true" [modal]="true" [draggable]="false" [width]="600"
           [contentStyle]="{'max-height': '350px', 'min-height': '300px'}">
   <p-header>
@@ -8,15 +9,17 @@
     <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr>
           <td style="width: 70%">{{rowData.name}}</td>
+          <td>{{rowData.size | size}}</td>
           <td class="progress">
-            <div class="progress-bar" [style.width.%]="rowData.progress"></div>
-            <span class="progress-text">{{rowData.progress}} %</span>
+            <div class="progress-bar" [style.width.%]="rowData.progress" [class.error]="rowData.error"></div>
+            <span class="progress-text" *ngIf="!rowData.error">{{rowData.progress}} %</span>
+            <span class="progress-text" *ngIf="rowData.error">error</span>
           </td>
       </tr>
     </ng-template>
   </p-table>
   <p-footer>
-    <p-button class="action" label="Close" (click)="close()"></p-button>
+    <p-button class="action" label="Close" (click)="closeEnabled && close()" [disabled]="!closeEnabled"></p-button>
   </p-footer>
 
 </p-dialog>
