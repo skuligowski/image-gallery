@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output, Renderer2 } from '@angular/core';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { LibraryService } from '../../services/library.service';
-import { concat, EMPTY, forkJoin } from 'rxjs';
-import { catchError, tap, toArray } from 'rxjs/operators';
+import { EMPTY, from, Observable } from 'rxjs';
+import { catchError, last, mergeMap, tap, toArray } from 'rxjs/operators';
 
 @Component({
   selector: 'app-library-upload',
@@ -13,6 +13,7 @@ export class LibraryUploadComponent {
   display = false;
   files: FileItem[] = undefined;
   currentDirectory = '';
+  closeEnabled = false;
 
   @Output()
   upload: EventEmitter<FileItem[]> = new EventEmitter<FileItem[]>();
@@ -21,6 +22,7 @@ export class LibraryUploadComponent {
   }
 
   open(currentDirectory: string): void {
+    this.closeEnabled = false;
     this.currentDirectory = currentDirectory;
     const uploadInput = this.renderer.createElement('input');
     this.renderer.setAttribute(uploadInput, 'type', 'file');
@@ -34,6 +36,7 @@ export class LibraryUploadComponent {
           name: file.name,
           progress: 0,
           downloaded: false,
+          error: false,
           size: file.size
         }));
         this.uploadFiles(this.files);
@@ -41,26 +44,28 @@ export class LibraryUploadComponent {
     });
   }
 
-  private uploadFiles(files: FileItem[]): void {
-    const filesUpload$ = files.map(file =>
-      this.libraryService.upload(this.currentDirectory, file.file).pipe(
-        tap(event => {
-          if (event.type === HttpEventType.UploadProgress) {
-            file.progress = Math.round(100 * event.loaded / event.total);
-          } else if (event instanceof HttpResponse) {
-            file.downloaded = true;
-          }
-        })),
-        catchError(() => {
-          return EMPTY;
-        })
+  private createUploadCall(file: FileItem): Observable<any> {
+    return this.libraryService.upload(this.currentDirectory, file.file).pipe(
+      tap(event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          file.progress = Math.round(100 * event.loaded / event.total);
+        } else if (event instanceof HttpResponse) {
+          file.downloaded = true;
+        }
+      }),
+      catchError(() => {
+        file.error = true;
+        return EMPTY;
+      }),
     );
-    const chunks = [];
-    for (let i = 0; i < filesUpload$.length; i = i + 4) {
-      chunks.push(forkJoin(filesUpload$.slice(i, i + 4)));
-    }
-    concat(...chunks).pipe(toArray()).subscribe(() => {
-      this.upload.emit(files);
+  }
+
+  private uploadFiles(files: FileItem[]): void {
+    from(files).pipe(
+      mergeMap(file => this.createUploadCall(file).pipe(last()), 3),
+      toArray()
+    ).subscribe(() => {
+      this.closeEnabled = true;
     });
   }
 
@@ -74,5 +79,6 @@ interface FileItem {
   name: string;
   progress: number;
   downloaded: boolean;
+  error: boolean;
   size: number;
 }
