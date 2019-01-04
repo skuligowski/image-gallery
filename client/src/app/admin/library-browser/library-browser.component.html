@@ -1,4 +1,4 @@
-<p-table [value]="files" [columns]="cols" [lazy]="true" [lazyLoadOnInit]="true" (onLazyLoad)="loadInitialData($event)"
+<p-table [value]="files" [columns]="cols" [lazy]="true" [lazyLoadOnInit]="true" (onLazyLoad)="loadInitialData()"
          [loading]="loading" [selection]="selectedFiles" (selectionChange)="selectFiles.emit($event)" dataKey="filename">
   <ng-template pTemplate="header" let-columns>
     <tr>
