@@ -1,4 +1,5 @@
 const passport = require('passport');
+const config = require('../core/config');
 
 function login(req, res) {
   passport.authenticate('local', (err, user) => {
@@ -17,8 +18,8 @@ function login(req, res) {
 
 function getUser(req, res) {
   res.status(200).send({
-    username: req.user.username,
-    admin: req.user.admin
+    username: config.authentication ? req.user.username : 'anonymous',
+    admin: config.authentication ? req.user.admin : false
   });
 };
 

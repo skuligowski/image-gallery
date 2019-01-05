@@ -8,7 +8,6 @@ passport.deserializeUser((user, done) => done(null, user));
 
 passport.use(new LocalStrategy((username, password, done) => {
   db.findUser({ username })
-    .then(user => {console.log(username, user); return user;})
     .then(user => bcrypt.compare(password, user ? user.password : '')
       .then(authorized => done(null, authorized ? user : false)));
 }));
