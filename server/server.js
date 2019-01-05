@@ -9,6 +9,7 @@ const compression = require('compression');
 const db = require('./core/db');
 const auth = require('./core/auth');
 const library = require('./core/library');
+const config = require('./core/config');
 const authMiddleware = require('./lib/auth-middleware');
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(session({
 }));
 
 db.initialize()
+  .then(() => config.initialize())
   .then(() => auth.initialize(app))
   .then(() => library.initialize(app))
   .then(() => swaggerParser.bundle('../spec/gallery-api.yaml'))

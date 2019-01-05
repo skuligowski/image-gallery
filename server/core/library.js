@@ -1,6 +1,6 @@
 "use strict";
 const path = require('path');
-const db = require('./db');
+const config = require('./config');
 const serveStatic = require('serve-static');
 const Promise = require('bluebird');
 const fs = require('fs');
@@ -14,12 +14,10 @@ Promise.promisifyAll(gm.prototype);
 const allowedExtensions = ['.jpg', '.jpeg', '.gif', '.png']
   .reduce((map, key) => { map[key] = true; return map;}, {});
 
-let absoluteLibraryDir;
-
 function getFiles(parentDir) {
   if (isValidPath(parentDir)) {
-    const absoluteDir = path.join(absoluteLibraryDir, parentDir || '');
-    const relativeDir = path.relative(absoluteLibraryDir, absoluteDir);
+    const absoluteDir = path.join(config.libraryDir, parentDir || '');
+    const relativeDir = path.relative(config.libraryDir, absoluteDir);
     return readDir(absoluteDir)
       .map(file => stat(path.join(absoluteDir, file)).then(stats => ({ name: file, stats })))
       .map(file => ({
@@ -36,7 +34,7 @@ function getFiles(parentDir) {
 
 function createDirectory(parentDir = '', name) {
   if (isValidPath(path.join(parentDir, name))) {
-    const absoluteDir = path.join(absoluteLibraryDir, parentDir || '', name);
+    const absoluteDir = path.join(config.libraryDir, parentDir || '', name);
     return mkDir(absoluteDir);
   } else {
     return Promise.reject('Invalid path');
@@ -45,7 +43,7 @@ function createDirectory(parentDir = '', name) {
 
 function getImageDetails(filePath) {
   if (isValidPath(filePath)) {
-    const absoluteFilePath = path.join(absoluteLibraryDir, filePath);
+    const absoluteFilePath = path.join(config.libraryDir, filePath);
     return stat(absoluteFilePath)
       .then(stats => ({
         filename: path.basename(filePath),
@@ -73,8 +71,8 @@ function getImageDetails(filePath) {
 }
 
 function isValidPath(filePath) {
-  const absolutePath = path.join(absoluteLibraryDir, filePath || '');
-  const relativePath = path.relative(absoluteLibraryDir, absolutePath);
+  const absolutePath = path.join(config.libraryDir, filePath || '');
+  const relativePath = path.relative(config.libraryDir, absolutePath);
   return !relativePath || (!relativePath.startsWith('..') && !path.isAbsolute(relativePath));
 }
 
@@ -82,19 +80,9 @@ function isImage(filename) {
   return allowedExtensions[path.extname(filename).toLowerCase()];
 }
 
-function getLibraryDir() {
-  return db.getProperty('libraryDir').then(libraryDir => {
-    if (libraryDir && libraryDir[0] === '/') {
-      return libraryDir;
-    } else {
-      return path.resolve(__dirname, '..', libraryDir);
-    }
-  });
-}
-
 function addFile(parentDir, filePath) {
   if (isValidPath(parentDir)) {
-    const newPath = path.join(absoluteLibraryDir, parentDir || '', path.basename(filePath));
+    const newPath = path.join(config.libraryDir, parentDir || '', path.basename(filePath));
     return rename(filePath, newPath);
   } else {
     throw new Error(`Invalid path: ${filePath}`);
@@ -106,9 +94,9 @@ exports.createDirectory = createDirectory;
 exports.getImageDetails = getImageDetails;
 exports.addFile = addFile;
 exports.initialize = app => {
-  return getLibraryDir().then(libraryDir => {
-    console.log(`Library dir: ${libraryDir}`);
-    absoluteLibraryDir = libraryDir;
-    app.use('/library', serveStatic(libraryDir))
-  });
+  return Promise.resolve()
+    .then(() => {
+      console.log(`Library dir: ${config.libraryDir}`);
+      app.use('/library', serveStatic(config.libraryDir))
+    });
 };
