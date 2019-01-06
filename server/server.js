@@ -11,6 +11,8 @@ const auth = require('./core/auth');
 const library = require('./core/library');
 const config = require('./core/config');
 const authMiddleware = require('./lib/auth-middleware');
+const serveStatic = require('serve-static');
+const path = require('path');
 
 const app = express();
 app.use(compression());
@@ -42,7 +44,12 @@ db.initialize()
       app.use(middleware.swaggerRouter({ useStubs: false, controllers: './controllers' }));
       app.use(middleware.swaggerUi());
 
+      app.use('/static', serveStatic(path.join(__dirname, 'public')));
+      app.get('*', function(req, res) {
+        res.sendFile( path.join(__dirname, 'public/index.html'));
+      });
+
       app.listen(3000);
-      console.log('Server started');
+      console.log('Server started on port 3000');
     });
   });

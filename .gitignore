@@ -38,4 +38,5 @@ package-lock.json
 
 **/*.db
 server/uploads
-server/resources/library
+dist
+

@@ -11,10 +11,18 @@
     "watch-client": "cd client && ng serve --proxy-config proxy.conf.json",
     "watch-server": "cd server && npm run watch",
     "e2e": "ng e2e",
+
+    "release:clean": "rimraf dist",
+    "release:copy-server": "cpy '**/*' '!**/node_modules/**' '../dist' --parents --cwd=server",
+    "release:build-client": "cd client && ng build --prod --deploy-url=static/ && cd ..",
+    "release:copy-client": "cpy '**/*' '../../dist/public' --parents --cwd=client/dist",
+    "release": "npm run release:clean && npm run release:copy-server && npm run release:build-client && npm run release:copy-client",
+
     "postinstall": "node node_modules/recursive-install/recursive-install.js --skip-root"
   },
   "private": true,
   "devDependencies": {
+    "cpy-cli": "^2.0.0",
     "dtsgenerator": "0.9.6",
     "gulp": "^3.9.1",
     "gulp-consolidate": "^0.2.0",
