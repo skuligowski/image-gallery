@@ -7,6 +7,9 @@
     "release": true,
     "assets": ["dist/v${version}.zip"]
   },
+  "npm": {
+    "publish": false
+  },
   "use": "pkg.version",
   "scripts": {
     "scripts.afterBump": "npm run release:package && cd dist && bestzip v${version}.zip * && cd ..",
