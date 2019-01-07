@@ -5,7 +5,7 @@
   },
   "github": {
     "release": true,
-    "assets": ["dist/v${version}.zip"]
+    "assets": ["dist/*.zip"]
   },
   "npm": {
     "publish": false
