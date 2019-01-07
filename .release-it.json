@@ -12,7 +12,7 @@
   },
   "use": "pkg.version",
   "scripts": {
-    "scripts.afterBump": "npm run release:package && cd dist && bestzip v${version}.zip * && cd ..",
+    "afterBump": "npm run release:package && cd dist && bestzip v${version}.zip * && cd ..",
     "afterRelease": "echo Successfully released v${version}."
   }
 }
