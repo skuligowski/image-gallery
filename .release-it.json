@@ -1,0 +1,15 @@
+{
+  "git": {
+    "tagName": "v${version}",
+    "commitMessage": "Release v${version}"
+  },
+  "github": {
+    "release": true,
+    "assets": ["dist/v${version}.zip"]
+  },
+  "use": "pkg.version",
+  "scripts": {
+    "scripts.afterBump": "npm run release:package && cd dist && bestzip v${version}.zip * && cd ..",
+    "afterRelease": "echo Successfully released ${name} v${version} to ${repo.repository}."
+  }
+}
