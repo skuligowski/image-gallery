@@ -11,7 +11,7 @@
     "watch-client": "cd client && ng serve --proxy-config proxy.conf.json",
     "watch-server": "cd server && npm run watch",
     "e2e": "ng e2e",
-    "release": "release-it --dry-run",
+    "release": "release-it",
     "release:clean": "rimraf dist",
     "release:copy-server": "cpy '**/*' '!**/node_modules/**' '../dist' --parents --cwd=server",
     "release:build-client": "cd client && ng build --prod --deploy-url=static/ && cd ..",
