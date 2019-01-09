@@ -84,6 +84,7 @@ function uploadFile(req, res) {
   if (file) {
     fs.writeFile(path.resolve('uploads', file.originalValue.originalname), file.originalValue.buffer, (err, result) => {
       if (err) {
+        console.log(err);
         res.status(500).send();
       } else {
         library.addFile(req.query.parent, path.join('uploads', file.originalValue.originalname))

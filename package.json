@@ -14,9 +14,10 @@
     "release": "release-it",
     "release:clean": "rimraf dist",
     "release:copy-server": "cpy '**/*' '!**/node_modules/**' '../dist' --parents --cwd=server",
+    "release:copy-spec": "cpy 'spec/**/*' 'dist' --parents",
     "release:build-client": "cd client && ng build --prod --deploy-url=static/ && cd ..",
     "release:copy-client": "cpy '**/*' '../../dist/public' --parents --cwd=client/dist",
-    "release:package": "npm run release:clean && npm run release:copy-server && npm run release:build-client && npm run release:copy-client",
+    "release:package": "npm run release:clean && npm run release:copy-server && npm run release:copy-spec && npm run release:build-client && npm run release:copy-client",
     "postinstall": "node node_modules/recursive-install/recursive-install.js --skip-root"
   },
   "private": true,

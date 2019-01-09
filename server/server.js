@@ -13,6 +13,7 @@ const config = require('./core/config');
 const authMiddleware = require('./lib/auth-middleware');
 const serveStatic = require('serve-static');
 const path = require('path');
+const firstExists = require('./lib/first-exists');
 
 const app = express();
 app.use(compression());
@@ -30,7 +31,8 @@ db.initialize()
   .then(() => config.initialize())
   .then(() => auth.initialize(app))
   .then(() => library.initialize(app))
-  .then(() => swaggerParser.bundle('../spec/gallery-api.yaml'))
+  .then(() => firstExists(__dirname, '/spec/gallery-api.yaml', '../spec/gallery-api.yaml'))
+  .then(specFile => swaggerParser.bundle(specFile))
   .then(spec => {
     swaggerTools.initializeMiddleware(spec, function (middleware) {
       app.use(middleware.swaggerMetadata());
@@ -41,7 +43,7 @@ db.initialize()
         validateResponse: true
       }));
       app.use(authMiddleware());
-      app.use(middleware.swaggerRouter({ useStubs: false, controllers: './controllers' }));
+      app.use(middleware.swaggerRouter({ useStubs: false, controllers: path.resolve(__dirname, 'controllers') }));
       app.use(middleware.swaggerUi());
 
       app.use('/static', serveStatic(path.join(__dirname, 'public')));
