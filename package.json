@@ -10,6 +10,7 @@
     "lint": "ng lint",
     "watch-client": "cd client && ng serve --proxy-config proxy.conf.json",
     "watch-server": "cd server && npm run watch",
+    "watch": "concurrently --kill-others --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgMagenta.bold\" --handle-input \"npm run watch-server\" \"npm run watch-client\"" ,
     "e2e": "ng e2e",
     "release": "release-it",
     "release:clean": "rimraf dist",
@@ -23,6 +24,7 @@
   "private": true,
   "devDependencies": {
     "bestzip": "^2.1.2",
+    "concurrently": "^4.1.0",
     "cpy-cli": "^2.0.0",
     "dtsgenerator": "0.9.6",
     "gulp": "^3.9.1",

@@ -97,6 +97,6 @@ exports.initialize = app => {
   return Promise.resolve()
     .then(() => {
       console.log(`Library dir: ${config.libraryDir}`);
-      app.use('/library', serveStatic(config.libraryDir));
+      app.use('/library', serveStatic(config.libraryDir, { fallthrough: false }));
     });
 };

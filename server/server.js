@@ -45,10 +45,18 @@ db.initialize()
       app.use(authMiddleware());
       app.use(middleware.swaggerRouter({ useStubs: false, controllers: path.resolve(__dirname, 'controllers') }));
       app.use(middleware.swaggerUi());
-
       app.use('/static', serveStatic(path.join(__dirname, 'public')));
-      app.get('*', function(req, res) {
-        res.sendFile( path.join(__dirname, 'public/index.html'));
+      app.use('*', (req, res, next)=> {
+        res.sendFile(path.join(__dirname, 'public/index.html'));
+        next();
+      });
+      app.use((err, req, res, next) => {
+        if (err.code === 'ENOENT') {
+          return res.status(404).send('404');
+        } else {
+          return res.status(500).send('500');
+        }
+        next();
       });
 
       app.listen(3000);
