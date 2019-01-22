@@ -21,8 +21,7 @@ function updateAlbum(id, {name, permalink, tree}) {
 
 function addImages(id, paths) {
   return db.findAlbum({ id })
-    .then(album => Promise.all(paths
-      .map(path => library.getImageDetails(path)))
+    .then(album => Promise.map(paths, path => library.getImageDetails(path), { concurrency: 5 })
       .map(imageDetails => ({
         filename: imageDetails.filename,
         url: `library/${imageDetails.path}`,

@@ -9,6 +9,7 @@ const stat = Promise.promisify(fs.stat, {context: fs});
 const mkDir = Promise.promisify(fs.mkdir, {context: fs});
 const rename = Promise.promisify(fs.rename, {context: fs});
 const gm = require('gm').subClass({ imageMagick: true });
+const sizeOf = Promise.promisify(require('image-size'));
 Promise.promisifyAll(gm.prototype);
 
 const allowedExtensions = ['.jpg', '.jpeg', '.gif', '.png']
@@ -51,12 +52,11 @@ function getImageDetails(filePath) {
         size: stats.size,
         dir: stats.isDirectory()
       }))
-      .then(file => gm(absoluteFilePath)
-        .identifyAsync()
-        .then(image => ({
+      .then(file => sizeOf(absoluteFilePath)
+        .then(dimensions => ({
           ...file,
-          width: image.size.width,
-          height: image.size.height
+          width: dimensions.width,
+          height: dimensions.height
         })))
       .then(file => {
         if (file.dir) {
