@@ -1,0 +1,30 @@
+<div class="layout-container">
+  <header class="layout-header">
+    <div class="title"><span>Administration</span></div>
+    <ul class="navigation" style="font-size:1rem;">
+      <li><a (click)="navigateToGallery()"><i class="icon-albums"></i><span class="label">Gallery</span></a></li>
+      <li><a (click)="navigateToAlbums()"><i class="icon-albums"></i><span class="label">Albums</span></a></li>
+    </ul>
+  </header>
+  <nav>
+
+  </nav>
+  <p-table [value]="users" selectionMode="single" dataKey="id" (onRowSelect)="onRowSelect($event)">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width:2.5em"></th>
+        <th>Name</th>
+        <th>Is admin</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user let-index="rowIndex">
+      <tr [pReorderableRow]="index" [pSelectableRow]="user">
+        <td>
+          <i class="pi pi-bars" pReorderableRowHandle></i>
+        </td>
+        <td>{{user.username}}</td>
+        <td>{{user.admin}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

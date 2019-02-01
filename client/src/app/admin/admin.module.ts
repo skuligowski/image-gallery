@@ -20,6 +20,8 @@ import { LibraryDirectoryCreateComponent } from './library-manager/library-direc
 import { SizePipe } from '../common/utils/size.pipe';
 import { LibraryFilesSelectorComponent } from './library-files-selector/library-files-selector.component';
 import { LibraryManagerComponent } from './library-manager/library-manager.component';
+import { UsersComponent } from './users/users.component';
+import { UsersService } from './users/users.service';
 
 
 @NgModule({
@@ -34,6 +36,7 @@ import { LibraryManagerComponent } from './library-manager/library-manager.compo
     LibraryFilesSelectorComponent,
     LibraryUploadComponent,
     LibraryManagerComponent,
+    UsersComponent,
 
     SizePipe,
   ],
@@ -54,6 +57,7 @@ import { LibraryManagerComponent } from './library-manager/library-manager.compo
     AlbumDetailsResolver,
     LibraryService,
     ConfirmationService,
+    UsersService,
   ]
 })
 export class AdminModule { }

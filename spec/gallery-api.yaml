@@ -268,6 +268,24 @@ paths:
           description: User unauthorized
           schema:
             type: string
+  /users:
+    x-swagger-router-controller: users.controller
+    get:
+      x-authentication-required: true
+      x-admin-required: true
+      description: Returns all users that are registered in gallery
+      tags:
+        - users
+      operationId: getUsers
+      responses:
+        200:
+          description: offering created
+          schema:
+            $ref: defs/UsersResponse.yaml
+        401:
+          description: User unauthorized
+          schema:
+            type: string
 definitions:
   Album:
     $ref: defs/Album.yaml
@@ -293,3 +311,5 @@ definitions:
     $ref: defs/Login.yaml
   User:
     $ref: defs/User.yaml
+  UsersResponse:
+    $ref: defs/UsersResponse.yaml

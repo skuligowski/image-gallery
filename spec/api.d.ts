@@ -105,4 +105,5 @@ declare namespace Definitions {
          */
         admin: boolean;
     }
+    export type UsersResponse = User[];
 }

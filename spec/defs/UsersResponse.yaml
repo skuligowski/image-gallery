@@ -1,0 +1,4 @@
+title: UsersResponse
+type: array
+items:
+  $ref: User.yaml

@@ -39,4 +39,8 @@ export class AlbumsManagerComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
+  navigateToUsers(): void {
+    this.router.navigate(['admin/users']);
+  }
+
 }
