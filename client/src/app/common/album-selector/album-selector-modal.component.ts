@@ -37,12 +37,24 @@ export class AlbumSelectorModalComponent {
   @HostBinding('class.opened')
   opened: boolean;
 
-  albums: Album[];
+  albums: Album[] = [];
+  allAlbums: Album[] = [];
+
+  query: string;
 
   constructor(private router: Router, private route: ActivatedRoute) {
     route.data.subscribe(data => {
+      this.allAlbums = data.albums;
       this.albums = data.albums;
     });
+  }
+
+  searchAlbums(event): void {
+    this.albums = this.allAlbums
+      .filter(album =>
+          album.name.toLocaleLowerCase().indexOf(event.toLocaleLowerCase()) !== -1 ||
+        album.tree.findIndex(group => group.toLocaleLowerCase().indexOf(event.toLocaleLowerCase()) !== -1) > -1
+      );
   }
 
   close(): void {
