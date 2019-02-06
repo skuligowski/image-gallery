@@ -50,10 +50,11 @@ export class AlbumSelectorModalComponent {
   }
 
   searchAlbums(event): void {
+    const lcEvent = event.toLocaleLowerCase();
     this.albums = this.allAlbums
       .filter(album =>
-          album.name.toLocaleLowerCase().indexOf(event.toLocaleLowerCase()) !== -1 ||
-        album.tree.findIndex(group => group.toLocaleLowerCase().indexOf(event.toLocaleLowerCase()) !== -1) > -1
+          album.name.toLocaleLowerCase().indexOf(lcEvent) !== -1 ||
+        album.tree.findIndex(group => group.toLocaleLowerCase().indexOf(lcEvent) !== -1) > -1
       );
   }
 
