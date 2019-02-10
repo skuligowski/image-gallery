@@ -3,11 +3,10 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
-    "module": "es2015",
+    "module": "commonjs",
     "types": [
       "masonry-layout",
-      "imagesloaded",
-      "../../spec/api"
+      "imagesloaded"
     ],
     "paths": {
       "@unorm/*": ["../node_modules/unorm/*"]

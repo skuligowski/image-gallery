@@ -7,7 +7,7 @@
     </ul>
   </header>
   <nav>
-
+    <p-button class="action" label="Add user" (click)="userCreate.open()"></p-button>
   </nav>
   <p-table [value]="users" selectionMode="single" dataKey="id" (onRowSelect)="onRowSelect($event)">
     <ng-template pTemplate="header">
@@ -28,3 +28,4 @@
     </ng-template>
   </p-table>
 </div>
+<app-user-create #userCreate></app-user-create>

@@ -22,6 +22,7 @@ import { LibraryFilesSelectorComponent } from './library-files-selector/library-
 import { LibraryManagerComponent } from './library-manager/library-manager.component';
 import { UsersComponent } from './users/users.component';
 import { UsersService } from './users/users.service';
+import { UserCreateComponent } from './user-create/user-create.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { UsersService } from './users/users.service';
     LibraryUploadComponent,
     LibraryManagerComponent,
     UsersComponent,
+    UserCreateComponent,
 
     SizePipe,
   ],
