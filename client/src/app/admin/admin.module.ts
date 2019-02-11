@@ -52,7 +52,7 @@ import { UserCreateComponent } from './user-create/user-create.component';
     ConfirmDialogModule,
     DropdownModule,
     TreeModule,
-    AdminRoutingModule
+    AdminRoutingModule,
   ],
   providers: [
     AdminGuard,

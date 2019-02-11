@@ -1,6 +1,7 @@
 import { Attribute, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import '@unorm/lib/unorm.js';
 import User = Definitions.User;
+import { NgForm } from '@angular/forms';
 
 
 
@@ -12,7 +13,9 @@ import User = Definitions.User;
 export class UserCreateComponent implements OnInit {
 
   display = false;
-  name: string;
+  username: string;
+  password: string;
+  retypedPassword: string;
 
   @Output()
   confirm: EventEmitter<UserCreateEvent> = new EventEmitter();
@@ -21,18 +24,29 @@ export class UserCreateComponent implements OnInit {
 
   open(user?: User): void {
     if (user) {
-      this.name = user.username;
+      this.username = user.username;
     } else {
-      this.name = undefined;
+      this.username = undefined;
+      this.password = undefined;
+      this.retypedPassword = undefined;
     }
     this.display = true;
   }
 
   save(): void {
     this.confirm.emit({
-      name: this.name,
+      username: this.username,
       close: () => this.display = false
     });
+  }
+
+  samePasswords(form: NgForm, password1Field: string, password2Field): boolean {
+    const pass1Value = form.controls[password1Field].value;
+    const pass2Value = form.controls[password2Field].value;
+    if (pass1Value && pass2Value && pass1Value !== pass2Value) {
+      return true;
+    }
+    return false;
   }
 
 
@@ -42,6 +56,6 @@ export class UserCreateComponent implements OnInit {
 }
 
 export interface UserCreateEvent {
-  name: string;
+  username: string;
   close: Function;
 }
