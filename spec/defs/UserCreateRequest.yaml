@@ -1,0 +1,15 @@
+title: UserCreateRequest
+type: object
+properties:
+  username:
+    type: string
+    description: album name
+  password:
+    type: string
+    description: album permalink
+  admin:
+    type: boolean
+required:
+  - username
+  - password
+  - admin

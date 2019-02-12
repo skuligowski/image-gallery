@@ -286,6 +286,26 @@ paths:
           description: User unauthorized
           schema:
             type: string
+    post:
+      x-authentication-required: true
+      x-admin-required: true
+      description: Creates a new user
+      tags:
+        - users
+      operationId: createUser
+      parameters:
+         - name: UserAddRequest
+           in: body
+           description: Adding user request
+           schema:
+             $ref: defs/UserCreateRequest.yaml
+      responses:
+        201:
+          description: User created
+        401:
+          description: User unauthorized
+          schema:
+            type: string
 definitions:
   Album:
     $ref: defs/Album.yaml
@@ -313,3 +333,5 @@ definitions:
     $ref: defs/User.yaml
   UsersResponse:
     $ref: defs/UsersResponse.yaml
+  UserCreateRequest:
+    $ref: defs/UserCreateRequest.yaml

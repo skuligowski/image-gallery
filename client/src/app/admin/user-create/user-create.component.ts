@@ -1,21 +1,19 @@
 import { Attribute, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import '@unorm/lib/unorm.js';
 import User = Definitions.User;
-import { NgForm } from '@angular/forms';
-
-
 
 
 @Component({
   selector: 'app-user-create',
   templateUrl: 'user-create.component.html',
 })
-export class UserCreateComponent implements OnInit {
+export class UserCreateComponent {
 
   display = false;
   username: string;
   password: string;
   retypedPassword: string;
+  isAdmin: boolean = false;
 
   @Output()
   confirm: EventEmitter<UserCreateEvent> = new EventEmitter();
@@ -36,26 +34,17 @@ export class UserCreateComponent implements OnInit {
   save(): void {
     this.confirm.emit({
       username: this.username,
+      password: this.password,
+      admin: this.isAdmin,
       close: () => this.display = false
     });
   }
 
-  samePasswords(form: NgForm, password1Field: string, password2Field): boolean {
-    const pass1Value = form.controls[password1Field].value;
-    const pass2Value = form.controls[password2Field].value;
-    if (pass1Value && pass2Value && pass1Value !== pass2Value) {
-      return true;
-    }
-    return false;
-  }
-
-
-  ngOnInit() {
-
-  }
 }
 
 export interface UserCreateEvent {
   username: string;
+  password: string;
+  admin: boolean;
   close: Function;
 }

@@ -21,8 +21,9 @@ import { SizePipe } from '../common/utils/size.pipe';
 import { LibraryFilesSelectorComponent } from './library-files-selector/library-files-selector.component';
 import { LibraryManagerComponent } from './library-manager/library-manager.component';
 import { UsersComponent } from './users/users.component';
-import { UsersService } from './users/users.service';
+import { UsersService } from './services/users.service';
 import { UserCreateComponent } from './user-create/user-create.component';
+import { SamePasswordDirective } from './user-create/same-password.directive';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { UserCreateComponent } from './user-create/user-create.component';
     UserCreateComponent,
 
     SizePipe,
+    SamePasswordDirective,
   ],
   imports: [
     CommonModule,

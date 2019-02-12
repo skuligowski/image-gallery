@@ -17,10 +17,17 @@ function login(req, res) {
 };
 
 function getUser(req, res) {
-  res.status(200).send({
-    username: config.authentication ? req.user.username : 'anonymous',
-    admin: config.authentication ? req.user.admin : false
-  });
+  if (req.user || config.authentication) {
+    res.status(200).send({
+      username: req.user.username,
+      admin: req.user.admin
+    });
+  } else {
+    res.status(200).send({
+      username: 'anonymous',
+      admin: false
+    });
+  }
 };
 
 module.exports = { login, getUser };

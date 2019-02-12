@@ -105,5 +105,16 @@ declare namespace Definitions {
          */
         admin: boolean;
     }
+    export interface UserCreateRequest {
+        /**
+         * album name
+         */
+        username: string;
+        /**
+         * album permalink
+         */
+        password: string;
+        admin: boolean;
+    }
     export type UsersResponse = User[];
 }

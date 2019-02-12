@@ -28,4 +28,4 @@
     </ng-template>
   </p-table>
 </div>
-<app-user-create #userCreate></app-user-create>
+<app-user-create #userCreate (confirm)="onCreateNewUser($event)"></app-user-create>

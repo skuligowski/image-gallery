@@ -24,7 +24,7 @@ app.use(session({
   secret: 'keyboard cat',
   saveUninitialized: true,
   resave: true,
-  cookie: { secure: false }
+  cookie : { secure : false, maxAge : (4 * 60 * 60 * 1000) }
 }));
 
 db.initialize()

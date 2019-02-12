@@ -24,10 +24,11 @@
         Retype password *:
       </div>
       <div class="ui-grid-col-6">
-        <input class="ui-inputtext" pInputText type="password" [(ngModel)]="retypedPassword" placeholder="Password" name="retypedPassword" required style="width: 100%"/>
+        <input class="ui-inputtext" pInputText type="password" [(ngModel)]="retypedPassword" placeholder="Password" name="retypedPassword" required
+               appSamePassword [password]="password" style="width: 100%" #retyped="ngModel"/>
       </div>
     </div>
-    <div class="ui-grid-row" *ngIf="samePasswords(userForm, 'password', 'retypedPassword')">
+    <div class="ui-grid-row" *ngIf="retyped.errors && retyped.errors['samePassword']">
       <div class="ui-g-offset-4 ui-grid-col-8">
         <span class="error-message">Wrong retyped password</span>
       </div>

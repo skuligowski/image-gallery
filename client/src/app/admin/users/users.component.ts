@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UsersService } from './users.service';
+import { UsersService } from '../services/users.service';
 import User = Definitions.User;
+import { UserCreateEvent } from '../user-create/user-create.component';
 
 @Component({
   selector: 'app-users',
@@ -16,9 +17,22 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.reloadUsers();
+  }
+
+  reloadUsers(): void {
     this.usersService.getUsers()
       .subscribe(users => {
         this.users = users;
+      });
+  }
+
+  onCreateNewUser(userCreateEvent: UserCreateEvent): void {
+    this.usersService
+      .createUser({username: userCreateEvent.username, password: userCreateEvent.password, admin: userCreateEvent.admin})
+      .subscribe(() => {
+        userCreateEvent.close();
+        this.reloadUsers();
       });
   }
 

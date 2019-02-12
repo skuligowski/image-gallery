@@ -50,4 +50,4 @@ function insertConfigProperty(prop) {
     });
 }
 
-module.exports = { getProperties, getProperty, findAlbums, findAlbum, insertAlbum, updateAlbum, removeAlbum, findUser, findUsers, insertUser, initialize };
+module.exports = { getProperties, getProperty, findAlbums, findAlbum, insertAlbum, updateAlbum, removeAlbum, findUser, findUsers, addUser, initialize };
