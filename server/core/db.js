@@ -20,6 +20,7 @@ const updateAlbum = Promise.promisify(db.albums.update, {context: db.albums});
 const findUser = Promise.promisify(db.users.findOne, {context: db.users});
 const findUsers = Promise.promisify(db.users.find, {context: db.users});
 const insertUser = Promise.promisify(db.users.insert, {context: db.users});
+const removeUser = Promise.promisify(db.users.remove, {context: db.users});
 
 function initialize() {
     return Promise.resolve()
@@ -50,4 +51,17 @@ function insertConfigProperty(prop) {
     });
 }
 
-module.exports = { getProperties, getProperty, findAlbums, findAlbum, insertAlbum, updateAlbum, removeAlbum, findUser, findUsers, addUser, initialize };
+module.exports = {
+  getProperties,
+  getProperty,
+  findAlbums,
+  findAlbum,
+  insertAlbum,
+  updateAlbum,
+  removeAlbum,
+  findUser,
+  findUsers,
+  addUser,
+  removeUser,
+  initialize
+};

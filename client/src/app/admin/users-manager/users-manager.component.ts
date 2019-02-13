@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UsersService } from '../services/users.service';
 import User = Definitions.User;
 import { UserCreateEvent } from '../user-create/user-create.component';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-users-manager',
@@ -12,8 +13,9 @@ export class UsersManagerComponent implements OnInit {
 
   users: User[] = [];
 
-  constructor(private router: Router, private usersService: UsersService) {
-  }
+  constructor(private router: Router,
+              private usersService: UsersService,
+              private confirmationService: ConfirmationService) {}
 
   ngOnInit() {
     this.reloadUsers();
@@ -35,12 +37,14 @@ export class UsersManagerComponent implements OnInit {
       });
   }
 
-  navigateToGallery(): void {
-    this.router.navigate(['/']);
-  }
-
-  navigateToAlbums(): void {
-    this.router.navigate(['admin/albums']);
+  removeUser(user: User): void {
+    this.confirmationService.confirm({
+      message: null,
+      accept: () => {
+        this.usersService.removeUser(user.username)
+          .subscribe(() => this.reloadUsers());
+      }
+    });
   }
 
   onRowSelect(row: any): void {

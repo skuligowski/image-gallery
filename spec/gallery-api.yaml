@@ -306,6 +306,24 @@ paths:
           description: User unauthorized
           schema:
             type: string
+    delete:
+      x-authentication-required: true
+      x-admin-required: true
+      description: Removes user, admin cannot be removed
+      tags:
+        - users
+      operationId: removeUser
+      parameters:
+        - in: query
+          name: username
+          type: string
+      responses:
+        200:
+          description: User deleted
+        401:
+          description: User unauthorized
+          schema:
+            type: string
 definitions:
   Album:
     $ref: defs/Album.yaml
