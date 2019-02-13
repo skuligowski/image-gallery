@@ -20,11 +20,11 @@ import { LibraryDirectoryCreateComponent } from './library-manager/library-direc
 import { SizePipe } from '../common/utils/size.pipe';
 import { LibraryFilesSelectorComponent } from './library-files-selector/library-files-selector.component';
 import { LibraryManagerComponent } from './library-manager/library-manager.component';
-import { UsersComponent } from './users/users.component';
 import { UsersService } from './services/users.service';
 import { UserCreateComponent } from './user-create/user-create.component';
 import { SamePasswordDirective } from './user-create/same-password.directive';
 import { HeaderNavigationComponent } from './header-navigation.component';
+import { UsersManagerComponent } from './users-manager/users-manager.component';
 
 
 @NgModule({
@@ -41,7 +41,7 @@ import { HeaderNavigationComponent } from './header-navigation.component';
     LibraryFilesSelectorComponent,
     LibraryUploadComponent,
     LibraryManagerComponent,
-    UsersComponent,
+    UsersManagerComponent,
     UserCreateComponent,
 
     SizePipe,

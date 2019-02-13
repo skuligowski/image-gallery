@@ -5,11 +5,10 @@ import User = Definitions.User;
 import { UserCreateEvent } from '../user-create/user-create.component';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: 'users.component.html'
+  selector: 'app-users-manager',
+  templateUrl: 'users-manager.component.html'
 })
-
-export class UsersComponent implements OnInit {
+export class UsersManagerComponent implements OnInit {
 
   users: User[] = [];
 
