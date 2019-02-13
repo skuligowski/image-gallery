@@ -2,7 +2,7 @@
   <div class="title"><span>Administration</span></div>
 </header>
 <ul class="admin-navigation" style="font-size:1rem;">
-  <li><a (click)="navigateToAlbums()"><i class="icon-albums"></i><span class="label">Albums</span></a></li>
-  <li><a (click)="navigateToGallery()"><i class="icon-albums"></i><span class="label">Library</span></a></li>
-  <li><a (click)="navigateToUsers()"><i class="icon-albums"></i><span class="label">Users</span></a></li>
+  <li routerLink="/admin/albums" routerLinkActive="active"><a><i class="icon-albums"></i><span class="label">Albums</span></a></li>
+  <li routerLink="/admin/library" routerLinkActive="active"><a (click)="navigateToGallery()"><i class="icon-albums"></i><span class="label">Library</span></a></li>
+  <li routerLink="/admin/users" routerLinkActive="active"><a (click)="navigateToUsers()"><i class="icon-albums"></i><span class="label">Users</span></a></li>
 </ul>
