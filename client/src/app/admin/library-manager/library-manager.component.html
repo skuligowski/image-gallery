@@ -1,15 +1,10 @@
-<p-dialog [(visible)]="display" [positionTop]="100" [resizable]="false"
-          [blockScroll]="true" [modal]="true" [draggable]="false" [width]="800"
-          [contentStyle]="{'max-height': '500px'}">
-  <p-header>
-    Library
-  </p-header>
-  <app-library-browser *ngIf="display" (selectFiles)="selectedFiles=$event" (directoryChange)="onDirectoryChange($event)" #libraryBrowser></app-library-browser>
-  <p-footer>
-    <p-button class="action left" label="Create directory" (click)="directoryCreate.open()"></p-button>
-    <p-button class="action left" label="Upload" (click)="libraryUpload.open(currentDirectory)"></p-button>
-    <p-button class="action" label="Done" (click)="close()"></p-button>
-  </p-footer>
-</p-dialog>
+<app-header-navigation></app-header-navigation>
+<div class="admin-layout-container">
+  <nav>
+    <p-button class="action" label="Create directory" (click)="directoryCreate.open()"></p-button>
+    <p-button class="action" label="Upload" (click)="libraryUpload.open(currentDirectory)"></p-button>
+  </nav>
+  <app-library-browser (selectFiles)="selectedFiles=$event" (directoryChange)="onDirectoryChange($event)" #libraryBrowser></app-library-browser>
+</div>
 <app-library-directory-create #directoryCreate (confirm)="onCreateDirectory($event)"></app-library-directory-create>
 <app-library-upload #libraryUpload (upload)="onUpload()"></app-library-upload>
