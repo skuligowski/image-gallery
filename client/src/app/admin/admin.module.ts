@@ -24,10 +24,13 @@ import { UsersComponent } from './users/users.component';
 import { UsersService } from './services/users.service';
 import { UserCreateComponent } from './user-create/user-create.component';
 import { SamePasswordDirective } from './user-create/same-password.directive';
+import { HeaderNavigationComponent } from './header-navigation.component';
 
 
 @NgModule({
   declarations: [
+    HeaderNavigationComponent,
+
     AlbumsManagerComponent,
     AlbumCreateComponent,
     AlbumGroupSelectorComponent,

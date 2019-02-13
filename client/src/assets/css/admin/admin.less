@@ -5,7 +5,76 @@
 @import "library-browser.less";
 @import "library-upload.less";
 @import "users.less";
-@import "../../../../node_modules/primeng/resources/themes/darkness/theme.css";
+@import "../../../../node_modules/primeng/resources/themes/nova-dark/theme.css";
+
+body {
+  background-color: #f3f3f3;
+}
+
+.admin-layout-container {
+  margin-left: 160px;
+  padding: 0 30px;
+  margin-top: 43px;
+  height: 100%;
+  overflow: auto;
+}
+
+.admin-navigation {
+  width: 160px;
+  background-color: #2f353a;
+  height: 100%;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  padding-top: 15px;
+  margin-top: 42px;
+  list-style: none;
+
+  li {
+    a {
+      color: #fff;
+      font-weight: 300;
+      font-size: 0.9rem;
+    }
+    i {
+      transform: scale(0.8);
+      color: #999;
+      margin: 0 15px 0 0;
+    }
+    padding: .75rem 1rem;
+
+    &:hover {
+      background-color: #007ad970;
+      cursor: pointer;
+      i {
+        color: #fff;
+      }
+    }
+  }
+}
+
+.admin-layout-header {
+  display: flex;
+  align-items: center;
+  font-size: 0;
+  border-bottom: 1px solid #ccc;
+  background-color: #fefefe;
+  padding: 10px 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+
+  .title {
+    flex: 1 0 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0 15px;
+    display: inline-block;
+    text-transform: capitalize;
+    color: #444;
+  }
+}
 
 .ui-widget {
   font-family: Roboto, Arial, sans-serif;

@@ -1,11 +1,5 @@
-<div class="layout-container">
-  <header class="layout-header">
-    <div class="title"><span>Administration</span></div>
-    <ul class="navigation" style="font-size:1rem;">
-      <li><a (click)="navigateToGallery()"><i class="icon-albums"></i><span class="label">Gallery</span></a></li>
-      <li><a (click)="navigateToUsers()"><i class="icon-albums"></i><span class="label">Users</span></a></li>
-    </ul>
-  </header>
+<app-header-navigation></app-header-navigation>
+<div class="admin-layout-container">
   <nav>
     <p-button class="action" label="Create album" (click)="albumCreate.open()"></p-button>
     <p-button class="action" label="Upload images" (click)="libraryManager.open()"></p-button>

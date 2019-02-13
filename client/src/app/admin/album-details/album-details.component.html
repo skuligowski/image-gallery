@@ -1,13 +1,5 @@
-<div class="layout-container">
-  <header class="layout-header">
-    <div class="title">
-      <i class="back-button pi pi-arrow-circle-left" (click)="navigateToAlbums()"></i>
-      <span>{{album.name}}</span>
-    </div>
-    <ul class="navigation" style="font-size:1.2rem">
-      <li></li>
-    </ul>
-  </header>
+<app-header-navigation></app-header-navigation>
+<div class="admin-layout-container">
   <nav>
     <p-button class="action" label="Add images" (click)="libraryFilesSelector.open()"></p-button>
     <p-button class="action" [disabled]="!selected.length" label="Delete images" (click)="selected.length && removeImages(selected)"></p-button>

@@ -1,29 +1,24 @@
-<div class="layout-container">
-  <header class="layout-header">
-    <div class="title"><span>Administration</span></div>
-    <ul class="navigation" style="font-size:1rem;">
-      <li><a (click)="navigateToGallery()"><i class="icon-albums"></i><span class="label">Gallery</span></a></li>
-      <li><a (click)="navigateToAlbums()"><i class="icon-albums"></i><span class="label">Albums</span></a></li>
-    </ul>
-  </header>
+<app-header-navigation></app-header-navigation>
+<div class="admin-layout-container">
   <nav>
     <p-button class="action" label="Add user" (click)="userCreate.open()"></p-button>
   </nav>
-  <p-table [value]="users" selectionMode="single" dataKey="id" (onRowSelect)="onRowSelect($event)">
+  <p-table [value]="users" dataKey="id">
     <ng-template pTemplate="header">
       <tr>
-        <th style="width:2.5em"></th>
         <th>Name</th>
         <th>Is admin</th>
+        <th>Action</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-user let-index="rowIndex">
-      <tr [pReorderableRow]="index" [pSelectableRow]="user">
-        <td>
-          <i class="pi pi-bars" pReorderableRowHandle></i>
-        </td>
+      <tr>
         <td>{{user.username}}</td>
         <td>{{user.admin}}</td>
+        <td>
+          <p-button styleClass="ui-button-secondary" label="Change password" (click)="userCreate.open()"></p-button>
+          <p-button styleClass="ui-button-danger" label="Delete" (click)="userCreate.open()"></p-button>
+        </td>
       </tr>
     </ng-template>
   </p-table>
