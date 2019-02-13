@@ -1,4 +1,4 @@
-import { Attribute, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Attribute, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import '@unorm/lib/unorm.js';
 import User = Definitions.User;
 
@@ -17,6 +17,9 @@ export class UserCreateComponent {
 
   @Output()
   confirm: EventEmitter<UserCreateEvent> = new EventEmitter();
+
+  @Input()
+  modifyUsername: boolean;
 
   constructor(@Attribute('headerLabel') public headerLabel) {}
 

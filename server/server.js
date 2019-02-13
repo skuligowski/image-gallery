@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const compression = require('compression');
 const db = require('./core/db');
+const initialize = require('./core/initialize');
 const auth = require('./core/auth');
 const library = require('./core/library');
 const config = require('./core/config');
@@ -27,7 +28,7 @@ app.use(session({
   cookie : { secure : false, maxAge : (4 * 60 * 60 * 1000) }
 }));
 
-db.initialize()
+initialize()
   .then(() => config.initialize())
   .then(() => auth.initialize(app))
   .then(() => library.initialize(app))

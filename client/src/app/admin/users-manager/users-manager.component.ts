@@ -37,6 +37,15 @@ export class UsersManagerComponent implements OnInit {
       });
   }
 
+  onChangePassword(userCreateEvent: UserCreateEvent): void {
+    this.usersService
+      .changePassword({username: userCreateEvent.username, password: userCreateEvent.password})
+      .subscribe(() => {
+        userCreateEvent.close();
+        this.reloadUsers();
+      });
+  }
+
   removeUser(user: User): void {
     this.confirmationService.confirm({
       message: null,

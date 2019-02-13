@@ -116,5 +116,15 @@ declare namespace Definitions {
         password: string;
         admin: boolean;
     }
+    export interface UserPasswordChangeRequest {
+        /**
+         * album name
+         */
+        username: string;
+        /**
+         * album permalink
+         */
+        password: string;
+    }
     export type UsersResponse = User[];
 }

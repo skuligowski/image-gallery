@@ -14,7 +14,6 @@ class Config {
   }
 }
 
-
 function normalizeLibraryDir(libraryDir) {
   const path = require('path');
   if (libraryDir && libraryDir[0] === '/') {

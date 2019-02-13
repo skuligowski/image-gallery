@@ -1,4 +1,5 @@
 const db = require('../core/db');
+const users = require('../core/users');
 
 function getUsers(req, res) {
   db.findUsers({})
@@ -7,7 +8,7 @@ function getUsers(req, res) {
 }
 
 function createUser(req, res) {
-  db.addUser(req.body.username, req.body.password, req.body.admin)
+  users.addUser(req.body.username, req.body.password, req.body.admin)
     .then(() => res.status(201).send())
     .catch(() => res.status(404).send());
 }
@@ -17,9 +18,18 @@ function removeUser(req, res) {
     throw new Error('User admin cannot be removed.');
   }
 
-  db.removeUser({ username: req.query.username })
+  users.removeUser(req.query.username)
     .then(() => res.status(200).send())
     .catch(() => res.status(404).send());
 }
 
-module.exports = { getUsers, createUser, removeUser };
+function changePassword(req, res) {
+  users.changePassword(req.body.username, req.body.password)
+    .then(() => res.status(200).send())
+    .catch((e) => {
+      console.log(e);
+      res.status(401).send()
+    });
+}
+
+module.exports = { getUsers, createUser, removeUser, changePassword };

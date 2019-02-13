@@ -324,6 +324,28 @@ paths:
           description: User unauthorized
           schema:
             type: string
+  /users/password:
+    x-swagger-router-controller: users.controller
+    patch:
+      x-authentication-required: true
+      x-admin-required: true
+      description: Changes password of logged user
+      tags:
+        - users
+      operationId: changePassword
+      parameters:
+        - name: UserPasswordChangeRequest
+          in: body
+          description: Change password request
+          schema:
+            $ref: defs/UserPasswordChangeRequest.yaml
+      responses:
+        200:
+          description: Password has been changed
+        401:
+          description: User unauthorized
+          schema:
+            type: string
 definitions:
   Album:
     $ref: defs/Album.yaml
@@ -353,3 +375,5 @@ definitions:
     $ref: defs/UsersResponse.yaml
   UserCreateRequest:
     $ref: defs/UserCreateRequest.yaml
+  UserPasswordChangeRequest:
+    $ref: defs/UserPasswordChangeRequest.yaml

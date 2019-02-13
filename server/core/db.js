@@ -1,6 +1,5 @@
 const DataStore = require('nedb');
 const Promise = require('bluebird');
-const bcrypt = require('../lib/bcrypt');
 
 const db = {};
 db.config = new DataStore({ filename: '../db/config.db', autoload: true });
@@ -21,39 +20,13 @@ const findUser = Promise.promisify(db.users.findOne, {context: db.users});
 const findUsers = Promise.promisify(db.users.find, {context: db.users});
 const insertUser = Promise.promisify(db.users.insert, {context: db.users});
 const removeUser = Promise.promisify(db.users.remove, {context: db.users});
-
-function initialize() {
-    return Promise.resolve()
-      .then(() => insertConfigProperty({ key: 'libraryDir', value: 'resources/library'}))
-      .then(() => insertConfigProperty({ key: 'authentication', value: false}))
-      .then(() => addUser( 'admin', '1234', true));
-}
-
-function addUser(username, password, isAdmin) {
-  return findUser({ username })
-    .then(user => {
-      if (!user) {
-        return bcrypt.generateHash(password)
-          .then(hash => insertUser({ username, password: hash, admin: isAdmin}));
-      }
-    });
-}
-
-function insertConfigProperty(prop) {
-  getConfigProperty({ key: prop.key })
-    .then(property => {
-      if (!property) {
-        console.log(`Configuring default property: ${prop.key} = ${prop.value}`);
-        return insertProperty(prop);
-      } else {
-        return Promise.resolve();
-      }
-    });
-}
+const updateUser = Promise.promisify(db.users.update, {context: db.users});
 
 module.exports = {
   getProperties,
   getProperty,
+  getConfigProperty,
+  insertProperty,
   findAlbums,
   findAlbum,
   insertAlbum,
@@ -61,7 +34,7 @@ module.exports = {
   removeAlbum,
   findUser,
   findUsers,
-  addUser,
+  insertUser,
   removeUser,
-  initialize
+  updateUser,
 };

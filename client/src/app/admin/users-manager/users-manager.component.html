@@ -16,12 +16,13 @@
         <td>{{user.username}}</td>
         <td>{{user.admin}}</td>
         <td>
-          <p-button styleClass="ui-button-secondary" label="Change password" (click)="userCreate.open()"></p-button>
+          <p-button styleClass="ui-button-secondary" label="Change password" (click)="userChangePassword.open(user)"></p-button>
           <p-button styleClass="ui-button-danger" label="Delete" (click)="user.username !== 'admin' && removeUser(user)" [disabled]="user.username === 'admin'"></p-button>
         </td>
       </tr>
     </ng-template>
   </p-table>
 </div>
-<app-user-create #userCreate (confirm)="onCreateNewUser($event)"></app-user-create>
+<app-user-create #userCreate (confirm)="onCreateNewUser($event)" headerLabel="Create user" [modifyUsername]="true"></app-user-create>
+<app-user-create #userChangePassword (confirm)="onChangePassword($event)" headerLabel="Change password" [modifyUsername]="false"></app-user-create>
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" width="425" message="Do you really want to delete this user?"></p-confirmDialog>

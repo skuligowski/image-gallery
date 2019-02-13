@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import User = Definitions.User;
 import { spinnable } from '../../common/utils/spinnable';
 import UserCreateRequest = Definitions.UserCreateRequest;
+import UserPasswordChangeRequest = Definitions.UserPasswordChangeRequest;
 
 
 @Injectable()
@@ -21,6 +22,12 @@ export class UsersService {
   createUser(user: UserCreateRequest): Observable<any> {
     return spinnable(
       this.httpClient.post<UserCreateRequest>('/api/users', user)
+    );
+  }
+
+  changePassword(user: UserPasswordChangeRequest): Observable<any> {
+    return spinnable(
+      this.httpClient.patch<UserPasswordChangeRequest>('/api/users/password', {username: user.username, password: user.password})
     );
   }
 
