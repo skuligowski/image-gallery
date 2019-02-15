@@ -5,18 +5,15 @@
 @import "library-browser.less";
 @import "library-upload.less";
 @import "users-manager.less";
+@import "settings.less";
 @import "../../../../node_modules/primeng/resources/themes/nova-dark/theme.css";
-
-body {
-  background-color: #f3f3f3;
-}
 
 .admin-layout-container {
   margin-left: 200px;
-  padding: 0 30px;
-  margin-top: 43px;
+  padding: 0 30px 63px 30px;
   height: 100%;
   overflow: auto;
+  background-color: #f3f3f3;
 
   nav {
     padding: 20px 0 10px 0;
@@ -32,7 +29,7 @@ body {
   height: 100%;
   position: absolute;
   padding: 15px 0 0;
-  margin: 42px 0 0;
+  margin: 0;
   list-style: none;
 
   li {
@@ -72,8 +69,6 @@ body {
   border-bottom: 1px solid #ccc;
   background-color: #fefefe;
   padding: 10px 0;
-  position: absolute;
-  top: 0;
   width: 100%;
   z-index: 10;
 

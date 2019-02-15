@@ -8,6 +8,7 @@ import { LibraryUploadComponent } from './library-manager/library-upload/library
 import { AdminGuard } from '../core/auth/admin.guard';
 import { LibraryManagerComponent } from './library-manager/library-manager.component';
 import { UsersManagerComponent } from './users-manager/users-manager.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const adminRoutes: Routes = [
   { path: '', children: [
@@ -16,6 +17,7 @@ const adminRoutes: Routes = [
       { path: 'library', component: LibraryManagerComponent },
       { path: 'library/upload', component: LibraryUploadComponent },
       { path: 'users', component: UsersManagerComponent },
+      { path: 'settings', component: SettingsComponent },
       { path: '**', redirectTo: 'albums'}
     ], canActivate: [ AdminGuard ]},
 ];

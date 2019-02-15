@@ -346,6 +346,24 @@ paths:
           description: User unauthorized
           schema:
             type: string
+  /settings:
+    x-swagger-router-controller: settings.controller
+    get:
+      x-authentication-required: true
+      x-admin-required: true
+      description: Returns all config properties
+      tags:
+        - settings
+      operationId: getSettings
+      responses:
+        200:
+          description: settings returned
+          schema:
+            $ref: defs/SettingsResponse.yaml
+        401:
+          description: User unauthorized
+          schema:
+            type: string
 definitions:
   Album:
     $ref: defs/Album.yaml
@@ -369,6 +387,8 @@ definitions:
     $ref: defs/LibraryFilesResponse.yaml
   Login:
     $ref: defs/Login.yaml
+  SettingsResponse:
+    $ref: defs/SettingsResponse.yaml
   User:
     $ref: defs/User.yaml
   UsersResponse:

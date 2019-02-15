@@ -1,0 +1,9 @@
+title: SettingsResponse
+type: object
+properties:
+  authentication:
+    type: boolean
+    description: Defines if all user should authenticate before etner to gallery
+  libraryDir:
+    type: string
+    description: Library directory

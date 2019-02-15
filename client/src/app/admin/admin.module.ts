@@ -9,7 +9,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import { ConfirmationService, ConfirmDialogModule, DialogModule, DropdownModule, TreeModule } from 'primeng/primeng';
+import {
+  ConfirmationService,
+  ConfirmDialogModule,
+  DialogModule,
+  DropdownModule,
+  InputSwitchModule,
+  TreeModule
+} from 'primeng/primeng';
 import { AdminRoutingModule } from './admin-routing.module';
 import { LibraryService } from './services/library.service';
 import { AlbumDetailsResolver } from './album-details.resolver';
@@ -25,6 +32,8 @@ import { UserCreateComponent } from './user-create/user-create.component';
 import { SamePasswordDirective } from './user-create/same-password.directive';
 import { HeaderNavigationComponent } from './header-navigation.component';
 import { UsersManagerComponent } from './users-manager/users-manager.component';
+import { SettingsComponent } from './settings/settings.component';
+import { SettingsService } from './services/settings.service';
 
 
 @NgModule({
@@ -43,6 +52,7 @@ import { UsersManagerComponent } from './users-manager/users-manager.component';
     LibraryManagerComponent,
     UsersManagerComponent,
     UserCreateComponent,
+    SettingsComponent,
 
     SizePipe,
     SamePasswordDirective,
@@ -54,6 +64,7 @@ import { UsersManagerComponent } from './users-manager/users-manager.component';
     TableModule,
     ButtonModule,
     DialogModule,
+    InputSwitchModule,
     ConfirmDialogModule,
     DropdownModule,
     TreeModule,
@@ -65,6 +76,7 @@ import { UsersManagerComponent } from './users-manager/users-manager.component';
     LibraryService,
     ConfirmationService,
     UsersService,
+    SettingsService,
   ]
 })
 export class AdminModule { }

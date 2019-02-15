@@ -95,6 +95,16 @@ declare namespace Definitions {
          */
         password: string;
     }
+    export interface SettingsResponse {
+        /**
+         * Defines if all user should authenticate before etner to gallery
+         */
+        authentication?: boolean;
+        /**
+         * Library directory
+         */
+        libraryDir?: string;
+    }
     export interface User {
         /**
          * Username

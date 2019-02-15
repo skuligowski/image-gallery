@@ -26,6 +26,7 @@ module.exports = {
   getProperties,
   getProperty,
   getConfigProperty,
+  getConfigProperties,
   insertProperty,
   findAlbums,
   findAlbum,
