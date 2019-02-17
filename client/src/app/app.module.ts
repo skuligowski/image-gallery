@@ -18,11 +18,12 @@ import { AlbumsResolver } from './albums.resolver';
 import { SpinnerComponent } from './common/spinner/spinner.component';
 import { SplashService } from './common/splash/splash.service';
 import { CurrentImagePipe } from './album/image-preview/current-image.pipe';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './core/auth/auth.service';
 import { AuthGuard } from './core/auth/auth.guard';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthHttpInterceptor } from './common/http/auth-http.interceptor';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { AppRoutingModule } from './app-routing.module';
     AlbumsService,
     AlbumSelectorService,
     AuthService,
-    SplashService ],
+    SplashService,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true}],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

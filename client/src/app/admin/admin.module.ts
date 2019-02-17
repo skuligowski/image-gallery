@@ -5,7 +5,7 @@ import { AlbumCreateComponent } from './album-create/album-create.component';
 import { AlbumDetailsComponent } from './album-details/album-details.component';
 import { LibraryUploadComponent } from './library-manager/library-upload/library-upload.component';
 import { EnterDirective } from '../common/utils/enter.directive';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
@@ -35,6 +35,7 @@ import { UsersManagerComponent } from './users-manager/users-manager.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SettingsService } from './services/settings.service';
 import { LibraryDirValidatorDirective } from './settings/library-dir-validator.directive';
+import { AuthHttpInterceptor } from '../common/http/auth-http.interceptor';
 
 
 @NgModule({
@@ -79,6 +80,7 @@ import { LibraryDirValidatorDirective } from './settings/library-dir-validator.d
     ConfirmationService,
     UsersService,
     SettingsService,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true}
   ]
 })
 export class AdminModule { }
