@@ -23,7 +23,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from './core/auth/auth.service';
 import { AuthGuard } from './core/auth/auth.guard';
 import { AppRoutingModule } from './app-routing.module';
-import { AuthHttpInterceptor } from './common/http/auth-http.interceptor';
+import { AuthHttpInterceptor } from './common/utils/auth-http.interceptor';
 
 
 @NgModule({
