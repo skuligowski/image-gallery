@@ -1,7 +1,6 @@
 "use strict";
 const path = require('path');
 const config = require('./config');
-const serveStatic = require('serve-static');
 const Promise = require('bluebird');
 const fs = require('fs');
 const readDir = Promise.promisify(fs.readdir, {context: fs});
@@ -93,10 +92,3 @@ exports.getFiles = getFiles;
 exports.createDirectory = createDirectory;
 exports.getImageDetails = getImageDetails;
 exports.addFile = addFile;
-exports.initialize = app => {
-  return Promise.resolve()
-    .then(() => {
-      console.log(`Library dir: ${config.libraryDir}`);
-      app.use('/library', serveStatic(config.libraryDir, { fallthrough: false }));
-    });
-};

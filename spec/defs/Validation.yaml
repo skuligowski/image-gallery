@@ -1,0 +1,8 @@
+title: Validation
+type: object
+properties:
+  valid:
+    type: boolean
+    description: Validation result
+required:
+  - valid

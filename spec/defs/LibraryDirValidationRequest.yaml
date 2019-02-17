@@ -1,0 +1,7 @@
+title: LibraryDirValidationRequest
+type: object
+properties:
+  libraryDir:
+    type: string
+required:
+  - libraryDir

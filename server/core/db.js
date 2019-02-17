@@ -8,6 +8,7 @@ db.albums = new DataStore({ filename: '../db/albums.db', autoload: true });
 
 const getConfigProperty = Promise.promisify(db.config.findOne, {context: db.config});
 const getConfigProperties = Promise.promisify(db.config.find, {context: db.config});
+const updateConfigProperty = Promise.promisify(db.config.update, {context: db.config});
 const insertProperty = Promise.promisify(db.config.insert, {context: db.config});
 const getProperty = key => getConfigProperty({ key }).then(property => property ? property.value : undefined);
 const getProperties = (keys) => getConfigProperties( { key: { $in: keys }} );
@@ -27,6 +28,7 @@ module.exports = {
   getProperty,
   getConfigProperty,
   getConfigProperties,
+  updateConfigProperty,
   insertProperty,
   findAlbums,
   findAlbum,

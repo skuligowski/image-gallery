@@ -1,27 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import { SettingsService } from '../services/settings.service';
-import SettingsResponse = Definitions.SettingsResponse;
+import { tap } from 'rxjs/operators';
+import Settings = Definitions.Settings;
 
 @Component({
   selector: 'app-settings',
   templateUrl: 'settings.component.html'
 })
-export class SettingsComponent implements OnInit {
+export class SettingsComponent implements DoCheck {
 
-  settings: SettingsResponse = {authentication: false, libraryDir: ''};
+  settings: Settings = {authentication: false, libraryDir: ''};
+  settingsCopy: Settings = this.settings;
+  settingsChanged: boolean = false;
 
   constructor(private settingsService: SettingsService) {
     this.reloadSettings();
   }
 
-  ngOnInit() {
-  }
-
   reloadSettings(): void {
     this.settingsService.getSettings()
-      .subscribe(settings => {
-        this.settings = settings;
-        console.log(this.settings);
-      });
+      .pipe(tap(settings => this.setSettings(settings)))
+      .subscribe();
+  }
+
+  updateSettings(): void {
+    this.settingsService.modifySettings(this.settings)
+      .subscribe(() => this.setSettings(this.settings));
+  }
+
+  ngDoCheck(): void {
+    this.settingsChanged = this.compareChanges(this.settingsCopy, this.settings, ['authentication', 'libraryDir']);
+  }
+
+  private setSettings(settings: Settings): void {
+    this.settingsCopy = {...settings};
+    this.settings = settings;
+  }
+
+  private compareChanges(valueObject: any, srcObject: any, properties: string[]): boolean {
+    return !!properties.find(key => valueObject[key] !== srcObject[key]);
   }
 }

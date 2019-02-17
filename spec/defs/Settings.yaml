@@ -1,4 +1,4 @@
-title: SettingsResponse
+title: Settings
 type: object
 properties:
   authentication:
@@ -7,3 +7,6 @@ properties:
   libraryDir:
     type: string
     description: Library directory
+required:
+  - authentication
+  - libraryDir

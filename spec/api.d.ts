@@ -79,6 +79,9 @@ declare namespace Definitions {
      */
     export type ImagesRemovalRequest = string[];
     export type ImagesResponse = Image[];
+    export interface LibraryDirValidationRequest {
+        libraryDir: string;
+    }
     export interface LibraryFile {
         filename: string;
         path?: string;
@@ -95,15 +98,15 @@ declare namespace Definitions {
          */
         password: string;
     }
-    export interface SettingsResponse {
+    export interface Settings {
         /**
          * Defines if all user should authenticate before etner to gallery
          */
-        authentication?: boolean;
+        authentication: boolean;
         /**
          * Library directory
          */
-        libraryDir?: string;
+        libraryDir: string;
     }
     export interface User {
         /**
@@ -137,4 +140,10 @@ declare namespace Definitions {
         password: string;
     }
     export type UsersResponse = User[];
+    export interface Validation {
+        /**
+         * Validation result
+         */
+        valid: boolean;
+    }
 }

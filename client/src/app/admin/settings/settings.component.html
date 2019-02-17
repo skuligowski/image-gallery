@@ -1,6 +1,8 @@
 <app-header-navigation></app-header-navigation>
-<div class="admin-layout-container">
-  <nav></nav>
+<div class="admin-layout-container" ngForm #settingsForm="ngForm">
+  <nav>
+    <p-button class="action" label="Update settings" [disabled]="!settingsChanged || !settingsForm.valid" (click)="settingsChanged && settingsForm.valid && updateSettings()"></p-button>
+  </nav>
   <p-table [value]="[null]">
     <ng-template pTemplate="header">
       <tr>
@@ -15,7 +17,7 @@
           <p class="description">When switched on, a user is always redirected to login page before entering the gallery.</p>
         </td>
         <td>
-          <p-inputSwitch [(ngModel)]="settings.authentication"></p-inputSwitch>
+          <p-inputSwitch [(ngModel)]="settings.authentication" name="authenticationSwitch"></p-inputSwitch>
         </td>
       </tr>
       <tr>
@@ -23,13 +25,13 @@
           <span>Library directory</span>
           <p class="description">Library directory is an absolute path to directory that contains all image files.
             This is also a place where all uploaded images will be stored. After changing this property, existing
-            albums may not work property.
+            albums may not work properly.
           </p>
         </td>
         <td pEditableColumn>
           <p-cellEditor>
             <ng-template pTemplate="input">
-              <input pInputText type="text" [(ngModel)]="settings.libraryDir">
+              <input class="library-dir-input" pInputText type="text" [(ngModel)]="settings.libraryDir" appLibraryDirValidator name="libraryUrl">
             </ng-template>
             <ng-template pTemplate="output">
               {{settings.libraryDir}}

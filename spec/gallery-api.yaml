@@ -359,7 +359,51 @@ paths:
         200:
           description: settings returned
           schema:
-            $ref: defs/SettingsResponse.yaml
+            $ref: defs/Settings.yaml
+        401:
+          description: User unauthorized
+          schema:
+            type: string
+    patch:
+      x-authentication-required: true
+      x-admin-required: true
+      description: Applies new settings for gallery
+      tags:
+        - settings
+      operationId: modifySettings
+      parameters:
+        - name: Settings
+          in: body
+          description: Settings object
+          schema:
+            $ref: defs/Settings.yaml
+      responses:
+        200:
+          description: settings modified
+        401:
+          description: User unauthorized
+          schema:
+            type: string
+  /settings/library-dir/validation:
+    x-swagger-router-controller: settings.controller
+    post:
+      x-authentication-required: true
+      x-admin-required: true
+      description: Validates library directory
+      tags:
+        - settings
+      operationId: validateLibraryDir
+      parameters:
+        - name: LibraryDirValidationRequest
+          in: body
+          description: Settings object
+          schema:
+            $ref: defs/LibraryDirValidationRequest.yaml
+      responses:
+        200:
+          description: settings returned
+          schema:
+            $ref: defs/Validation.yaml
         401:
           description: User unauthorized
           schema:
@@ -383,12 +427,14 @@ definitions:
     $ref: defs/ImagesRemovalRequest.yaml
   LibraryFile:
     $ref: defs/LibraryFile.yaml
+  LibraryDirValidationRequest:
+    $ref: defs/LibraryDirValidationRequest.yaml
   FilesResponse:
     $ref: defs/LibraryFilesResponse.yaml
   Login:
     $ref: defs/Login.yaml
-  SettingsResponse:
-    $ref: defs/SettingsResponse.yaml
+  Settings:
+    $ref: defs/Settings.yaml
   User:
     $ref: defs/User.yaml
   UsersResponse:
@@ -397,3 +443,5 @@ definitions:
     $ref: defs/UserCreateRequest.yaml
   UserPasswordChangeRequest:
     $ref: defs/UserPasswordChangeRequest.yaml
+  Validation:
+    $ref: defs/Validation.yaml

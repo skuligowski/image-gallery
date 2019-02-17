@@ -34,6 +34,7 @@ import { HeaderNavigationComponent } from './header-navigation.component';
 import { UsersManagerComponent } from './users-manager/users-manager.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SettingsService } from './services/settings.service';
+import { LibraryDirValidatorDirective } from './settings/library-dir-validator.directive';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { SettingsService } from './services/settings.service';
 
     SizePipe,
     SamePasswordDirective,
+    LibraryDirValidatorDirective,
   ],
   imports: [
     CommonModule,
