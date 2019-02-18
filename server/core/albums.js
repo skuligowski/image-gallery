@@ -7,7 +7,7 @@ function createAlbum({name, permalink, tree}) {
     name: name,
     permalink: permalink,
     tree: tree,
-    lastModified: '2018-07-01T20:23:00.412Z',
+    lastModified: new Date().toISOString(),
     images: []
   });
 }
