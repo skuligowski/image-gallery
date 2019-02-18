@@ -5,7 +5,7 @@ const library = require('../core/library');
 
 function getAlbums(req, res) {
   db.findAlbums({}).map(album => ({
-    id: album.id,
+    id: album._id,
     permalink: album.permalink,
     name: album.name,
     tree: album.tree,
@@ -66,8 +66,8 @@ function removeAlbum(req, res) {
 }
 
 function getImages(req, res) {
-  const id = req.swagger.params.id.value;
-  db.findAlbum({ id })
+  const _id = req.swagger.params.id.value;
+  db.findAlbum({ _id })
     .then(album => {
       if (album) {
         res.send(album.images);

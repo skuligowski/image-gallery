@@ -8,7 +8,6 @@ const session = require('express-session');
 const compression = require('compression');
 const initialize = require('./core/initialize');
 const auth = require('./core/auth');
-const library = require('./core/library');
 const libraryStatics = require('./core/library-statics');
 const config = require('./core/config');
 const authMiddleware = require('./lib/auth-middleware');

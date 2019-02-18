@@ -4,7 +4,6 @@ const Promise = require('bluebird');
 
 function createAlbum({name, permalink, tree}) {
   return db.insertAlbum({
-    id: `${new Date().getTime()}`,
     name: name,
     permalink: permalink,
     tree: tree,
@@ -14,13 +13,13 @@ function createAlbum({name, permalink, tree}) {
 }
 
 function updateAlbum(id, {name, permalink, tree}) {
-  return db.findAlbum({ id })
+  return db.findAlbum({ _id: id })
     .then(album => db.updateAlbum({_id: album._id},
       {...album, name, permalink, tree}));
 }
 
 function addImages(id, paths) {
-  return db.findAlbum({ id })
+  return db.findAlbum({ _id: id })
     .then(album => Promise.map(paths, path => library.getImageDetails(path), { concurrency: 5 })
       .map(imageDetails => ({
         filename: imageDetails.filename,
@@ -41,7 +40,7 @@ function addImages(id, paths) {
 }
 
 function removeImages(id, urls) {
-  return db.findAlbum({ id })
+  return db.findAlbum({ _id: id })
     .then(album => {
       const imagesToRemove = urls.reduce((map, imageUrl) => { map[imageUrl] = true; return map}, {});
       const images = album.images.reduce((newList, image) => {
@@ -55,7 +54,7 @@ function removeImages(id, urls) {
 }
 
 function removeAlbum(id) {
-  return db.removeAlbum({ id });
+  return db.removeAlbum({ _id: id });
 }
 
 module.exports = {
