@@ -18,6 +18,6 @@ export class ConfigService {
         .pipe(
           tap(config => {
             this.galleryName = config.galleryName;
-          }));
+          })));
   }
 }
