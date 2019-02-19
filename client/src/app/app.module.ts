@@ -24,7 +24,8 @@ import { AuthService } from './core/auth/auth.service';
 import { AuthGuard } from './core/auth/auth.guard';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthHttpInterceptor } from './common/utils/auth-http.interceptor';
-
+import { ConfigGuard } from './core/config/config.guard';
+import { ConfigService } from './core/config/config.service';
 
 @NgModule({
   declarations: [
@@ -50,11 +51,13 @@ import { AuthHttpInterceptor } from './common/utils/auth-http.interceptor';
   ],
   providers: [
     AuthGuard,
+    ConfigGuard,
     AlbumsResolver,
     AlbumResolver,
     AlbumsService,
     AlbumSelectorService,
     AuthService,
+    ConfigService,
     SplashService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true}],
   bootstrap: [ AppComponent ]

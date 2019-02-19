@@ -26,11 +26,11 @@ initialize()
         readFile(`${config.libraryDir}${album.src}/photos.json`)
           .then(photos => JSON.parse(photos))
           .then(photos => {
-            const a = {
+            const fileList = photos.map(photo => `${album.src}/${photo.file}`.substring(1));
+            return {
               lastModified: new Date(photos.sort((a, b) => a.ctime < b.ctime ? 1 : -1)[0].ctime).toISOString(),
-              list: photos.map(photo => `${album.src}/${photo.file}`.substring(1))
+              list: fileList
             }
-            return a;
           })
           .then(photos => {
             return albums.addImages(doc._id, photos.list)

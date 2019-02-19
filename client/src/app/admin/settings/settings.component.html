@@ -13,6 +13,23 @@
     <ng-template pTemplate="body">
       <tr>
         <td>
+          <span>Gallery name</span>
+          <p class="description">This name is visible on the main page.</p>
+        </td>
+        <td pEditableColumn>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input class="" pInputText type="text" [(ngModel)]="settings.galleryName" name="galleryName">
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{settings.galleryName || 'Please click to set name...'}}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
           <span>Authentication</span>
           <p class="description">When switched on, a user is always redirected to login page before entering the gallery.</p>
         </td>
@@ -20,6 +37,7 @@
           <p-inputSwitch [(ngModel)]="settings.authentication" name="authenticationSwitch"></p-inputSwitch>
         </td>
       </tr>
+
       <tr>
         <td>
           <span>Library directory</span>

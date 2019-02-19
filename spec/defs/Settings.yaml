@@ -1,6 +1,9 @@
 title: Settings
 type: object
 properties:
+  galleryName:
+    type: string
+    description: Main page title, the name for the gallery
   authentication:
     type: boolean
     description: Defines if all user should authenticate before etner to gallery
@@ -8,5 +11,6 @@ properties:
     type: string
     description: Library directory
 required:
+  - galleryName
   - authentication
   - libraryDir

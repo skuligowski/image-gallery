@@ -11,6 +11,18 @@ produces:
 - application/json
 - text/plain
 paths:
+  /config:
+    x-swagger-router-controller: config.controller
+    get:
+      description: Return base configuration for gallery
+      tags:
+        - gallery
+      operationId: getConfig
+      responses:
+        200:
+          description: offering created
+          schema:
+            $ref: defs/Config.yaml
   /albums:
     x-swagger-router-controller: albums.controller
     get:
@@ -44,53 +56,6 @@ paths:
       responses:
         201:
           description: album created
-  /library/files:
-    x-swagger-router-controller: library.controller
-    get:
-      x-authentication-required: true
-      x-admin-required: true
-      description: Returns files from the library relative to given node
-      tags:
-      - library
-      operationId: getFiles
-      parameters:
-      - in: query
-        name: parent
-        type: string
-      responses:
-        200:
-          description: Files
-          schema:
-            $ref: defs/LibraryFilesResponse.yaml
-        401:
-          description: User unauthorized
-          schema:
-            type: string
-  /library/directories:
-    x-swagger-router-controller: library.controller
-    post:
-      x-authentication-required: true
-      x-admin-required: true
-      description: Returns files from the library relative to given node
-      tags:
-      - library
-      operationId: createDirectory
-      parameters:
-      - in: query
-        name: parent
-        type: string
-      - name: AlbumCreateRequest
-        in: body
-        description: Album create request
-        schema:
-          $ref: defs/DirectoryCreateRequest.yaml
-      responses:
-        201:
-          description: Directory created
-        401:
-          description: User unauthorized
-          schema:
-            type: string
   /albums/{id}:
     x-swagger-router-controller: albums.controller
     delete:
@@ -201,6 +166,53 @@ paths:
           description: Action successfull
         404:
           description: An album with given id was not found
+  /library/files:
+    x-swagger-router-controller: library.controller
+    get:
+      x-authentication-required: true
+      x-admin-required: true
+      description: Returns files from the library relative to given node
+      tags:
+        - library
+      operationId: getFiles
+      parameters:
+        - in: query
+          name: parent
+          type: string
+      responses:
+        200:
+          description: Files
+          schema:
+            $ref: defs/LibraryFilesResponse.yaml
+        401:
+          description: User unauthorized
+          schema:
+            type: string
+  /library/directories:
+    x-swagger-router-controller: library.controller
+    post:
+      x-authentication-required: true
+      x-admin-required: true
+      description: Returns files from the library relative to given node
+      tags:
+        - library
+      operationId: createDirectory
+      parameters:
+        - in: query
+          name: parent
+          type: string
+        - name: AlbumCreateRequest
+          in: body
+          description: Album create request
+          schema:
+            $ref: defs/DirectoryCreateRequest.yaml
+      responses:
+        201:
+          description: Directory created
+        401:
+          description: User unauthorized
+          schema:
+            type: string
   /login:
     x-swagger-router-controller: auth.controller
     post:
@@ -417,6 +429,8 @@ definitions:
     $ref: defs/Image.yaml
   AlbumsResponse:
     $ref: defs/AlbumsResponse.yaml
+  Config:
+    $ref: defs/Config.yaml
   DirectoryCreateRequest:
     $ref: defs/DirectoryCreateRequest.yaml
   ImagesResponse:

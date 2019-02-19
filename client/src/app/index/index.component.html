@@ -1,6 +1,6 @@
 <div class="layout-container">
   <header class="layout-header">
-    <div class="title"><span>Photo Gallery</span></div>
+    <div class="title"><span>{{config.galleryName}}</span></div>
     <ul class="navigation">
       <li *ngIf="albumsCount"><a (click)="chooseAlbum()"><i class="icon-albums"></i><span class="label">Albums</span></a></li>
       <li *ngIf="authService.isUserAdmin()"><a (click)="navigateToAdmin()"><i class="icon-albums"></i><span class="label">Admin</span></a></li>

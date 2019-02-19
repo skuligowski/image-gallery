@@ -9,7 +9,7 @@ import Settings = Definitions.Settings;
 })
 export class SettingsComponent implements DoCheck {
 
-  settings: Settings = {authentication: false, libraryDir: ''};
+  settings: Settings = {galleryName: '', authentication: false, libraryDir: ''};
   settingsCopy: Settings = this.settings;
   settingsChanged: boolean = false;
 
@@ -29,7 +29,7 @@ export class SettingsComponent implements DoCheck {
   }
 
   ngDoCheck(): void {
-    this.settingsChanged = this.compareChanges(this.settingsCopy, this.settings, ['authentication', 'libraryDir']);
+    this.settingsChanged = this.compareChanges(this.settingsCopy, this.settings, ['galleryName', 'authentication', 'libraryDir']);
   }
 
   private setSettings(settings: Settings): void {

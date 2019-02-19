@@ -8,13 +8,14 @@ import { AlbumComponent } from './album/album.component';
 import { AlbumResolver } from './album.resolver';
 import { IndexComponent } from './index/index.component';
 import { NgModule } from '@angular/core';
+import { ConfigGuard } from './core/config/config.guard';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'album/select',
     component: AlbumSelectorModalComponent,
-    canActivate: [ AuthGuard ],
+    canActivate: [ AuthGuard, ConfigGuard ],
     resolve: { albums: AlbumsResolver },
     outlet: 'modal'
   },
@@ -22,8 +23,8 @@ const appRoutes: Routes = [
     path: 'admin',
     loadChildren: 'app/admin/admin.module#AdminModule'
   },
-  { matcher: matchAlbum, component: AlbumComponent, canActivate: [ AuthGuard ], resolve: { album: AlbumResolver } },
-  { path: '', component: IndexComponent, canActivate: [ AuthGuard ], resolve: { albums: AlbumsResolver }},
+  { matcher: matchAlbum, component: AlbumComponent, canActivate: [ AuthGuard, ConfigGuard ], resolve: { album: AlbumResolver } },
+  { path: '', component: IndexComponent, canActivate: [ AuthGuard, ConfigGuard ], resolve: { albums: AlbumsResolver }},
   { path: '**', redirectTo: ''}
 ];
 

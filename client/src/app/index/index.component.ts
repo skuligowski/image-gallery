@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Album = Definitions.Album;
 import { AuthService } from '../core/auth/auth.service';
+import { ConfigService } from '../core/config/config.service';
 
 @Component({
   selector: 'app-index',
@@ -12,7 +13,10 @@ export class IndexComponent implements OnInit {
   lastModifiedAlbums: Album[] = [];
   albumsCount = 0;
 
-  constructor(private router: Router, private route: ActivatedRoute, public authService: AuthService) {
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              public authService: AuthService,
+              public config: ConfigService) {
     route.data.subscribe(data => {
       const albums = data['albums'] as Album[];
       this.lastModifiedAlbums = albums.sort((albumA, albumB) => albumB.lastModified.localeCompare(albumA.lastModified));

@@ -41,6 +41,12 @@ declare namespace Definitions {
         tree: string[];
     }
     export type AlbumsResponse = Album[];
+    export interface Config {
+        /**
+         * Main page title, the name for the gallery
+         */
+        galleryName: string;
+    }
     export interface DirectoryCreateRequest {
         /**
          * directory name
@@ -99,6 +105,10 @@ declare namespace Definitions {
         password: string;
     }
     export interface Settings {
+        /**
+         * Main page title, the name for the gallery
+         */
+        galleryName: string;
         /**
          * Defines if all user should authenticate before etner to gallery
          */
