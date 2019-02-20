@@ -5,9 +5,16 @@ const stat = Promise.promisify(fs.stat, {context: fs});
 
 class Config {
   initialize() {
-    return db.getProperties(['galleryName', 'libraryDir', 'authentication'])
+    this.meta = [];
+    return db.getConfigProperties({})
       .reduce((config, property) => {
         config[property.key] = property.value;
+        this.meta.push({
+          name: property.name,
+          key: property.key,
+          type: property.type,
+          description: property.description,
+        });
         return config;
       }, {})
       .then(configParams => {
@@ -18,18 +25,19 @@ class Config {
   }
 
   update(config) {
-    Promise.map(Object.keys(config), key =>
-      db.getConfigProperty({key})
+    Promise.map(Object.keys(config).filter(key => key !== 'meta'), key => {
+      return db.getConfigProperty({key})
         .then(property => {
-          if (this['update_' + key]) {
-            return this['update_' + key](property.value, config[key]).then(() => property);
-          } else
-            return Promise.resolve(property);
+            if (this['update_' + key]) {
+              return this['update_' + key](property.value, config[key]).then(() => property);
+            } else
+              return Promise.resolve(property);
           }
         )
         .then(property => db.updateConfigProperty({'_id': property._id}, {...property, value: config[key]}))
-        .then(() => this.initialize())
-        .then(() => require('./library-statics').refresh()));
+    })
+      .then(() => this.initialize())
+      .then(() => require('./library-statics').refresh());
   }
 
   update_libraryDir(oldLibraryDir, newLibraryDir) {

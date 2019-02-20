@@ -117,6 +117,22 @@ declare namespace Definitions {
          * Library directory
          */
         libraryDir: string;
+        meta?: SettingsParamMeta[];
+    }
+    export interface SettingsParamMeta {
+        /**
+         * Visible name of the field (eg. Gallery name)
+         */
+        name: string;
+        /**
+         * field name of the parameter (eg. galleryName)
+         */
+        key: string;
+        /**
+         * description of the parameter
+         */
+        description?: string;
+        type: "string" | "number" | "boolean";
     }
     export interface User {
         /**

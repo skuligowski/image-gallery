@@ -11,51 +11,28 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body">
-      <tr>
+      <tr *ngFor="let param of settings.meta">
         <td>
-          <span>Gallery name</span>
-          <p class="description">This name is visible on the main page.</p>
+          <span>{{param.name}}</span>
+          <p class="description">{{param.description}}</p>
         </td>
-        <td pEditableColumn>
-          <p-cellEditor>
-            <ng-template pTemplate="input">
-              <input class="" pInputText type="text" [(ngModel)]="settings.galleryName" name="galleryName">
-            </ng-template>
-            <ng-template pTemplate="output">
-              {{settings.galleryName || 'Please click to set name...'}}
-            </ng-template>
-          </p-cellEditor>
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          <span>Authentication</span>
-          <p class="description">When switched on, a user is always redirected to login page before entering the gallery.</p>
-        </td>
-        <td>
-          <p-inputSwitch [(ngModel)]="settings.authentication" name="authenticationSwitch"></p-inputSwitch>
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          <span>Library directory</span>
-          <p class="description">Library directory is an absolute path to directory that contains all image files.
-            This is also a place where all uploaded images will be stored. After changing this property, existing
-            albums may not work properly.
-          </p>
-        </td>
-        <td pEditableColumn>
-          <p-cellEditor>
-            <ng-template pTemplate="input">
-              <input class="library-dir-input" pInputText type="text" [(ngModel)]="settings.libraryDir" appLibraryDirValidator name="libraryUrl">
-            </ng-template>
-            <ng-template pTemplate="output">
-              {{settings.libraryDir}}
-            </ng-template>
-          </p-cellEditor>
-        </td>
+        <ng-container *ngIf="param.type === 'boolean'">
+          <td>
+            <p-inputSwitch [(ngModel)]="settings[param.key]" name="{{param.key}}"></p-inputSwitch>
+          </td>
+        </ng-container>
+        <ng-container *ngIf="param.type === 'string'">
+          <td pEditableColumn>
+            <p-cellEditor>
+              <ng-template pTemplate="input">
+                <input class="" pInputText type="text" [(ngModel)]="settings[param.key]" name="{{param.key}}">
+              </ng-template>
+              <ng-template pTemplate="output">
+                {{settings[param.key] || 'Click to set value...'}}
+              </ng-template>
+            </p-cellEditor>
+          </td>
+        </ng-container>
       </tr>
     </ng-template>
   </p-table>

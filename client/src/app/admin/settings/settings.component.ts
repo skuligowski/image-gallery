@@ -9,7 +9,7 @@ import Settings = Definitions.Settings;
 })
 export class SettingsComponent implements DoCheck {
 
-  settings: Settings = {galleryName: '', authentication: false, libraryDir: ''};
+  settings: Settings = {galleryName: '', authentication: false, libraryDir: '', meta: []};
   settingsCopy: Settings = this.settings;
   settingsChanged: boolean = false;
 
