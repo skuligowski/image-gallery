@@ -5,16 +5,9 @@ const stat = Promise.promisify(fs.stat, {context: fs});
 
 class Config {
   initialize() {
-    this.meta = [];
     return db.getConfigProperties({})
       .reduce((config, property) => {
         config[property.key] = property.value;
-        this.meta.push({
-          name: property.name,
-          key: property.key,
-          type: property.type,
-          description: property.description,
-        });
         return config;
       }, {})
       .then(configParams => {

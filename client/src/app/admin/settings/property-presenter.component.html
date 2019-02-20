@@ -1,0 +1,22 @@
+<td>
+  <span>{{name}}</span>
+  <p class="description">{{description}}</p>
+</td>
+<ng-container *ngIf="type === 'boolean'">
+  <td>
+    <p-inputSwitch [ngModel]="value" (ngModelChange)="valueChange.emit($event)" name="{{key}}"></p-inputSwitch>
+  </td>
+</ng-container>
+<ng-container *ngIf="type === 'string'">
+  <td pEditableColumn>
+    <p-cellEditor>
+      <ng-template pTemplate="input">
+        <input pInputText type="text" [ngModel]="value" (ngModelChange)="valueChange.emit($event)" name="{{key}}">
+      </ng-template>
+      <ng-template pTemplate="output">
+        {{value || 'Click to set value...'}}
+      </ng-template>
+    </p-cellEditor>
+  </td>
+</ng-container>
+

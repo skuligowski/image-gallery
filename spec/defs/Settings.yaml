@@ -10,10 +10,6 @@ properties:
   libraryDir:
     type: string
     description: Library directory
-  meta:
-    type: array
-    items:
-      $ref: SettingsParamMeta.yaml
 required:
   - galleryName
   - authentication

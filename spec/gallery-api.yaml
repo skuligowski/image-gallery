@@ -449,8 +449,6 @@ definitions:
     $ref: defs/Login.yaml
   Settings:
     $ref: defs/Settings.yaml
-  SettingsParamMeta:
-    $ref: defs/SettingsParamMeta.yaml
   User:
     $ref: defs/User.yaml
   UsersResponse:

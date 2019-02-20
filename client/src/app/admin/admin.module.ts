@@ -36,6 +36,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { SettingsService } from './services/settings.service';
 import { LibraryDirValidatorDirective } from './settings/library-dir-validator.directive';
 import { AuthHttpInterceptor } from '../common/utils/auth-http.interceptor';
+import { PropertyPresenterComponent } from './settings/property-presenter.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { AuthHttpInterceptor } from '../common/utils/auth-http.interceptor';
     UsersManagerComponent,
     UserCreateComponent,
     SettingsComponent,
+    PropertyPresenterComponent,
 
     SizePipe,
     SamePasswordDirective,
