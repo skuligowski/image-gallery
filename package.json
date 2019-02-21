@@ -1,6 +1,6 @@
 {
   "name": "image-gallery",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "watch-client": "cd client && ng serve --proxy-config proxy.conf.json",
     "watch-server": "cd server && npm run watch",
-    "watch": "concurrently --kill-others --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgMagenta.bold\" --handle-input \"npm run watch-server\" \"npm run watch-client\"" ,
+    "watch": "concurrently --kill-others --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgMagenta.bold\" --handle-input \"npm run watch-server\" \"npm run watch-client\"",
     "e2e": "ng e2e",
     "release": "release-it",
     "release:clean": "rimraf dist",
