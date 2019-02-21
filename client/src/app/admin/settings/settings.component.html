@@ -1,9 +1,9 @@
 <app-header-navigation></app-header-navigation>
-<div class="admin-layout-container" ngForm #settingsForm="ngForm">
+<div class="admin-layout-container" [formGroup]="settingsForm">
   <nav>
     <p-button class="action" label="Update settings" [disabled]="!settingsChanged || !settingsForm.valid" (click)="settingsChanged && settingsForm.valid && updateSettings()"></p-button>
   </nav>
-  <p-table [value]="[null]">
+  <p-table [value]="[null]" (onEditInit)="onEditInit($event)" (onEditComplete)="onEditComplete($event)">
     <ng-template pTemplate="header">
       <tr>
         <th style="width:30%">Property</th>
@@ -11,15 +11,15 @@
       </tr>
     </ng-template>
     <ng-template pTemplate="body">
-      <tr app-property-presenter key="authentication" [(value)]="settings['authentication']"
+      <tr app-property-presenter key="authentication" [(value)]="settings['authentication']" [formGroup]="settingsForm"
         name="Authentication" type="boolean"
         description="When switched on, a user is always redirected to login page before entering the gallery."
       ></tr>
-      <tr app-property-presenter key="galleryName" [(value)]="settings['galleryName']"
+      <tr app-property-presenter key="galleryName" [(value)]="settings['galleryName']" [formGroup]="settingsForm"
         name="Gallery name" type="string"
         description="This name is visible on the main page."
       ></tr>
-      <tr app-property-presenter key="libraryDir" [(value)]="settings['libraryDir']"
+      <tr app-property-presenter key="libraryDir" [(value)]="settings['libraryDir']" [formGroup]="settingsForm"
         name="Library directory" type="string"
         description="Library directory is an absolute path to directory that contains all image files.
         This is also a place where all uploaded images will be stored. After changing this property, existing

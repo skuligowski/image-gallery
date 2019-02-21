@@ -6,7 +6,7 @@ import { AlbumDetailsComponent } from './album-details/album-details.component';
 import { LibraryUploadComponent } from './library-manager/library-upload/library-upload.component';
 import { EnterDirective } from '../common/utils/enter.directive';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import {
@@ -34,7 +34,7 @@ import { HeaderNavigationComponent } from './header-navigation.component';
 import { UsersManagerComponent } from './users-manager/users-manager.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SettingsService } from './services/settings.service';
-import { LibraryDirValidatorDirective } from './settings/library-dir-validator.directive';
+import { SettingsValidatorsService } from './settings/settings-validators.service';
 import { AuthHttpInterceptor } from '../common/utils/auth-http.interceptor';
 import { PropertyPresenterComponent } from './settings/property-presenter.component';
 
@@ -60,12 +60,12 @@ import { PropertyPresenterComponent } from './settings/property-presenter.compon
 
     SizePipe,
     SamePasswordDirective,
-    LibraryDirValidatorDirective,
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     TableModule,
     ButtonModule,
     DialogModule,
@@ -82,6 +82,7 @@ import { PropertyPresenterComponent } from './settings/property-presenter.compon
     ConfirmationService,
     UsersService,
     SettingsService,
+    SettingsValidatorsService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true}
   ]
 })

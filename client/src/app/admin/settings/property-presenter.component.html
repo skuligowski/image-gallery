@@ -8,10 +8,10 @@
   </td>
 </ng-container>
 <ng-container *ngIf="type === 'string'">
-  <td pEditableColumn>
+  <td pEditableColumn [pEditableColumnField]="key">
     <p-cellEditor>
       <ng-template pTemplate="input">
-        <input pInputText type="text" [ngModel]="value" (ngModelChange)="valueChange.emit($event)" name="{{key}}">
+        <input pInputText type="text" name="{{key}}" [formControl]="valueFormControl">
       </ng-template>
       <ng-template pTemplate="output">
         {{value || 'Click to set value...'}}
