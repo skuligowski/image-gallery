@@ -25,6 +25,10 @@
         This is also a place where all uploaded images will be stored. After changing this property, existing
         albums may not work properly."
       ></tr>
+      <tr app-property-presenter key="dashboardTilesCount" [(value)]="settings['dashboardTilesCount']" [formGroup]="settingsForm"
+          name="Dashboard tiles count" type="number"
+          description="Maximum number of tiles (eg. last modified) presented on dashboard screen."
+      ></tr>
     </ng-template>
   </p-table>
 </div>

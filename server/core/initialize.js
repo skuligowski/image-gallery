@@ -4,6 +4,7 @@ const db = require('./db');
 function initialize() {
   return Promise.resolve()
     .then(() => insertConfigProperty({key: 'galleryName', value: 'Photo Gallery'}))
+    .then(() => insertConfigProperty({key: 'dashboardTilesCount', value: 6}))
     .then(() => insertConfigProperty({key: 'libraryDir', value: 'resources/library'}))
     .then(() => insertConfigProperty({key: 'authentication', value: false}))
     .then(() => users.addUser( 'admin', '1234', true));

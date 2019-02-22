@@ -19,4 +19,15 @@
     </p-cellEditor>
   </td>
 </ng-container>
-
+<ng-container *ngIf="type === 'number'">
+  <td pEditableColumn [pEditableColumnField]="key">
+    <p-cellEditor>
+      <ng-template pTemplate="input">
+        <input pInputText type="number" name="{{key}}" [formControl]="valueFormControl">
+      </ng-template>
+      <ng-template pTemplate="output">
+        {{value || 'Click to set value...'}}
+      </ng-template>
+    </p-cellEditor>
+  </td>
+</ng-container>

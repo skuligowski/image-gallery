@@ -9,6 +9,7 @@ import Config = Definitions.Config;
 export class ConfigService {
 
   galleryName: string;
+  dashboardTilesCount: number;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -18,6 +19,7 @@ export class ConfigService {
         .pipe(
           tap(config => {
             this.galleryName = config.galleryName;
+            this.dashboardTilesCount = config.dashboardTilesCount;
           })));
   }
 }

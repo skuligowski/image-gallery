@@ -4,5 +4,9 @@ properties:
   galleryName:
     type: string
     description: Main page title, the name for the gallery
+  dashboardTilesCount:
+    type: number
+    description: Maximum number of tiles return for dashboard
 required:
   - galleryName
+  - dashboardTilesCount

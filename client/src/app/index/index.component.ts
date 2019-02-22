@@ -17,9 +17,11 @@ export class IndexComponent implements OnInit {
               private route: ActivatedRoute,
               public authService: AuthService,
               public config: ConfigService) {
+
     route.data.subscribe(data => {
       const albums = data['albums'] as Album[];
-      this.lastModifiedAlbums = albums.sort((albumA, albumB) => albumB.lastModified.localeCompare(albumA.lastModified));
+      this.lastModifiedAlbums = albums.sort((albumA, albumB) => albumB.lastModified.localeCompare(albumA.lastModified))
+        .slice(0, config.dashboardTilesCount);
       this.albumsCount = albums.length;
     });
   }

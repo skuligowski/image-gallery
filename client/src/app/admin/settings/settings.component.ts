@@ -11,7 +11,7 @@ import { SettingsValidators, SettingsValidatorsService } from './settings-valida
 })
 export class SettingsComponent implements DoCheck {
 
-  settings: Settings = {galleryName: '', authentication: false, libraryDir: ''};
+  settings: Settings = {galleryName: '', authentication: false, libraryDir: '', dashboardTilesCount: 0};
   settingsCopy: Settings = this.settings;
   settingsChanged: boolean = false;
   settingsForm: FormGroup = new FormGroup({});
@@ -33,7 +33,8 @@ export class SettingsComponent implements DoCheck {
   }
 
   ngDoCheck(): void {
-    this.settingsChanged = this.compareChanges(this.settingsCopy, this.settings, ['galleryName', 'authentication', 'libraryDir']);
+    this.settingsChanged = this.compareChanges(this.settingsCopy, this.settings,
+      ['galleryName', 'authentication', 'libraryDir', 'dashboardTilesCount']);
   }
 
   onEditInit(event: any): void {

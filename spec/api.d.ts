@@ -46,6 +46,10 @@ declare namespace Definitions {
          * Main page title, the name for the gallery
          */
         galleryName: string;
+        /**
+         * Maximum number of tiles return for dashboard
+         */
+        dashboardTilesCount: number;
     }
     export interface DirectoryCreateRequest {
         /**
@@ -117,6 +121,10 @@ declare namespace Definitions {
          * Library directory
          */
         libraryDir: string;
+        /**
+         * Maximum number of tiles return for dashboard
+         */
+        dashboardTilesCount: number;
     }
     export interface User {
         /**

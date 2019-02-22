@@ -14,6 +14,7 @@ class Config {
         this.authentication = configParams.authentication || false;
         this.libraryDir = normalizeLibraryDir(configParams.libraryDir);
         this.galleryName = configParams.galleryName;
+        this.dashboardTilesCount = configParams.dashboardTilesCount;
       });
   }
 
@@ -41,6 +42,13 @@ class Config {
         }
         return Promise.resolve();
       });
+  }
+
+  update_dashboardTilesCount(oldCount, newCount) {
+    if (typeof newCount !== 'number') {
+      throw new Error('Invalid dashboard count');
+    }
+    return Promise.resolve();
   }
 
   validateLibraryDir(libraryDir) {

@@ -10,7 +10,11 @@ properties:
   libraryDir:
     type: string
     description: Library directory
+  dashboardTilesCount:
+    type: number
+    description: Maximum number of tiles return for dashboard
 required:
   - galleryName
   - authentication
   - libraryDir
+  - dashboardTilesCount

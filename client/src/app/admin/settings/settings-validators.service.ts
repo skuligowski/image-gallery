@@ -25,6 +25,12 @@ export class SettingsValidatorsService {
     }
   }
 
+  dashboardTilesCount(): SettingsValidators {
+    return {
+      validators: [Validators.required, Validators.pattern('[0-9]+')]
+    }
+  }
+
   get(key: string): SettingsValidators {
     if (this[key]) {
       return this[key]();
