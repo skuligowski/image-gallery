@@ -1,7 +1,7 @@
 <div class="image-frame">
   <div class="image-window">
     <img [@imageAnimation]="imageState" *ngFor="let image of currentAlbum.images | appCurrentImage:currentImage"
-         src="{{image.url}}" (load)="setImageLoaded()" />
+         src="/library{{image.url}}" (load)="setImageLoaded()" />
   </div>
 </div>
 <div class="navigation-layer">
@@ -13,4 +13,4 @@
   <div class="title">{{currentImage.title}}</div>
 </div>
 <!-- cash of already loaded images -->
-<img *ngFor="let imageUrl of loadedImageUrls" style="display: none" src="{{imageUrl}}"/>
+<img *ngFor="let imageUrl of loadedImageUrls" style="display: none" src="/library{{imageUrl}}"/>

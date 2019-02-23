@@ -37,6 +37,7 @@ import { SettingsService } from './services/settings.service';
 import { SettingsValidatorsService } from './settings/settings-validators.service';
 import { AuthHttpInterceptor } from '../common/utils/auth-http.interceptor';
 import { PropertyPresenterComponent } from './settings/property-presenter.component';
+import { ThumbnailsService } from './services/thumbnails.service';
 
 
 @NgModule({
@@ -83,6 +84,7 @@ import { PropertyPresenterComponent } from './settings/property-presenter.compon
     UsersService,
     SettingsService,
     SettingsValidatorsService,
+    ThumbnailsService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true}
   ]
 })

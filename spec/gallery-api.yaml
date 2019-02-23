@@ -166,6 +166,26 @@ paths:
           description: Action successfull
         404:
           description: An album with given id was not found
+  /thumbnails:
+    x-swagger-router-controller: thumbnails.controller
+    post:
+      x-authentication-required: true
+      x-admin-required: true
+      description: Creates, regenerates thumbnails for selected image urls or all if empty ids
+      tags:
+        - admin
+      operationId: createThumbnails
+      parameters:
+        - name: ThumbnailsCreateRequest
+          in: body
+          description: Thumbnails regeneration request
+          schema:
+            $ref: defs/ThumbnailsCreateRequest.yaml
+      responses:
+        201:
+          description: Action successfull
+        404:
+          description: An album with given id was not found
   /library/files:
     x-swagger-router-controller: library.controller
     get:
@@ -449,6 +469,8 @@ definitions:
     $ref: defs/Login.yaml
   Settings:
     $ref: defs/Settings.yaml
+  ThumbnailsCreateRequest:
+    $ref: defs/ThumbnailsCreateRequest.yaml
   User:
     $ref: defs/User.yaml
   UsersResponse:

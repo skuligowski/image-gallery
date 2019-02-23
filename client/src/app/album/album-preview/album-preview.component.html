@@ -10,7 +10,7 @@
   <app-image-grid>
     <app-image-grid-item *ngFor="let image of album.images;">
       <div class="image-wrapper" [style.padding-bottom.%]="image.height/image.width*100">
-        <img [routerLink]="[image.filename]" src="{{image.url}}">
+        <img [routerLink]="[image.filename]" src="/library{{image.url}}">
       </div>
     </app-image-grid-item>
   </app-image-grid>

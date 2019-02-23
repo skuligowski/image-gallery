@@ -5,6 +5,7 @@
     <p-button class="action" [disabled]="!selected.length" label="Delete images" (click)="selected.length && removeImages(selected)"></p-button>
     <p-button class="action" label="Modify album" (click)="albumModify.open(album);"></p-button>
     <p-button class="action" label="Delete album" (click)="removeAlbum(album.id)"></p-button>
+    <p-button class="action" label="Create thumbnails" (click)="createThumbnails()"></p-button>
   </nav>
   <p-table [value]="images" dataKey="url" [(selection)]="selected">
     <ng-template pTemplate="header">
@@ -23,7 +24,7 @@
           <p-tableCheckbox [value]="image"></p-tableCheckbox>
         </td>
         <td>
-          <img class="image-preview" [src]="image.url" />
+          <img class="image-preview" [src]="'/library' + image.url" />
         </td>
         <td>
           <ul class="data-list">

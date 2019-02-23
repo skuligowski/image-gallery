@@ -23,7 +23,7 @@ function addImages(id, paths) {
     .then(album => Promise.map(paths, path => library.getImageDetails(path), { concurrency: 5 })
       .map(imageDetails => ({
         filename: imageDetails.filename,
-        url: `library/${imageDetails.path}`,
+        url: imageDetails.path,
         width: imageDetails.width,
         height: imageDetails.height
       }))

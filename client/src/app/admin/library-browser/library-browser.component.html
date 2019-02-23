@@ -17,7 +17,7 @@
       </td>
       <ng-container *ngIf="!rowData.dir; else dirTemplate">
         <td style="width: 100px; text-align: center">
-          <img src="library/{{rowData.path}}" style="width: 50px;" />
+          <img src="/library{{rowData.path}}" style="width: 50px;" />
         </td>
         <td>{{rowData.filename}}</td>
         <td>{{rowData.size | size}}</td>

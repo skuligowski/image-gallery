@@ -126,6 +126,10 @@ declare namespace Definitions {
          */
         dashboardTilesCount: number;
     }
+    /**
+     * list of image urls for which thumbs should be create/regenerted
+     */
+    export type ThumbnailsCreateRequest = string[];
     export interface User {
         /**
          * Username

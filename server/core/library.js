@@ -7,9 +7,7 @@ const readDir = Promise.promisify(fs.readdir, {context: fs});
 const stat = Promise.promisify(fs.stat, {context: fs});
 const mkDir = Promise.promisify(fs.mkdir, {context: fs});
 const rename = Promise.promisify(fs.rename, {context: fs});
-const gm = require('gm').subClass({ imageMagick: true });
 const sizeOf = Promise.promisify(require('image-size'));
-Promise.promisifyAll(gm.prototype);
 
 const allowedExtensions = ['.jpg', '.jpeg', '.gif', '.png']
   .reduce((map, key) => { map[key] = true; return map;}, {});
@@ -22,7 +20,7 @@ function getFiles(parentDir) {
       .map(file => stat(path.join(absoluteDir, file)).then(stats => ({ name: file, stats })))
       .map(file => ({
         filename: file.name,
-        path: path.join(relativeDir, file.name),
+        path: path.join('/', relativeDir, file.name),
         size: file.stats.size,
         dir: file.stats.isDirectory()
       }))

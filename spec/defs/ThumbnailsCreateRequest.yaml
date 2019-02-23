@@ -1,0 +1,5 @@
+title: ThumbnailsCreateRequest
+type: array
+description: list of image urls for which thumbs should be create/regenerted
+items:
+  type: string

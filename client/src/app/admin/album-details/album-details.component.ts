@@ -7,6 +7,7 @@ import { AlbumsService } from '../../albums.service';
 import { ConfirmationService } from 'primeng/api';
 import { AlbumCreateEvent } from '../album-create/album-create.component';
 import { LibraryFilesSelectorComponent } from '../library-files-selector/library-files-selector.component';
+import { ThumbnailsService } from '../services/thumbnails.service';
 
 @Component({
   selector: 'app-album-details',
@@ -24,8 +25,10 @@ export class AlbumDetailsComponent {
 
   constructor(private route: ActivatedRoute,
               private albumsService: AlbumsService,
+              private thumbnailsService: ThumbnailsService,
               private router: Router,
               private confirmationService: ConfirmationService) {
+
     route.data.subscribe((data: any) => {
       this.album = data.album;
       this.albums = data.albums;
@@ -63,6 +66,13 @@ export class AlbumDetailsComponent {
           });
       }
     });
+  }
+
+  createThumbnails(): void {
+    this.thumbnailsService.createThumbnails(this.images.map(image => image.url))
+      .subscribe(() => {
+        this.selected = [];
+      });
   }
 
   navigateToAlbums(): void {

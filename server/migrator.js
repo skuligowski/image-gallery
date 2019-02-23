@@ -26,7 +26,7 @@ initialize()
         readFile(`${config.libraryDir}${album.src}/photos.json`)
           .then(photos => JSON.parse(photos))
           .then(photos => {
-            const fileList = photos.map(photo => `${album.src}/${photo.file}`.substring(1));
+            const fileList = photos.map(photo => `${album.src}/${photo.file}`);
             return {
               lastModified: new Date(photos.sort((a, b) => a.ctime < b.ctime ? 1 : -1)[0].ctime).toISOString(),
               list: fileList
