@@ -6,14 +6,27 @@ const db = require('./db');
 
 function create(imageUrls) {
   return Promise.map(imageUrls, imageUrl => {
-    db.findAlbums({'images.url': imageUrl})
-      .then(obj => {console.log(obj)});
-
-    const srcFile = path.join(config.libraryDir, imageUrl.replace(/^library/, ''));
-    const outFile = path.join(config.libraryDir, 'meta', path.parse(imageUrl).name + '.jpg');
-    return resize(srcFile, outFile);
-  }, {concurrency: 3}).then(all => {
-    console.log(all);
+    const srcFile = path.join(config.libraryDir, imageUrl);
+    const thumbUrl = path.join('/meta', path.parse(imageUrl).name + '.jpg');
+    const outFile = path.join(config.libraryDir, thumbUrl);
+    return resize(srcFile, outFile)
+      .then(() => ({imageUrl, thumbUrl}));
+  }, {concurrency: 5}).then(all => {
+    const thumbsMap = all.reduce((map, urls) => {
+      map[urls.imageUrl] = urls.thumbUrl;
+      return map;
+    }, {});
+    const affectedUrls = Object.keys(thumbsMap);
+    return db.findAlbums({'images.url': {$in: affectedUrls}})
+      .then(albums => Promise.all(albums.map(album => {
+        const $set = album.images.reduce(($set, image, index) => {
+          if (thumbsMap[image.url]) {
+            $set[`images.${index}.thumbUrl`] = thumbsMap[image.url];
+          }
+          return $set;
+        }, {});
+        return db.updateAlbum({ _id: album._id}, { $set });
+      })));
   });
 }
 
@@ -22,7 +35,6 @@ async function resize(srcImagePath, outImagePath) {
   image.resize(360, jimp.AUTO);
   image.quality(94);
   image.write(outImagePath);
-  return([srcImagePath, outImagePath])
 }
 
 module.exports = {

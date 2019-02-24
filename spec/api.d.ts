@@ -64,9 +64,13 @@ declare namespace Definitions {
          */
         filename: string;
         /**
-         * link to reach the image
+         * image url, relative to library context
          */
         url: string;
+        /**
+         * url for thumbnail of the image
+         */
+        thumbUrl?: string;
         /**
          * title describing the image
          */

@@ -68,10 +68,12 @@ export class AlbumDetailsComponent {
     });
   }
 
-  createThumbnails(): void {
-    this.thumbnailsService.createThumbnails(this.images.map(image => image.url))
+  createThumbnails(images: Image[]): void {
+    this.thumbnailsService.createThumbnails(images.map(image => image.url))
       .subscribe(() => {
         this.selected = [];
+        this.router.navigated = false;
+        this.router.navigate([this.router.url]);
       });
   }
 

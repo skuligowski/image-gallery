@@ -6,7 +6,10 @@ properties:
     description: image filename
   url:
     type: string
-    description: link to reach the image
+    description: image url, relative to library context
+  thumbUrl:
+    type: string
+    description: url for thumbnail of the image
   title:
     type: string
     description: title describing the image
