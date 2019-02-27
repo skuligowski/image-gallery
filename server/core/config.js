@@ -15,6 +15,9 @@ class Config {
         this.libraryDir = normalizeLibraryDir(configParams.libraryDir);
         this.galleryName = configParams.galleryName;
         this.dashboardTilesCount = configParams.dashboardTilesCount;
+        this.dashboardImageUrl = configParams.dashboardImageUrl;
+        this.thumbnailWidth = configParams.thumbnailWidth;
+        this.thumbnailQuality = configParams.thumbnailQuality;
       });
   }
 

@@ -13,8 +13,13 @@ properties:
   dashboardTilesCount:
     type: number
     description: Maximum number of tiles return for dashboard
-required:
-  - galleryName
-  - authentication
-  - libraryDir
-  - dashboardTilesCount
+  dashboardImageUrl:
+    type: string
+    description: "Welcome img presented on dashboard screen.
+                 If not set, the first image of last modified album is taken"
+  thumbnailWidth:
+    type: number
+    description: Width of generated thumbnail, in pixels
+  thumbnailQuality:
+    type: number
+    description: Quality of generated thumbnails, in percent

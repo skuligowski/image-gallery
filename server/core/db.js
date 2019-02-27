@@ -24,6 +24,7 @@ const removeUser = Promise.promisify(db.users.remove, {context: db.users});
 const updateUser = Promise.promisify(db.users.update, {context: db.users});
 
 module.exports = {
+  albums: db.albums,
   getProperties,
   getProperty,
   getConfigProperty,

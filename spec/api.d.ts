@@ -50,6 +50,10 @@ declare namespace Definitions {
          * Maximum number of tiles return for dashboard
          */
         dashboardTilesCount: number;
+        /**
+         * Image presented on dashboard. If not set, the first image of last modified album is presented
+         */
+        dashboardImageUrl?: string;
     }
     export interface DirectoryCreateRequest {
         /**
@@ -116,19 +120,31 @@ declare namespace Definitions {
         /**
          * Main page title, the name for the gallery
          */
-        galleryName: string;
+        galleryName?: string;
         /**
          * Defines if all user should authenticate before etner to gallery
          */
-        authentication: boolean;
+        authentication?: boolean;
         /**
          * Library directory
          */
-        libraryDir: string;
+        libraryDir?: string;
         /**
          * Maximum number of tiles return for dashboard
          */
-        dashboardTilesCount: number;
+        dashboardTilesCount?: number;
+        /**
+         * Welcome img presented on dashboard screen. If not set, the first image of last modified album is taken
+         */
+        dashboardImageUrl?: string;
+        /**
+         * Width of generated thumbnail, in pixels
+         */
+        thumbnailWidth?: number;
+        /**
+         * Quality of generated thumbnails, in percent
+         */
+        thumbnailQuality?: number;
     }
     /**
      * list of image urls for which thumbs should be create/regenerted

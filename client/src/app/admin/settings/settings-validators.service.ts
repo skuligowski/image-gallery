@@ -31,6 +31,18 @@ export class SettingsValidatorsService {
     }
   }
 
+  thumbnailQuality(): SettingsValidators {
+    return {
+      validators: [Validators.required, Validators.min(1), Validators.max(100)]
+    }
+  }
+
+  thumbnailWidth(): SettingsValidators {
+    return {
+      validators: Validators.required
+    }
+  }
+
   get(key: string): SettingsValidators {
     if (this[key]) {
       return this[key]();

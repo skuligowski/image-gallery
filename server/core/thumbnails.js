@@ -3,13 +3,16 @@ const jimp = require('jimp');
 const path = require('path');
 const Promise = require('bluebird');
 const db = require('./db');
+const md5 = require('md5');
 
 function create(imageUrls) {
   return Promise.map(imageUrls, imageUrl => {
     const srcFile = path.join(config.libraryDir, imageUrl);
-    const thumbUrl = path.join('/meta', path.parse(imageUrl).name + '.jpg');
+    const url = path.parse(imageUrl);
+    const fileName = url.name + '_thumb.jpg';
+    const thumbUrl = path.join('/thumbnails', url.dir, md5(fileName)[0], fileName);
     const outFile = path.join(config.libraryDir, thumbUrl);
-    return resize(srcFile, outFile)
+    return resize(srcFile, outFile, {size: config.thumbnailWidth, quality: config.thumbnailQuality})
       .then(() => ({imageUrl, thumbUrl}));
   }, {concurrency: 5}).then(all => {
     const thumbsMap = all.reduce((map, urls) => {
@@ -30,10 +33,10 @@ function create(imageUrls) {
   });
 }
 
-async function resize(srcImagePath, outImagePath) {
+async function resize(srcImagePath, outImagePath, {size = 360, quality = 92}) {
   const image = await jimp.read(srcImagePath);
-  image.resize(360, jimp.AUTO);
-  image.quality(94);
+  image.resize(size, jimp.AUTO);
+  image.quality(quality);
   image.write(outImagePath);
 }
 

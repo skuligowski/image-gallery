@@ -46,6 +46,6 @@ export class IndexComponent implements OnInit {
   }
 
   getWelcomeImageUrl(): string {
-    return this.getAlbumThumbUrl(this.lastModifiedAlbums.length ? this.lastModifiedAlbums[0] : undefined);
+    return `url(/library${this.config.dashboardImageUrl})`;
   }
 }

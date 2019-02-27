@@ -7,6 +7,9 @@ properties:
   dashboardTilesCount:
     type: number
     description: Maximum number of tiles return for dashboard
+  dashboardImageUrl:
+    type: string
+    description: Image presented on dashboard. If not set, the first image of last modified album is presented
 required:
   - galleryName
   - dashboardTilesCount

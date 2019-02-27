@@ -51,6 +51,7 @@ initialize()
         next();
       });
       app.use((err, req, res, next) => {
+        console.log(err);
         if (err.code === 'ENOENT') {
           return res.status(404).send('404');
         } else {
