@@ -5,7 +5,7 @@ const Promise = require('bluebird');
 const db = require('./db');
 const md5 = require('md5');
 
-function create(imageUrls) {
+function create(imageUrls, concurrency = 5) {
   return Promise.map(imageUrls, imageUrl => {
     const srcFile = path.join(config.libraryDir, imageUrl);
     const url = path.parse(imageUrl);
@@ -14,7 +14,7 @@ function create(imageUrls) {
     const outFile = path.join(config.libraryDir, thumbUrl);
     return resize(srcFile, outFile, {size: config.thumbnailWidth, quality: config.thumbnailQuality})
       .then(() => ({imageUrl, thumbUrl}));
-  }, {concurrency: 5}).then(all => {
+  }, { concurrency }).then(all => {
     const thumbsMap = all.reduce((map, urls) => {
       map[urls.imageUrl] = urls.thumbUrl;
       return map;
@@ -34,6 +34,7 @@ function create(imageUrls) {
 }
 
 async function resize(srcImagePath, outImagePath, {size = 360, quality = 92}) {
+  console.log(`Creating thumbnail ${srcImagePath} -> ${outImagePath}`);
   const image = await jimp.read(srcImagePath);
   image.resize(size, jimp.AUTO);
   image.quality(quality);

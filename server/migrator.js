@@ -5,6 +5,7 @@ const config = require('./core/config');
 const albums = require('./core/albums');
 const db = require('./core/db');
 const initialize = require('./core/initialize');
+const thumbnails = require('./core/thumbnails');
 
 initialize()
   .then(() => config.initialize())
@@ -36,7 +37,8 @@ initialize()
             return albums.addImages(doc._id, photos.list)
               .then(() => db.findAlbum({_id: doc._id}))
               .then(album => db.updateAlbum({_id: album._id},
-                {...album, lastModified: photos.lastModified}));
+                {...album, lastModified: photos.lastModified}))
+              .then(() => thumbnails.create(photos.list, 40));
           });
       });
     });

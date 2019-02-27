@@ -15,7 +15,11 @@ function getConfig(req, res) {
 function getLastRecentImageUrl(config) {
   return new Promise((resolve) => {
     db.albums.find({}).sort({lastModified: -1}).limit(1).exec((err, albums) => {
-      config.dashboardImageUrl = albums.length && albums[0].images.length ? albums[0].images[0].url : null;
+      if (albums.length && albums[0].images.length) {
+        config.dashboardImageUrl = albums[0].images[0].url;
+      } else {
+        delete config['dashboardImageUrl'];
+      }
       resolve(config);
     });
   });
