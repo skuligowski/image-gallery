@@ -11,9 +11,11 @@ initialize()
   .then(() => config.initialize())
   .then(() => {
     const albumsList = JSON.parse(fs.readFileSync(`${config.libraryDir}/library.json`)).reverse();
-    Promise.map(albumsList, album => {
+    Promise.mapSeries(albumsList, album => {
+      console.log('album: ', album.url)
       let name = album.menu.pop();
       let permalink = album.url.substring(1);
+      let date = permalink.split('/').slice(0,2).join('-')+'-01';
       if (album.menu.length === 1) {
         album.menu.push(name);
         name = 'Różne';
@@ -22,9 +24,9 @@ initialize()
       return albums.createAlbum({
         name,
         permalink,
-        tree: album.menu
+        date
       }).then(doc => {
-        readFile(`${config.libraryDir}${album.src}/photos.json`)
+        return readFile(`${config.libraryDir}${album.src}/photos.json`)
           .then(photos => JSON.parse(photos))
           .then(photos => {
             const fileList = photos.map(photo => `${album.src}/${photo.file}`);
@@ -38,8 +40,8 @@ initialize()
               .then(() => db.findAlbum({_id: doc._id}))
               .then(album => db.updateAlbum({_id: album._id},
                 {...album, lastModified: photos.lastModified}))
-              .then(() => thumbnails.create(photos.list, 40));
+              .then(() => thumbnails.create(photos.list, 10));
           });
       });
-    });
+    }, {concurrency: 1});
   });

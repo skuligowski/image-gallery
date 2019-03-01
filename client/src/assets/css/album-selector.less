@@ -12,6 +12,12 @@ app-album-selector {
     padding: 10px 0;
   }
 
+  .month-container {
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #333;
+  }
+
   .year-container:hover {
       background-color: #292929;
       transition: background-color 4s;
@@ -24,20 +30,27 @@ app-album-selector {
   .year {
     font-size: 1.8rem;
     font-weight: 600;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
     cursor: default;
-    color: #aaa;
+    color: #fff;
+    border-bottom: 1px solid #333;
   }
 
   .month {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     font-weight: 300;
     text-transform: uppercase;
     background-color: #444;
-    padding: 3px 10px;
+    padding: 3px 15px;
     display: inline-block;
-    margin: 7px 10px;
+    margin: 4px 0;
     cursor: default;
+    position: absolute;
+  }
+
+  .albums {
+    margin-left: 80px;
   }
 
   .without-date {

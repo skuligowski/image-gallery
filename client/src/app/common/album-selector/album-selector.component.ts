@@ -26,7 +26,8 @@ export class AlbumSelectorComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     const aggregate = this.createYears(this.albums);
-    this.years = aggregate.years;
+    this.years = aggregate.years.sort((a, b) => a.name < b.name ? 1 : -1);
+    this.years.forEach(year => year.months.sort((a, b) => a.name < b.name ? 1 : -1));
     this.withoutDate = aggregate.withoutDate;
   }
 
@@ -52,9 +53,9 @@ export class AlbumSelectorComponent implements OnChanges {
         let albumMonth = albumYear.months.find(yearMonth => yearMonth.name === month);
         if (!albumMonth) {
           albumMonth = {name: month, albums: []};
+          albumYear.months.push(albumMonth);
         }
         albumMonth.albums.push(album);
-        albumYear.months.push(albumMonth);
       } else {
         aggregate.withoutDate.push(album);
       }
