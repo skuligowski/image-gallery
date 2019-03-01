@@ -43,15 +43,15 @@ export class AlbumsService {
     ).pipe(this.refreshAlbums());
   }
 
-  createAlbum(name: string, permalink: string, tree: string[]): Observable<any> {
+  createAlbum(name: string, permalink: string, date: string): Observable<any> {
     return spinnable(
-      this.httpClient.post<any>('/api/albums', { name, permalink, tree })
+      this.httpClient.post<any>('/api/albums', { name, permalink, date })
     ).pipe(this.refreshAlbums());
   }
 
-  patchAlbum(albumId: string, name: string, permalink: string, tree: string[]): Observable<any> {
+  patchAlbum(albumId: string, name: string, permalink: string, date: string): Observable<any> {
     return spinnable(
-      this.httpClient.patch<any>(`/api/albums/${albumId}`, { name, permalink, tree })
+      this.httpClient.patch<any>(`/api/albums/${albumId}`, { name, permalink, date })
     ).pipe(this.refreshAlbums());
   }
 

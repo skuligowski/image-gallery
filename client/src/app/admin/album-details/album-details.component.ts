@@ -83,7 +83,7 @@ export class AlbumDetailsComponent {
 
   onUpdateAlbum(event: AlbumCreateEvent): void {
     this.albumsService
-      .patchAlbum(this.album.id, event.name, event.permalink, event.groups)
+      .patchAlbum(this.album.id, event.name, event.permalink, event.date)
       .subscribe(() => {
         event.close();
         this.router.navigated = false;

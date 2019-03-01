@@ -8,7 +8,7 @@ function getAlbums(req, res) {
     id: album._id,
     permalink: album.permalink,
     name: album.name,
-    tree: album.tree,
+    date: album.date,
     lastModified: album.lastModified,
     thumbUrl: album.images[0] ? album.images[0].url : undefined,
     size: album.images.length
@@ -19,7 +19,7 @@ function createAlbum(req, res) {
   albums.createAlbum({
     name: req.body.name,
     permalink: req.body.permalink,
-    tree: req.body.tree
+    date: req.body.date
   }).then(() => res.status(201).send());
 }
 
@@ -28,7 +28,7 @@ function updateAlbum(req, res) {
   albums.updateAlbum(id, {
     name: req.body.name,
     permalink: req.body.permalink,
-    tree: req.body.tree})
+    date: req.body.date})
   .then(() => res.status(200).send())
   .catch(e => {
     console.log(e);

@@ -9,7 +9,6 @@
         <th style="width:2.5em"></th>
         <th>Name</th>
         <th style="width:4em">Size</th>
-        <th>Groups</th>
         <th>Permalink</th>
       </tr>
     </ng-template>
@@ -20,10 +19,7 @@
         </td>
         <td>{{album.name}}</td>
         <td>{{album.size}}</td>
-        <td><ul class="album-tree">
-          <li class="tree-item" *ngFor="let treeItem of album.tree">{{treeItem}}</li>
-        </ul></td>
-        <td>{{album.permalink}}</td>
+        <td>/albums/{{album.permalink}}</td>
       </tr>
     </ng-template>
   </p-table>

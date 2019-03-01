@@ -10,11 +10,9 @@ properties:
   permalink:
     type: string
     description: unique link for album
-  tree:
-    type: array
-    description: menu tree for the album
-    items:
-      type: string
+  date:
+    type: string
+    format: date
   thumbUrl:
     type: string
     description: entry photo for the album
@@ -29,6 +27,5 @@ required:
 - id
 - name
 - permalink
-- tree
 - size
 - lastModified

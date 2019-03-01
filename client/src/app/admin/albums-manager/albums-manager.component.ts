@@ -27,7 +27,7 @@ export class AlbumsManagerComponent implements OnInit {
 
   onCreateAlbum(event: AlbumCreateEvent): void {
     this.albumsService
-      .createAlbum(event.name, event.permalink, event.groups)
+      .createAlbum(event.name, event.permalink, event.date)
       .subscribe(() => {
         event.close();
         this.router.navigated = false;

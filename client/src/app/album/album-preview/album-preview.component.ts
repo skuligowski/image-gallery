@@ -19,6 +19,6 @@ export class AlbumPreviewComponent {
               public authService: AuthService) { }
 
   chooseAlbum(): void {
-    this.router.navigate([{outlets: { modal: 'album/select'}}]);
+    this.router.navigate([{outlets: { modal: 'album/select'}}], { queryParams: {albumId: this.album.id}});
   }
 }

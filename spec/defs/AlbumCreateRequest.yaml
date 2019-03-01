@@ -7,11 +7,9 @@ properties:
   permalink:
     type: string
     description: album permalink
-  tree:
-    type: array
-    items:
-      type: string
+  date:
+    type: string
+    format: date
 required:
 - name
 - permalink
-- tree

@@ -1,14 +1,19 @@
-<ul class="main-groups">
-  <li class="main-group" [class.uncategorized]="!group.key" *ngFor="let group of groups">
-    <div class="group-name" *ngIf="group.key">{{group.key}}</div>
-    <ul class="albums">
-      <li class="album" *ngFor="let album of group.albums">
-        <div>
-          <ul class="sub-groups" *ngIf="album.tree.length > 1">
-            <li class="sub-group" *ngFor="let subGroup of album.tree.slice(1)">{{subGroup}}</li>
-          </ul>
-          <span class="album-name"><a (click)="selectAlbum(album)">{{album.name}}</a></span>
-        </div>
+<ul class="without-date">
+  <li class="album" *ngFor="let album of withoutDate" (click)="selectAlbum(album)">
+    <div class="album-name">{{album.name}} <span class="album-size">({{album.size}})</span></div>
+  </li>
+</ul>
+<ul>
+  <li class="year-container" *ngFor="let year of years">
+    <div class="year left-offset" *ngIf="year.name">{{year.name}}</div>
+    <ul class="months-container left-offset">
+      <li *ngFor="let month of year.months">
+        <div class="month" *ngIf="month.name">{{[2007, month.name, 1].join('-') | date: 'MMMM'}}</div>
+        <ul>
+          <li class="album" *ngFor="let album of month.albums" (click)="selectAlbum(album)">
+            <div class="album-name" [class.selected]="album.id === selectedAlbumId">{{album.name}} <span class="album-size">({{album.size}})</span></div>
+          </li>
+        </ul>
       </li>
     </ul>
   </li>

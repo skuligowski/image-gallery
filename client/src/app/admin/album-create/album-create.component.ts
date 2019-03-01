@@ -10,7 +10,7 @@ export class AlbumCreateComponent implements OnInit, DoCheck {
 
   display = false;
   name: string;
-  groups: string[] = [];
+  date: string;
 
   isCustomPermalink = false;
   customPermalink: string;
@@ -27,14 +27,14 @@ export class AlbumCreateComponent implements OnInit, DoCheck {
   open(album?: Album): void {
     if (album) {
       this.name = album.name;
-      this.groups = album.tree || [];
+      this.date = album.date;
       this.autoPermalink = this.composePermalink();
       this.customPermalink = this.autoPermalink === album.permalink ? undefined : album.permalink;
       this.isCustomPermalink = !!this.customPermalink;
       this.autoPermalink = undefined;
     } else {
       this.name = undefined;
-      this.groups = [];
+      this.date = undefined;
       this.customPermalink = undefined;
       this.autoPermalink = undefined;
     }
@@ -45,13 +45,19 @@ export class AlbumCreateComponent implements OnInit, DoCheck {
     this.confirm.emit({
       name: this.name,
       permalink: this.isCustomPermalink ? this.customPermalink : this.autoPermalink,
-      groups: this.groups,
+      date: this.date,
       close: () => this.display = false
     });
   }
 
   composePermalink(): string {
-    const parts = this.groups.reduce((parts, group) => parts.concat(this.normalize(group)), []);
+    const parts = []
+    if (this.date) {
+      const dateParts = this.date.split('-');
+      if (dateParts.length === 3) {
+        parts.push(...dateParts.slice(0, 2));
+      }
+    }
     if (this.name) {
       parts.push(this.normalize(this.name));
     }
@@ -89,6 +95,6 @@ export class AlbumCreateComponent implements OnInit, DoCheck {
 export interface AlbumCreateEvent {
   name: string;
   permalink: string;
-  groups: string[];
+  date: string;
   close: Function;
 }

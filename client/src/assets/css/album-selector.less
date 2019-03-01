@@ -8,55 +8,62 @@ app-album-selector {
     margin: 0;
   };
 
-  .main-group {
+  .year-container {
+    padding: 10px 0;
+  }
+
+  .year-container:hover {
+      background-color: #292929;
+      transition: background-color 4s;
+  }
+
+  .left-offset {
+    margin-left: 40px;
+  }
+
+  .year {
     font-size: 1.8rem;
-    font-weight: 100;
-    margin-bottom: 20px;
-
-    .group-name {
-      margin-bottom: 10px;
-    }
-
-    .albums {
-      padding-left: 20px;
-      font-weight: 300;
-
-      .album {
-        font-size: 1.2rem;
-        line-height: 1.4;
-        cursor: pointer;
-
-        &:hover {
-          color: yellow;
-        }
-
-        .album-name {
-          margin-left: 5px;
-        }
-      }
-    }
-
-    &.uncategorized .albums {
-      padding-left: 0;
-    }
+    font-weight: 600;
+    margin-bottom: 5px;
+    cursor: default;
+    color: #aaa;
   }
 
-  .sub-groups {
-    display: inline-block;
-    margin: 0;
-  }
-
-  .sub-group {
-    display: inline-block;
-    font-size: 0.7rem;
+  .month {
+    font-size: 0.8rem;
     font-weight: 300;
     text-transform: uppercase;
-    color: #aaa;
-    margin-right: 5px;
+    background-color: #444;
+    padding: 3px 10px;
+    display: inline-block;
+    margin: 7px 10px;
+    cursor: default;
+  }
 
-    &:not(:last-child):after {
-      content: '\00B7';
-      margin-left: 5px;
+  .without-date {
+    margin-bottom: 30px;
+    .album-name {
+      margin-left: 32px;
+    }
+  }
+
+  .album-name {
+    font-size: 1.1rem;
+    margin-left: 20px;
+    display: block;
+    width: 100%;
+    color: #fff;
+    padding: 3px 0 3px 10px;
+    &:hover {
+      background-color: #333333;
+      cursor: pointer;
+    }
+    &.selected {
+      background-color: #1a4d6d;
+    }
+    .album-size {
+      font-size: 0.6rem;
+      color: #ccc;
     }
   }
 

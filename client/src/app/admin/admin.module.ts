@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { AlbumsManagerComponent } from './albums-manager/albums-manager.component';
-import { AlbumGroupSelectorComponent } from './album-group-selector/album-group-selector.component';
 import { AlbumCreateComponent } from './album-create/album-create.component';
 import { AlbumDetailsComponent } from './album-details/album-details.component';
 import { LibraryUploadComponent } from './library-manager/library-upload/library-upload.component';
@@ -10,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import {
+  CalendarModule,
   ConfirmationService,
   ConfirmDialogModule,
   DialogModule,
@@ -46,7 +46,6 @@ import { ThumbnailsService } from './services/thumbnails.service';
 
     AlbumsManagerComponent,
     AlbumCreateComponent,
-    AlbumGroupSelectorComponent,
     AlbumDetailsComponent,
     EnterDirective,
     LibraryDirectoryCreateComponent,
@@ -75,6 +74,7 @@ import { ThumbnailsService } from './services/thumbnails.service';
     DropdownModule,
     TreeModule,
     AdminRoutingModule,
+    CalendarModule,
   ],
   providers: [
     AdminGuard,

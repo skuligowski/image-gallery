@@ -12,10 +12,7 @@ declare namespace Definitions {
          * unique link for album
          */
         permalink: string;
-        /**
-         * menu tree for the album
-         */
-        tree: string[];
+        date?: string; // date
         /**
          * entry photo for the album
          */
@@ -38,7 +35,7 @@ declare namespace Definitions {
          * album permalink
          */
         permalink: string;
-        tree: string[];
+        date?: string; // date
     }
     export type AlbumsResponse = Album[];
     export interface Config {

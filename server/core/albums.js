@@ -2,20 +2,20 @@ const db = require('./db');
 const library = require('./library');
 const Promise = require('bluebird');
 
-function createAlbum({name, permalink, tree}) {
+function createAlbum({name, permalink, date}) {
   return db.insertAlbum({
     name: name,
     permalink: permalink,
-    tree: tree,
+    date: date,
     lastModified: new Date().toISOString(),
     images: []
   });
 }
 
-function updateAlbum(id, {name, permalink, tree}) {
+function updateAlbum(id, {name, permalink, date}) {
   return db.findAlbum({ _id: id })
     .then(album => db.updateAlbum({_id: album._id},
-      {...album, name, permalink, tree}));
+      {...album, name, permalink, date}));
 }
 
 function addImages(id, paths) {

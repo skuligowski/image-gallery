@@ -53,9 +53,7 @@ export class AlbumSelectorModalComponent {
     const lcEvent = event.toLocaleLowerCase();
     this.albums = this.allAlbums
       .filter(album =>
-          album.name.toLocaleLowerCase().indexOf(lcEvent) !== -1 ||
-        album.tree.findIndex(group => group.toLocaleLowerCase().indexOf(lcEvent) !== -1) > -1
-      );
+          album.name.toLocaleLowerCase().indexOf(lcEvent) !== -1 || (album.date && album.date.indexOf(lcEvent) !== -1));
   }
 
   close(): void {
