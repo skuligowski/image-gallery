@@ -13,6 +13,7 @@ properties:
   date:
     type: string
     format: date
+    description: date when images were taken
   thumbUrl:
     type: string
     description: entry photo for the album
@@ -23,9 +24,14 @@ properties:
     type: string
     format: date-time
     description: last modified date time
+  createDate:
+    type: string
+    format: date-time
+    description: date of creation
 required:
 - id
 - name
 - permalink
 - size
 - lastModified
+- createDate

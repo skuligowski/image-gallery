@@ -12,6 +12,9 @@ declare namespace Definitions {
          * unique link for album
          */
         permalink: string;
+        /**
+         * date when images were taken
+         */
         date?: string; // date
         /**
          * entry photo for the album
@@ -25,6 +28,10 @@ declare namespace Definitions {
          * last modified date time
          */
         lastModified: string; // date-time
+        /**
+         * date of creation
+         */
+        createDate: string; // date-time
     }
     export interface AlbumCreate {
         /**

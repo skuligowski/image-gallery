@@ -4,15 +4,17 @@ const albums = require('../core/albums');
 const library = require('../core/library');
 
 function getAlbums(req, res) {
-  db.findAlbums({}).map(album => ({
-    id: album._id,
-    permalink: album.permalink,
-    name: album.name,
-    date: album.date,
-    lastModified: album.lastModified,
-    thumbUrl: album.images[0] ? album.images[0].url : undefined,
-    size: album.images.length
-  })).then(albums => res.send(albums));
+  db.albums.find({}).sort({createDate: -1}).exec((err, albums) =>
+    res.send(albums.map(album => ({
+      id: album._id,
+      permalink: album.permalink,
+      name: album.name,
+      date: album.date,
+      lastModified: album.lastModified,
+      createDate: album.createDate,
+      thumbUrl: album.images[0] ? album.images[0].url : undefined,
+      size: album.images.length
+    }))));
 }
 
 function createAlbum(req, res) {

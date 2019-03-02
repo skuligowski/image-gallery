@@ -3,7 +3,7 @@
   <nav>
     <p-button class="action" label="Create album" (click)="albumCreate.open()"></p-button>
   </nav>
-  <p-table [value]="albums" selectionMode="single" dataKey="id" (onRowSelect)="onRowSelect($event)">
+  <p-table [value]="albums" selectionMode="single" (onRowSelect)="onRowSelect($event)">
     <ng-template pTemplate="header">
       <tr>
         <th style="width:2.5em"></th>

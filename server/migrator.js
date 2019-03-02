@@ -7,6 +7,17 @@ const db = require('./core/db');
 const initialize = require('./core/initialize');
 const thumbnails = require('./core/thumbnails');
 
+function dateProvider() {
+  let date = new Date();
+  return function next() {
+    date = new Date(date.getTime());
+    date.setSeconds(date.getSeconds() + 10);
+    return date;
+  }
+}
+
+const getDate = dateProvider();
+
 initialize()
   .then(() => config.initialize())
   .then(() => {
@@ -21,10 +32,13 @@ initialize()
         name = 'Różne';
         permalink = permalink + '/rozne';
       }
+      const createDate = getDate().toISOString();
+      console.log(createDate);
       return albums.createAlbum({
         name,
         permalink,
-        date
+        date,
+        createDate,
       }).then(doc => {
         return readFile(`${config.libraryDir}${album.src}/photos.json`)
           .then(photos => JSON.parse(photos))

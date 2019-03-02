@@ -2,12 +2,13 @@ const db = require('./db');
 const library = require('./library');
 const Promise = require('bluebird');
 
-function createAlbum({name, permalink, date}) {
+function createAlbum({name, permalink, date, createDate = new Date().toISOString()}) {
   return db.insertAlbum({
     name: name,
     permalink: permalink,
     date: date,
-    lastModified: new Date().toISOString(),
+    lastModified: createDate,
+    createDate,
     images: []
   });
 }
@@ -36,7 +37,9 @@ function addImages(id, paths) {
         }, []);
         return [...newImages, ...Object.values(imagesMap)];
       })
-      .then(images => db.updateAlbum({_id: album._id}, {...album, images})));
+      .then(images => db.updateAlbum({_id: album._id}, {
+        ...album, images, lastModified: new Date().toISOString()
+      })));
 }
 
 function removeImages(id, urls) {
