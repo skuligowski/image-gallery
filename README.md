@@ -35,6 +35,8 @@ $ npm install
 $ node server
 ```
 
+4. Open the browser with url: http://localhost:3000/
+
 ## Basic configuration
 
 After the first launch, login to the [administration panel](http://localhost:3000/login).
