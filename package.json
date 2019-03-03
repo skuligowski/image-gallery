@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
 
-    "create-language": "cd client && ng xi18n --output-path locale",
+    "locale": "cd client && ng xi18n --output-path locale",
 
     "watch-client": "cd client && ng serve --proxy-config proxy.conf.json",
     "watch-server": "cd server && npm run watch",

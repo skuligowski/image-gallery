@@ -8,7 +8,7 @@
     <div class="year left-offset" *ngIf="year.name">{{year.name}}</div>
     <ul class="months-container left-offset">
       <li class="month-container" *ngFor="let month of year.months">
-        <div class="month" *ngIf="month.name">{{[2007, month.name, 1].join('-') | date: 'MMMM'}}</div>
+        <div class="month" *ngIf="month.name">{{[2007, month.name, 1].join('-') | date: 'LLLL'}}</div>
         <ul class="albums">
           <li class="album" *ngFor="let album of month.albums" (click)="selectAlbum(album)">
             <div class="album-name" [class.selected]="album.id === selectedAlbumId">{{album.name}} <span class="album-size">({{album.size}})</span></div>

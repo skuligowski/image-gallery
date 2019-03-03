@@ -1,8 +1,8 @@
 <app-header-navigation></app-header-navigation>
 <div class="admin-layout-container">
   <nav>
-    <p-button class="action" label="Create directory" (click)="directoryCreate.open()"></p-button>
-    <p-button class="action" label="Upload" (click)="libraryUpload.open(currentDirectory)"></p-button>
+    <p-button class="action" i18n-label label="Create directory" (click)="directoryCreate.open()"></p-button>
+    <p-button class="action" i18n-label label="Upload" (click)="libraryUpload.open(currentDirectory)"></p-button>
   </nav>
   <app-library-browser (selectFiles)="selectedFiles=$event" (directoryChange)="onDirectoryChange($event)" #libraryBrowser></app-library-browser>
 </div>

@@ -6,6 +6,6 @@
   </p-header>
   <app-library-browser *ngIf="display" (selectFiles)="selectedFiles=$event" (directoryChange)="onDirectoryChange($event)"></app-library-browser>
   <p-footer>
-    <p-button label="Add images" (click)="addImages()" [disabled]="!selectedFiles.length"></p-button>
+    <p-button i18n-label label="Add images" (click)="addImages()" [disabled]="!selectedFiles.length"></p-button>
   </p-footer>
 </p-dialog>

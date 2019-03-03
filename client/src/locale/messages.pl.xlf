@@ -2,12 +2,659 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="header.albums" datatype="html">
+      <trans-unit id="6765b4c916060f6bc42d9bb69e80377dbcb5e4e9" datatype="html">
+        <source>Login</source>
+        <target>Login</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
+        <source>Password</source>
+        <target>Hasło</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user-create/user-create.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user-create/user-create.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="287d3301a32a65a1b31116bda5d3a6463158c42a" datatype="html">
+        <source>Sign in</source>
+        <target>Zaloguj</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/login.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c8fde66a0022d09a6ec0d3844568e486381d797f" datatype="html">
         <source>Albums</source>
         <target>Albumy</target>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/index/index.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/album/album-preview/album-preview.component.html</context>
           <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/header-navigation.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="408cb6073e60c5d966296a3207fc596adca75e01" datatype="html">
+        <source>Admin</source>
+        <target>Admin</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/index/index.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4b9513a671fe0dd82d0d9cbd29f3bbcbf0ee7d58" datatype="html">
+        <source>Last modified</source>
+        <target>Ostatnio zmienione</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/index/index.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3e65ebb38e10773d3f7c643b4f5c0a5fbf8bfc0a" datatype="html">
+        <source>We&apos;re sorry. There is no albums available in the gallery.</source>
+        <target>Przykro name. Nie znaleziono w galerii żadnych albumów.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/index/index.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="92eee6be6de0b11c924e3ab27db30257159c0a7c" datatype="html">
+        <source>Home</source>
+        <target>Start</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/album/album-preview/album-preview.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="28f86ffd419b869711aa13f5e5ff54be6d70731c" datatype="html">
+        <source>Edit</source>
+        <target>Edytuj</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/album/album-preview/album-preview.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ae05c94934e23a80f01b02e93a09845a2f0f7c9c" datatype="html">
+        <source>search...</source>
+        <target>wyszukaj...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/common/album-selector/album-selector-modal.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="07bc90fb255ae9ca56a0e9c9e36ab4ae283026cc" datatype="html">
+        <source>Album name:</source>
+        <target>Nazwa albumu:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-create/album-create.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
+        <source>Name</source>
+        <target>Nazwa</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-create/album-create.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/albums-manager/albums-manager.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/library-manager/library-directory-create/library-directory-create.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/library-browser/library-browser.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users-manager/users-manager.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="05fa0bded36de6e73a1fa44838b627349dace044" datatype="html">
+        <source>Date:</source>
+        <target>Data:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-create/album-create.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="159fc4acf95e2141cd6532a172dd0debe24c1349" datatype="html">
+        <source>Permalink:</source>
+        <target>Unikalny link:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-create/album-create.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="68e710782ccb5398b3acb8844caf0b199da2c3da" datatype="html">
+        <source>Confirm</source>
+        <target>Potwierdź</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-create/album-create.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/library-manager/library-directory-create/library-directory-create.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user-create/user-create.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f50dc6cba91fbcf1ad1d3fccdf36f4b5ad5d729d" datatype="html">
+        <source>Create album</source>
+        <target>Utwórz album</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/albums-manager/albums-manager.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7faaaa08f56427999f3be41df1093ce4089bbd75" datatype="html">
+        <source>Size</source>
+        <target>Ilość</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/albums-manager/albums-manager.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/library-browser/library-browser.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="681a802d32ee0d866f50fc1f527404b3a6eb0765" datatype="html">
+        <source>Permalink</source>
+        <target>Link</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/albums-manager/albums-manager.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e4f31215f430ffab98e9411e3a81e2c9c0e65918" datatype="html">
+        <source>Create new album</source>
+        <target>Utwórz nowy album</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/albums-manager/albums-manager.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d59e84644db82b7b6775d099ae130610473584c4" datatype="html">
+        <source>Add images</source>
+        <target>Dodaj zdjęcia</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/library-files-selector/library-files-selector.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7bfe1273fc4d4d1d96d463e4a01c5d4293a7bbdc" datatype="html">
+        <source>Delete images</source>
+        <target>Usuń zdjęcia</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="695f3f6eacd59b5a7d197e38bafca4565da3a9e5" datatype="html">
+        <source>Modify album</source>
+        <target>Modyfikuj album</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ef598541ae1643980d19faea9ae1571e9d22a3cf" datatype="html">
+        <source>Delete album</source>
+        <target>Usuń album</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e369d5a9264f86464009ccb830e13f753f23b325" datatype="html">
+        <source>Create thumbnails</source>
+        <target>Utwórz miniatury</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a5f9ba9bb9faa8284bcadb1cdbc6aaf969e9c4bb" datatype="html">
+        <source>Image</source>
+        <target>Zdjęcie</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ff1051d895c62d59c3d4c96edb759f8f09fe42c6" datatype="html">
+        <source>Image data</source>
+        <target>Dane zdjęcia</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="57cf305f9bfd681c70dc26e914108d06384ade9f" datatype="html">
+        <source>Move</source>
+        <target>Przenieś</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="752aa617e12a72f4e148527815e7632d2a4ec99c" datatype="html">
+        <source>Filename:</source>
+        <target>Nazwa pliku:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9fa37704969eeebd496a172c5077370f569df3ae" datatype="html">
+        <source>Resolution:</source>
+        <target>Rozdzielczość:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="753b122e5b6919fbee7387ff462ec993da59bc29" datatype="html">
+        <source>Url:</source>
+        <target>Url:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5ed2d4f688e06ce23efb174c5c2883c449780fd7" datatype="html">
+        <source>Thumbnail url:</source>
+        <target>Url miniatury:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8737210008395d7b014e5118d2ed198ae9745215" datatype="html">
+        <source>Title:</source>
+        <target>Tytuł:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0295e37c88ba1f28e569a35e3c6871b90529f8fa" datatype="html">
+        <source>Confirmation</source>
+        <target>Potwierdzenie</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ca1bf8d84b8ba51b7d4c99d8140975a8b1dbd928" datatype="html">
+        <source>Do you really want to delete this album?</source>
+        <target>Czy na pewno chcesz usunąć ten album?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ad05290fc01e5b51b5dca67c20c9e5e27f70e37a" datatype="html">
+        <source>Uploading files...</source>
+        <target>Ładowanie plików...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/library-manager/library-upload/library-upload.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c9231bf113f40795d45fef23f2a553f013842209" datatype="html">
+        <source>Creating directory</source>
+        <target>Tworzenie katalogu</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/library-manager/library-directory-create/library-directory-create.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f70afb88b288fedb2aabfcc0e3bb072a2f9211d5" datatype="html">
+        <source>Directory name *:</source>
+        <target>Nazwa katalogu *:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/library-manager/library-directory-create/library-directory-create.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3e2a583f531f7dd9f089f68a6968e444c372c3e8" datatype="html">
+        <source>Preview</source>
+        <target>Podgląd</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/library-browser/library-browser.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="87d4b52afb51ec8ecc13f53a26a926138be3a327" datatype="html">
+        <source>Create directory</source>
+        <target>Utwórz katalog</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/library-manager/library-manager.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4b3972c3e9485218508a95f7a4ce7758e3f09ced" datatype="html">
+        <source>Upload</source>
+        <target>Prześlij zdjęcia</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/library-manager/library-manager.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2b7556739840f6debeea0311448b3669ee3a5aa6" datatype="html">
+        <source>User name *:</source>
+        <target>Nazwa użytkownika *:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user-create/user-create.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="08c74dc9762957593b91f6eb5d65efdfc975bf48" datatype="html">
+        <source>Username</source>
+        <target>Login</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user-create/user-create.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2cf809f341cc5914b0c939123032807cedf1618c" datatype="html">
+        <source>Password *:</source>
+        <target>Hasło *:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user-create/user-create.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="46864fdbd7fb379187b3f65807cd67693c3609e9" datatype="html">
+        <source>Retype password *:</source>
+        <target>Potwierdź hasło *:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user-create/user-create.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3afd4818d12615b76a2f3081b8c9aa0f1ab965df" datatype="html">
+        <source>Wrong retyped password</source>
+        <target>Błędnie powtórzone hasło</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/user-create/user-create.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="735da7ab36ab25e1e40179223c7a3b1e7137d16e" datatype="html">
+        <source>Is admin</source>
+        <target>Admin</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users-manager/users-manager.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1bd5e17c9582661e20763a7634ef07881e33bbd7" datatype="html">
+        <source>Action</source>
+        <target>Akcje</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users-manager/users-manager.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="31cf824034489eb42f6a388d5980b98b8e1de015" datatype="html">
+        <source>Create user</source>
+        <target>Utwórz użytkownika</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users-manager/users-manager.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="739516c2ca75843d5aec9cf0e6b3e4335c4227b9" datatype="html">
+        <source>Change password</source>
+        <target>Zmień hasło</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users-manager/users-manager.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9ef88654aab4b2df4fa2083f33caa0c5419c1a60" datatype="html">
+        <source>Do you really want to delete this user?</source>
+        <target>Czy na pewno chcesz usunąć tego użytkownika?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users-manager/users-manager.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e554db3223d650f76c7ad1b7a29b0e77e6af0000" datatype="html">
+        <source>Update settings</source>
+        <target>Aktualizuj ustawienia</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cf17e2f3737e74b8e3b874867ec9cf5fa46f2146" datatype="html">
+        <source>Property</source>
+        <target>Parametr</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5049e204c14c648691ac775a64fb504467aeb549" datatype="html">
+        <source>Value</source>
+        <target>Wartość</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cf0dac9809355f88b69985cfd5fe05e57155fba0" datatype="html">
+        <source>Gallery name</source>
+        <target>Nazwa galerii</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1e503b428348a340c9a615a7aa238bf98aab05b2" datatype="html">
+        <source>This name is visible on the main page.</source>
+        <target>Nazwa jest widoczna na głównej stronie.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ed72606056198896f46c65d0dbbe854d04f3de47" datatype="html">
+        <source>Authentication</source>
+        <target>Autentykacja</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a71736dfdb328d4ddbd05c2026bd8fe1f765f6ee" datatype="html">
+        <source>When switched on, a user is always redirected to login page before entering the gallery.</source>
+        <target>Kiedy włączona, każdy użytkownik jest przekierowany na stronę logowania.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fe46ccaae902ce974e2441abe752399288298619" datatype="html">
+        <source>Language</source>
+        <target>Język</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ab771106687498d86d1a74974c9a203d0ee467aa" datatype="html">
+        <source>Language of the gallery</source>
+        <target>Aktualny język galerii.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="152d4a6dbf8c4e2be76a4ca1800bbf71ae929ad3" datatype="html">
+        <source>Library directory</source>
+        <target>Ścieżka do katalogu zdjęć</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e06ecd2a01cd5e478507826ababe93a14f6533b2" datatype="html">
+        <source>Library directory is an absolute path to directory that contains all image files.
+        This is also a place where all uploaded images will be stored. After changing this property, existing
+        albums may not work properly.</source>
+        <target>Absolutna ścieżka do katalogu ze zdjęciami. Do katalogu zdjęć będą również ładowane pliki z nowymi zdjęciami.
+        Po zmianie tego parametru, istniejące albumy mogą przestać działać.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0101727e3a4ed583919796307e66020ad513551d" datatype="html">
+        <source>Dashboard tiles count</source>
+        <target>Ilość kafli na głównym ekranie</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="90e32e57161760f9b15791981c7e02f72a609c5b" datatype="html">
+        <source>Maximum number of tiles (eg. last modified) presented on dashboard screen.</source>
+        <target>Maksymalna ilość kafli na głównym ekranie (np. ostatnio zmienione albumy)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6c313f69473d0570de0d34bfe00003acd2ea018e" datatype="html">
+        <source>Dashboard image</source>
+        <target>Zdjęcie na głównym ekranie</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="20e22667ea0a5ee07377780366ce246761b0a84f" datatype="html">
+        <source>The url of the image presented on dashboard. If value is not set, the first image of latest album is taken</source>
+        <target>Ścieżka do zdjęcia prezentowanego na głównym ekranie. Jeśli wartość nie jest ustawiona, pierwsze zdjęcie z ostatniego albumu zostanie automatycznie wyświetlone.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="08cd7d246cb3b266efa14b07e1004c6a113d3d99" datatype="html">
+        <source>Thumbnail width</source>
+        <target>Długość miniatury</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c73f7a7a61240f4924079ccbe3a183ae95654ffb" datatype="html">
+        <source>Width in pixels of generated thumbnails.</source>
+        <target>Długość generowane miniatury, wyrażona w pikselach.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="02f40fb223aaaa84574a5a3c142da3d378b054ae" datatype="html">
+        <source>Thumbnail quality</source>
+        <target>Jakość miniatury</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cdd0dfaee845510be785f0bd93dc780e07481ca7" datatype="html">
+        <source>Quality (%) of generated thumbnails.</source>
+        <target>Jakość wygenerowanej tekstury wyrażona w procentach.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b7648e7aced164498aa843b5c4e8f2f1c36a7919" datatype="html">
+        <source>Administration</source>
+        <target>Administracja</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/header-navigation.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="200aaacb83d67b831ea222df66a48c38928688a5" datatype="html">
+        <source>Return to gallery</source>
+        <target>Powrót do galerii</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/header-navigation.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0b319c4dd6d4ddd74cd138b72ab8109ffcc28f36" datatype="html">
+        <source>Library</source>
+        <target>Biblioteka</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/header-navigation.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4d13a9cd5ed3dcee0eab22cb25198d43886942be" datatype="html">
+        <source>Users</source>
+        <target>Użytkownicy</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/header-navigation.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="121cc5391cd2a5115bc2b3160379ee5b36cd7716" datatype="html">
+        <source>Settings</source>
+        <target>Ustawienia</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/header-navigation.component.html</context>
+          <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
     </body>

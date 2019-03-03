@@ -3,7 +3,7 @@
   <div class="container">
     <header class="album-selector-header">
       <div class="query-input">
-        <i class="icon-search"></i><input type="text" placeholder="search..." [ngModel]="query" (ngModelChange)="searchAlbums($event)"/>
+        <i class="icon-search"></i><input type="text" i18n-placeholder placeholder="search..." [ngModel]="query" (ngModelChange)="searchAlbums($event)"/>
       </div>
       <a (click)="close()" class="close-button icon-close"></a>
     </header>

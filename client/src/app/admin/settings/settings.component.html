@@ -1,51 +1,52 @@
 <app-header-navigation></app-header-navigation>
 <div class="admin-layout-container" [formGroup]="settingsForm" *ngIf="settings">
   <nav>
-    <p-button class="action" label="Update settings" [disabled]="!settingsChanged || !settingsForm.valid" (click)="settingsChanged && settingsForm.valid && updateSettings()"></p-button>
+    <p-button class="action" i18n-label label="Update settings" [disabled]="!settingsChanged || !settingsForm.valid" (click)="settingsChanged && settingsForm.valid && updateSettings()"></p-button>
   </nav>
   <p-table [value]="[null]" (onEditInit)="onEditInit($event)" (onEditComplete)="onEditComplete($event)">
     <ng-template pTemplate="header">
       <tr>
-        <th style="width:30%">Property</th>
-        <th>Value</th>
+        <th style="width:30%" i18n>Property</th>
+        <th i18n>Value</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body">
       <tr app-property-presenter key="galleryName" [(value)]="settings['galleryName']" [formGroup]="settingsForm"
-        name="Gallery name" type="string"
-        description="This name is visible on the main page."
+        i18n-name name="Gallery name" type="string"
+        i18n-description description="This name is visible on the main page."
       ></tr>
       <tr app-property-presenter key="authentication" [(value)]="settings['authentication']" [formGroup]="settingsForm"
-          name="Authentication" type="boolean"
-          description="When switched on, a user is always redirected to login page before entering the gallery."
+          i18n-name name="Authentication" type="boolean"
+          i18n-description description="When switched on, a user is always redirected to login page before entering the gallery."
       ></tr>
       <tr app-property-presenter key="language" [(value)]="settings['language']" [formGroup]="settingsForm"
-          name="Language" type="enum" [options]="['en', 'pl']"
-          description="Language of the gallery"
+          i18n-name name="Language" type="enum" [options]="['en', 'pl']"
+          i18n-description description="Language of the gallery"
       ></tr>
       <tr app-property-presenter key="libraryDir" [(value)]="settings['libraryDir']" [formGroup]="settingsForm"
-        name="Library directory" type="string"
-        description="Library directory is an absolute path to directory that contains all image files.
+          i18n-name name="Library directory" type="string"
+          i18n-description description="Library directory is an absolute path to directory that contains all image files.
         This is also a place where all uploaded images will be stored. After changing this property, existing
         albums may not work properly."
       ></tr>
       <tr app-property-presenter key="dashboardTilesCount" [(value)]="settings['dashboardTilesCount']" [formGroup]="settingsForm"
-          name="Dashboard tiles count" type="number"
-          description="Maximum number of tiles (eg. last modified) presented on dashboard screen."
+          i18n-name name="Dashboard tiles count" type="number"
+          i18n-description description="Maximum number of tiles (eg. last modified) presented on dashboard screen."
       ></tr>
       <tr app-property-presenter key="dashboardImageUrl" [(value)]="settings['dashboardImageUrl']" [formGroup]="settingsForm"
-          name="Dashboard image" type="string"
-          description="The url of the image presented on dashboard. If value is not set, the first image of latest album is taken"
+          i18n-name name="Dashboard image" type="string"
+          i18n-description description="The url of the image presented on dashboard. If value is not set, the first image of latest album is taken"
       ></tr>
       <tr app-property-presenter key="thumbnailWidth" [(value)]="settings['thumbnailWidth']" [formGroup]="settingsForm"
-          name="Thumbnail width" type="number"
-          description="Width in pixels of generated thumbnails."
+          i18n-name name="Thumbnail width" type="number"
+          i18n-description description="Width in pixels of generated thumbnails."
       ></tr>
       <tr app-property-presenter key="thumbnailQuality" [(value)]="settings['thumbnailQuality']" [formGroup]="settingsForm"
-          name="Thumbnail quality" type="number"
-          description="Quality (%) of generated thumbnails."
+          i18n-name name="Thumbnail quality" type="number"
+          i18n-description description="Quality (%) of generated thumbnails."
       ></tr>
     </ng-template>
   </p-table>
 </div>
-<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle" width="425" message="Do you really want to delete this user?"></p-confirmDialog>
+<p-confirmDialog i18n-header header="Confirmation" icon="pi pi-exclamation-triangle" width="425"
+                 i18n-message message="Do you really want to delete this user?"></p-confirmDialog>

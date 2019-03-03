@@ -1,15 +1,15 @@
 <app-header-navigation></app-header-navigation>
 <div class="admin-layout-container">
   <nav>
-    <p-button class="action" label="Create album" (click)="albumCreate.open()"></p-button>
+    <p-button class="action" i18n-label label="Create album" (click)="albumCreate.open()"></p-button>
   </nav>
   <p-table [value]="albums" selectionMode="single" (onRowSelect)="onRowSelect($event)">
     <ng-template pTemplate="header">
       <tr>
         <th style="width:2.5em"></th>
-        <th>Name</th>
-        <th style="width:4em">Size</th>
-        <th>Permalink</th>
+        <th i18n>Name</th>
+        <th style="width:4em" i18n>Size</th>
+        <th i18n>Permalink</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-album let-index="rowIndex">
@@ -24,4 +24,4 @@
     </ng-template>
   </p-table>
 </div>
-<app-album-create #albumCreate [albums]="albums" (confirm)="onCreateAlbum($event)" headerLabel="Create new album"></app-album-create>
+<app-album-create #albumCreate [albums]="albums" (confirm)="onCreateAlbum($event)" i18n-headerLabel headerLabel="Create new album"></app-album-create>

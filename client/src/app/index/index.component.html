@@ -2,8 +2,8 @@
   <header class="layout-header">
     <div class="title"><span>{{config.galleryName}}</span></div>
     <ul class="navigation">
-      <li *ngIf="albumsCount"><a (click)="chooseAlbum()"><i class="icon-albums"></i><span class="label">Albums</span></a></li>
-      <li *ngIf="authService.isUserAdmin()"><a (click)="navigateToAdmin()"><i class="icon-albums"></i><span class="label">Admin</span></a></li>
+      <li *ngIf="albumsCount"><a (click)="chooseAlbum()"><i class="icon-albums"></i><span class="label" i18n>Albums</span></a></li>
+      <li *ngIf="authService.isUserAdmin()"><a (click)="navigateToAdmin()"><i class="icon-albums"></i><span class="label" i18n>Admin</span></a></li>
     </ul>
   </header>
 
@@ -12,7 +12,7 @@
   </section>
 
   <section class="last-modified" *ngIf="lastModifiedAlbums.length">
-    <header>Last modified</header>
+    <header i18n>Last modified</header>
     <ul class="albums-list">
       <li class="album" *ngFor="let album of lastModifiedAlbums" (click)="navigateToAlbum(album)">
         <div class="thumbnail" [style.background-image]="getAlbumThumbUrl(album)"></div>
@@ -26,7 +26,7 @@
 
   <section class="no-albums-available" *ngIf="!albumsCount">
     <i class="pi pi-info-circle icon"></i>
-    <span class="message">We're sorry. There is no albums available in the gallery.</span>
+    <span class="message" i18n>We're sorry. There is no albums available in the gallery.</span>
   </section>
 </div>
 

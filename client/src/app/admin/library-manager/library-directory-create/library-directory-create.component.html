@@ -1,18 +1,16 @@
 <p-dialog [(visible)]="display" [positionTop]="100" [resizable]="false"
           [blockScroll]="true" [modal]="true" appendTo="body" [draggable]="false" [width]="400"
           [contentStyle]="{'overflow':'visible'}">
-  <p-header>Creating directory</p-header>
+  <p-header i18n>Creating directory</p-header>
   <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px" ngForm #createDirectoryForm="ngForm">
     <div class="ui-grid-row" style="align-items: center">
-      <div class="ui-grid-col-4">
-        Directory name *:
-      </div>
+      <div class="ui-grid-col-4" i18n>Directory name *:</div>
       <div class="ui-grid-col-8">
-        <input class="ui-inputtext" pInputText type="text" [(ngModel)]="name" placeholder="Name" name="directoryName" required style="width: 100%"/>
+        <input class="ui-inputtext" pInputText type="text" [(ngModel)]="name" i18n-placeholder placeholder="Name" name="directoryName" required style="width: 100%"/>
       </div>
     </div>
   </div>
   <p-footer>
-    <p-button label="Confirm" (click)="createDirectoryForm.form.valid && save()" [disabled]="!createDirectoryForm.form.valid"></p-button>
+    <p-button i18n-label label="Confirm" (click)="createDirectoryForm.form.valid && save()" [disabled]="!createDirectoryForm.form.valid"></p-button>
   </p-footer>
 </p-dialog>

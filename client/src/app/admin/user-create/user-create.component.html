@@ -4,37 +4,31 @@
   <p-header>{{headerLabel}}</p-header>
   <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid album-create" style="margin: 10px 0px" ngForm #userForm="ngForm">
     <div class="ui-grid-row" style="align-items: center">
-      <div class="ui-grid-col-4">
-        User name *:
-      </div>
+      <div class="ui-grid-col-4" i18n>User name *:</div>
       <div class="ui-grid-col-8">
-        <input class="ui-inputtext" pInputText type="text" [(ngModel)]="username" placeholder="Username" name="username" required style="width: 100%" [disabled]="!modifyUsername"/>
+        <input class="ui-inputtext" pInputText type="text" [(ngModel)]="username" i18n-placeholder placeholder="Username" name="username" required style="width: 100%" [disabled]="!modifyUsername"/>
       </div>
     </div>
     <div class="ui-grid-row" style="align-items: center">
-      <div class="ui-grid-col-4">
-        Password *:
-      </div>
+      <div class="ui-grid-col-4" i18n>Password *:</div>
       <div class="ui-grid-col-8">
-        <input class="ui-inputtext" pInputText type="password" [(ngModel)]="password" placeholder="Password" name="password" required style="width: 100%"/>
+        <input class="ui-inputtext" pInputText type="password" [(ngModel)]="password" i18n-placeholder placeholder="Password" name="password" required style="width: 100%"/>
       </div>
     </div>
     <div class="ui-grid-row" style="align-items: center">
-      <div class="ui-grid-col-4">
-        Retype password *:
-      </div>
+      <div class="ui-grid-col-4" i18n>Retype password *:</div>
       <div class="ui-grid-col-6">
-        <input class="ui-inputtext" pInputText type="password" [(ngModel)]="retypedPassword" placeholder="Password" name="retypedPassword" required
+        <input class="ui-inputtext" pInputText type="password" [(ngModel)]="retypedPassword" i18n-placeholder placeholder="Password" name="retypedPassword" required
                appSamePassword [password]="password" style="width: 100%" #retyped="ngModel"/>
       </div>
     </div>
     <div class="ui-grid-row" *ngIf="retyped.errors && retyped.errors['samePassword']">
       <div class="ui-g-offset-4 ui-grid-col-8">
-        <span class="error-message">Wrong retyped password</span>
+        <span class="error-message" i18n>Wrong retyped password</span>
       </div>
     </div>
   </div>
   <p-footer>
-    <p-button label="Confirm" (click)="userForm.form.valid && save()" [disabled]="!userForm.form.valid"></p-button>
+    <p-button i18n-label label="Confirm" (click)="userForm.form.valid && save()" [disabled]="!userForm.form.valid"></p-button>
   </p-footer>
 </p-dialog>
