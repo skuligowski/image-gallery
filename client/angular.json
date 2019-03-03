@@ -24,10 +24,6 @@
               "src/styles.less",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css"
-            ],
-            "scripts": [
-              "node_modules/imagesloaded/imagesloaded.pkgd.js",
-              "node_modules/masonry-layout/dist/masonry.pkgd.js"
             ]
           },
           "configurations": {
@@ -39,8 +35,8 @@
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
+              "vendorChunk": true,
+              "buildOptimizer": false,
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -74,10 +70,6 @@
             "karmaConfig": "./karma.conf.js",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "scripts": [
-              "node_modules/imagesloaded/imagesloaded.pkgd.js",
-              "node_modules/masonry-layout/dist/masonry.pkgd.js"
-            ],
             "styles": [
               "node_modules/normalize.css/normalize.css",
               "src/styles.less",

@@ -11,8 +11,8 @@
     "watch": "concurrently --kill-others --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgMagenta.bold\" --handle-input \"npm run watch-server\" \"npm run watch-client\"",
 
     "build": "npm run build:en && npm run build:pl",
-    "build:pl": "cd client && ng build --prod --deploy-url=static/pl/ --i18n-file src/locale/messages.pl.xlf --i18n-format xlf --i18n-locale pl --outputPath dist/pl",
-    "build:en": "cd client && ng build --prod --deploy-url=static/en/ --i18n-locale en --outputPath dist/en",
+    "build:pl": "cd client && ng build --configuration production --prod --deploy-url=static/pl/ --i18n-file src/locale/messages.pl.xlf --i18n-format xlf --i18n-locale pl --outputPath dist/pl",
+    "build:en": "cd client && ng build --configuration production --prod --deploy-url=static/en/ --i18n-locale en --outputPath dist/en",
 
     "release": "release-it",
     "release:clean": "rimraf dist",
