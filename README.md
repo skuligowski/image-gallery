@@ -1,29 +1,44 @@
 # Image Gallery
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+Image Gallery is a free and open source web gallery, that you can very easily install on your Raspberry Pi, any server that supports *NodeJs* or Heroku.
 
-## Development server
+It contains fully featured administration panel that supports:
+- library of images
+- multiple files upload
+- composing albums from library images
+- generating thumbnails
+- custom gallery name
+- authentication
+- RWD for any device (mobile, tablet, desktop)
+- multi-language support
+- dashboard tiles with entry image
+- custom permalinks for photos
+- date grouping
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Image Gallery do not require any database or native graphic modules (eg. ImageMagick).
+It simply works after the installation.
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Download the latest version of the gallery: [v0.3.0](https://github.com/skuligowski/image-gallery/releases/download/v0.3.0/v0.3.0.zip)
 
-## Build
+2. Unzip it somewhere and type:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-## Running unit tests
+```bash
+$ npm install
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. Finally run the gallery:
 
-## Running end-to-end tests
+```bash
+$ node server
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Basic configuration
 
-## Further help
+After the first launch, login to the [administration panel](http://localhost:3000/login).
+Configure your gallery name, and library dir - the directory where you store your images.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
+Now you are ready to manage your photos, compose albums and upload photos to the library!
 
