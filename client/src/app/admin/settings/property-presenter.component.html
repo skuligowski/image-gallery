@@ -19,6 +19,11 @@
     </p-cellEditor>
   </td>
 </ng-container>
+<ng-container *ngIf="type === 'enum'">
+  <td>
+    <p-dropdown [options]="dropdownOptions" [ngModel]="value" (ngModelChange)="valueChange.emit($event)"></p-dropdown>
+  </td>
+</ng-container>
 <ng-container *ngIf="type === 'number'">
   <td pEditableColumn [pEditableColumnField]="key">
     <p-cellEditor>

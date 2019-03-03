@@ -10,6 +10,7 @@ function initialize() {
     .then(() => insertConfigProperty({key: 'authentication', value: false}))
     .then(() => insertConfigProperty({key: 'thumbnailWidth', value: 360}))
     .then(() => insertConfigProperty({key: 'thumbnailQuality', value: 92}))
+    .then(() => insertConfigProperty({key: 'language', value: 'en'}))
     .then(() => users.addUser( 'admin', '1234', true));
 }
 

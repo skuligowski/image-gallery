@@ -43,6 +43,12 @@ export class SettingsValidatorsService {
     }
   }
 
+  language(): SettingsValidators {
+    return {
+      validators: Validators.required
+    }
+  }
+
   get(key: string): SettingsValidators {
     if (this[key]) {
       return this[key]();

@@ -47,8 +47,7 @@ initialize()
       app.use(middleware.swaggerUi());
       app.use('/static', serveStatic(path.join(__dirname, 'public')));
       app.use('*', (req, res, next)=> {
-        res.sendFile(path.join(__dirname, 'public/index.html'));
-        next();
+        res.sendFile(path.join(__dirname, `public/${config.language}/index.html`));
       });
       app.use((err, req, res, next) => {
         console.log(err);

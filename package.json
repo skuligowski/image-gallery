@@ -3,22 +3,24 @@
   "version": "0.2.0",
   "license": "MIT",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
-    "test": "ng test",
-    "lint": "ng lint",
+
+    "create-language": "cd client && ng xi18n --output-path locale",
+
     "watch-client": "cd client && ng serve --proxy-config proxy.conf.json",
     "watch-server": "cd server && npm run watch",
     "watch": "concurrently --kill-others --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgMagenta.bold\" --handle-input \"npm run watch-server\" \"npm run watch-client\"",
-    "e2e": "ng e2e",
+
+    "build": "npm run build:en && npm run build:pl",
+    "build:pl": "cd client && ng build --prod --deploy-url=static/pl/ --i18n-file src/locale/messages.pl.xlf --i18n-format xlf --i18n-locale pl --outputPath dist/pl",
+    "build:en": "cd client && ng build --prod --deploy-url=static/en/ --i18n-locale en --outputPath dist/en",
+
     "release": "release-it",
     "release:clean": "rimraf dist",
     "release:copy-server": "cpy '**/*' '!**/node_modules/**' '../dist' --parents --cwd=server",
     "release:copy-spec": "cpy 'spec/**/*' 'dist' --parents",
-    "release:build-client": "cd client && ng build --prod --deploy-url=static/ && cd ..",
     "release:copy-client": "cpy '**/*' '../../dist/public' --parents --cwd=client/dist",
-    "release:package": "npm run release:clean && npm run release:copy-server && npm run release:copy-spec && npm run release:build-client && npm run release:copy-client",
+    "release:package": "npm run release:clean && npm run release:copy-server && npm run release:copy-spec && npm run build && npm run release:copy-client",
+
     "postinstall": "node node_modules/recursive-install/recursive-install.js --skip-root"
   },
   "private": true,

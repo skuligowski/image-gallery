@@ -1,5 +1,6 @@
 import { Attribute, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { SelectItem } from 'primeng/api';
 
 
 @Component({
@@ -15,6 +16,13 @@ export class PropertyPresenterComponent {
 
   @Input()
   value: any;
+
+  @Input()
+  set options(options: any[]) {
+    this.dropdownOptions = options.map(option => ({label: option, value: option}));
+  };
+
+  dropdownOptions: SelectItem[];
 
   @Input()
   formGroup: FormGroup;

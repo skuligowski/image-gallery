@@ -18,6 +18,7 @@ class Config {
         this.dashboardImageUrl = configParams.dashboardImageUrl;
         this.thumbnailWidth = configParams.thumbnailWidth;
         this.thumbnailQuality = configParams.thumbnailQuality;
+        this.language = configParams.language;
       });
   }
 

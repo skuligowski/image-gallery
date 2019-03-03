@@ -19,6 +19,10 @@
           name="Authentication" type="boolean"
           description="When switched on, a user is always redirected to login page before entering the gallery."
       ></tr>
+      <tr app-property-presenter key="language" [(value)]="settings['language']" [formGroup]="settingsForm"
+          name="Language" type="enum" [options]="['en', 'pl']"
+          description="Language of the gallery"
+      ></tr>
       <tr app-property-presenter key="libraryDir" [(value)]="settings['libraryDir']" [formGroup]="settingsForm"
         name="Library directory" type="string"
         description="Library directory is an absolute path to directory that contains all image files.

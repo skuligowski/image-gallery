@@ -130,6 +130,10 @@ declare namespace Definitions {
          */
         authentication?: boolean;
         /**
+         * Language of gallery
+         */
+        language?: string;
+        /**
          * Library directory
          */
         libraryDir?: string;
