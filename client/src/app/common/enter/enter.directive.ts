@@ -14,7 +14,6 @@ export class EnterDirective implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     if (this.enter.observers.length !== 0) {
       this.unregisterListener = this.renderer.listen(this.element.nativeElement, 'keyup.enter', event => {
-        console.log(event);
         this.enter.emit(event);
       });
     }

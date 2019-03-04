@@ -3,7 +3,7 @@ import { AlbumsManagerComponent } from './albums-manager/albums-manager.componen
 import { AlbumCreateComponent } from './album-create/album-create.component';
 import { AlbumDetailsComponent } from './album-details/album-details.component';
 import { LibraryUploadComponent } from './library-manager/library-upload/library-upload.component';
-import { EnterDirective } from '../common/utils/enter.directive';
+import { EnterDirective } from '../common/enter/enter.directive';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -38,53 +38,52 @@ import { SettingsValidatorsService } from './settings/settings-validators.servic
 import { AuthHttpInterceptor } from '../common/utils/auth-http.interceptor';
 import { PropertyPresenterComponent } from './settings/property-presenter.component';
 import { ThumbnailsService } from './services/thumbnails.service';
+import { EnterModule } from '../common/enter/enter.module';
 
 
 @NgModule({
   declarations: [
-    HeaderNavigationComponent,
-
-    AlbumsManagerComponent,
     AlbumCreateComponent,
     AlbumDetailsComponent,
-    EnterDirective,
-    LibraryDirectoryCreateComponent,
+    AlbumsManagerComponent,
+    HeaderNavigationComponent,
     LibraryBrowserComponent,
+    LibraryDirectoryCreateComponent,
     LibraryFilesSelectorComponent,
-    LibraryUploadComponent,
     LibraryManagerComponent,
-    UsersManagerComponent,
-    UserCreateComponent,
-    SettingsComponent,
+    LibraryUploadComponent,
     PropertyPresenterComponent,
-
-    SizePipe,
     SamePasswordDirective,
+    SettingsComponent,
+    SizePipe,
+    UserCreateComponent,
+    UsersManagerComponent,
   ],
   imports: [
+    AdminRoutingModule,
+    ButtonModule,
+    CalendarModule,
     CommonModule,
-    HttpClientModule,
+    ConfirmDialogModule,
+    DialogModule,
+    DropdownModule,
+    EnterModule,
     FormsModule,
+    HttpClientModule,
+    InputSwitchModule,
     ReactiveFormsModule,
     TableModule,
-    ButtonModule,
-    DialogModule,
-    InputSwitchModule,
-    ConfirmDialogModule,
-    DropdownModule,
     TreeModule,
-    AdminRoutingModule,
-    CalendarModule,
   ],
   providers: [
     AdminGuard,
     AlbumDetailsResolver,
-    LibraryService,
     ConfirmationService,
-    UsersService,
+    LibraryService,
     SettingsService,
     SettingsValidatorsService,
     ThumbnailsService,
+    UsersService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true}
   ]
 })
