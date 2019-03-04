@@ -3,11 +3,12 @@ const path = require('path');
 const config = require('./config');
 const Promise = require('bluebird');
 const fs = require('fs');
+const fse = require('fs-extra');
 const readDir = Promise.promisify(fs.readdir, {context: fs});
 const stat = Promise.promisify(fs.stat, {context: fs});
 const mkDir = Promise.promisify(fs.mkdir, {context: fs});
-const rename = Promise.promisify(fs.rename, {context: fs});
 const sizeOf = Promise.promisify(require('image-size'));
+const move = Promise.promisify(fse.move, {context: fse});
 
 const allowedExtensions = ['.jpg', '.jpeg', '.gif', '.png']
   .reduce((map, key) => { map[key] = true; return map;}, {});
@@ -80,7 +81,7 @@ function isImage(filename) {
 function addFile(parentDir, filePath) {
   if (isValidPath(parentDir)) {
     const newPath = path.join(config.libraryDir, parentDir || '', path.basename(filePath));
-    return rename(filePath, newPath);
+    return move(filePath, newPath);
   } else {
     throw new Error(`Invalid path: ${filePath}`);
   }
