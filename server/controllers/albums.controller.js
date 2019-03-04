@@ -12,7 +12,7 @@ function getAlbums(req, res) {
       date: album.date,
       lastModified: album.lastModified,
       createDate: album.createDate,
-      thumbUrl: album.images[0] ? album.images[0].url : undefined,
+      thumbUrl: album.images[0] ? album.images[0].thumbUrl : undefined,
       size: album.images.length
     }))));
 }
