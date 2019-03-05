@@ -5,12 +5,13 @@ import { ConfigService } from './config.service';
 import Config = Definitions.Config;
 import { of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { Title } from '@angular/platform-browser';
 
 
 @Injectable()
 export class ConfigGuard implements CanActivate {
 
-  constructor(private configService: ConfigService) {}
+  constructor(private configService: ConfigService, private title: Title) {}
 
   private config: Config;
 
@@ -18,6 +19,7 @@ export class ConfigGuard implements CanActivate {
     return this.config ? of(true) : this.configService.loadConfig()
       .pipe(
         tap(config => this.config = config),
+        tap(config => this.title.setTitle(config.galleryName)),
         map(() => true)
       );
   }
