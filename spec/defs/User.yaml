@@ -7,6 +7,9 @@ properties:
   admin:
     type: boolean
     description: Set to true if the user has administration privileges
+  guest:
+    type: boolean
+    description: Set to true if authentication is switched off and any user can access the gallery
 required:
 - username
 - admin

@@ -167,6 +167,10 @@ declare namespace Definitions {
          * Set to true if the user has administration privileges
          */
         admin: boolean;
+        /**
+         * Set to true if authentication is switched off and any user can access the gallery
+         */
+        guest?: boolean;
     }
     export interface UserCreateRequest {
         /**

@@ -4,6 +4,7 @@
     <ul class="navigation">
       <li *ngIf="albumsCount"><a (click)="chooseAlbum()"><i class="icon-albums"></i><span class="label" i18n>Albums</span></a></li>
       <li *ngIf="authService.isUserAdmin()"><a (click)="navigateToAdmin()"><i class="icon-albums"></i><span class="label" i18n>Admin</span></a></li>
+      <li *ngIf="authService.isLogged()"><a (click)="authService.logout()"><i class="icon-logout always-visible"></i></a></li>
     </ul>
   </header>
 

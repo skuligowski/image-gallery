@@ -1,11 +1,11 @@
 @font-face {
   font-family: "icons";
-  src: url('assets/fonts/icons.1550253069206.eot');
-  src: url('assets/fonts/icons.1550253069206.eot?#iefix') format('eot'),
-    url('assets/fonts/icons.1550253069206.woff2') format('woff2'),
-    url('assets/fonts/icons.1550253069206.woff') format('woff'),
-    url('assets/fonts/icons.1550253069206.ttf') format('truetype'),
-    url('assets/fonts/icons.1550253069206.svg#icons') format('svg');
+  src: url('assets/fonts/icons.1551821070457.eot');
+  src: url('assets/fonts/icons.1551821070457.eot?#iefix') format('eot'),
+    url('assets/fonts/icons.1551821070457.woff2') format('woff2'),
+    url('assets/fonts/icons.1551821070457.woff') format('woff'),
+    url('assets/fonts/icons.1551821070457.ttf') format('truetype'),
+    url('assets/fonts/icons.1551821070457.svg#icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -50,10 +50,11 @@
 .icon-home:before { content: "\EA06" }
 .icon-image:before { content: "\EA07" }
 .icon-login:before { content: "\EA08" }
-.icon-menu:before { content: "\EA09" }
-.icon-next:before { content: "\EA0A" }
-.icon-password:before { content: "\EA0B" }
-.icon-prev:before { content: "\EA0C" }
-.icon-search:before { content: "\EA0D" }
-.icon-settings:before { content: "\EA0E" }
-.icon-user:before { content: "\EA0F" }
+.icon-logout:before { content: "\EA09" }
+.icon-menu:before { content: "\EA0A" }
+.icon-next:before { content: "\EA0B" }
+.icon-password:before { content: "\EA0C" }
+.icon-prev:before { content: "\EA0D" }
+.icon-search:before { content: "\EA0E" }
+.icon-settings:before { content: "\EA0F" }
+.icon-user:before { content: "\EA10" }

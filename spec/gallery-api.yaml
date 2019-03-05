@@ -255,6 +255,16 @@ paths:
           description: User unauthorized
           schema:
             type: string
+  /logout:
+    x-swagger-router-controller: auth.controller
+    post:
+      description: Log outs user from the application
+      tags:
+        - auth
+      operationId: logout
+      responses:
+        200:
+          description: User authenticated
   /user:
     x-swagger-router-controller: auth.controller
     get:

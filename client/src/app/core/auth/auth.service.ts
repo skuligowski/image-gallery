@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { EMPTY, Observable, of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { spinnable } from '../../common/utils/spinnable';
 import User = Definitions.User;
 
@@ -18,11 +18,8 @@ export class AuthService {
   authenticationHandler<T>(redirectUrl: string): (observable: Observable<T>) => Observable<boolean> {
     return (observable: Observable<T>) => {
       return observable.pipe(
-        map(() => true), catchError((e: HttpErrorResponse) => {
-          if (e.status === 401) {
-            this.redirectUrl = redirectUrl;
-            this.router.navigateByUrl('/login');
-          }
+        map(() => true), catchError(e => {
+          this.redirectUrl = redirectUrl;
           return of(false);
         })
       );
@@ -46,6 +43,15 @@ export class AuthService {
       switchMap(() => EMPTY));
   }
 
+  logout(): void {
+    spinnable(
+      this.httpClient.post<void>('/api/logout', {})
+    ).subscribe(() => {
+      this.user = undefined;
+      this.router.navigateByUrl('/login');
+    });
+  }
+
   checkCredentials(redirectUrl: string): Observable<boolean> {
     return this.user ? of(true) : spinnable(
       this.httpClient.get<User>('/api/user').pipe(
@@ -53,6 +59,10 @@ export class AuthService {
         this.authenticationHandler(redirectUrl)
       )
     );
+  }
+
+  isLogged(): boolean {
+    return this.user && !this.user.guest;
   }
 
   isUserAdmin(): boolean {

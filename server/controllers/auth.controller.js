@@ -7,7 +7,7 @@ function login(req, res) {
       req.login(user, () => {
         res.status(200).send({
           username: user.username,
-          admin: user.admin
+          admin: user.admin,
         });
       });
     } else {
@@ -16,18 +16,24 @@ function login(req, res) {
   })(req, res);
 };
 
+function logout(req, res) {
+  req.logout();
+  res.status(200).send();
+}
+
 function getUser(req, res) {
   if (req.user || config.authentication) {
     res.status(200).send({
       username: req.user.username,
-      admin: req.user.admin
+      admin: req.user.admin,
     });
   } else {
     res.status(200).send({
-      username: 'anonymous',
-      admin: false
+      username: 'guest',
+      admin: false,
+      guest: true,
     });
   }
 };
 
-module.exports = { login, getUser };
+module.exports = { login, getUser, logout };
