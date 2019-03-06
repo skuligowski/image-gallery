@@ -18,7 +18,7 @@ function login(req, res) {
 
 function logout(req, res) {
   req.logout();
-  res.status(200).send();
+  req.session.regenerate(() => res.status(200).send());
 }
 
 function getUser(req, res) {
