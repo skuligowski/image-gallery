@@ -8,7 +8,6 @@ app-image-preview {
     height: 100%;
     width: 100%;
     position: relative;
-    padding: 36px 5px;
 
     .image-window {
       height: 100%;
@@ -34,10 +33,10 @@ app-image-preview {
 
   .navigation-layer {
     position: absolute;
-    top: @navigation-padding;
-    bottom: @navigation-padding;
-    right: @navigation-padding;
-    left: @navigation-padding;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
     color: #fff;
     font-size: 2rem;
 
@@ -50,30 +49,59 @@ app-image-preview {
       margin: auto;
     }
 
-    .close-button {
+    .action-bar {
       position: absolute;
       top: 0;
       right: 0;
       font-size: 1.2rem;
-      color: #555;
+      color: #bbb;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.5);
+      border-bottom-left-radius: 15px;
+    }
+
+    .close-button, .download-button {
       cursor: pointer;
+      color: #ccc;
+      margin: 0 10px;
 
       &:hover {
         color: #fff;
       }
     }
 
+    .download-button {
+      cursor: pointer;
+      color: #ccc;
+      margin: 0 10px;
+      &:hover {
+        color: #fff;
+      }
+    }
+
+    .counter {
+      font-size: 0.7rem;
+      display: inline-block;
+      color: #ccc;
+      vertical-align: middle;
+      white-space: pre-line;
+      margin: 0 7px 0 13px;
+    }
+
     .nav-button {
       position: absolute;
       top: 50%;
       transform: translate(0, -50%);
-      color: #aaa;
+      color: #ccc;
       text-decoration: none;
       padding: 10px;
       background: rgba(0, 0, 0, 0.5);
       border-radius: 4px;
       font-size: 1.4rem;
       cursor: pointer;
+
 
       &:hover {
         color: #fff;
@@ -88,14 +116,7 @@ app-image-preview {
       }
     }
 
-    .counter {
-      position: absolute;
-      left: 0;
-      top: 0;
-      font-size: 0.9rem;
-      color: #666;
-      white-space: pre-line;
-    }
+
 
     .title {
       position: absolute;

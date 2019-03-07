@@ -39,9 +39,7 @@ initialize()
       app.use(middleware.swaggerSecurity({
         oauth2: function (req, def, scopes, callback) { }
       }));
-      app.use(middleware.swaggerValidator({
-        validateResponse: true
-      }));
+      app.use(middleware.swaggerValidator());
       app.use(authMiddleware());
       app.use(middleware.swaggerRouter({ useStubs: false, controllers: path.resolve(__dirname, 'controllers') }));
       app.use(middleware.swaggerUi());

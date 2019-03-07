@@ -1,11 +1,11 @@
 @font-face {
   font-family: "icons";
-  src: url('assets/fonts/icons.1551821070457.eot');
-  src: url('assets/fonts/icons.1551821070457.eot?#iefix') format('eot'),
-    url('assets/fonts/icons.1551821070457.woff2') format('woff2'),
-    url('assets/fonts/icons.1551821070457.woff') format('woff'),
-    url('assets/fonts/icons.1551821070457.ttf') format('truetype'),
-    url('assets/fonts/icons.1551821070457.svg#icons') format('svg');
+  src: url('assets/fonts/icons.1551910242065.eot');
+  src: url('assets/fonts/icons.1551910242065.eot?#iefix') format('eot'),
+    url('assets/fonts/icons.1551910242065.woff2') format('woff2'),
+    url('assets/fonts/icons.1551910242065.woff') format('woff'),
+    url('assets/fonts/icons.1551910242065.ttf') format('truetype'),
+    url('assets/fonts/icons.1551910242065.svg#icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -46,15 +46,16 @@
 .icon-albums:before { content: "\EA02" }
 .icon-book:before { content: "\EA03" }
 .icon-close:before { content: "\EA04" }
-.icon-folder:before { content: "\EA05" }
-.icon-home:before { content: "\EA06" }
-.icon-image:before { content: "\EA07" }
-.icon-login:before { content: "\EA08" }
-.icon-logout:before { content: "\EA09" }
-.icon-menu:before { content: "\EA0A" }
-.icon-next:before { content: "\EA0B" }
-.icon-password:before { content: "\EA0C" }
-.icon-prev:before { content: "\EA0D" }
-.icon-search:before { content: "\EA0E" }
-.icon-settings:before { content: "\EA0F" }
-.icon-user:before { content: "\EA10" }
+.icon-download:before { content: "\EA05" }
+.icon-folder:before { content: "\EA06" }
+.icon-home:before { content: "\EA07" }
+.icon-image:before { content: "\EA08" }
+.icon-login:before { content: "\EA09" }
+.icon-logout:before { content: "\EA0A" }
+.icon-menu:before { content: "\EA0B" }
+.icon-next:before { content: "\EA0C" }
+.icon-password:before { content: "\EA0D" }
+.icon-prev:before { content: "\EA0E" }
+.icon-search:before { content: "\EA0F" }
+.icon-settings:before { content: "\EA10" }
+.icon-user:before { content: "\EA11" }

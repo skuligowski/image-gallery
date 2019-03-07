@@ -4,6 +4,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs/index';
 import { debounceTime } from 'rxjs/internal/operators';
+import { AlbumsService } from '../../albums.service';
 
 const spinnerAnimation = trigger('spinnerAnimation', [
   transition(':enter', [
@@ -42,6 +43,10 @@ export class ImagePreviewComponent {
   currentAlbum: CurrentAlbum;
   currentImage: CurrentImage;
 
+  get imageDownloadLink(): string {
+    return `/api/albums/${this.currentAlbum.id}/images/${this.currentImage.filename}`;
+  }
+
   imageState: 'loading' | 'loaded';
   loadingSubject: Subject<boolean> = new BehaviorSubject(false);
   loading$: Observable<boolean> = this.loadingSubject
@@ -78,7 +83,7 @@ export class ImagePreviewComponent {
     return ['albums'].concat(this.currentAlbum.permalink.split('/')).concat(other);
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private albumsService: AlbumsService) { }
 
 }
 
