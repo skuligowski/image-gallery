@@ -10,6 +10,10 @@ properties:
   dashboardImageUrl:
     type: string
     description: Image presented on dashboard. If not set, the first image of last modified album is presented
+  imageDownload:
+    type: boolean
+    description: Defines if the user can download an image.
 required:
   - galleryName
   - dashboardTilesCount
+  - imageDownload

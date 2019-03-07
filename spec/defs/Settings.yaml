@@ -26,3 +26,6 @@ properties:
   thumbnailQuality:
     type: number
     description: Quality of generated thumbnails, in percent
+  imageDownload:
+    type: boolean
+    description: Defines if the user can download an image

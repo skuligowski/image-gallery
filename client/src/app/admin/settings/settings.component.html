@@ -45,6 +45,10 @@
           i18n-name name="Thumbnail quality" type="number"
           i18n-description description="Quality (%) of generated thumbnails."
       ></tr>
+      <tr app-property-presenter key="imageDownload" [(value)]="settings['imageDownload']" [formGroup]="settingsForm"
+          i18n-name name="Image download" type="boolean"
+          i18n-description description="When switched on, a user can download full-size image from the gallery."
+      ></tr>
     </ng-template>
   </p-table>
 </div>

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs/index';
 import { debounceTime } from 'rxjs/internal/operators';
 import { AlbumsService } from '../../albums.service';
+import { ConfigService } from '../../core/config/config.service';
 
 const spinnerAnimation = trigger('spinnerAnimation', [
   transition(':enter', [
@@ -83,7 +84,7 @@ export class ImagePreviewComponent {
     return ['albums'].concat(this.currentAlbum.permalink.split('/')).concat(other);
   }
 
-  constructor(private router: Router, private albumsService: AlbumsService) { }
+  constructor(private router: Router, public config: ConfigService) { }
 
 }
 

@@ -58,6 +58,10 @@ declare namespace Definitions {
          * Image presented on dashboard. If not set, the first image of last modified album is presented
          */
         dashboardImageUrl?: string;
+        /**
+         * Defines if the user can download an image.
+         */
+        imageDownload: boolean;
     }
     export interface DirectoryCreateRequest {
         /**
@@ -153,6 +157,10 @@ declare namespace Definitions {
          * Quality of generated thumbnails, in percent
          */
         thumbnailQuality?: number;
+        /**
+         * Defines if the user can download an image
+         */
+        imageDownload?: boolean;
     }
     /**
      * list of image urls for which thumbs should be create/regenerted

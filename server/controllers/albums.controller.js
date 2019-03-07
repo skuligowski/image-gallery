@@ -100,6 +100,9 @@ function uploadFile(req, res) {
 }
 
 function downloadImage(req, res, next) {
+  if (!config.imageDownload) {
+    return res.status(404).send();
+  }
   const path = require('path');
   const _id = req.swagger.params.id.value;
   const filename = req.swagger.params.filename.value;

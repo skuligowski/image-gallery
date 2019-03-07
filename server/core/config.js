@@ -9,16 +9,10 @@ class Config {
       .reduce((config, property) => {
         config[property.key] = property.value;
         return config;
-      }, {})
+      }, this)
       .then(configParams => {
-        this.authentication = configParams.authentication || false;
+        // post processing
         this.libraryDir = normalizeLibraryDir(configParams.libraryDir);
-        this.galleryName = configParams.galleryName;
-        this.dashboardTilesCount = configParams.dashboardTilesCount;
-        this.dashboardImageUrl = configParams.dashboardImageUrl;
-        this.thumbnailWidth = configParams.thumbnailWidth;
-        this.thumbnailQuality = configParams.thumbnailQuality;
-        this.language = configParams.language;
       });
   }
 
