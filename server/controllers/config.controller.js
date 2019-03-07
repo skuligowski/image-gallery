@@ -7,6 +7,7 @@ function getConfig(req, res) {
         galleryName: config.galleryName,
         dashboardTilesCount: config.dashboardTilesCount,
         dashboardImageUrl: config.dashboardImageUrl,
+        imageDownload: config.imageDownload,
     }))
     .then(config => config.dashboardImageUrl ? config : getLastRecentImageUrl(config))
     .then(config => res.status(200).send(config));

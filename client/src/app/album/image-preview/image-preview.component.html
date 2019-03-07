@@ -5,11 +5,14 @@
   </div>
 </div>
 <div class="navigation-layer">
-  <a class="close-button icon-close" (click)="close()"></a>
+  <div class="action-bar">
+    <div class="counter">{{currentImage.currentNumber}} / {{currentImage.totalNumber}}</div>
+    <a class="download-button icon-download" href="{{imageDownloadLink}}" *ngIf="config.imageDownload"></a>
+    <a class="close-button icon-close" (click)="close()"></a>
+  </div>
   <a class="nav-button prev icon-prev" (click)="previous()"></a>
   <a class="nav-button next icon-next" (click)="next()"></a>
   <div [@spinnerAnimation] *ngIf="loading$ | async" class="spinner"></div>
-  <div class="counter">{{currentImage.currentNumber}} / {{currentImage.totalNumber}}</div>
   <div class="title">{{currentImage.title}}</div>
 </div>
 <!-- cash of already loaded images -->

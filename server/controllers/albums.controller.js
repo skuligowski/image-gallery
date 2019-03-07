@@ -2,6 +2,7 @@
 const db = require('../core/db');
 const albums = require('../core/albums');
 const library = require('../core/library');
+const config = require('../core/config');
 
 function getAlbums(req, res) {
   db.albums.find({}).sort({createDate: -1}).exec((err, albums) =>
@@ -98,4 +99,22 @@ function uploadFile(req, res) {
   }
 }
 
-module.exports = { getImages, getAlbums, uploadFile, createAlbum, updateAlbum, removeAlbum, addImages, removeImages };
+function downloadImage(req, res, next) {
+  if (!config.imageDownload) {
+    return res.status(404).send();
+  }
+  const path = require('path');
+  const _id = req.swagger.params.id.value;
+  const filename = req.swagger.params.filename.value;
+  db.findAlbum({ _id })
+    .then(album => album.images.find(image => image.filename === filename))
+    .then(image => {
+      if (image) {
+        res.download(path.join(config.libraryDir, image.url), path.basename(image.url));
+      } else {
+        res.status(404).send();
+      }
+    })
+}
+
+module.exports = { getImages, getAlbums, uploadFile, createAlbum, updateAlbum, removeAlbum, addImages, removeImages, downloadImage };

@@ -141,6 +141,36 @@ paths:
             $ref: defs/ImagesResponse.yaml
         404:
           description: An album with given id was not found
+  /albums/{id}/images/{filename}:
+    x-swagger-router-controller: albums.controller
+    get:
+      description: Download image from the album
+      tags:
+        - gallery
+      operationId: downloadImage
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: Id of the album
+        - in: path
+          name: filename
+          type: string
+          required: true
+          description: File name to download
+      produces:
+        - image/png
+        - image/jpg
+        - image/jpeg
+        - image/gif
+      responses:
+        200:
+          description: offering created
+          schema:
+            type: file
+        404:
+          description: Requested image was not found
   /albums/{id}/images/removal:
     x-swagger-router-controller: albums.controller
     post:

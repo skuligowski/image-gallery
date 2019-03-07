@@ -11,6 +11,7 @@ export class ConfigService implements Partial<Config> {
   galleryName: string;
   dashboardTilesCount: number;
   dashboardImageUrl: string;
+  imageDownload: boolean;
 
   constructor(private httpClient: HttpClient) {}
 

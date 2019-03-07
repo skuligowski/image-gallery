@@ -69,6 +69,12 @@ export class AlbumsService {
     return this.findAlbumDetails(album => album.permalink === albumPermalink);
   }
 
+  downloadImage(albumId: string, filename: string) {
+    return spinnable(
+      this.httpClient.get<void>(`/api/albums/${albumId}/images/${filename}`)
+    );
+  }
+
   private findAlbumDetails(albumPredicate: (album) => boolean): Observable<AlbumDetails> {
     return this.getAlbums().pipe(switchMap(albums => {
       const album = albums.find(albumPredicate);
