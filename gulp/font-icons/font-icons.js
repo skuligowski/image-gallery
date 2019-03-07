@@ -3,6 +3,8 @@ module.exports = gulp => {
     const iconFont = require('gulp-iconfont');
     const consolidate = require('gulp-consolidate');
     const timestamp = new Date().getTime();
+    const rimrafSync = require('rimraf').sync;
+    rimrafSync('client/src/assets/fonts/icons*');
     gulp.src('client/src/assets/icons/*.svg')
       .pipe(iconFont({
         fontName: `icons.${timestamp}`,
