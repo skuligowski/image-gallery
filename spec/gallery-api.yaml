@@ -23,6 +23,8 @@ paths:
           description: offering created
           schema:
             $ref: defs/Config.yaml
+
+
   /albums:
     x-swagger-router-controller: albums.controller
     get:
@@ -56,6 +58,8 @@ paths:
       responses:
         201:
           description: album created
+
+
   /albums/{id}:
     x-swagger-router-controller: albums.controller
     delete:
@@ -95,6 +99,8 @@ paths:
       responses:
         200:
           description: album updated
+
+
   /albums/{id}/images:
     x-swagger-router-controller: albums.controller
     get:
@@ -141,6 +147,35 @@ paths:
             $ref: defs/ImagesResponse.yaml
         404:
           description: An album with given id was not found
+
+
+  /albums/{id}/images/order:
+    x-swagger-router-controller: albums.controller
+    post:
+      x-authentication-required: true
+      x-admin-required: true
+      description: Create order for images
+      tags:
+        - admin
+      operationId: setImagesOrder
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: Id of the album
+        - name: ImagesOrderRequest
+          in: body
+          description: Adding images request
+          schema:
+            $ref: defs/ImagesOrderRequest.yaml
+      responses:
+        200:
+          description: new order created
+        404:
+          description: An album with given id was not found
+
+
   /albums/{id}/images/{filename}:
     x-swagger-router-controller: albums.controller
     get:
@@ -171,6 +206,8 @@ paths:
             type: file
         404:
           description: Requested image was not found
+
+
   /albums/{id}/images/removal:
     x-swagger-router-controller: albums.controller
     post:
@@ -196,6 +233,8 @@ paths:
           description: Action successfull
         404:
           description: An album with given id was not found
+
+
   /thumbnails:
     x-swagger-router-controller: thumbnails.controller
     post:
@@ -216,6 +255,8 @@ paths:
           description: Action successfull
         404:
           description: An album with given id was not found
+
+
   /library/files:
     x-swagger-router-controller: library.controller
     get:
@@ -238,6 +279,8 @@ paths:
           description: User unauthorized
           schema:
             type: string
+
+
   /library/directories:
     x-swagger-router-controller: library.controller
     post:
@@ -263,6 +306,8 @@ paths:
           description: User unauthorized
           schema:
             type: string
+
+
   /login:
     x-swagger-router-controller: auth.controller
     post:
@@ -285,6 +330,8 @@ paths:
           description: User unauthorized
           schema:
             type: string
+
+
   /logout:
     x-swagger-router-controller: auth.controller
     post:
@@ -295,6 +342,8 @@ paths:
       responses:
         200:
           description: User authenticated
+
+
   /user:
     x-swagger-router-controller: auth.controller
     get:
@@ -312,6 +361,8 @@ paths:
           description: User unauthorized
           schema:
             type: string
+
+
   /upload:
     x-swagger-router-controller: albums.controller
     post:
@@ -340,6 +391,8 @@ paths:
           description: User unauthorized
           schema:
             type: string
+
+
   /users:
     x-swagger-router-controller: users.controller
     get:
@@ -396,6 +449,8 @@ paths:
           description: User unauthorized
           schema:
             type: string
+
+
   /users/password:
     x-swagger-router-controller: users.controller
     patch:
@@ -418,6 +473,8 @@ paths:
           description: User unauthorized
           schema:
             type: string
+
+
   /settings:
     x-swagger-router-controller: settings.controller
     get:
@@ -456,6 +513,8 @@ paths:
           description: User unauthorized
           schema:
             type: string
+
+
   /settings/library-dir/validation:
     x-swagger-router-controller: settings.controller
     post:
@@ -480,6 +539,8 @@ paths:
           description: User unauthorized
           schema:
             type: string
+
+
 definitions:
   Album:
     $ref: defs/Album.yaml
@@ -497,6 +558,8 @@ definitions:
     $ref: defs/ImagesResponse.yaml
   ImagesAddRequest:
     $ref: defs/ImagesAddRequest.yaml
+  ImagesOrderRequest:
+    $ref: defs/ImagesOrderRequest.yaml
   ImagesRemovalRequest:
     $ref: defs/ImagesRemovalRequest.yaml
   LibraryFile:

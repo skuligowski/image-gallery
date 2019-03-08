@@ -7,6 +7,7 @@ import Album = Definitions.Album;
 import Image = Definitions.Image;
 import ImagesAddRequest = Definitions.ImagesAddRequest;
 import ImagesRemovalRequest = Definitions.ImagesRemovalRequest;
+import ImagesOrderRequest = Definitions.ImagesOrderRequest;
 
 
 @Injectable()
@@ -31,15 +32,15 @@ export class AlbumsService {
     );
   }
 
-  addImages(albumId: string, imagePaths: string[]) {
+  addImages(albumId: string, imagePaths: string[]): Observable<void> {
     return spinnable(
-      this.httpClient.post<ImagesAddRequest>(`/api/albums/${albumId}/images`, imagePaths)
+      this.httpClient.post<void>(`/api/albums/${albumId}/images`, imagePaths)
     ).pipe(this.refreshAlbums());
   }
 
-  removeImages(albumId: string, imageUrls: string[]) {
+  removeImages(albumId: string, imageUrls: string[]): Observable<void> {
     return spinnable(
-      this.httpClient.post<ImagesRemovalRequest>(`/api/albums/${albumId}/images/removal`, imageUrls)
+      this.httpClient.post<void>(`/api/albums/${albumId}/images/removal`, imageUrls)
     ).pipe(this.refreshAlbums());
   }
 
@@ -69,9 +70,15 @@ export class AlbumsService {
     return this.findAlbumDetails(album => album.permalink === albumPermalink);
   }
 
-  downloadImage(albumId: string, filename: string) {
+  downloadImage(albumId: string, filename: string): Observable<void> {
     return spinnable(
       this.httpClient.get<void>(`/api/albums/${albumId}/images/${filename}`)
+    );
+  }
+
+  setImagesOrder(albumId: string, filenames: string[]): Observable<void> {
+    return spinnable(
+      this.httpClient.post<void>(`/api/albums/${albumId}/images/order`, filenames)
     );
   }
 

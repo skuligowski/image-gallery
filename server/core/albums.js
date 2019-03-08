@@ -60,6 +60,10 @@ function removeAlbum(id) {
   return db.removeAlbum({ _id: id });
 }
 
+function setImagesOrder() {
+  return Promise.resolve();
+}
+
 module.exports = {
-  createAlbum, updateAlbum, removeAlbum, addImages, removeImages
+  createAlbum, updateAlbum, removeAlbum, addImages, removeImages, setImagesOrder
 }

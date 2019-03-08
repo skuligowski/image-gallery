@@ -77,6 +77,11 @@ export class AlbumDetailsComponent {
       });
   }
 
+  setImagesOrder(): void {
+    this.albumsService.setImagesOrder(this.album.id, this.images.map(image => image.filename))
+      .subscribe();
+  }
+
   navigateToAlbums(): void {
     this.router.navigate(['admin', 'albums']);
   }

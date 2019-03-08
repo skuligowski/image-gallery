@@ -101,6 +101,10 @@ declare namespace Definitions {
      */
     export type ImagesAddRequest = string[];
     /**
+     * list of filenames with proper order, all images should be listed that belong to the album
+     */
+    export type ImagesOrderRequest = string[];
+    /**
      * list of image urls to remove
      */
     export type ImagesRemovalRequest = string[];
