@@ -79,7 +79,7 @@ export class AlbumsService {
   setImagesOrder(albumId: string, filenames: string[]): Observable<void> {
     return spinnable(
       this.httpClient.post<void>(`/api/albums/${albumId}/images/order`, filenames)
-    );
+    ).pipe(this.refreshAlbums());;
   }
 
   private findAlbumDetails(albumPredicate: (album) => boolean): Observable<AlbumDetails> {
