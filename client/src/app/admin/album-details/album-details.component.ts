@@ -8,6 +8,7 @@ import { ConfirmationService } from 'primeng/api';
 import { AlbumCreateEvent } from '../album-create/album-create.component';
 import { LibraryFilesSelectorComponent } from '../library-files-selector/library-files-selector.component';
 import { ThumbnailsService } from '../services/thumbnails.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-album-details',
@@ -75,6 +76,7 @@ export class AlbumDetailsComponent {
 
   createThumbnails(images: Image[]): void {
     this.thumbnailsService.createThumbnails(images.map(image => image.url))
+      //.pipe(this.albumsService.refreshAlbums())
       .subscribe(() => {
         this.selected = [];
         this.router.navigated = false;

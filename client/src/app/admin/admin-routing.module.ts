@@ -13,7 +13,7 @@ import { SettingsComponent } from './settings/settings.component';
 const adminRoutes: Routes = [
   { path: '', children: [
       { path: 'albums', component: AlbumsManagerComponent, resolve: { albums: AlbumsResolver }, runGuardsAndResolvers: 'always' },
-      { path: 'albums/:id', component: AlbumDetailsComponent, resolve: { album: AlbumDetailsResolver, albums: AlbumsResolver }, runGuardsAndResolvers: 'always' },
+      { path: 'albums/:id', component: AlbumDetailsComponent, resolve: { albums: AlbumsResolver, album: AlbumDetailsResolver }, runGuardsAndResolvers: 'always' },
       { path: 'library', component: LibraryManagerComponent },
       { path: 'library/upload', component: LibraryUploadComponent },
       { path: 'users', component: UsersManagerComponent },
