@@ -8,6 +8,7 @@ import { ConfirmationService } from 'primeng/api';
 import { AlbumCreateEvent } from '../album-create/album-create.component';
 import { LibraryFilesSelectorComponent } from '../library-files-selector/library-files-selector.component';
 import { ThumbnailsService } from '../services/thumbnails.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-album-details',
@@ -19,6 +20,9 @@ export class AlbumDetailsComponent {
   albums: Album[];
   images: Image[];
   selected: Image[] = [];
+
+  reordered: boolean = false;
+  orderHash: string;
 
   @ViewChild('libraryFilesSelector')
   libraryFilesSelector: LibraryFilesSelectorComponent;
@@ -33,6 +37,8 @@ export class AlbumDetailsComponent {
       this.album = data.album;
       this.albums = data.albums;
       this.images = data.album.images;
+      this.orderHash = this.getOrderHash(this.images);
+      this.onRowReorder();
     });
   }
 
@@ -70,11 +76,24 @@ export class AlbumDetailsComponent {
 
   createThumbnails(images: Image[]): void {
     this.thumbnailsService.createThumbnails(images.map(image => image.url))
+      //.pipe(this.albumsService.refreshAlbums())
       .subscribe(() => {
         this.selected = [];
         this.router.navigated = false;
         this.router.navigate([this.router.url]);
       });
+  }
+
+  setImagesOrder(): void {
+    this.albumsService.setImagesOrder(this.album.id, this.images.map(image => image.filename))
+      .subscribe(() => {
+        this.router.navigated = false;
+        this.router.navigate([this.router.url]);
+      });
+  }
+
+  onRowReorder(): void {
+    this.reordered = this.getOrderHash(this.images) !== this.orderHash;
   }
 
   navigateToAlbums(): void {
@@ -89,5 +108,9 @@ export class AlbumDetailsComponent {
         this.router.navigated = false;
         this.router.navigate([this.router.url]);
       });
+  }
+
+  private getOrderHash(images): string {
+    return images.reduce((str, image) => str.concat(image.filename), '');
   }
 }

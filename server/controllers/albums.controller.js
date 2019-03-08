@@ -13,7 +13,7 @@ function getAlbums(req, res) {
       date: album.date,
       lastModified: album.lastModified,
       createDate: album.createDate,
-      thumbUrl: album.images[0] ? album.images[0].thumbUrl : undefined,
+      thumbUrl: album.images[0] ? album.images[0].thumbUrl || album.images[0].url : undefined,
       size: album.images.length
     }))));
 }
@@ -117,4 +117,26 @@ function downloadImage(req, res, next) {
     })
 }
 
-module.exports = { getImages, getAlbums, uploadFile, createAlbum, updateAlbum, removeAlbum, addImages, removeImages, downloadImage };
+function setImagesOrder(req, res) {
+  const id = req.swagger.params.id.value;
+  const filenames = req.body;
+  albums.setImagesOrder(id, filenames)
+    .then(() => res.status(200).send())
+    .catch(e => {
+      console.log(e);
+      res.status(400).send();
+    });
+}
+
+module.exports = {
+  getImages,
+  getAlbums,
+  uploadFile,
+  createAlbum,
+  updateAlbum,
+  removeAlbum,
+  addImages,
+  removeImages,
+  downloadImage,
+  setImagesOrder,
+};
