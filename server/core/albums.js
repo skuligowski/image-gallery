@@ -60,8 +60,29 @@ function removeAlbum(id) {
   return db.removeAlbum({ _id: id });
 }
 
-function setImagesOrder() {
-  return Promise.resolve();
+function setImagesOrder(id, filenames) {
+  return db.findAlbum({ _id: id })
+    .then(album => {
+      if (!album) {
+        throw new Error('Album not found');
+      }
+      const imagesMap = album.images.reduce((map, image) => {
+        map[image.filename] = image;
+        return map;
+      }, {});
+      const images = filenames.reduce((list, filename) => {
+        if (!imagesMap[filename]) {
+          throw new Error('Image does not exists');
+        }
+        list.push(imagesMap[filename]);
+        delete imagesMap[filename];
+        return list;
+      }, []);
+      if (Object.keys(imagesMap).length !== 0 || images.length !== album.images.length) {
+        throw new Error('Wrong request, invalid number of images.')
+      }
+      return db.updateAlbum({_id: id}, {...album, images});
+    });
 }
 
 module.exports = {
