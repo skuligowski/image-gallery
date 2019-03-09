@@ -30,12 +30,13 @@ function addImages(id, paths) {
       }))
       .then(images => {
         const imagesMap = images.reduce((map, image) => { map[image.url] = image; return map}, {});
-        let newImages = album.images.reduce((list, image) => {
+        const oldImages = album.images.reduce((list, image) => {
           list.push(imagesMap[image.url] || image);
           delete imagesMap[image.url];
           return list;
         }, []);
-        return [...newImages, ...Object.values(imagesMap)];
+        const newImages = images.filter(image => !!imagesMap[image.url]);
+        return [...newImages, ...oldImages];
       })
       .then(images => db.updateAlbum({_id: album._id}, {
         ...album, images, lastModified: new Date().toISOString()

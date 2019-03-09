@@ -1,14 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import Image = Definitions.Image;
-import Album = Definitions.Album;
-import LibraryFile = Definitions.LibraryFile;
 import { AlbumsService } from '../../albums.service';
 import { ConfirmationService } from 'primeng/api';
 import { AlbumCreateEvent } from '../album-create/album-create.component';
 import { LibraryFilesSelectorComponent } from '../library-files-selector/library-files-selector.component';
 import { ThumbnailsService } from '../services/thumbnails.service';
-import { switchMap } from 'rxjs/operators';
+import Image = Definitions.Image;
+import Album = Definitions.Album;
+import LibraryFile = Definitions.LibraryFile;
 
 @Component({
   selector: 'app-album-details',
