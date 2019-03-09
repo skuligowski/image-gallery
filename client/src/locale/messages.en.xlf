@@ -406,7 +406,19 @@
         <source>Change password</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/users-manager/users-manager.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users-manager/users-manager.component.html</context>
           <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
+        <source>Delete</source>
+        <target state="final">Delete</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users-manager/users-manager.component.html</context>
+          <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9ef88654aab4b2df4fa2083f33caa0c5419c1a60" datatype="html">

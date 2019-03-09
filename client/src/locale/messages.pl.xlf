@@ -248,7 +248,7 @@
       </trans-unit>
       <trans-unit id="6d7aba2a1defd58d1feec30502a38fa5f48c6529" datatype="html">
         <source>Update order</source>
-        <target state="new">Ustaw kolejność</target>
+        <target>Ustaw kolejność</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
           <context context-type="linenumber">9</context>
@@ -455,7 +455,19 @@
         <target>Zmień hasło</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/users-manager/users-manager.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users-manager/users-manager.component.html</context>
           <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
+        <source>Delete</source>
+        <target>Usuń</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/users-manager/users-manager.component.html</context>
+          <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9ef88654aab4b2df4fa2083f33caa0c5419c1a60" datatype="html">
@@ -552,8 +564,8 @@
       </trans-unit>
       <trans-unit id="e06ecd2a01cd5e478507826ababe93a14f6533b2" datatype="html">
         <source>Library directory is an absolute path to directory that contains all image files.
-          This is also a place where all uploaded images will be stored. After changing this property, existing
-          albums may not work properly.</source>
+        This is also a place where all uploaded images will be stored. After changing this property, existing
+        albums may not work properly.</source>
         <target>Absolutna ścieżka do katalogu ze zdjęciami. Do katalogu zdjęć będą również ładowane pliki z nowymi zdjęciami.
           Po zmianie tego parametru, istniejące albumy mogą przestać działać.</target>
         <context-group purpose="location">
@@ -627,7 +639,7 @@
       </trans-unit>
       <trans-unit id="679aae239365129cb0d1210bfab6a6e7c85e5861" datatype="html">
         <source>Image download</source>
-        <target state="new">Pobieranie zdjęć</target>
+        <target>Pobieranie zdjęć</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
           <context context-type="linenumber">49</context>
@@ -635,7 +647,7 @@
       </trans-unit>
       <trans-unit id="737274d6375928c1910ca2b41e041af318892a19" datatype="html">
         <source>When switched on, a user can download full-size image from the gallery.</source>
-        <target state="new">Kiedy włączona, użytkownik może pobrać zdjęcie dobrej jakości z galerii.</target>
+        <target>Kiedy włączona, użytkownik może pobrać zdjęcie dobrej jakości z galerii.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
           <context context-type="linenumber">50</context>

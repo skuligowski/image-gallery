@@ -16,8 +16,8 @@
         <td>{{user.username}}</td>
         <td>{{user.admin}}</td>
         <td>
-          <p-button styleClass="ui-button-secondary" label="Change password" (click)="userChangePassword.open(user)"></p-button>
-          <p-button styleClass="ui-button-danger" label="Delete" (click)="user.username !== 'admin' && removeUser(user)" [disabled]="user.username === 'admin'"></p-button>
+          <p-button styleClass="ui-button-secondary" i18n-label label="Change password" (click)="userChangePassword.open(user)"></p-button>
+          <p-button styleClass="ui-button-danger" i18n-label label="Delete" (click)="user.username !== 'admin' && removeUser(user)" [disabled]="user.username === 'admin'"></p-button>
         </td>
       </tr>
     </ng-template>
