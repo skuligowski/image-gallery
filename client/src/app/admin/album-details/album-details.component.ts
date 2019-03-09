@@ -54,7 +54,7 @@ export class AlbumDetailsComponent {
   }
 
   removeImages(images: Image[]): void {
-    this.albumsService.removeImages(this.album.id, images.map(image => image.url))
+    this.albumsService.removeImages(this.album.id, images.map(image => image.filename))
       .subscribe(() => {
         this.selected = [];
         this.router.navigated = false;
@@ -76,7 +76,7 @@ export class AlbumDetailsComponent {
 
   createThumbnails(images: Image[]): void {
     this.thumbnailsService.createThumbnails(images.map(image => image.url))
-      //.pipe(this.albumsService.refreshAlbums())
+      .pipe(this.albumsService.refreshAlbums())
       .subscribe(() => {
         this.selected = [];
         this.router.navigated = false;

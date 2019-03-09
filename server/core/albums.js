@@ -42,12 +42,12 @@ function addImages(id, paths) {
       })));
 }
 
-function removeImages(id, urls) {
+function removeImages(id, filenames) {
   return db.findAlbum({ _id: id })
     .then(album => {
-      const imagesToRemove = urls.reduce((map, imageUrl) => { map[imageUrl] = true; return map}, {});
+      const imagesToRemove = filenames.reduce((map, filename) => { map[filename] = true; return map}, {});
       const images = album.images.reduce((newList, image) => {
-        if (!imagesToRemove[image.url]) {
+        if (!imagesToRemove[image.filename]) {
           newList.push(image);
         }
         return newList;

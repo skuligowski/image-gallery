@@ -97,7 +97,7 @@ declare namespace Definitions {
         height: number;
     }
     /**
-     * list of paths of new images for the album
+     * list of library paths of new images for the album
      */
     export type ImagesAddRequest = string[];
     /**
@@ -105,7 +105,7 @@ declare namespace Definitions {
      */
     export type ImagesOrderRequest = string[];
     /**
-     * list of image urls to remove
+     * list of image filenames to remove
      */
     export type ImagesRemovalRequest = string[];
     export type ImagesResponse = Image[];

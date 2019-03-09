@@ -35,9 +35,9 @@ export class AlbumsService {
     ).pipe(this.refreshAlbums());
   }
 
-  removeImages(albumId: string, imageUrls: string[]): Observable<void> {
+  removeImages(albumId: string, filenames: string[]): Observable<void> {
     return spinnable(
-      this.httpClient.post<void>(`/api/albums/${albumId}/images/removal`, imageUrls)
+      this.httpClient.post<void>(`/api/albums/${albumId}/images/removal`, filenames)
     ).pipe(this.refreshAlbums());
   }
 

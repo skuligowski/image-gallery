@@ -1,5 +1,5 @@
 title: ImagesRemovalRequest
 type: array
-description: list of image urls to remove
+description: list of image filenames to remove
 items:
   type: string

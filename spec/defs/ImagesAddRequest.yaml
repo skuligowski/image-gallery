@@ -1,5 +1,5 @@
 title: ImagesAddRequest
 type: array
-description: list of paths of new images for the album
+description: list of library paths of new images for the album
 items:
   type: string
