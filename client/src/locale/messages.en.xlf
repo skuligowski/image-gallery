@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
@@ -34,16 +34,16 @@
       <trans-unit id="c8fde66a0022d09a6ec0d3844568e486381d797f" datatype="html">
         <source>Albums</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/index/index.component.html</context>
-          <context context-type="linenumber">5</context>
-        </context-group>
-        <context-group purpose="location">
           <context context-type="sourcefile">app/album/album-preview/album-preview.component.html</context>
           <context context-type="linenumber">6</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/index/index.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/admin/header-navigation.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="408cb6073e60c5d966296a3207fc596adca75e01" datatype="html">
@@ -57,14 +57,14 @@
         <source>Last modified</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/index/index.component.html</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3e65ebb38e10773d3f7c643b4f5c0a5fbf8bfc0a" datatype="html">
-        <source>We&apos;re sorry. There is no albums available in the gallery.</source>
+        <source>We're sorry. There is no albums available in the gallery.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/index/index.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="92eee6be6de0b11c924e3ab27db30257159c0a7c" datatype="html">
@@ -205,7 +205,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ef598541ae1643980d19faea9ae1571e9d22a3cf" datatype="html">
@@ -222,78 +222,86 @@
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6d7aba2a1defd58d1feec30502a38fa5f48c6529" datatype="html">
+        <source>Update order</source>
+        <target state="final">Update order</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="a5f9ba9bb9faa8284bcadb1cdbc6aaf969e9c4bb" datatype="html">
         <source>Image</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ff1051d895c62d59c3d4c96edb759f8f09fe42c6" datatype="html">
         <source>Image data</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="57cf305f9bfd681c70dc26e914108d06384ade9f" datatype="html">
         <source>Move</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="752aa617e12a72f4e148527815e7632d2a4ec99c" datatype="html">
         <source>Filename:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9fa37704969eeebd496a172c5077370f569df3ae" datatype="html">
         <source>Resolution:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="753b122e5b6919fbee7387ff462ec993da59bc29" datatype="html">
         <source>Url:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5ed2d4f688e06ce23efb174c5c2883c449780fd7" datatype="html">
         <source>Thumbnail url:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8737210008395d7b014e5118d2ed198ae9745215" datatype="html">
         <source>Title:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="0295e37c88ba1f28e569a35e3c6871b90529f8fa" datatype="html">
         <source>Confirmation</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">47</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ca1bf8d84b8ba51b7d4c99d8140975a8b1dbd928" datatype="html">
         <source>Do you really want to delete this album?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ad05290fc01e5b51b5dca67c20c9e5e27f70e37a" datatype="html">
@@ -409,7 +417,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e554db3223d650f76c7ad1b7a29b0e77e6af0000" datatype="html">
@@ -547,6 +555,22 @@
           <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="679aae239365129cb0d1210bfab6a6e7c85e5861" datatype="html">
+        <source>Image download</source>
+        <target state="final">Image download</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="737274d6375928c1910ca2b41e041af318892a19" datatype="html">
+        <source>When switched on, a user can download full-size image from the gallery.</source>
+        <target state="final">When switched on, a user can download full-size image from the gallery.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="b7648e7aced164498aa843b5c4e8f2f1c36a7919" datatype="html">
         <source>Administration</source>
         <context-group purpose="location">
@@ -558,28 +582,28 @@
         <source>Return to gallery</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/header-navigation.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="0b319c4dd6d4ddd74cd138b72ab8109ffcc28f36" datatype="html">
         <source>Library</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/header-navigation.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4d13a9cd5ed3dcee0eab22cb25198d43886942be" datatype="html">
         <source>Users</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/header-navigation.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="121cc5391cd2a5115bc2b3160379ee5b36cd7716" datatype="html">
         <source>Settings</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/header-navigation.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
     </body>

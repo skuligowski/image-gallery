@@ -3,7 +3,7 @@
   "version": "0.3.1",
   "license": "MIT",
   "scripts": {
-    "locale": "cd client && ng xi18n --output-path locale",
+    "locale": "cd client && ng xi18n --output-path locale && xliffmerge --profile ./xliffmerge.json && rimraf src/locale/messages.xlf",
     "watch-client": "cd client && ng serve --proxy-config proxy.conf.json",
     "watch-server": "cd server && npm run watch",
     "watch": "concurrently --kill-others --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgMagenta.bold\" --handle-input \"npm run watch-server\" \"npm run watch-client\"",
@@ -28,6 +28,7 @@
     "gulp-consolidate": "^0.2.0",
     "gulp-iconfont": "^9.1.0",
     "lodash": "^4.17.10",
+    "ngx-i18nsupport": "^0.17.1",
     "recursive-install": "^1.3.0",
     "release-it": "^9.6.2",
     "rimraf": "^2.6.3",
