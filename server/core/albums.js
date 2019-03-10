@@ -1,6 +1,7 @@
 const db = require('./db');
 const library = require('./library');
 const Promise = require('bluebird');
+const UniqueFilenames = require('../lib/unique-filenames');
 
 function createAlbum({name, permalink, date, createDate = new Date().toISOString()}) {
   return db.insertAlbum({
@@ -22,25 +23,32 @@ function updateAlbum(id, {name, permalink, date}) {
 function addImages(id, paths) {
   return db.findAlbum({ _id: id })
     .then(album => Promise.map(paths, path => library.getImageDetails(path), { concurrency: 5 })
-      .map(imageDetails => ({
-        filename: imageDetails.filename,
-        url: imageDetails.path,
-        width: imageDetails.width,
-        height: imageDetails.height
-      }))
-      .then(images => {
-        const imagesMap = images.reduce((map, image) => { map[image.url] = image; return map}, {});
-        const oldImages = album.images.reduce((list, image) => {
-          list.push(imagesMap[image.url] || image);
-          delete imagesMap[image.url];
-          return list;
-        }, []);
-        const newImages = images.filter(image => !!imagesMap[image.url]);
-        return [...newImages, ...oldImages];
-      })
-      .then(images => db.updateAlbum({_id: album._id}, {
-        ...album, images, lastModified: new Date().toISOString()
-      })));
+        .map(imageDetails => ({
+          filename: imageDetails.filename,
+          url: imageDetails.path,
+          width: imageDetails.width,
+          height: imageDetails.height
+        }))
+        .then(images => {
+          const newImagesMap = images.reduce((map, image) => { map[image.url] = image; return map}, {});
+          const oldImages = album.images.reduce((list, image) => {
+            if (newImagesMap[image.url]) {
+              // adding the same image, update properties and preserve only previous filename
+              list.push({...newImagesMap[image.url], filename: image.filename});
+              delete newImagesMap[image.url];
+            } else {
+              list.push(image);
+            }
+            return list;
+          }, []);
+          const allImages = new UniqueFilenames(oldImages.map(image => image.filename));
+          const newImages = images.filter(image => !!newImagesMap[image.url])
+            .map(image => ({...image, filename: allImages.getUniqueFilename(image.filename)}));
+          return [...newImages, ...oldImages];
+        })
+        .then(images => db.updateAlbum({_id: album._id}, {
+          ...album, images, lastModified: new Date().toISOString()
+        })));
 }
 
 function removeImages(id, filenames) {
