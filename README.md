@@ -14,13 +14,14 @@ It contains fully featured administration panel that supports:
 - dashboard tiles with entry image
 - custom permalinks for photos
 - date grouping
+- allowing to download image
 
 Image Gallery do not require any database or native graphic modules (eg. ImageMagick).
 It simply works after the installation.
 
 ## Installation
 
-1. Download the latest version of the gallery: [v0.3.0](https://github.com/skuligowski/image-gallery/releases/download/v0.3.0/v0.3.0.zip)
+1. Download the latest version of the gallery: [v0.4.0](https://github.com/skuligowski/image-gallery/releases/download/v0.4.0/v0.4.0.zip)
 
 2. Unzip it somewhere and type:
 
