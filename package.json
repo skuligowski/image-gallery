@@ -1,6 +1,6 @@
 {
   "name": "image-gallery",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "license": "MIT",
   "scripts": {
     "locale": "cd client && ng xi18n --output-path locale && xliffmerge --profile ./xliffmerge.json && rimraf src/locale/messages.xlf",
