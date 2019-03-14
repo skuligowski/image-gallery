@@ -16,15 +16,18 @@ It contains fully featured administration panel that supports:
 - date grouping
 - allowing to download image
 
-Image Gallery do not require any database or native graphic modules (eg. ImageMagick).
+Image Gallery does not require any database or native graphic modules (eg. ImageMagick).
 It simply works after the installation.
+
+## Prerequisites
+
+[NodeJS](https://nodejs.org/en/download/)
 
 ## Installation
 
 1. Download the latest version of the gallery: [v0.4.0](https://github.com/skuligowski/image-gallery/releases/download/v0.4.0/v0.4.0.zip)
 
 2. Unzip it somewhere and type:
-
 
 ```bash
 $ npm install
