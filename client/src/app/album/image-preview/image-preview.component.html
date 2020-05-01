@@ -15,5 +15,3 @@
   <div [@spinnerAnimation] *ngIf="loading$ | async" class="spinner"></div>
   <div class="title">{{currentImage.title}}</div>
 </div>
-<!-- cash of already loaded images -->
-<img *ngFor="let imageUrl of loadedImageUrls" style="display: none" src="/library{{imageUrl}}"/>
