@@ -18,6 +18,12 @@ export class PropertyPresenterComponent {
   value: any;
 
   @Input()
+  name: string;
+
+  @Input()
+  description: string;
+
+  @Input()
   set options(options: any[]) {
     this.dropdownOptions = options.map(option => ({label: option, value: option}));
   };
@@ -28,9 +34,7 @@ export class PropertyPresenterComponent {
   formGroup: FormGroup;
 
   constructor(@Attribute('key') public key: string,
-              @Attribute('type') public type: string,
-              @Attribute('description') public description: string,
-              @Attribute('name') public name: string) {
+              @Attribute('type') public type: string) {
 
     this.valueFormControl = new FormControl('');
     this.valueFormControl.valueChanges.subscribe(changes => {

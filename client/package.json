@@ -5,7 +5,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json",
-    "build": "ng build --prod",
+    "start:ci": "ng serve --proxy-config proxy.conf.json --prod",
+    "build": "ng build --prod --localize",
+    "locale": "ng xi18n --output-path locale && xliffmerge --profile ./xliffmerge.json && rimraf src/locale/messages.xlf",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -56,6 +58,8 @@
     "protractor": "~5.1.2",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
-    "typescript": "~3.8.3"
+    "typescript": "~3.8.3",
+    "lodash": "^4.17.10",
+    "ngx-i18nsupport": "^0.17.1"
   }
 }
