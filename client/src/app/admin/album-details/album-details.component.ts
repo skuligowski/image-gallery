@@ -23,7 +23,7 @@ export class AlbumDetailsComponent {
   reordered: boolean = false;
   orderHash: string;
 
-  @ViewChild('libraryFilesSelector')
+  @ViewChild('libraryFilesSelector', { static: true })
   libraryFilesSelector: LibraryFilesSelectorComponent;
 
   constructor(private route: ActivatedRoute,

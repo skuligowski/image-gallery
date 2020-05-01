@@ -16,7 +16,7 @@ export class LibraryManagerComponent {
 
   currentDirectory: string;
 
-  @ViewChild('libraryBrowser')
+  @ViewChild('libraryBrowser', { static: true })
   libraryBrowser: LibraryBrowserComponent;
 
   constructor(private libraryService: LibraryService) {}
