@@ -3,8 +3,9 @@
   "version": "0.4.0",
   "license": "MIT",
   "scripts": {
-    "start": "concurrently --kill-others --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgMagenta.bold\" --handle-input \"cd client && npm start\" \"cd server && npm start\"",
+    "start": "concurrently --kill-others --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgMagenta.bold\" --handle-input \"cd server && npm start\" \"cd client && npm start\"",
     "build": "cd client && npm run build && cd .. && npm run dist:make",
+    "locale": "cd client && npm run locale",
     "release": "release-it",
     
     "dist:make": "npm run dist:clean && npm run dist:server && npm run dist:spec && npm run dist:client",

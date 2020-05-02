@@ -41,6 +41,36 @@ $ node server
 
 4. Open the browser with url: http://localhost:3000/
 
+
+## Contribution
+
+1. Clone the repository of Image Gallery:
+
+```bash
+$ git clone git@github.com:skuligowski/image-gallery.git
+```
+
+2. Install dependencies:
+
+```bash
+$ npm install
+```
+
+3. Run
+
+```bash
+$ npm start
+```
+
+4. Open the browser with url: http://localhost:4200/
+
+
+5. Fill missing locales in xls files:
+
+```bash
+$ npm run locale
+```
+
 ## Basic configuration
 
 After the first launch, login to the [administration panel](http://localhost:3000/login).
