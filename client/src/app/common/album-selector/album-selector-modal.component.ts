@@ -29,6 +29,7 @@ const fadeInAnimation = trigger('fadeInAnimation', [
 @Component({
   selector: 'app-album-selector-modal',
   templateUrl: './album-selector-modal.component.html',
+  styleUrls: ['album-selector-modal.component.scss'],
   animations: [fadeInAnimation],
   host: { '[@fadeInAnimation]': '' }
 })

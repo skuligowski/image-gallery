@@ -6,6 +6,7 @@ import { SelectItem } from 'primeng/api';
 @Component({
   selector: '[app-property-presenter]',
   templateUrl: 'property-presenter.component.html',
+  styleUrls: ['property-presenter.component.scss'],
 })
 export class PropertyPresenterComponent {
 

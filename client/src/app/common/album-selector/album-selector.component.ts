@@ -4,7 +4,8 @@ import Album = Definitions.Album;
 
 @Component({
   selector: 'app-album-selector',
-  templateUrl: 'album-selector.component.html'
+  templateUrl: 'album-selector.component.html',
+  styleUrls: ['album-selector.component.scss'],
 })
 export class AlbumSelectorComponent implements OnChanges, AfterViewInit {
 
