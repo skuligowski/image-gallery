@@ -16,11 +16,11 @@ app-index {
       background-repeat: no-repeat;
     }
 
-    .for-max-width(600px, {
+    @include for-max-width(600px) {
       .image {
         height: 200px;
       }
-    });
+    };
 
     padding-bottom: 30px;
   }
@@ -104,13 +104,13 @@ app-index {
         }
       }
 
-      .for-max-width(1140px, {
+      @include for-max-width(1140px) {
         width: 50%;
-      });
+      };
 
-      .for-max-width(760px, {
+      @include for-max-width(760px) {
         width: 100%;
-      });
+      };
     }
   }
 

@@ -1,23 +1,23 @@
-.create-input(@icon-size: 1.6rem, @font-size: 1.6rem, @offset-width: 60px) {
+@mixin create-input($icon-size: 1.6rem, $font-size: 1.6rem, $offset-width: 60px) {
   padding: 10px;
   background-color: #2a2a2a;
 
   input {
     background: transparent;
     border: 0;
-    font-size: @font-size;
+    font-size: $font-size;
     color: #eee;
     font-weight: 100;
     outline: 0;
     display: inline-block;
     vertical-align: middle;
-    width: calc(100% - @offset-width)
+    width: calc(100% - $offset-width)
   }
 
   i {
     vertical-align: middle;
     display: inline-block;
-    font-size: @icon-size;
+    font-size: $icon-size;
     padding: 0 15px 0 10px;
     color: #eee;
   }

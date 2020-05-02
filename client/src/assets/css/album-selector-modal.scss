@@ -28,13 +28,13 @@ app-album-selector-modal {
       }
     }
 
-    .for-phone-only({
+    @include for-phone-only {
       width: 100%;
       left: 0;
 
       .container {
         padding: 20px 0;
       }
-    });
+    };
   }
 }

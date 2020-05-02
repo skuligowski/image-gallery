@@ -7,7 +7,7 @@ app-login {
     width: 400px;
     margin: 10px auto auto;
 
-    .create-input();
+    @include create-input();
   }
 
   input:-webkit-autofill,

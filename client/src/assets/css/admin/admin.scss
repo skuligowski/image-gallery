@@ -1,12 +1,12 @@
-@import "albums-manager.less";
-@import "album-details.less";
-@import "album-create.less";
-@import "library-manager.less";
-@import "library-browser.less";
-@import "library-upload.less";
-@import "users-manager.less";
-@import "settings.less";
-@import "../../../../node_modules/primeng/resources/themes/nova-dark/theme.css";
+@import "albums-manager.scss";
+@import "album-details.scss";
+@import "album-create.scss";
+@import "library-manager.scss";
+@import "library-browser.scss";
+@import "library-upload.scss";
+@import "users-manager.scss";
+@import "settings.scss";
+@import "primeng/resources/themes/nova-dark/theme.css";
 
 .admin-layout-container {
   margin-left: 200px;
