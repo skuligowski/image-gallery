@@ -6,8 +6,8 @@ import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
   selector: 'app-album-preview',
-  templateUrl: './album-preview.component.html',
-  styleUrls: ['./album-preview.component.less']
+  templateUrl: 'album-preview.component.html',
+  styleUrls: ['album-preview.component.scss']
 })
 export class AlbumPreviewComponent {
 

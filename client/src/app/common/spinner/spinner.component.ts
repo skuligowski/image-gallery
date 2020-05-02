@@ -29,6 +29,7 @@ const fadeInAnimation = trigger('fadeInAnimation', [
 @Component({
   selector: 'app-spinner',
   templateUrl: 'spinner.component.html',
+  styleUrls: ['spinner.component.scss'],
   animations: [ fadeInAnimation ],
 })
 export class SpinnerComponent implements AfterViewInit {
