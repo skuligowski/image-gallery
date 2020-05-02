@@ -1,4 +1,6 @@
-app-image-grid {
+@import "assets/css/media.scss";
+
+:host {
   display: block;
 
   /* clearfix */
@@ -7,9 +9,10 @@ app-image-grid {
     display: block;
     clear: both;
   }
+}
 
-  .grid-sizer,
-  app-image-grid-item { width: 32.666% }
+::ng-deep {
+  .grid-sizer, app-image-grid-item { width: 32.666% }
   .gutter-sizer { width: 1% }
 
   app-image-grid-item {
@@ -32,24 +35,21 @@ app-image-grid {
       transition: transform 1.3s cubic-bezier(.3,.98,.11,1.0);
       cursor: pointer;
     }
-
   }
 
   @include for-phone-only {
-    .grid-sizer,
-    app-image-grid-item { width: 100% }
+    .grid-sizer, app-image-grid-item { width: 100% }
     .gutter-sizer { width: 0 }
   };
-
+  
   @include for-tablet-portrait-up {
-    .grid-sizer,
-    app-image-grid-item { width: 49.4% }
+    .grid-sizer, app-image-grid-item { width: 49.4% }
     .gutter-sizer { width: 1.2% }
   };
-
+  
   @include for-tablet-landscape-up {
-    .grid-sizer,
-    app-image-grid-item { width: 32.666% }
+    .grid-sizer, app-image-grid-item { width: 32.666% }
     .gutter-sizer { width: 1% }
   };
 }
+
