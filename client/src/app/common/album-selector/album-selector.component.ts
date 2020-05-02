@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Album = Definitions.Album;
 
@@ -6,10 +6,13 @@ import Album = Definitions.Album;
   selector: 'app-album-selector',
   templateUrl: 'album-selector.component.html'
 })
-export class AlbumSelectorComponent implements OnChanges {
+export class AlbumSelectorComponent implements OnChanges, AfterViewInit {
 
   @Input()
   albums: Album[];
+
+  @ViewChild('anchor')
+  anchor: ElementRef<any>;
 
   withoutDate: Album[];
   years: AlbumYear[];
@@ -22,6 +25,12 @@ export class AlbumSelectorComponent implements OnChanges {
         this.selectedAlbumId = params.albumId;
       }
     })
+  }
+
+  ngAfterViewInit(): void {
+    if (this.anchor) {
+      (this.anchor.nativeElement as HTMLElement).scrollIntoView();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {

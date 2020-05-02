@@ -11,6 +11,7 @@
         <div class="month" *ngIf="month.name">{{[2007, month.name, 1].join('-') | date: 'LLLL'}}</div>
         <ul class="albums">
           <li class="album" *ngFor="let album of month.albums" (click)="selectAlbum(album)">
+            <div class="anchor" #anchor *ngIf="album.id === selectedAlbumId"></div>
             <div class="album-name" [class.selected]="album.id === selectedAlbumId">{{album.name}} <span class="album-size">({{album.size}})</span></div>
           </li>
         </ul>

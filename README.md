@@ -39,7 +39,7 @@ $ npm install
 $ node server
 ```
 
-4. Open the browser with url: http://localhost:3000/
+4. Open url http://localhost:3000/ in your browser.
 
 
 ## Contribution
@@ -62,10 +62,10 @@ $ npm install
 $ npm start
 ```
 
-4. Open the browser with url: http://localhost:4200/
+4. Open url http://localhost:4200/ in your browser.
 
 
-5. Fill missing locales in xls files:
+5. Generate empty i18n transaltions using the command below and fill them in manually.
 
 ```bash
 $ npm run locale
