@@ -8,9 +8,15 @@
       "sourceRoot": "src",
       "projectType": "application",
       "i18n": {
-        "sourceLocale": "en",
+        "sourceLocale": {
+          "code": "en",
+          "baseHref": "/"
+        },
         "locales": {
-          "pl": "src/locale/messages.pl.xlf"
+          "pl": {
+            "baseHref": "/",
+            "translation": "src/locale/messages.pl.xlf"
+          }
         }
       },
       "architect": {
@@ -56,7 +62,8 @@
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
                 }
-              ]
+              ],
+              "localize": true
             }
           }
         },
