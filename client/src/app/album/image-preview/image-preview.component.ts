@@ -80,6 +80,10 @@ export class ImagePreviewComponent {
     this.router.navigate(this.getAlbumUrl());
   }
 
+  chooseAlbum(): void {
+    this.router.navigate([{outlets: { modal: 'album/select'}}], { queryParams: {albumId: this.currentAlbum.id}});
+  }
+
   private getAlbumUrl(...other): string[] {
     return ['albums'].concat(this.currentAlbum.permalink.split('/')).concat(other);
   }

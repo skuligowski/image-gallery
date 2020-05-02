@@ -7,8 +7,9 @@
 <div class="navigation-layer">
   <div class="action-bar">
     <div class="counter">{{currentImage.currentNumber}} / {{currentImage.totalNumber}}</div>
-    <a class="download-button icon-download" href="{{imageDownloadLink}}" *ngIf="config.imageDownload"></a>
-    <a class="close-button icon-close" (click)="close()"></a>
+    <a class="menu-button icon-download" href="{{imageDownloadLink}}" *ngIf="config.imageDownload"></a>
+    <a class="menu-button icon-albums" (click)="chooseAlbum()"></a>
+    <a class="menu-button icon-close" (click)="close()"></a>
   </div>
   <a class="nav-button prev icon-prev" (click)="previous()"></a>
   <a class="nav-button next icon-next" (click)="next()"></a>
