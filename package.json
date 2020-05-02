@@ -7,13 +7,11 @@
     "build": "cd client && npm run build && cd .. && npm run dist:make",
     "locale": "cd client && npm run locale",
     "release": "release-it",
-    
     "dist:make": "npm run dist:clean && npm run dist:server && npm run dist:spec && npm run dist:client",
     "dist:clean": "rimraf dist",
     "dist:server": "cpy '**/*' '!**/node_modules/**' '../dist' --parents --cwd=server",
     "dist:spec": "cpy 'spec/**/*' 'dist' --parents",
     "dist:client": "mkdirp dist/public && cpy '**/*' '../../dist/public' --parents --cwd=client/dist",
-    
     "postinstall": "node node_modules/recursive-install/recursive-install.js --skip-root"
   },
   "private": true,

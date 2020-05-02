@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 import { ConfigService } from './config.service';
 import Config = Definitions.Config;
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
 

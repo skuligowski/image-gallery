@@ -11,7 +11,7 @@
     outline: 0;
     display: inline-block;
     vertical-align: middle;
-    width: calc(100% - $offset-width)
+    width: calc(100% - #{$offset-width});
   }
 
   i {
