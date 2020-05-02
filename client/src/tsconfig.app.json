@@ -3,7 +3,6 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
-    "module": "commonjs",
     "types": [
       "masonry-layout",
       "imagesloaded"
@@ -12,8 +11,10 @@
       "@unorm/*": ["../node_modules/unorm/*"]
     }
   },
-  "exclude": [
-    "test.ts",
-    "**/*.spec.ts"
+  "files": [
+    "main.ts",
+    "polyfills.ts",
+    "typings.d.ts",
+    "../../spec/api.d.ts"
   ]
 }

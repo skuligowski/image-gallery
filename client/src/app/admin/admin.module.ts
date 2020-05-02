@@ -8,15 +8,13 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import {
-  CalendarModule,
-  ConfirmationService,
-  ConfirmDialogModule,
-  DialogModule,
-  DropdownModule,
-  InputSwitchModule,
-  TreeModule
-} from 'primeng/primeng';
+import { CalendarModule } from 'primeng/calendar';
+import { ConfirmDialogModule } from 'primeng/confirmdialog'
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { TreeModule } from 'primeng/tree';
+import { ConfirmationService } from 'primeng/api';
+import { InputSwitchModule } from 'primeng/inputswitch';
 import { AdminRoutingModule } from './admin-routing.module';
 import { LibraryService } from './services/library.service';
 import { AlbumDetailsResolver } from './album-details.resolver';

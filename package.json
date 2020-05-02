@@ -3,19 +3,17 @@
   "version": "0.4.0",
   "license": "MIT",
   "scripts": {
-    "locale": "cd client && ng xi18n --output-path locale && xliffmerge --profile ./xliffmerge.json && rimraf src/locale/messages.xlf",
-    "watch-client": "cd client && ng serve --proxy-config proxy.conf.json",
-    "watch-server": "cd server && npm run watch",
-    "watch": "concurrently --kill-others --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgMagenta.bold\" --handle-input \"npm run watch-server\" \"npm run watch-client\"",
-    "build": "npm run build:en && npm run build:pl",
-    "build:pl": "cd client && ng build --configuration production --prod --deploy-url=static/pl/ --i18n-file src/locale/messages.pl.xlf --i18n-format xlf --i18n-locale pl --outputPath dist/pl",
-    "build:en": "cd client && ng build --configuration production --prod --deploy-url=static/en/ --i18n-locale en --outputPath dist/en",
+    "start": "concurrently --kill-others --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgMagenta.bold\" --handle-input \"cd server && npm start\" \"cd client && npm start\"",
+    "build": "cd client && npm run build && cd .. && npm run dist:make",
+    "locale": "cd client && npm run locale",
     "release": "release-it",
-    "release:clean": "rimraf dist",
-    "release:copy-server": "cpy '**/*' '!**/node_modules/**' '../dist' --parents --cwd=server",
-    "release:copy-spec": "cpy 'spec/**/*' 'dist' --parents",
-    "release:copy-client": "cpy '**/*' '../../dist/public' --parents --cwd=client/dist",
-    "release:package": "npm run release:clean && npm run release:copy-server && npm run release:copy-spec && npm run build && npm run release:copy-client",
+    
+    "dist:make": "npm run dist:clean && npm run dist:server && npm run dist:spec && npm run dist:client",
+    "dist:clean": "rimraf dist",
+    "dist:server": "cpy '**/*' '!**/node_modules/**' '../dist' --parents --cwd=server",
+    "dist:spec": "cpy 'spec/**/*' 'dist' --parents",
+    "dist:client": "mkdirp dist/public && cpy '**/*' '../../dist/public' --parents --cwd=client/dist",
+    
     "postinstall": "node node_modules/recursive-install/recursive-install.js --skip-root"
   },
   "private": true,
@@ -28,11 +26,11 @@
     "gulp-consolidate": "^0.2.0",
     "gulp-iconfont": "^9.1.0",
     "lodash": "^4.17.10",
+    "mkdirp": "^1.0.4",
     "ngx-i18nsupport": "^0.17.1",
     "recursive-install": "^1.3.0",
     "release-it": "^9.6.2",
-    "rimraf": "^2.6.3",
+    "rimraf": "^3.0.2",
     "swagger-parser": "^5.0.2"
-  },
-  "dependencies": {}
+  }
 }

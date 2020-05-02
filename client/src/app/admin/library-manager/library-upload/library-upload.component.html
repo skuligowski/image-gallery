@@ -1,6 +1,6 @@
 <p-dialog [(visible)]="display" [positionTop]="120" [resizable]="false"
           [closable]="closeEnabled"
-          [blockScroll]="true" [modal]="true" [draggable]="false" [width]="600"
+          [blockScroll]="true" [modal]="true" [draggable]="false" [style]="{width: '600px'}"
           [contentStyle]="{'max-height': '350px', 'min-height': '300px'}">
   <p-header i18n>Uploading files...</p-header>
   <p-table [value]="files">
