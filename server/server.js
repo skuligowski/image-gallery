@@ -43,7 +43,7 @@ initialize()
       app.use(authMiddleware());
       app.use(middleware.swaggerRouter({ useStubs: false, controllers: path.resolve(__dirname, 'controllers') }));
       app.use(middleware.swaggerUi());
-      app.use('/static', serveStatic(path.join(__dirname, 'public')));
+      app.use('/', serveStatic(path.join(__dirname, `public/${config.language}`)));
       app.use('*', (req, res, next)=> {
         res.sendFile(path.join(__dirname, `public/${config.language}/index.html`));
       });
