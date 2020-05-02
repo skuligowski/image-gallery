@@ -32,7 +32,7 @@ export class AuthService {
     return redirectUrl;
   }
 
-  login(username: string, password: string): Observable<void> {
+  login(username: string = '', password: string = ''): Observable<void> {
     return spinnable(
       this.httpClient.post<User>(`/api/login`, { username, password })
     ).pipe(
