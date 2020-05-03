@@ -6,11 +6,11 @@ import { AnchorComponent } from './anchor.component';
 @Directive({ selector: '[appAnchors]' })
 export class AnchorsDirective implements AfterViewInit, OnDestroy {
 
-    @ContentChildren(AnchorComponent, {descendants: true, read: ElementRef})
-    anchors: QueryList<HTMLElement>;
+    @ContentChildren(AnchorComponent, {descendants: true})
+    anchors: QueryList<AnchorComponent>;
 
     private sub: Subscription = Subscription.EMPTY;
-    private anchorsMap: { [key: string]: HTMLElement } = {};
+    private anchorsMap: { [key: string]: AnchorComponent } = {};
     constructor(private el: ElementRef<HTMLElement>) {}
     
     ngOnDestroy(): void {
@@ -19,13 +19,12 @@ export class AnchorsDirective implements AfterViewInit, OnDestroy {
 
     ngAfterViewInit(): void {
         this.sub = this.anchors.changes
-            .pipe(map((queryList: QueryList<ElementRef>) => 
+            .pipe(map((queryList: QueryList<AnchorComponent>) => 
             queryList.reduce((map, el) => {
-                map[el.nativeElement.name] = el.nativeElement;
+                map[el.name] = el;
                 return map;
-            }, {})), tap(x => {
-                this.anchorsMap = x;
-                console.log(x);
+            }, {})), tap(map => {
+                this.anchorsMap = map;
             }))
             .subscribe();
         this.anchors.notifyOnChanges();

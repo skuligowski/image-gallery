@@ -1,16 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ElementRef } from '@angular/core';
 
 @Component({
     selector: 'app-anchor',
-    templateUrl: 'anchor.component.html',
+    template: '',
     styleUrls: ['anchor.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AnchorComponent implements OnInit {
+export class AnchorComponent {
 
     @Input()
     name: string;
 
-    constructor() { }
+    constructor(private el: ElementRef<HTMLElement>) { }
 
-    ngOnInit() { }
+    scrollIntoView(): void {
+        this.el.nativeElement.scrollIntoView();
+    }
 }
