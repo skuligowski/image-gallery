@@ -1,6 +1,7 @@
-import { Component, Input, OnChanges, SimpleChanges, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ViewChild, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Album = Definitions.Album;
+import { AnchorsDirective } from '../anchors/anchors.directive';
 
 @Component({
   selector: 'app-album-selector',
@@ -12,8 +13,8 @@ export class AlbumSelectorComponent implements OnChanges, AfterViewInit {
   @Input()
   albums: Album[];
 
-  @ViewChild('anchor')
-  anchor: ElementRef<any>;
+  @ViewChild(AnchorsDirective)
+  anchors: AnchorsDirective;
 
   withoutDate: Album[];
   years: AlbumYear[];
@@ -29,8 +30,8 @@ export class AlbumSelectorComponent implements OnChanges, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (this.anchor) {
-      (this.anchor.nativeElement as HTMLElement).scrollIntoView();
+    if (this.anchors && this.selectedAlbumId) {
+      this.anchors.scrollTo(this.selectedAlbumId);
     }
   }
 
@@ -87,5 +88,4 @@ export interface AlbumYear {
 export interface AlbumMonth {
   name: string;
   albums: Album[];
-
 }
