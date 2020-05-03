@@ -1,4 +1,4 @@
-<div class="layout-container">
+<div class="layout-container" appAnchors>
   <header class="layout-header">
     <div class="title"><span>{{album.name}}</span></div>
     <ul class="navigation">
@@ -11,6 +11,7 @@
   <app-image-grid>
     <app-image-grid-item *ngFor="let image of album.images;">
       <div class="image-wrapper" [style.padding-bottom.%]="image.height/image.width*100">
+        <app-anchor [name]="image.filename"></app-anchor>
         <img [routerLink]="[image.filename]" src="/library{{image.thumbUrl || image.url}}">
       </div>
     </app-image-grid-item>

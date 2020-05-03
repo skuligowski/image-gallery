@@ -21,7 +21,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: () => import('app/admin/admin.module').then(m => m.AdminModule)
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   { matcher: matchAlbum, component: AlbumComponent, canActivate: [ AuthGuard, ConfigGuard ], resolve: { album: AlbumResolver } },
   { path: '', component: IndexComponent, canActivate: [ AuthGuard, ConfigGuard ], resolve: { albums: AlbumsResolver }},
