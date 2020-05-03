@@ -1,10 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostListener } from '@angular/core';
 import { CurrentAlbum, CurrentImage } from '../../album.resolver';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs/index';
 import { debounceTime } from 'rxjs/internal/operators';
-import { AlbumsService } from '../../albums.service';
 import { ConfigService } from '../../core/config/config.service';
 
 const spinnerAnimation = trigger('spinnerAnimation', [
@@ -41,6 +40,20 @@ export class ImagePreviewComponent {
     this.loadingSubject.next(true);
     this.imageState = 'loading';
   }
+
+  @HostListener('document:keyup', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) { 
+    if (event.keyCode === KEY_CONTROL_CODE.LEFT_ARROW) {
+      this.previous();
+    }
+    if (event.keyCode === KEY_CONTROL_CODE.RIGHT_ARROW) {
+      this.next();
+    }
+    if (event.keyCode === KEY_CONTROL_CODE.ESC) {
+      this.close();
+    }
+  }
+
 
   currentAlbum: CurrentAlbum;
   currentImage: CurrentImage;
@@ -93,3 +106,10 @@ export class ImagePreviewComponent {
 
 }
 
+export enum KEY_CONTROL_CODE {
+  UP_ARROW = 38,
+  DOWN_ARROW = 40,
+  RIGHT_ARROW = 39,
+  LEFT_ARROW = 37,
+  ESC = 27,
+}
