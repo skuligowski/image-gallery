@@ -6,7 +6,8 @@ import { catchError, last, mergeMap, tap, toArray } from 'rxjs/operators';
 
 @Component({
   selector: 'app-library-upload',
-  templateUrl: 'library-upload.component.html'
+  templateUrl: 'library-upload.component.html',
+  styleUrls: ['library-upload.component.scss'],
 })
 export class LibraryUploadComponent {
 

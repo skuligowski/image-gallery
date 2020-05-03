@@ -7,7 +7,8 @@ import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-library-browser',
-  templateUrl: 'library-browser.component.html'
+  templateUrl: 'library-browser.component.html',
+  styleUrls: ['library-browser.component.scss'],
 })
 export class LibraryBrowserComponent implements OnInit, OnDestroy {
   files: LibraryFile[];
