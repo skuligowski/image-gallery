@@ -3,7 +3,6 @@ import { AlbumsManagerComponent } from './albums-manager/albums-manager.componen
 import { AlbumCreateComponent } from './album-create/album-create.component';
 import { AlbumDetailsComponent } from './album-details/album-details.component';
 import { LibraryUploadComponent } from './library-manager/library-upload/library-upload.component';
-import { EnterDirective } from '../common/enter/enter.directive';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -28,7 +27,7 @@ import { LibraryManagerComponent } from './library-manager/library-manager.compo
 import { UsersService } from './services/users.service';
 import { UserCreateComponent } from './user-create/user-create.component';
 import { SamePasswordDirective } from './user-create/same-password.directive';
-import { HeaderNavigationComponent } from './header-navigation.component';
+import { HeaderNavigationComponent } from './header-navigation/header-navigation.component';
 import { UsersManagerComponent } from './users-manager/users-manager.component';
 import { SettingsComponent } from './settings/settings.component';
 import { SettingsService } from './services/settings.service';

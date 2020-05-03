@@ -15,97 +15,11 @@
   }
 }
 
-.admin-navigation {
-  width: 200px;
-  background-color: #363d46;
-  height: 100%;
-  position: absolute;
-  padding: 15px 0 0;
-  margin: 0;
-  list-style: none;
-
-  li {
-    a {
-      color: #fff;
-      font-weight: 300;
-      font-size: 0.9rem;
-    }
-    i {
-      transform: scale(0.8);
-      color: #bbb;
-      margin: 0 15px 0 0;
-    }
-    padding: .75rem 1rem;
-    outline: 0;
-    &.active, &:active {
-      background-color: #232323;
-      i {
-        color: #fff;
-      }
-    }
-
-    &:hover {
-      background-color: #007ad970;
-      cursor: pointer;
-      i {
-        color: #fff;
-      }
-    }
-  }
-}
-
-.admin-layout-header {
-  display: flex;
-  align-items: center;
-  font-size: 0;
-  border-bottom: 1px solid #ccc;
-  background-color: #fefefe;
-  padding: 10px 0;
-  width: 100%;
-  z-index: 10;
-
-  .title {
-    flex: 1 0 0;
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin: 0 15px;
-    display: inline-block;
-    text-transform: capitalize;
-    color: #444;
-  }
-
-  .push-right {
-    flex: 1 0 0;
-    text-align: right;
-    margin: 0 30px;
-  }
-
-  .back, .logout {
-    display: inline-block;
-    margin-left: 20px;
-
-    a {
-      color: #000;
-      cursor: pointer;
-      font-size: 1.2rem;
-      font-variant: all-small-caps;
-    }
-  }
-
-  .back {
-    i {
-      margin-right: 5px;
-    }
-  }
-
-  .logout {
-  }
-}
-
 .ui-widget {
   font-family: Roboto, Arial, sans-serif;
   font-weight: 300;
-  font-size: 1em; }
+  font-size: 1em; 
+}
 
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
   font-family: Roboto, Arial, sans-serif;
