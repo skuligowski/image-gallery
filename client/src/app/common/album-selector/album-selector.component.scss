@@ -52,21 +52,19 @@ ul {
 
 .albums {
   margin-left: 80px;
-
-  .album {
-    position: relative;
-    
-    .anchor {
-      position: absolute;
-      top: -100px;
-    }
-  }
 }
 
 .without-date {
   margin-bottom: 30px;
+
   .album-name {
     margin-left: 32px;
+  }
+}
+
+.albums, .without-date {
+  .album {
+    position: relative;
   }
 }
 

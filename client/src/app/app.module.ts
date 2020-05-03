@@ -27,6 +27,7 @@ import { AuthHttpInterceptor } from './common/utils/auth-http.interceptor';
 import { ConfigGuard } from './core/config/config.guard';
 import { ConfigService } from './core/config/config.service';
 import { EnterModule } from './common/enter/enter.module';
+import { AnchorsModule } from './common/anchors/anchors.module';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { EnterModule } from './common/enter/enter.module';
     EnterModule,
     FormsModule,
     HttpClientModule,
+    AnchorsModule,
   ],
   providers: [
     AlbumResolver,

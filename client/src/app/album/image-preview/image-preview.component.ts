@@ -25,11 +25,21 @@ const imageAnimation = trigger('imageAnimation', [
   ]),
 ]);
 
+const fadeOutAnimation = trigger('fadeOutAnimation', [
+  transition(':leave', [
+    style({ opacity: 1 }),
+    animate('0.7s 10ms cubic-bezier(.3,.98,.11,1.0)', style({ opacity: 0 }))
+  ]),
+]);
+
 @Component({
   selector: 'app-image-preview',
   templateUrl: 'image-preview.component.html',
   styleUrls: ['image-preview.component.scss'],
-  animations: [ spinnerAnimation, imageAnimation ],
+  animations: [ spinnerAnimation, imageAnimation, fadeOutAnimation ],
+  host: {
+    '[@fadeOutAnimation]': ""
+  }
 })
 export class ImagePreviewComponent {
 

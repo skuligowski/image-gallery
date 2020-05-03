@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { CurrentAlbum } from '../../album.resolver';
-import { AlbumSelectorService } from '../../common/album-selector/album-selector.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/auth/auth.service';
+import { AnchorsDirective } from '../../common/anchors/anchors.directive';
 
 @Component({
   selector: 'app-album-preview',
@@ -12,13 +12,27 @@ import { AuthService } from '../../core/auth/auth.service';
 export class AlbumPreviewComponent {
 
   @Input()
-  album: CurrentAlbum;
+  set album(album: CurrentAlbum) {
+    if ((!this.currentAlbum || this.currentAlbum.id !== album.id) && this.anchors) {
+      this.anchors.scrollToTop();
+    } else if (!album.currentImage && this.anchors) {
+      this.anchors.scrollTo(this.currentAlbum.currentImage.filename);
+    }
+    this.currentAlbum = album;
+  }
+  get album(): CurrentAlbum {
+    return this.currentAlbum;
+  }
+  private currentAlbum: CurrentAlbum;
 
-  constructor(private albumSelectorService: AlbumSelectorService,
-              private router: Router,
+  @ViewChild(AnchorsDirective)
+  anchors: AnchorsDirective;
+
+  constructor(private router: Router,
               public authService: AuthService) { }
 
   chooseAlbum(): void {
     this.router.navigate([{outlets: { modal: 'album/select'}}], { queryParams: {albumId: this.album.id}});
   }
+
 }

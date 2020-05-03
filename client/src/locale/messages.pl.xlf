@@ -46,7 +46,7 @@
           <context context-type="linenumber">5</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/header-navigation.component.html</context>
+          <context context-type="sourcefile">app/admin/header-navigation/header-navigation.component.html</context>
           <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
@@ -327,7 +327,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ca1bf8d84b8ba51b7d4c99d8140975a8b1dbd928" datatype="html">
@@ -474,12 +474,12 @@
         <source>Do you really want to delete this user?</source>
         <target>Czy na pewno chcesz usunąć tego użytkownika?</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/users-manager/users-manager.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">58</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="sourcefile">app/admin/users-manager/users-manager.component.html</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e554db3223d650f76c7ad1b7a29b0e77e6af0000" datatype="html">
@@ -487,7 +487,7 @@
         <target>Aktualizuj ustawienia</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cf17e2f3737e74b8e3b874867ec9cf5fa46f2146" datatype="html">
@@ -495,7 +495,7 @@
         <target>Parametr</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5049e204c14c648691ac775a64fb504467aeb549" datatype="html">
@@ -503,7 +503,7 @@
         <target>Wartość</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cf0dac9809355f88b69985cfd5fe05e57155fba0" datatype="html">
@@ -511,7 +511,7 @@
         <target>Nazwa galerii</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1e503b428348a340c9a615a7aa238bf98aab05b2" datatype="html">
@@ -519,7 +519,7 @@
         <target>Nazwa jest widoczna na głównej stronie.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ed72606056198896f46c65d0dbbe854d04f3de47" datatype="html">
@@ -527,7 +527,7 @@
         <target>Autentykacja</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a71736dfdb328d4ddbd05c2026bd8fe1f765f6ee" datatype="html">
@@ -535,7 +535,7 @@
         <target>Kiedy włączona, każdy użytkownik jest przekierowany na stronę logowania.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fe46ccaae902ce974e2441abe752399288298619" datatype="html">
@@ -543,7 +543,7 @@
         <target>Język</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ab771106687498d86d1a74974c9a203d0ee467aa" datatype="html">
@@ -551,7 +551,7 @@
         <target>Aktualny język galerii.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="152d4a6dbf8c4e2be76a4ca1800bbf71ae929ad3" datatype="html">
@@ -559,18 +559,18 @@
         <target>Ścieżka do katalogu zdjęć</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="e06ecd2a01cd5e478507826ababe93a14f6533b2" datatype="html">
+      <trans-unit id="bfce882570ed20a49a17fcb3023a961fbc2eea2a" datatype="html">
         <source>Library directory is an absolute path to directory that contains all image files.
-        This is also a place where all uploaded images will be stored. After changing this property, existing
-        albums may not work properly.</source>
-        <target>Absolutna ścieżka do katalogu ze zdjęciami. Do katalogu zdjęć będą również ładowane pliki z nowymi zdjęciami.
-          Po zmianie tego parametru, istniejące albumy mogą przestać działać.</target>
+          This is also a place where all uploaded images will be stored. After changing this property, existing
+          albums may not work properly.</source>
+        <target>Absolutna ścieżka do katalogu ze zdjęciami. Do katalogu zdjęć będą również ładowane pliki z nowymi zdjęciami. 
+        Po zmianie tego parametru, istniejące albumy mogą przestać działać.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="0101727e3a4ed583919796307e66020ad513551d" datatype="html">
@@ -578,7 +578,7 @@
         <target>Ilość kafli na głównym ekranie</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="90e32e57161760f9b15791981c7e02f72a609c5b" datatype="html">
@@ -586,7 +586,7 @@
         <target>Maksymalna ilość kafli na głównym ekranie (np. ostatnio zmienione albumy)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6c313f69473d0570de0d34bfe00003acd2ea018e" datatype="html">
@@ -594,7 +594,7 @@
         <target>Zdjęcie na głównym ekranie</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="20e22667ea0a5ee07377780366ce246761b0a84f" datatype="html">
@@ -602,7 +602,7 @@
         <target>Ścieżka do zdjęcia prezentowanego na głównym ekranie. Jeśli wartość nie jest ustawiona, pierwsze zdjęcie z ostatniego albumu zostanie automatycznie wyświetlone.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">38</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="08cd7d246cb3b266efa14b07e1004c6a113d3d99" datatype="html">
@@ -610,7 +610,7 @@
         <target>Długość miniatury</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c73f7a7a61240f4924079ccbe3a183ae95654ffb" datatype="html">
@@ -618,7 +618,7 @@
         <target>Długość generowane miniatury, wyrażona w pikselach.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="02f40fb223aaaa84574a5a3c142da3d378b054ae" datatype="html">
@@ -626,7 +626,7 @@
         <target>Jakość miniatury</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cdd0dfaee845510be785f0bd93dc780e07481ca7" datatype="html">
@@ -634,7 +634,7 @@
         <target>Jakość wygenerowanej tekstury wyrażona w procentach.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="679aae239365129cb0d1210bfab6a6e7c85e5861" datatype="html">
@@ -642,7 +642,7 @@
         <target>Pobieranie zdjęć</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
       <trans-unit id="737274d6375928c1910ca2b41e041af318892a19" datatype="html">
@@ -650,14 +650,14 @@
         <target>Kiedy włączona, użytkownik może pobrać zdjęcie dobrej jakości z galerii.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b7648e7aced164498aa843b5c4e8f2f1c36a7919" datatype="html">
         <source>Administration</source>
         <target>Administracja</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/header-navigation.component.html</context>
+          <context context-type="sourcefile">app/admin/header-navigation/header-navigation.component.html</context>
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
@@ -665,7 +665,7 @@
         <source>Return to gallery</source>
         <target>Powrót do galerii</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/header-navigation.component.html</context>
+          <context context-type="sourcefile">app/admin/header-navigation/header-navigation.component.html</context>
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
@@ -673,7 +673,7 @@
         <source>Library</source>
         <target>Biblioteka</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/header-navigation.component.html</context>
+          <context context-type="sourcefile">app/admin/header-navigation/header-navigation.component.html</context>
           <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
@@ -681,7 +681,7 @@
         <source>Users</source>
         <target>Użytkownicy</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/header-navigation.component.html</context>
+          <context context-type="sourcefile">app/admin/header-navigation/header-navigation.component.html</context>
           <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
@@ -689,7 +689,7 @@
         <source>Settings</source>
         <target>Ustawienia</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/header-navigation.component.html</context>
+          <context context-type="sourcefile">app/admin/header-navigation/header-navigation.component.html</context>
           <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
