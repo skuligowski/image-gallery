@@ -11,7 +11,7 @@
   }
 }
 
-::ng-deep {
+:host ::ng-deep {
   .grid-sizer, app-image-grid-item { width: 32.666% }
   .gutter-sizer { width: 1% }
 
