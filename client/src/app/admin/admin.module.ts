@@ -36,10 +36,11 @@ import { AuthHttpInterceptor } from '../common/utils/auth-http.interceptor';
 import { PropertyPresenterComponent } from './settings/property-presenter.component';
 import { ThumbnailsService } from './services/thumbnails.service';
 import { EnterModule } from '../common/enter/enter.module';
-
+import { AdminComponent } from './admin.component';
 
 @NgModule({
   declarations: [
+    AdminComponent,
     AlbumCreateComponent,
     AlbumDetailsComponent,
     AlbumsManagerComponent,
@@ -56,7 +57,7 @@ import { EnterModule } from '../common/enter/enter.module';
     UserCreateComponent,
     UsersManagerComponent,
   ],
-  imports: [
+  imports: [  
     AdminRoutingModule,
     ButtonModule,
     CalendarModule,

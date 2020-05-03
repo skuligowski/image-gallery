@@ -9,9 +9,12 @@ import { AdminGuard } from '../core/auth/admin.guard';
 import { LibraryManagerComponent } from './library-manager/library-manager.component';
 import { UsersManagerComponent } from './users-manager/users-manager.component';
 import { SettingsComponent } from './settings/settings.component';
+import { AdminComponent } from './admin.component';
 
 const adminRoutes: Routes = [
-  { path: '', children: [
+  { path: '', 
+    component: AdminComponent,
+    children: [
       { path: 'albums', component: AlbumsManagerComponent, resolve: { albums: AlbumsResolver }, runGuardsAndResolvers: 'always' },
       { path: 'albums/:id', component: AlbumDetailsComponent, resolve: { albums: AlbumsResolver, album: AlbumDetailsResolver }, runGuardsAndResolvers: 'always' },
       { path: 'library', component: LibraryManagerComponent },

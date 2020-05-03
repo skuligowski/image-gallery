@@ -34,9 +34,9 @@
             ],
             "styles": [
               "node_modules/normalize.css/normalize.css",
-              "src/styles.scss",
               "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/primeicons/primeicons.css"
+              "node_modules/primeicons/primeicons.css",
+              "src/styles.scss"
             ],
             "localize": ["en"]
           },

@@ -1,0 +1,70 @@
+@import "~primeng/resources/themes/nova-dark/theme.css";
+
+.admin-layout-container {
+    margin-left: 200px;
+    padding: 0 30px 63px 30px;
+    height: 100%;
+    overflow: auto;
+    background-color: #f3f3f3;
+    
+    nav {
+        padding: 20px 0 10px 0;
+        .action {
+        margin: 0 10px 10px 0;
+        }
+    }
+}
+    
+.ui-widget {
+    font-family: Roboto, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 1em; 
+}
+    
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+    font-family: Roboto, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 1em; 
+}
+    
+.ui-overflow-hidden {
+    width: 100%;
+}
+    
+.ui-fluid {
+    button, input, optgroup, select, textarea {
+        line-height: initial;
+    }
+}
+    
+html .ui-widget {
+    line-height: initial !important;
+}
+    
+.layout-header {
+
+    .navigation {
+        list-style: none;
+    }
+    
+    .back-button {
+        position: relative;
+        top: 1px;
+        font-size: 1.8rem;
+        transform: scale(1.4);
+        margin-right: 24px;
+        border-right: 1px solid #666;
+        padding-right: 6px;
+    
+        &:hover {
+            cursor: pointer;
+            color: #fff;
+        }
+    }
+}
+    
+.error-message {
+    color: #ec7676;
+    font-size: 0.8rem;
+    padding-left: 5px;
+}
