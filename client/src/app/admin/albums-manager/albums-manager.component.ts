@@ -6,7 +6,8 @@ import { AlbumCreateEvent } from '../album-create/album-create.component';
 
 @Component({
   selector: 'app-albums-manager',
-  templateUrl: 'albums-manager.component.html'
+  templateUrl: 'albums-manager.component.html',
+  styleUrls: ['albums-manager.component.scss'],
 })
 export class AlbumsManagerComponent implements OnInit {
 

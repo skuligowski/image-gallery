@@ -1,7 +1,5 @@
-import { of } from 'rxjs/observable/of';
-import { Observable } from 'rxjs/Observable';
 import { debounceTime, distinctUntilChanged, finalize, map, publish, refCount, switchMap, tap } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { Subject, Observable, of } from 'rxjs';
 
 
 export enum SpinnerEvent {

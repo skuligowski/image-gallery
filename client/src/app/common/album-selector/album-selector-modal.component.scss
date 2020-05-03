@@ -1,0 +1,61 @@
+@import "assets/css/media.scss";
+@import "assets/css/forms.scss";
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right:0;
+  left: 0;
+  opacity: 0.6;
+  background: #000;
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 540px;
+  margin: auto;
+  display: block;
+  background: #222;
+  overflow: auto;
+
+  .container {
+    padding: 20px 0;
+
+    app-album-selector {
+      margin-top: 40px;
+    }
+  }
+
+  @include for-phone-only {
+    width: 100%;
+    left: 0;
+
+    .container {
+      padding: 20px 0;
+    }
+  };
+}
+
+.album-selector-header {
+  display: flex;
+  align-items: center;
+  margin: 0 40px;
+
+  .query-input {
+    padding: 10px;
+    background-color: #2a2a2a;
+    flex: 1 0 0;
+
+    @include create-input(1rem, 1.6rem, 44px);
+  }
+
+  .close-button {
+    color: #eee;
+    cursor: pointer;
+    margin-left: 20px;
+  }
+}

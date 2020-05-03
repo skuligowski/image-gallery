@@ -7,7 +7,8 @@ import { SettingsValidators, SettingsValidatorsService } from './settings-valida
 
 @Component({
   selector: 'app-settings',
-  templateUrl: 'settings.component.html'
+  templateUrl: 'settings.component.html',
+  styleUrls: ['settings.component.scss']
 })
 export class SettingsComponent implements DoCheck {
 

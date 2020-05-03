@@ -1,4 +1,6 @@
-app-login {
+@import "assets/css/forms.scss";
+
+:host {
   position: relative;
   top: 120px;
 
@@ -7,22 +9,25 @@ app-login {
     width: 400px;
     margin: 10px auto auto;
 
-    .create-input();
+    @include create-input();
   }
 
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  textarea:-webkit-autofill,
-  textarea:-webkit-autofill:hover,
-  textarea:-webkit-autofill:focus,
-  select:-webkit-autofill,
-  select:-webkit-autofill:hover,
-  select:-webkit-autofill:focus {
-    border: 0;
-    -webkit-text-fill-color: #aaa;
-    transition: background-color 5000s ease-in-out 0s;
+  ::ng-deep {
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+      border: 0;
+      -webkit-text-fill-color: #aaa;
+      transition: background-color 5000s ease-in-out 0s;
+    }
   }
+
 
   .submit-button {
     width: 400px;

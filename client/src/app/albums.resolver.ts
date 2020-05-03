@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
 import { AlbumsService } from './albums.service';
 import Album = Definitions.Album;
+import { Observable } from 'rxjs';
 
 
 @Injectable()

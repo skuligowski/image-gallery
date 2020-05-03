@@ -28,7 +28,8 @@ const imageAnimation = trigger('imageAnimation', [
 
 @Component({
   selector: 'app-image-preview',
-  templateUrl: './image-preview.component.html',
+  templateUrl: 'image-preview.component.html',
+  styleUrls: ['image-preview.component.scss'],
   animations: [ spinnerAnimation, imageAnimation ],
 })
 export class ImagePreviewComponent {

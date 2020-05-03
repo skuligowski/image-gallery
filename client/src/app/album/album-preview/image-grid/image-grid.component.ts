@@ -4,8 +4,8 @@ import { ImageGridItemComponent } from './image-grid-item.component';
 
 @Component({
   selector: 'app-image-grid',
-  templateUrl: './image-grid.component.html',
-  styleUrls: ['./image-grid.component.less'],
+  templateUrl: 'image-grid.component.html',
+  styleUrls: ['image-grid.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ImageGridComponent implements OnInit, AfterViewInit {

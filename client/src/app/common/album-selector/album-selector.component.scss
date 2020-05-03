@@ -1,0 +1,90 @@
+:host {
+  display: block;
+  color: #fff;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+};
+
+.year-container {
+  padding: 10px 0;
+}
+
+.month-container {
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #333;
+}
+
+.year-container:hover {
+    background-color: #292929;
+    transition: background-color 4s;
+}
+
+.left-offset {
+  margin-left: 40px;
+}
+
+.year {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  padding-bottom: 4px;
+  cursor: default;
+  color: #fff;
+  border-bottom: 1px solid #333;
+}
+
+.month {
+  font-size: 0.6rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  background-color: #444;
+  padding: 3px 15px;
+  display: inline-block;
+  margin: 4px 0;
+  cursor: default;
+  position: absolute;
+}
+
+.albums {
+  margin-left: 80px;
+
+  .album {
+    position: relative;
+    
+    .anchor {
+      position: absolute;
+      top: -100px;
+    }
+  }
+}
+
+.without-date {
+  margin-bottom: 30px;
+  .album-name {
+    margin-left: 32px;
+  }
+}
+
+.album-name {
+  font-size: 1.1rem;
+  margin-left: 20px;
+  display: block;
+  color: #fff;
+  padding: 3px 0 3px 10px;
+  &:hover {
+    background-color: #333333;
+    cursor: pointer;
+  }
+  &.selected {
+    background-color: #1a4d6d;
+  }
+  .album-size {
+    font-size: 0.6rem;
+    color: #ccc;
+  }
+}

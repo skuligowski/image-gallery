@@ -34,9 +34,9 @@
             ],
             "styles": [
               "node_modules/normalize.css/normalize.css",
-              "src/styles.less",
               "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/primeicons/primeicons.css"
+              "node_modules/primeicons/primeicons.css",
+              "src/styles.scss"
             ],
             "localize": ["en"]
           },
@@ -55,7 +55,7 @@
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
-              "vendorChunk": true,
+              "vendorChunk": false,
               "buildOptimizer": false,
               "fileReplacements": [
                 {
@@ -93,7 +93,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "styles": [
               "node_modules/normalize.css/normalize.css",
-              "src/styles.less",
+              "src/styles.scss"
             ],
             "assets": [
               "src/assets",
@@ -145,7 +145,7 @@
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
-      "style": "less"
+      "style": "scss"
     },
     "@schematics/angular:directive": {
       "prefix": "app"

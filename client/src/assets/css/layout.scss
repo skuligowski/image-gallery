@@ -72,7 +72,7 @@ app-root {
           transition: all 0.2s ease-in;
         }
 
-        .for-phone-only({
+        @include for-phone-only {
           & > i {
             display: inline-block;
           }
@@ -82,7 +82,7 @@ app-root {
           padding: 8px 8px;
           font-size: 1.3rem;
           margin-left: 20px;
-        });
+        };
       }
     }
   }
