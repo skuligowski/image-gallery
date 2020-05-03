@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef, ViewChildren, QueryList, AfterViewInit } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { CurrentAlbum } from '../../album.resolver';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/auth/auth.service';
