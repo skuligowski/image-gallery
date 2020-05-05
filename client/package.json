@@ -30,7 +30,8 @@
     "rxjs": "^6.5.4",
     "tslib": "^1.10.0",
     "unorm": "^1.4.1",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.901.4",

@@ -8,6 +8,6 @@ export class AnchorDirective {
     constructor(private el: ElementRef<HTMLElement>) { }
 
     scrollIntoView(): void {
-        this.el.nativeElement.scrollIntoView({block: 'center', inline: 'center'});
+        this.el.nativeElement.scrollIntoView({block: 'center'});
     }
 }
