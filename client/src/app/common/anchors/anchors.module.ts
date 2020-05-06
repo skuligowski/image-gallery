@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 
-import { AnchorComponent } from './anchor.component';
 import { AnchorsDirective } from './anchors.directive';
+import { AnchorDirective } from './anchor.directive';
 
 @NgModule({
     imports: [ ],
-    exports: [ AnchorComponent, AnchorsDirective ],
-    declarations: [ AnchorComponent, AnchorsDirective ],
+    exports: [ AnchorsDirective, AnchorDirective ],
+    declarations: [ AnchorsDirective, AnchorDirective ],
     providers: [],
 })
 export class AnchorsModule { }

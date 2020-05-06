@@ -1,8 +1,7 @@
 <div appAnchors>
   <ul class="without-date">
     <li class="album" *ngFor="let album of withoutDate" (click)="selectAlbum(album)">
-      <app-anchor [name]="album.id"></app-anchor>
-      <div class="album-name">{{album.name}} <span class="album-size">({{album.size}})</span></div>
+      <div [appAnchor]="album.id" class="album-name">{{album.name}} <span class="album-size">({{album.size}})</span></div>
     </li>
   </ul>
   <ul>
@@ -13,8 +12,7 @@
           <div class="month" *ngIf="month.name">{{[2007, month.name, 1].join('-') | date: 'LLLL'}}</div>
           <ul class="albums">
             <li class="album" *ngFor="let album of month.albums" (click)="selectAlbum(album)">
-              <app-anchor [name]="album.id"></app-anchor>
-              <div class="album-name" [class.selected]="album.id === selectedAlbumId">{{album.name}} <span class="album-size">({{album.size}})</span></div>
+              <div [appAnchor]="album.id" class="album-name" [class.selected]="album.id === selectedAlbumId">{{album.name}} <span class="album-size">({{album.size}})</span></div>
             </li>
           </ul>
         </li>
