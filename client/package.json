@@ -10,7 +10,8 @@
     "locale": "ng xi18n --output-path locale && xliffmerge --profile ./xliffmerge.json && rimraf src/locale/messages.xlf",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "update": "ng update"
   },
   "private": true,
   "dependencies": {
