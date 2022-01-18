@@ -37,7 +37,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.15",
     "@angular/cli": "^12.2.15",
-    "@angular/cdk": "^10.2.4",
+    "@angular/cdk": "^11.2.13",
     "@angular/compiler-cli": "^12.2.15",
     "@angular/language-service": "^12.2.15",
     "@types/imagesloaded": "^4.1.1",
