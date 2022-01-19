@@ -12,7 +12,7 @@ import { SettingsValidators, SettingsValidatorsService } from './settings-valida
 })
 export class SettingsComponent implements DoCheck {
 
-  settings: Settings;
+  settings: Settings = undefined;
   settingsCopy: Settings = this.settings;
   settingsKeys: string[] = [];
   settingsChanged: boolean = false;
