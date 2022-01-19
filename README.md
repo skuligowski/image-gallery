@@ -39,8 +39,10 @@ $ npm install
 $ node server
 ```
 
-4. Open url http://localhost:3000/ in your browser.
+6. Open url http://localhost:3000/login in your browser and log in as an administrator using login: `admin`, pass: `1234`.
 
+Configure your gallery name, and library dir - the directory where you store your images.
+Now you are ready to manage your photos, compose albums and upload photos to the library!
 
 ## Contribution
 
@@ -71,10 +73,39 @@ $ npm start
 $ npm run locale
 ```
 
-## Basic configuration
+## Manual production build
 
-After the first launch, login to the [administration panel](http://localhost:3000/login).
-Configure your gallery name, and library dir - the directory where you store your images.
+1. Build the gallery for production use:
 
-Now you are ready to manage your photos, compose albums and upload photos to the library!
+```bash
+$ npm run build
+```
 
+2. Prepare a distribution pacakge:
+
+```bash
+$ npm run dist:make
+```
+
+The distribution package will be created in `dist` directory.
+
+3. Go to `dist` and install all npm packages
+
+```bash
+$ npm install
+```
+
+4. Run the gallery:
+
+```bash
+$ node server.js
+```
+
+## Release notes
+
+### 1.0.0 (not released yet)
+- Angular upgrade to 13.x
+- PrimeNg upgrade to 13.x
+- NodeJs min version: 12+
+- IE11 support dropped: ([read it here](https://github.com/angular/angular/issues/41840))
+- bug fixes
