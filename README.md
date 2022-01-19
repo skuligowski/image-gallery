@@ -21,11 +21,12 @@ It simply works after the installation.
 
 ## Prerequisites
 
-[NodeJS](https://nodejs.org/en/download/)
+[NodeJS 12.x+](https://nodejs.org/en/download/)
+
 
 ## Installation
 
-1. Download the latest version of the gallery: [v0.4.0](https://github.com/skuligowski/image-gallery/releases/download/v0.4.0/v0.4.0.zip)
+1. Download the latest released version of the gallery: [v0.4.0](https://github.com/skuligowski/image-gallery/releases/download/v0.5.0/v0.5.0.zip)
 
 2. Unzip it somewhere and type:
 
@@ -43,6 +44,7 @@ $ node server
 
 Configure your gallery name, and library dir - the directory where you store your images.
 Now you are ready to manage your photos, compose albums and upload photos to the library!
+
 
 ## Contribution
 
@@ -73,6 +75,7 @@ $ npm start
 $ npm run locale
 ```
 
+
 ## Manual production build
 
 1. Build the gallery for production use:
@@ -100,6 +103,7 @@ $ npm install
 ```bash
 $ node server.js
 ```
+
 
 ## Release notes
 
