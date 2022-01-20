@@ -17,3 +17,9 @@ FROM node:16-alpine
 WORKDIR /app
 
 COPY --from=builder /app/dist ./
+ENTRYPOINT [ \ 
+    "node", "server.js", \ 
+    "--dbDir", "resources/db", \ 
+    "--libraryDir", "resources/library", \ 
+    "--port", "3000" \
+]
