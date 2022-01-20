@@ -1,4 +1,15 @@
 'use strict';
+
+const optionDefinitions = [
+  { name: 'port', alias: 'p', type: Number, defaultValue: 3000 },
+  { name: 'libraryDir', alias: 'l', type: String, defaultValue: 'resources/library' },
+  { name: 'dbDir', alias: 'd', type: String, defaultValue: '../db'}
+]
+
+const commandLineArgs = require('command-line-args')
+const options = commandLineArgs(optionDefinitions);
+require('./core/db').initialize(options.dbDir);
+
 const swaggerParser = require('swagger-parser');
 const swaggerTools = require('swagger-tools');
 const express = require('express');
@@ -27,7 +38,7 @@ app.use(session({
   cookie : { secure : false, maxAge : (4 * 60 * 60 * 1000) }
 }));
 
-initialize()
+initialize(options.libraryDir)
   .then(() => config.initialize())
   .then(() => libraryStatics.use(app))
   .then(() => auth.initialize(app))
@@ -57,7 +68,7 @@ initialize()
         next();
       });
 
-      app.listen(3000);
-      console.log('Server started on port 3000');
+      app.listen(options.port);
+      console.log('Server started on port ' + options.port);
     });
   });
