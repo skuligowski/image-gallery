@@ -64,7 +64,9 @@ The other valid approach is to download the latest zip pacakge and manually inst
 The only requirement is to have [NodeJS 12.x+](https://nodejs.org/en/download/) isntalled in your systemn.
 
 1\. Download the latest released version of the gallery: [v1.0.0](https://github.com/skuligowski/image-gallery/releases/download/v1.0.0/v1.0.0.zip)
+
 2\. Unzip it somewhere and type: `npm install` 
+
 3\. Run gallery with the following command, passing initialization parameters:
 
 ```bash
@@ -105,11 +107,11 @@ $ npm run locale
 
 ## Manual production build
 
-1\. Build the gallery for production by execution of `npm run build`
+1\. Build the gallery for production executing `npm run build`
 
 2\. Prepare a distribution pacakge `npm run dist:make`
 
-   The distribution package will be created in `dist` directory.
+The distribution package will be created in `dist` directory.
 
 3\. Go to `dist` and install all npm packages: `npm install`
 
