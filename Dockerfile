@@ -1,4 +1,4 @@
-FROM node:16 as builder
+FROM --platform=$BUILDPLATFORM node:16 as builder
 
 WORKDIR /app
 
@@ -10,13 +10,15 @@ RUN npm install
 
 COPY . ./
 
-RUN npm run build && cd dist && npm install && cd ..
+RUN npm run build
 
-FROM node:16-alpine
+FROM --platform=$TARGETPLATFORM node:16-alpine
 
 WORKDIR /app
 
 COPY --from=builder /app/dist ./
+RUN npm install
+
 ENTRYPOINT [ \ 
     "node", "server.js", \ 
     "--dbDir", "resources/db", \ 
