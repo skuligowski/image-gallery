@@ -22,49 +22,52 @@ It contains fully featured administration panel that supports:
 Image Gallery does not require any database or native graphic modules (eg. ImageMagick).
 It simply works after the installation.
 
-### Raspberry Pi installation
+### Installation (Docker)
 
 The best way to install `image-gallery` on your Raspberry Pi is to use Docker container environment. This setup assumes that you already have an operating system setup and a container runtime installed (like Docker).
 
 Installation with Docker is straightforward.
 
 1. Create a directory in you home dir for gallery database (`mkdir ~/gallery_db`)
-2. Create a directory for your photos library (or you may already have it on your external drive attached to Raspberry Pi)
-3. Adjust following command to reflect already created directories:
+2. Create a directory for your images (or you may already have it on your external drive attached to Raspberry Pi)
+3. Adjust following command to reflect previously created directories:
 
 ```
 docker run -d \
   --name gallery \
   --restart=unless-stopped \
   -v /home/pi/gallery_db:/app/resources/db \
-  -v /media/hdd/photos:/app/resources/library \
-  -p 3000:3000 \
+  -v /media/hdd/images:/app/resources/library \
+  -p 80:3000 \
   skuligowski/image-gallery:1.0.0
 ```
 
+You may also modify the external port (*80*), to expose library using your favorite one.
 
+4. Open url http://localhost:3000/login in your browser and log in as an administrator using:
 
-[NodeJS 12.x+](https://nodejs.org/en/download/)
-
-#
-
-# Installation
-
-1. Download the latest released version of the gallery: [v0.5.0](https://github.com/skuligowski/image-gallery/releases/download/v0.5.0/v0.5.0.zip)
-
-2. Unzip it somewhere and type:
-
-   ```bash
-   $ npm install
+   ```
+   login: admin
+   pass: 1234
    ```
 
-3. Finally run the gallery:
+   Configure your gallery name, and library dir - the directory where you store your images.
+   Now you are ready to manage your photos, compose albums and upload photos to the library!
+
+### Installation (Node)
+
+The other valid approach is to download the latest zip pacakge and manually install the application.
+The only requirement is to have [NodeJS 12.x+](https://nodejs.org/en/download/) isntalled in your systemn.
+
+1. Download the latest released version of the gallery: [v1.0.0](https://github.com/skuligowski/image-gallery/releases/download/v1.0.0/v1.0.0.zip)
+2. Unzip it somewhere and type: `npm install` 
+3. Run gallery with the following command, passing initialization parameters:
 
    ```bash
-   $ node server
+   $ node server --dbDir /home/pi/gallery_db --libraryDir /media/hdd/images --port 80
    ```
 
-6. Open url http://localhost:3000/login in your browser and log in as an administrator using:
+4. Open url http://localhost:3000/login in your browser and log in as an administrator using:
 
    ```
    login: admin
