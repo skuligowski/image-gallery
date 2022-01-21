@@ -1,5 +1,8 @@
 # Image Gallery
 
+
+### About
+
 Image Gallery is a free and open source web gallery, that you can very easily install on your Raspberry Pi, any server that supports *NodeJs* or Heroku.
 
 It contains fully featured administration panel that supports:
@@ -19,10 +22,31 @@ It contains fully featured administration panel that supports:
 Image Gallery does not require any database or native graphic modules (eg. ImageMagick).
 It simply works after the installation.
 
-## Prerequisites
+### Raspberry Pi installation
+
+The best way to install `image-gallery` on your Raspberry Pi is to use Docker container environment. This setup assumes that you already have an operating system setup and a container runtime installed (like Docker).
+
+Installation with Docker is straightforward.
+
+1. Create a directory in you home dir for gallery database (`mkdir ~/gallery_db`)
+2. Create a directory for your photos library (or you may already have it on your external drive attached to Raspberry Pi)
+3. Adjust following command to reflect already created directories:
+
+```
+docker run -d \
+  --name gallery \
+  --restart=unless-stopped \
+  -v /home/pi/gallery_db:/app/resources/db \
+  -v /media/hdd/photos:/app/resources/library \
+  -p 3000:3000 \
+  skuligowski/image-gallery:1.0.0
+```
+
+
 
 [NodeJS 12.x+](https://nodejs.org/en/download/)
 
+#
 
 # Installation
 
