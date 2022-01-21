@@ -1,5 +1,8 @@
 # Image Gallery
 
+
+## About
+
 Image Gallery is a free and open source web gallery, that you can very easily install on your Raspberry Pi, any server that supports *NodeJs* or Heroku.
 
 It contains fully featured administration panel that supports:
@@ -19,95 +22,100 @@ It contains fully featured administration panel that supports:
 Image Gallery does not require any database or native graphic modules (eg. ImageMagick).
 It simply works after the installation.
 
-## Prerequisites
-
-[NodeJS 12.x+](https://nodejs.org/en/download/)
 
 
-# Installation
+## Installation (Docker)
 
-1. Download the latest released version of the gallery: [v0.5.0](https://github.com/skuligowski/image-gallery/releases/download/v0.5.0/v0.5.0.zip)
+The best way to install `image-gallery` on your Raspberry Pi is to use Docker container environment. This setup assumes that you already have an operating system setup and a container runtime installed (like Docker).
 
-2. Unzip it somewhere and type:
+Installation with Docker is straightforward.
 
-   ```bash
-   $ npm install
-   ```
+1\. Create a directory in you home dir for gallery database (`mkdir ~/gallery_db`).
 
-3. Finally run the gallery:
+2\. Create a directory for your images (or you may already have it on your external drive attached to Raspberry Pi).
 
-   ```bash
-   $ node server
-   ```
+3\. Adjust following command to reflect previously created directories:
 
-6. Open url http://localhost:3000/login in your browser and log in as an administrator using:
+```
+docker run -d \
+    --name gallery \
+    --restart=unless-stopped \
+    -v /home/pi/gallery_db:/app/resources/db \
+    -v /media/hdd/images:/app/resources/library \
+    -p 80:3000 \
+    skuligowski/image-gallery:1.0.0
+```
 
-   ```
-   login: admin
-   pass: 1234
-   ```
+You may also modify the external port (*80*), to expose library using your favorite one.
 
-   Configure your gallery name, and library dir - the directory where you store your images.
-   Now you are ready to manage your photos, compose albums and upload photos to the library!
+4\. Open url http://localhost:3000/login in your browser and log in as an administrator using:
+
+```
+login: admin
+pass: 1234
+```
+
+Configure your gallery name, and library dir - the directory where you store your images.
+Now you are ready to manage your photos, compose albums and upload photos to the library!
+
+## Installation (Node)
+
+The other valid approach is to download the latest zip pacakge and manually install the application.
+The only requirement is to have [NodeJS 12.x+](https://nodejs.org/en/download/) isntalled in your systemn.
+
+1\. Download the latest released version of the gallery: [v1.0.0](https://github.com/skuligowski/image-gallery/releases/download/v1.0.0/v1.0.0.zip)
+
+2\. Unzip it somewhere and type: `npm install` 
+
+3\. Run gallery with the following command, passing initialization parameters:
+
+```bash
+$ node server --dbDir /home/pi/gallery_db --libraryDir /media/hdd/images --port 80
+```
+
+4\. Open url http://localhost:3000/login in your browser and log in as an administrator using:
+
+```
+login: admin
+pass: 1234
+```
+
+Configure your gallery name, and library dir - the directory where you store your images.
+Now you are ready to manage your photos, compose albums and upload photos to the library!
 
 
 ## Contribution
 
-1. Clone the repository of Image Gallery:
+1\. Clone the repository of Image Gallery:
 
    ```bash
    $ git clone git@github.com:skuligowski/image-gallery.git
    ```
 
-2. Install dependencies:
+2\. Install dependencies `npm install`
 
-   ```bash
-   $ npm install
-   ```
+3\. Run `npm start` to run application in developer mode
 
-3. Run
+4\. Open url http://localhost:4200/ in your browser.
 
-   ```bash
-   $ npm start
-   ```
+5\. In case you would like to provide new translations to the gallery, generate empty i18n transaltions using the command below and fill them in manually.
 
-4. Open url http://localhost:4200/ in your browser.
-
-
-5. Generate empty i18n transaltions using the command below and fill them in manually.
-
-   ```bash
-   $ npm run locale
-   ```
+```bash
+$ npm run locale
+```
 
 
 ## Manual production build
 
-1. Build the gallery for production use:
+1\. Build the gallery for production executing `npm run build`
 
-   ```bash
-   $ npm run build
-   ```
+2\. Prepare a distribution pacakge `npm run dist:make`
 
-2. Prepare a distribution pacakge:
+The distribution package will be created in `dist` directory.
 
-   ```bash
-   $ npm run dist:make
-   ```
+3\. Go to `dist` and install all npm packages: `npm install`
 
-   The distribution package will be created in `dist` directory.
-
-3. Go to `dist` and install all npm packages
-
-   ```bash
-   $ npm install
-   ```
-
-4. Run the gallery:
-
-   ```bash
-   $ node server.js
-   ```
+4\. Run the gallery: `node server.js`
 
 
 ## Release notes
@@ -118,3 +126,4 @@ It simply works after the installation.
  - NodeJs min version: 12+
  - IE11 support dropped: ([read it here](https://github.com/angular/angular/issues/41840))
  - bug fixes
+ - Docker installation method
