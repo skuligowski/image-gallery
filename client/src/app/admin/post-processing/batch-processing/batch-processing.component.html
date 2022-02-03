@@ -11,15 +11,15 @@
         </div>
         <div class="field col-12 md:col-3">
             <label for="width">Width</label>
-            <p-inputNumber id="width" [(ngModel)]="resizeWidth" [useGrouping]="false" mode="decimal"></p-inputNumber>
+            <p-inputNumber id="width" [(ngModel)]="resizeParams.width" [useGrouping]="false" mode="decimal"></p-inputNumber>
         </div>
         <div class="field col-12 md:col-3">
             <label for="height">Height</label>
-            <p-inputNumber id="height" [(ngModel)]="resizeHeight" [useGrouping]="false" mode="decimal"></p-inputNumber>
+            <p-inputNumber id="height" [(ngModel)]="resizeParams.height" [useGrouping]="false" mode="decimal"></p-inputNumber>
         </div>
         <div class="field col-12 md:col-3">
             <label for="modes">Modes</label>
-            <p-dropdown id="modes" [options]="resizeModes" [(ngModel)]="resizeMode" optionLabel="name" optionValue="code" [appendTo]="'body'"></p-dropdown>
+            <p-dropdown id="modes" [options]="resizeModes" [(ngModel)]="resizeParams.mode" optionLabel="name" optionValue="code" [appendTo]="'body'"></p-dropdown>
         </div>
     </div>
     <p-footer>

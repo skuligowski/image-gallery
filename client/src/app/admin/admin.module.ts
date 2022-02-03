@@ -41,6 +41,7 @@ import { AdminComponent } from './admin.component';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FieldsetModule } from 'primeng/fieldset';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ProcessingService } from './services/processing.service';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     UsersManagerComponent,
   ],
   imports: [  
-    AdminRoutingModule,
+  AdminRoutingModule,
     ButtonModule,
     CalendarModule,
     CheckboxModule,
@@ -90,6 +91,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     SettingsValidatorsService,
     ThumbnailsService,
     UsersService,
+    ProcessingService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true}
   ]
 })

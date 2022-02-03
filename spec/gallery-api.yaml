@@ -597,6 +597,8 @@ definitions:
     $ref: defs/ThumbnailsCreateRequest.yaml
   BatchProcessingRequest:
     $ref: defs/BatchProcessingRequest.yaml
+  ProcessingResizeParams:
+    $ref: defs/ProcessingResizeParams.yaml
   User:
     $ref: defs/User.yaml
   UsersResponse:

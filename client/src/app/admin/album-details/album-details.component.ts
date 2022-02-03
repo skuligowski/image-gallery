@@ -8,6 +8,8 @@ import { ThumbnailsService } from '../services/thumbnails.service';
 import Image = Definitions.Image;
 import Album = Definitions.Album;
 import LibraryFile = Definitions.LibraryFile;
+import { BatchProcessingEvent } from '../post-processing/batch-processing/batch-processing.component';
+import { ProcessingService } from '../services/processing.service';
 
 @Component({
   selector: 'app-album-details',
@@ -30,6 +32,7 @@ export class AlbumDetailsComponent {
   constructor(private route: ActivatedRoute,
               private albumsService: AlbumsService,
               private thumbnailsService: ThumbnailsService,
+              private processingService: ProcessingService,
               private router: Router,
               private confirmationService: ConfirmationService) {
 
@@ -74,6 +77,15 @@ export class AlbumDetailsComponent {
     });
   }
 
+  onBatchProcessing(event: BatchProcessingEvent): void {
+    console.log(event);
+    console.log(this.selected.map(image => image.url))
+    this.processingService.runBatchProcessing(this.selected.map(image => image.url), event.resizeParams)
+      .subscribe(response => {
+        event.close();
+      });
+  }
+
   createThumbnails(images: Image[]): void {
     this.thumbnailsService.createThumbnails(images.map(image => image.url))
       .pipe(this.albumsService.refreshAlbums())
@@ -108,10 +120,6 @@ export class AlbumDetailsComponent {
         this.router.navigated = false;
         this.router.navigate([this.router.url]);
       });
-  }
-
-  onBatchProcessing(event: any): void {
-    event.close();
   }
 
   private getOrderHash(images): string {

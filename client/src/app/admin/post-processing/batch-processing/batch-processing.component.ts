@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import ProcessingResizeParams = Definitions.ProcessingResizeParams;
 
 @Component({
   selector: 'app-batch-processing',
@@ -8,17 +9,16 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class BatchProcessingComponent {
 
   display: boolean;
-    resizeWidth: number;
-    resizeHeight: number;
-    resizeModes: any[] = [
-        {code: 'RESIZE_NEAREST_NEIGHBOR', name: 'Nearest neighbor'},
-        {code: 'RESIZE_BILINEAR', name: 'Bilinear'},
-        {code: 'RESIZE_BICUBIC', name: 'Bicubic'},
-        {code: 'RESIZE_HERMITE', name: 'Hermite'},
-        {code: 'RESIZE_BEZIER', name: 'Bezier'},
-    ];
-    resizeMode: string = 'RESIZE_BICUBIC';
-    resizeEnabled: boolean = true;
+
+  resizeModes: any[] = [
+      {code: 'RESIZE_NEAREST_NEIGHBOR', name: 'Nearest neighbor'},
+      {code: 'RESIZE_BILINEAR', name: 'Bilinear'},
+      {code: 'RESIZE_BICUBIC', name: 'Bicubic'},
+      {code: 'RESIZE_HERMITE', name: 'Hermite'},
+      {code: 'RESIZE_BEZIER', name: 'Bezier'},
+  ];
+  resizeParams: ProcessingResizeParams = {width: 1024, height: 200, mode: 'RESIZE_BICUBIC'};
+  resizeEnabled: boolean = true;
 
   @Output()
   process: EventEmitter<BatchProcessingEvent> = new EventEmitter();
@@ -35,6 +35,7 @@ export class BatchProcessingComponent {
 
   doProcess(): void {
     this.process.emit({ 
+        resizeParams: this.resizeParams,
         close: () => this.display = false
     });
   }
@@ -42,5 +43,6 @@ export class BatchProcessingComponent {
 }
 
 export interface BatchProcessingEvent {
+    resizeParams?: ProcessingResizeParams;
     close: Function;
   }
