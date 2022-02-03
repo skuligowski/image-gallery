@@ -110,6 +110,10 @@ export class AlbumDetailsComponent {
       });
   }
 
+  onBatchProcessing(event: any): void {
+    event.close();
+  }
+
   private getOrderHash(images): string {
     return images.reduce((str, image) => str.concat(image.filename), '');
   }

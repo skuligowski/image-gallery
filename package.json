@@ -12,7 +12,8 @@
     "dist:server": "cpy '**/*' '!**/node_modules/**' '../dist' --parents --cwd=server",
     "dist:spec": "cpy 'spec/**/*' 'dist' --parents",
     "dist:client": "mkdirp dist/public && cpy '**/*' '../../dist/public' --parents --cwd=client/dist",
-    "postinstall": "node node_modules/recursive-install/recursive-install.js --skip-root"
+    "postinstall": "node node_modules/recursive-install/recursive-install.js --skip-root",
+    "spec": "node ./scripts/declarations.js"
   },
   "private": true,
   "devDependencies": {

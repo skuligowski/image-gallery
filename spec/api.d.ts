@@ -45,6 +45,17 @@ declare namespace Definitions {
         date?: string; // date
     }
     export type AlbumsResponse = Album[];
+    /**
+     * tbd
+     */
+    export interface BatchProcessingRequest {
+        resize?: {
+            width: number;
+            height: number;
+            mode: string;
+        };
+        urls?: string[];
+    }
     export interface Config {
         /**
          * Main page title, the name for the gallery

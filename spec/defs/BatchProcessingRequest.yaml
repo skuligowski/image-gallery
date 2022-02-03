@@ -1,0 +1,10 @@
+title: BatchProcessingRequest
+type: object
+description: tbd
+properties:
+  resize: 
+    $ref: ProcessingResizeParams.yaml
+  urls:
+    type: array
+    items:
+      type: string

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { AlbumsManagerComponent } from './albums-manager/albums-manager.component';
 import { AlbumCreateComponent } from './album-create/album-create.component';
 import { AlbumDetailsComponent } from './album-details/album-details.component';
+import { BatchProcessingComponent } from './post-processing/batch-processing/batch-processing.component';
 import { LibraryUploadComponent } from './library-manager/library-upload/library-upload.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -37,6 +38,9 @@ import { PropertyPresenterComponent } from './settings/property-presenter.compon
 import { ThumbnailsService } from './services/thumbnails.service';
 import { EnterModule } from '../common/enter/enter.module';
 import { AdminComponent } from './admin.component';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { FieldsetModule } from 'primeng/fieldset';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
@@ -44,6 +48,7 @@ import { AdminComponent } from './admin.component';
     AlbumCreateComponent,
     AlbumDetailsComponent,
     AlbumsManagerComponent,
+    BatchProcessingComponent,
     HeaderNavigationComponent,
     LibraryBrowserComponent,
     LibraryDirectoryCreateComponent,
@@ -61,6 +66,7 @@ import { AdminComponent } from './admin.component';
     AdminRoutingModule,
     ButtonModule,
     CalendarModule,
+    CheckboxModule,
     CommonModule,
     ConfirmDialogModule,
     DialogModule,
@@ -69,9 +75,11 @@ import { AdminComponent } from './admin.component';
     FormsModule,
     HttpClientModule,
     InputSwitchModule,
+    InputNumberModule,
     ReactiveFormsModule,
     TableModule,
     TreeModule,
+    FieldsetModule,
   ],
   providers: [
     AdminGuard,
