@@ -78,9 +78,7 @@ export class AlbumDetailsComponent {
   }
 
   onBatchProcessing(event: BatchProcessingEvent): void {
-    console.log(event);
-    console.log(this.selected.map(image => image.url))
-    this.processingService.runBatchProcessing(this.selected.map(image => image.url), event.resizeParams)
+    this.processingService.runBatchProcessing(this.album.id, this.selected.map(image => image.url), event.resizeParams)
       .subscribe(response => {
         event.close();
       });

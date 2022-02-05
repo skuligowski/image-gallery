@@ -42,6 +42,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { FieldsetModule } from 'primeng/fieldset';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ProcessingService } from './services/processing.service';
+import { SliderModule } from 'primeng/slider';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,7 @@ import { ProcessingService } from './services/processing.service';
     UsersManagerComponent,
   ],
   imports: [  
-  AdminRoutingModule,
+    AdminRoutingModule,
     ButtonModule,
     CalendarModule,
     CheckboxModule,
@@ -81,6 +82,7 @@ import { ProcessingService } from './services/processing.service';
     TableModule,
     TreeModule,
     FieldsetModule,
+    SliderModule,
   ],
   providers: [
     AdminGuard,

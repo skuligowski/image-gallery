@@ -256,7 +256,7 @@ paths:
         404:
           description: An album with given id was not found
 
-  /batch-processing:
+  /albums/{id}/batch-processing:
       x-swagger-router-controller: processing.controller
       post:
         x-authentication-required: true
@@ -266,6 +266,11 @@ paths:
           - admin
         operationId: processImages
         parameters:
+          - in: path
+            name: id
+            type: string
+            required: true
+            description: Id of the album
           - name: BatchProcessingRequest
             in: body
             description: Batch Processing Request

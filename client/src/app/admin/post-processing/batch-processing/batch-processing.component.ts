@@ -17,7 +17,7 @@ export class BatchProcessingComponent {
       {code: 'RESIZE_HERMITE', name: 'Hermite'},
       {code: 'RESIZE_BEZIER', name: 'Bezier'},
   ];
-  resizeParams: ProcessingResizeParams = {width: 1024, height: 200, mode: 'RESIZE_BICUBIC'};
+  resizeParams: ProcessingResizeParams = {width: 1024, height: 200, mode: 'RESIZE_BICUBIC', quality: 92};
   resizeEnabled: boolean = true;
 
   @Output()

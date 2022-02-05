@@ -179,6 +179,7 @@ declare namespace Definitions {
         width: number;
         height: number;
         mode: string;
+        quality: number;
     }
     /**
      * Settings
@@ -468,6 +469,13 @@ declare namespace Paths {
              * tbd
              */
             Definitions.BatchProcessingRequest;
+            /**
+             * Id of the album
+             */
+            export type Id = string;
+        }
+        export interface PathParameters {
+            id: /* Id of the album */ Parameters.Id;
         }
     }
     namespace RemoveAlbum {
