@@ -3,45 +3,63 @@ const path = require('path');
 const Promise = require('bluebird');
 const db = require('./db');
 const config = require('./config');
+const fs = require('fs');
+
+function getSourceImage(image) {
+    return image.processing ? image.processing.source : {url: image.url, width: image.width, height: image.height};
+} 
 
 function processFiles(albumId, urls, params, concurrency = 5) {
-    return Promise.map(urls, imageUrl => {
-        const srcFile = path.join(config.libraryDir, imageUrl);
-        const url = path.parse(imageUrl);
-        const ts = Math.floor(Date.now() / 1000);
-        const fileName = url.name + `_${ts}.jpg`;
-        const fileUrl = path.join('/processed', url.dir, fileName);
-        const outFile = path.join(config.libraryDir, fileUrl);
-        return resize(srcFile, outFile, params.resize)
-          .then(outImageSize => ({imageUrl, outImage: { url: fileUrl, ...outImageSize }}));
-      }, { concurrency }).then(all => {
-        console.log(all)
-        const filesMap = all.reduce((map, url) => {
-          map[url.imageUrl] = url.outImage;
-          return map;
-        }, {});
-        return db.findAlbum({_id: albumId})
-            .then(album => {
-                const $set = album.images.reduce(($set, image, index) => {
-                    if (filesMap[image.url]) {
-                        $set[`images.${index}`] = {
+    return db.findAlbum({_id: albumId})
+        .then(album => album.images.map((image, index) => ({...image, index})))
+        .then(images => images.filter(image => urls.includes(image.url)))
+        .then(images => Promise.map(images, image => {
+            const sourceImage = getSourceImage(image);
+            const srcFile = path.join(config.libraryDir, sourceImage.url);
+            const url = path.parse(sourceImage.url);
+            const ts = Math.floor(Date.now() / 1000);
+            const fileName = url.name + `_${ts}.jpg`;
+            const fileUrl = path.join('/processed', url.dir, fileName);
+            const outFile = path.join(config.libraryDir, fileUrl);
+            
+            return resize(srcFile, outFile, params.resize)
+                .then(outImageSize => ({
+                    id: image.url,
+                    sourceImage,
+                    outImage: { url: fileUrl, ...outImageSize }
+                }));
+
+        }, { concurrency }))
+        .then(all => all.reduce((projection, processing) => ({...projection, [processing.id]: processing }), {}))
+        .then(processings => {
+            return db.findAlbum({_id: albumId})
+                .then(album => album.images.reduce((result, image, index) => {
+                    const processing = processings[image.url];
+                    if (processing) {
+                        result.$set[`images.${index}`] = {
                             ...image,
-                            ...filesMap[image.url],
+                            ...processing.outImage,
                             processing: {
-                                source: {
-                                    url: image.url,
-                                    width: image.width,
-                                    height: image.height,
-                                }, 
+                                source: processing.sourceImage, 
+                                output: processing.outImage,
                                 params,
                             }
                         }
+                        if (image.processing) {
+                            result.toDelete.push(image.processing.output.url);
+                        }
                     }
-                    return $set;
-                }, {});
-                return db.updateAlbum({ _id: album._id}, { $set });
-            });
-      });
+                    return result;
+                }, {$set: {}, toDelete: []}));
+        })
+        .then(result => {
+            console.log(JSON.stringify(result, null, 4));
+            return db.updateAlbum({ _id: albumId }, { $set: result.$set })
+                .then(() => Promise.map(result.toDelete, file => {
+                    console.log(`Removing file: ${file}`);
+                    fs.unlinkSync(path.join(config.libraryDir, file))
+                }, { concurrency }))
+        });
 }
 
 const resizeModesMapping = {
