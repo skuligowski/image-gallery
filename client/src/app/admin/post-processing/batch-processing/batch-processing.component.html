@@ -27,6 +27,7 @@
         </div>
     </div>
     <p-footer>
-        <p-button i18n-label label="Process" (click)="doProcess()"></p-button>
+        <button (click)="doRevert()" pButton pRipple type="button" i18n-label label="Revert to original" class="p-button-outlined p-button-warning"></button>
+        <button (click)="doProcess()" pButton pRipple type="button" i18n-label label="Process" class="p-button-primary"></button>
     </p-footer>
 </p-dialog>

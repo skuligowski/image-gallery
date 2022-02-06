@@ -35,6 +35,18 @@
             <li><span class="label" i18n>Url:</span> {{image.url}}</li>
             <li><span class="label" i18n>Thumbnail url:</span> {{image.thumbUrl}}</li>
             <li *ngIf="image.title"><span class="label" i18n>Title:</span> {{image.title}}</li>
+            <li class="processing" *ngIf="image.processing">
+              <span class="label" i18n>Processing</span>
+              <div *ngVar="image.processing.source as source" class="step">
+                Original (size={{source.width}} x {{source.height}}, url={{source.url}})
+              </div>
+              <div *ngVar="image.processing.params.resize as resize" class="step">
+                Resize (size={{resize.width}} x {{resize.height}}, quality={{resize.quality}}, mode={{resize.mode}})
+              </div>
+              <div *ngVar="image.processing.output as output" class="step">
+                Output (size={{output.width}} x {{output.height}}, url={{output.url}})
+              </div>
+            </li>
           </ul>
         </td>
         <td class="actions">
@@ -48,4 +60,4 @@
 <p-confirmDialog i18n-header header="Confirmation" icon="pi pi-exclamation-triangle" width="425"
                  i18n-message message="Do you really want to delete this album?"></p-confirmDialog>
 <app-album-create #albumModify [albums]="albums" (confirm)="onUpdateAlbum($event)" i18n-headerLabel headerLabel="Modify album"></app-album-create>
-<app-batch-processing #batchProcessing (process)="onBatchProcessing($event)"></app-batch-processing>
+<app-batch-processing #batchProcessing (process)="onBatchProcessing($event)" (revert)="onBatchProcessingRevert($event)"></app-batch-processing>

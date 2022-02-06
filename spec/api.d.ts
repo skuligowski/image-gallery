@@ -63,6 +63,13 @@ declare namespace Definitions {
         urls: string[];
     }
     /**
+     * BatchProcessingRevertRequest
+     * tbd
+     */
+    export interface BatchProcessingRevertRequest {
+        urls: string[];
+    }
+    /**
      * Config
      */
     export interface Config {
@@ -517,6 +524,25 @@ declare namespace Paths {
         }
         namespace Responses {
             export type $401 = string;
+        }
+    }
+    namespace RevertProcessedImages {
+        export interface BodyParameters {
+            BatchProcessingRevertRequest?: Parameters.BatchProcessingRevertRequest;
+        }
+        namespace Parameters {
+            export type BatchProcessingRevertRequest = /**
+             * BatchProcessingRevertRequest
+             * tbd
+             */
+            Definitions.BatchProcessingRevertRequest;
+            /**
+             * Id of the album
+             */
+            export type Id = string;
+        }
+        export interface PathParameters {
+            id: /* Id of the album */ Parameters.Id;
         }
     }
     namespace SetImagesOrder {

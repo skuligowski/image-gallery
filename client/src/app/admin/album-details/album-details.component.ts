@@ -8,8 +8,9 @@ import { ThumbnailsService } from '../services/thumbnails.service';
 import Image = Definitions.Image;
 import Album = Definitions.Album;
 import LibraryFile = Definitions.LibraryFile;
-import { BatchProcessingEvent } from '../post-processing/batch-processing/batch-processing.component';
+import { BatchProcessingEvent, BatchProcessingRevertEvent } from '../post-processing/batch-processing/batch-processing.component';
 import { ProcessingService } from '../services/processing.service';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-album-details',
@@ -79,7 +80,20 @@ export class AlbumDetailsComponent {
 
   onBatchProcessing(event: BatchProcessingEvent): void {
     this.processingService.runBatchProcessing(this.album.id, this.selected.map(image => image.url), event.resizeParams)
+    .pipe(this.albumsService.refreshAlbums())
+    .pipe(switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id)))
       .subscribe(response => {
+        this.images = response.images;
+        event.close();
+      });
+  }
+
+  onBatchProcessingRevert(event: BatchProcessingRevertEvent): void {
+    this.processingService.revertProcessing(this.album.id, this.selected.map(image => image.url))
+    .pipe(this.albumsService.refreshAlbums())
+    .pipe(switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id)))
+      .subscribe(response => {
+        this.images = response.images;
         event.close();
       });
   }
@@ -87,10 +101,10 @@ export class AlbumDetailsComponent {
   createThumbnails(images: Image[]): void {
     this.thumbnailsService.createThumbnails(images.map(image => image.url))
       .pipe(this.albumsService.refreshAlbums())
-      .subscribe(() => {
+      .pipe(switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id)))
+      .subscribe(response => {
         this.selected = [];
-        this.router.navigated = false;
-        this.router.navigate([this.router.url]);
+        this.images = response.images;
       });
   }
 

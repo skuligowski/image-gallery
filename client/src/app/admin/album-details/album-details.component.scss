@@ -31,7 +31,42 @@ nav {
     font-size: 0.8em;
     color: #999;
   }
+
+  .processing {
+    > div {
+      font-size: 12px;
+      line-height: 2;
+    }
+
+  .step {
+    position: relative;
+    margin-left: 30px;
+    &::before {
+      content: "";
+      height: 5px;
+      width: 5px;
+      border-radius: 50%;
+      border: 3.5px solid;
+      position: absolute;
+      border-color: #889eb7;
+      background-color: #889eb7;;
+      left: -20px;
+      top: 8px;
+    }
+    &:not(:last-child)::after {
+      content: "";
+      border-left: 1px solid #889eb7;;
+      position: absolute;
+      left: -17px;
+      display: block;
+      height: 100%;
+      top: 50%;
+    }
+   }
+  }
 }
+
+
 
 .checkbox-column {
   width: 50px;

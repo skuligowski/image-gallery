@@ -23,6 +23,9 @@ export class BatchProcessingComponent {
   @Output()
   process: EventEmitter<BatchProcessingEvent> = new EventEmitter();
 
+  @Output()
+  revert: EventEmitter<BatchProcessingRevertEvent> = new EventEmitter();
+
   constructor() {}
 
   open(): void {
@@ -40,9 +43,19 @@ export class BatchProcessingComponent {
     });
   }
 
+  doRevert(): void {
+    this.revert.emit({
+        close: () => this.display = false
+    });
+  }
+
 }
 
 export interface BatchProcessingEvent {
-    resizeParams?: ProcessingResizeParams;
-    close: Function;
-  }
+  resizeParams?: ProcessingResizeParams;
+  close: Function;
+}
+
+export interface BatchProcessingRevertEvent {
+  close: Function;
+}

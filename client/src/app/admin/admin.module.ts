@@ -43,6 +43,7 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ProcessingService } from './services/processing.service';
 import { SliderModule } from 'primeng/slider';
+import { VarDirective } from '../common/var/var.directive';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { SliderModule } from 'primeng/slider';
     SizePipe,
     UserCreateComponent,
     UsersManagerComponent,
+    VarDirective,
   ],
   imports: [  
     AdminRoutingModule,

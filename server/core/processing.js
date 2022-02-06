@@ -9,9 +9,9 @@ function getSourceImage(image) {
     return image.processing ? image.processing.source : {url: image.url, width: image.width, height: image.height};
 } 
 
-function processFiles(albumId, urls, params, concurrency = 5) {
+function processImages(albumId, urls, params, concurrency = 5) {
     return db.findAlbum({_id: albumId})
-        .then(album => album.images.map((image, index) => ({...image, index})))
+        .then(album => album.images)
         .then(images => images.filter(image => urls.includes(image.url)))
         .then(images => Promise.map(images, image => {
             const sourceImage = getSourceImage(image);
@@ -56,9 +56,35 @@ function processFiles(albumId, urls, params, concurrency = 5) {
             console.log(JSON.stringify(result, null, 4));
             return db.updateAlbum({ _id: albumId }, { $set: result.$set })
                 .then(() => Promise.map(result.toDelete, file => {
-                    console.log(`Removing file: ${file}`);
+                    console.log(`Removing processed image: ${file}`);
                     fs.unlinkSync(path.join(config.libraryDir, file))
                 }, { concurrency }))
+        });
+}
+
+function revertImages(albumId, urls, concurrency = 5) {
+    return db.findAlbum({_id: albumId})
+        .then(album => 
+            album.images.reduce((result, image, index) => {
+                if (urls.includes(image.url) && image.processing) {
+                    const processing = image.processing;
+                    delete image['processing'];
+                    result.$set[`images.${index}`] = {
+                        ...image,
+                        ...processing.source,
+                    }
+                    result.toDelete.push(processing.output.url);
+                }
+                return result;
+            }, {$set: {}, toDelete: []})
+        )
+        .then(result => {
+            console.log(JSON.stringify(result, null, 4));
+            return db.updateAlbum({ _id: albumId }, { $set: result.$set })
+                .then(() => Promise.map(result.toDelete, file => {
+                    console.log(`Removing processed image: ${file}`);
+                    fs.unlinkSync(path.join(config.libraryDir, file))
+                }, { concurrency }));
         });
 }
 
@@ -87,4 +113,5 @@ async function resize(srcImagePath, outImagePath, {width = 360, height = 360, mo
     }
   }
 
-exports.processFiles = processFiles;
+exports.processImages = processImages;
+exports.revertImages = revertImages
