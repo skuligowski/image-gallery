@@ -10,8 +10,9 @@ function create(imageUrls, concurrency = 5) {
     const srcFile = path.join(config.libraryDir, imageUrl);
     const url = path.parse(imageUrl);
     const fileName = url.name + '_thumb.jpg';
-    const thumbUrl = path.join('/thumbnails', url.dir, md5(fileName)[0], fileName);
+    const thumbUrl = path.join('/', config.thumbnailsDir, url.dir, md5(fileName)[0], fileName);
     const outFile = path.join(config.libraryDir, thumbUrl);
+    
     return resize(srcFile, outFile, {size: config.thumbnailWidth, quality: config.thumbnailQuality})
       .then(() => ({imageUrl, thumbUrl}));
   }, { concurrency }).then(all => {

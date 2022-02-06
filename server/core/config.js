@@ -21,7 +21,7 @@ class Config {
       return db.getConfigProperty({key})
         .then(property => {
             if (this['update_' + key]) {
-              return this['update_' + key](property.value, config[key]).then(() => property);
+              return this['update_' + key](property.value, config[key], config).then(() => property);
             } else
               return Promise.resolve(property);
           }
@@ -30,6 +30,34 @@ class Config {
     })
       .then(() => this.initialize())
       .then(() => require('./library-statics').refresh());
+  }
+
+  update_processedDir(oldProcessedDir, newProcessedDir, config) {
+    if (newProcessedDir.indexOf('..') > -1) {
+      throw new Error('processedDir path is not valid!');
+    }
+    const path = require('path');
+    const finalPath = path.join(config.libraryDir, newProcessedDir);
+    const relative = path.relative(config.libraryDir, finalPath);
+    if (relative && !relative.startsWith('..')) {
+      return Promise.resolve();
+    } else {
+      throw new Error('processedDir path is not valid!');
+    }
+  }
+
+  update_thumbnailsDir(oldThumbnailsDir, newThumbnailsDir, config) {
+    if (newThumbnailsDir.indexOf('..') > -1) {
+      throw new Error('newThumbnailsDir path is not valid!');
+    }
+    const path = require('path');
+    const finalPath = path.join(config.libraryDir, newThumbnailsDir);
+    const relative = path.relative(config.libraryDir, finalPath);
+    if (relative && !relative.startsWith('..')) {
+      return Promise.resolve();
+    } else {
+      throw new Error('newThumbnailsDir path is not valid!');
+    }
   }
 
   update_libraryDir(oldLibraryDir, newLibraryDir) {

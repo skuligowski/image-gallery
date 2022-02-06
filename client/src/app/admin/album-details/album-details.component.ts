@@ -93,6 +93,9 @@ export class AlbumDetailsComponent {
     .pipe(switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id)))
       .subscribe(response => {
         this.images = response.images;
+        this.selected = [];
+        this.router.navigated = false;
+        this.router.navigate([this.router.url]);
         event.close();
       });
   }
@@ -103,6 +106,9 @@ export class AlbumDetailsComponent {
     .pipe(switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id)))
       .subscribe(response => {
         this.images = response.images;
+        this.selected = [];
+        this.router.navigated = false;
+        this.router.navigate([this.router.url]);
         event.close();
       });
   }
@@ -112,8 +118,10 @@ export class AlbumDetailsComponent {
       .pipe(this.albumsService.refreshAlbums())
       .pipe(switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id)))
       .subscribe(response => {
-        this.selected = [];
         this.images = response.images;
+        this.selected = [];
+        this.router.navigated = false;
+        this.router.navigate([this.router.url]);
       });
   }
 

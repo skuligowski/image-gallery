@@ -25,7 +25,7 @@ function processImages(albumId, urls, params, concurrency = 5) {
             const url = path.parse(sourceImage.url);
             const ts = Math.floor(Date.now() / 1000);
             const fileName = url.name + `_${ts}.jpg`;
-            const fileUrl = path.join('/processed', url.dir, fileName);
+            const fileUrl = path.join('/', config.processedDir, url.dir, fileName);
             const outFile = path.join(config.libraryDir, fileUrl);
             
             return resize(srcFile, outFile, params.resize)

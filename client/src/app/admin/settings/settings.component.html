@@ -46,9 +46,17 @@
             i18n-name name="Thumbnail quality" type="number"
             i18n-description description="Quality (%) of generated thumbnails."
         ></tr>
+        <tr app-property-presenter key="thumbnailsDir" [(value)]="settings['thumbnailsDir']" [formGroup]="settingsForm"
+            i18n-name name="Thumbnails directory" type="string"
+            i18n-description description="Thumbnails directory is created directly under the library directory. This is a place where all thumbnails are generated."
+        ></tr>
         <tr app-property-presenter key="imageDownload" [(value)]="settings['imageDownload']" [formGroup]="settingsForm"
             i18n-name name="Image download" type="boolean"
             i18n-description description="When switched on, a user can download full-size image from the gallery."
+        ></tr>
+        <tr app-property-presenter key="processedDir" [(value)]="settings['processedDir']" [formGroup]="settingsForm"
+            i18n-name name="Processed images directory" type="string"
+            i18n-description description="A directory where all processed images are created. This directory is created dierectly under the library directory."
         ></tr>
       </ng-template>
     </p-table>

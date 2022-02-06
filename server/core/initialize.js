@@ -10,6 +10,8 @@ function initialize(libraryDir) {
     .then(() => insertConfigProperty({key: 'authentication', value: false}))
     .then(() => insertConfigProperty({key: 'thumbnailWidth', value: 360}))
     .then(() => insertConfigProperty({key: 'thumbnailQuality', value: 92}))
+    .then(() => insertConfigProperty({key: 'thumbnailsDir', value: '/thumbnails'}))
+    .then(() => insertConfigProperty({key: 'processedDir', value: '/processed'}))
     .then(() => insertConfigProperty({key: 'language', value: 'en'}))
     .then(() => insertConfigProperty({key: 'imageDownload', value: true}))
     .then(() => users.addUser( 'admin', '1234', true));
