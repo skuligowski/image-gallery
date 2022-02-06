@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlbumsService } from '../../albums.service';
+import { AlbumsService, AlbumDetails} from '../../albums.service';
 import { ConfirmationService } from 'primeng/api';
 import { AlbumCreateEvent } from '../album-create/album-create.component';
 import { LibraryFilesSelectorComponent } from '../library-files-selector/library-files-selector.component';
@@ -47,10 +47,19 @@ export class AlbumDetailsComponent {
   }
 
   addImages(files: LibraryFile[]): void {
-    this.albumsService.addImages(this.album.id, files
+    const fileList = files
       .filter(file => !file.dir)
-      .map(file => file.path))
-      .subscribe(() => {
+      .map(file => file.path);
+
+    this.albumsService.addImages(this.album.id, fileList)
+      .pipe(
+        switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id)),
+        switchMap((response: AlbumDetails) => this.thumbnailsService.createThumbnails(response.images.map(image => image.url))),
+        this.albumsService.refreshAlbums(),
+        switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id))
+      )
+      .subscribe(response => {
+        this.images = response.images;
         this.libraryFilesSelector.close();
         this.router.navigated = false;
         this.router.navigate([this.router.url]);

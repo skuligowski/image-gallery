@@ -27,7 +27,8 @@ function addImages(id, paths) {
           filename: imageDetails.filename,
           url: imageDetails.path,
           width: imageDetails.width,
-          height: imageDetails.height
+          height: imageDetails.height,
+          size: imageDetails.size,
         }))
         .then(images => {
           const newImagesMap = images.reduce((map, image) => { map[image.url] = image; return map}, {});

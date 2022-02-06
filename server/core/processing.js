@@ -4,9 +4,15 @@ const Promise = require('bluebird');
 const db = require('./db');
 const config = require('./config');
 const fs = require('fs');
+const fsPromises = fs.promises;
 
 function getSourceImage(image) {
-    return image.processing ? image.processing.source : {url: image.url, width: image.width, height: image.height};
+    return image.processing ? image.processing.source : {
+        url: image.url, 
+        width: image.width, 
+        height: image.height,
+        size: image.size || undefined
+    };
 } 
 
 function processImages(albumId, urls, params, concurrency = 5) {
@@ -101,15 +107,17 @@ async function resize(srcImagePath, outImagePath, {width = 360, height = 360, mo
     const resizeMode = resizeModesMapping[mode] || jimp.RESIZE_BILINEAR;
     const image = await jimp.read(srcImagePath);
     if (image.bitmap.width > image.bitmap.height) {
-        await image.resize(width, jimp.AUTO, resizeMode);
+        image.resize(width, jimp.AUTO, resizeMode);
     } else {
-        await image.resize(jimp.AUTO, height, resizeMode);
+        image.resize(jimp.AUTO, height, resizeMode);
     }
-    await image.quality(quality);
-    const outImage = await image.write(outImagePath);
+    image.quality(quality);
+    const outImage = await image.writeAsync(outImagePath);
+    var stats = await fsPromises.stat(outImagePath)
     return {
         width: outImage.bitmap.width,
         height: outImage.bitmap.height,
+        size: stats.size,
     }
   }
 

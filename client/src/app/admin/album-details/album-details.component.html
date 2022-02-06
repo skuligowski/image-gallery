@@ -30,21 +30,38 @@
         </td>
         <td>
           <ul class="data-list">
-            <li><span class="label" i18n>Filename:</span> {{image.filename}}</li>
-            <li><span class="label" i18n>Resolution:</span> {{image.width}} x {{image.height}}</li>
-            <li><span class="label" i18n>Url:</span> {{image.url}}</li>
-            <li><span class="label" i18n>Thumbnail url:</span> {{image.thumbUrl}}</li>
-            <li *ngIf="image.title"><span class="label" i18n>Title:</span> {{image.title}}</li>
+            <li>
+              <span class="label" i18n>Filename:</span>
+              <span class="value">{{image.filename}}</span></li>
+            <li>
+              <span class="label" i18n>Size:</span> 
+              <span class="value">
+                {{image.width}}x{{image.height}}
+                <span *ngIf="image.size"> @ {{image.size | size}}</span>
+              </span>
+            </li>
+            <li>
+              <span class="label" i18n>Url:</span> 
+              <span class="value">{{image.url}}</span>
+            </li>
+            <li>
+              <span class="label" i18n>Thumbnail url:</span>
+              <span class="value">{{image.thumbUrl}}</span>
+            </li>
+            <li *ngIf="image.title">
+              <span class="label" i18n>Title:</span> 
+              <span class="value">{{image.title}}</span>
+            </li>
             <li class="processing" *ngIf="image.processing">
               <span class="label" i18n>Processing</span>
               <div *ngVar="image.processing.source as source" class="step">
-                Original (size={{source.width}} x {{source.height}}, url={{source.url}})
+                Original (size={{source.width}}x{{source.height}}<span *ngIf="source.size"> @ {{source.size | size}}</span>, url={{source.url}})
               </div>
               <div *ngVar="image.processing.params.resize as resize" class="step">
-                Resize (size={{resize.width}} x {{resize.height}}, quality={{resize.quality}}, mode={{resize.mode}})
+                Resize (w={{resize.width}}, h={{resize.height}}, quality={{resize.quality}}, mode={{resize.mode}})
               </div>
               <div *ngVar="image.processing.output as output" class="step">
-                Output (size={{output.width}} x {{output.height}}, url={{output.url}})
+                Output (size={{output.width}}x{{output.height}}<span *ngIf="output.size"> @ {{output.size | size}}</span>, url={{output.url}})
               </div>
             </li>
           </ul>

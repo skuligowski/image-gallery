@@ -131,6 +131,10 @@ declare namespace Definitions {
          * height of the image
          */
         height: number;
+        /**
+         * size of the image (optional)
+         */
+        size?: number;
     }
     /**
      * ImagesAddRequest
