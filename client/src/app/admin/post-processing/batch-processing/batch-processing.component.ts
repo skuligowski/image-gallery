@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import ProcessingResizeParams = Definitions.ProcessingResizeParams;
 import ProcessingSharpenParams = Definitions.ProcessingSharpenParams;
+import ProcessingExportParams = Definitions.ProcessingExportParams;
 
 @Component({
   selector: 'app-batch-processing',
@@ -18,12 +19,14 @@ export class BatchProcessingComponent {
       {code: 'RESIZE_HERMITE', name: 'Hermite'},
       {code: 'RESIZE_BEZIER', name: 'Bezier'},
   ];
-  resizeParams: ProcessingResizeParams = (JSON.parse(localStorage.getItem('processing_resize')) as ProcessingResizeParams) 
-    || {width: 1024, height: 768, mode: 'RESIZE_BICUBIC', quality: 92};
+  resizeParams: ProcessingResizeParams = {width: 1024, height: 768, mode: 'RESIZE_BICUBIC'};
   resizeEnabled: boolean = true;
 
-  sharpenParams: ProcessingSharpenParams = (JSON.parse(localStorage.getItem('processing_sharpen')) as ProcessingSharpenParams) 
-  || {amount: 0.2};
+  sharpenParams: ProcessingSharpenParams = {amount: 0.2};
+  sharpenEnabled: boolean = true;
+
+  exportParams: ProcessingExportParams = {quality: 92};
+  exportEnabled: boolean = true;
 
   @Output()
   process: EventEmitter<BatchProcessingEvent> = new EventEmitter();
@@ -31,7 +34,16 @@ export class BatchProcessingComponent {
   @Output()
   revert: EventEmitter<BatchProcessingRevertEvent> = new EventEmitter();
 
-  constructor() {}
+  constructor() {
+    const params = (JSON.parse(localStorage.getItem('_ig_proc_params_snapshot')) as BatchProcessingParamsSnapshot);
+    if (params) {
+      this.resizeEnabled = params.resizeEnabled;
+      this.sharpenEnabled = params.sharpenEnabled;
+      this.resizeParams = params.resizeParams;
+      this.sharpenParams = params.sharpenParams;
+      this.exportParams = params.exportParams;
+    }
+  }
 
   open(): void {
     this.display = true;
@@ -42,11 +54,17 @@ export class BatchProcessingComponent {
   }
 
   doProcess(): void {
-    localStorage.setItem('processing_resize', JSON.stringify(this.resizeParams));
-    localStorage.setItem('processing_sharpen', JSON.stringify(this.sharpenParams));
+    localStorage.setItem('_ig_proc_params_snapshot', JSON.stringify({
+      resizeEnabled: this.resizeEnabled,
+      sharpenEnabled: this.sharpenEnabled,
+      resizeParams: this.resizeParams,
+      sharpenParams: this.sharpenParams,
+      exportParams: this.exportParams,
+    }));
     this.process.emit({ 
-        resizeParams: this.resizeParams,
-        sharpenParams: this.sharpenParams,
+        resize: this.resizeEnabled ? this.resizeParams : undefined,
+        sharpen: this.sharpenEnabled ? this.sharpenParams: undefined,
+        export: this.exportParams,
         close: () => this.display = false
     });
   }
@@ -60,11 +78,20 @@ export class BatchProcessingComponent {
 }
 
 export interface BatchProcessingEvent {
-  resizeParams?: ProcessingResizeParams;
-  sharpenParams?: ProcessingSharpenParams;
+  resize?: ProcessingResizeParams;
+  sharpen?: ProcessingSharpenParams;
+  export: ProcessingExportParams;
   close: Function;
 }
 
 export interface BatchProcessingRevertEvent {
   close: Function;
+}
+
+interface BatchProcessingParamsSnapshot {
+  resizeEnabled: boolean;
+  sharpenEnabled: boolean;
+  resizeParams: ProcessingResizeParams;
+  sharpenParams: ProcessingSharpenParams;
+  exportParams: ProcessingExportParams;
 }

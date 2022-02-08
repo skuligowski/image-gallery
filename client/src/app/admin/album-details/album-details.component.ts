@@ -90,9 +90,10 @@ export class AlbumDetailsComponent {
   onBatchProcessing(event: BatchProcessingEvent): void {
     this.processingService.runBatchProcessing(
       this.album.id, 
-      this.selected.map(image => image.url), 
-      event.resizeParams, 
-      event.sharpenParams,
+      { 
+        urls: this.selected.map(image => image.url),
+        ...event
+      }
     ).pipe(this.albumsService.refreshAlbums())
      .pipe(switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id)))
       .subscribe(response => {

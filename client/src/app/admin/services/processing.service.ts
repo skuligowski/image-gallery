@@ -14,15 +14,9 @@ export class ProcessingService {
 
   constructor(private httpClient: HttpClient) {}
 
-  runBatchProcessing(albumId: string, imageUrls: string[], 
-    resizeParams: ProcessingResizeParams, 
-    sharpenParams: ProcessingSharpenParams): Observable<any> {
+  runBatchProcessing(albumId: string, request: BatchProcessingRequest): Observable<any> {
       return spinnable(
-        this.httpClient.post<BatchProcessingRequest>(`/api/albums/${albumId}/batch-processing`, {
-          urls: imageUrls,
-          resize: resizeParams,
-          sharpen: sharpenParams,
-        })
+        this.httpClient.post<BatchProcessingRequest>(`/api/albums/${albumId}/batch-processing`, request)
       );
   }
 

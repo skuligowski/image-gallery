@@ -633,6 +633,8 @@ definitions:
     $ref: defs/ProcessingResizeParams.yaml
   ProcessingSharpenParams:
     $ref: defs/ProcessingSharpenParams.yaml
+  ProcessingExportParams:
+    $ref: defs/ProcessingExportParams.yaml
   User:
     $ref: defs/User.yaml
   UsersResponse:

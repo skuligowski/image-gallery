@@ -1,14 +1,17 @@
 title: BatchProcessingRequest
 type: object
-description: tbd
+description: Parameters that allow to post process the image
 properties:
   resize: 
     $ref: ProcessingResizeParams.yaml
   sharpen:
     $ref: ProcessingSharpenParams.yaml
+  export:
+    $ref: ProcessingExportParams.yaml
   urls:
     type: array
     items:
       type: string
 required:
 - urls
+- export

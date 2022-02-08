@@ -56,11 +56,12 @@ declare namespace Definitions {
     export type AlbumsResponse = /* Albums */ Album[];
     /**
      * BatchProcessingRequest
-     * tbd
+     * Parameters that allow to post process the image
      */
     export interface BatchProcessingRequest {
         resize?: /* ProcessingResizeParams */ ProcessingResizeParams;
         sharpen?: /* ProcessingSharpenParams */ ProcessingSharpenParams;
+        export: /* ProcessingExportParams */ ProcessingExportParams;
         urls: string[];
     }
     /**
@@ -185,13 +186,18 @@ declare namespace Definitions {
         password: string;
     }
     /**
+     * ProcessingExportParams
+     */
+    export interface ProcessingExportParams {
+        quality: number;
+    }
+    /**
      * ProcessingResizeParams
      */
     export interface ProcessingResizeParams {
         width: number;
         height: number;
         mode: string;
-        quality: number;
     }
     /**
      * ProcessingSharpenParams
@@ -484,7 +490,7 @@ declare namespace Paths {
         namespace Parameters {
             export type BatchProcessingRequest = /**
              * BatchProcessingRequest
-             * tbd
+             * Parameters that allow to post process the image
              */
             Definitions.BatchProcessingRequest;
             /**

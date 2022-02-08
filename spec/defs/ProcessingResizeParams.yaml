@@ -7,10 +7,7 @@ properties:
     type: number
   mode:
     type: string
-  quality:
-    type: number
 required:
 - width
 - height
 - mode
-- quality

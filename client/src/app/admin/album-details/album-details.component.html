@@ -57,11 +57,19 @@
               <div *ngVar="image.processing.source as source" class="step">
                 Original (size={{source.width}}x{{source.height}}<span *ngIf="source.size"> @ {{source.size | size}}</span>, url={{source.url}})
               </div>
-              <div *ngVar="image.processing.params.resize as resize" class="step">
-                Resize (w={{resize.width}}, h={{resize.height}}, quality={{resize.quality}}, mode={{resize.mode}})
-              </div>
+              <ng-container *ngIf="image.processing.params.resize">
+                <div *ngVar="image.processing.params.resize as resize" class="step">
+                  Resize (w={{resize.width}}, h={{resize.height}}, mode={{resize.mode}})
+                </div>  
+              </ng-container>
+              <ng-container *ngIf="image.processing.params.sharpen">
+                <div *ngVar="image.processing.params.sharpen as sharpen" class="step">
+                  Sharpen (amount={{sharpen.amount}})
+                </div>
+              </ng-container>
               <div *ngVar="image.processing.output as output" class="step">
-                Output (size={{output.width}}x{{output.height}}<span *ngIf="output.size"> @ {{output.size | size}}</span>, url={{output.url}})
+                Export (quality={{image.processing.params.export?.quality}}, size={{output.width}}x{{output.height}}
+                <span *ngIf="output.size"> @ {{output.size | size}}</span>, url={{output.url}})
               </div>
             </li>
           </ul>
