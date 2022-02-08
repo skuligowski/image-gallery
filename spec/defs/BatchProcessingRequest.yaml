@@ -4,6 +4,8 @@ description: tbd
 properties:
   resize: 
     $ref: ProcessingResizeParams.yaml
+  sharpen:
+    $ref: ProcessingSharpenParams.yaml
   urls:
     type: array
     items:

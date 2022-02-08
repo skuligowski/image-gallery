@@ -28,7 +28,7 @@ function processImages(albumId, urls, params, concurrency = 5) {
             const fileUrl = path.join('/', config.processedDir, url.dir, fileName);
             const outFile = path.join(config.libraryDir, fileUrl);
             
-            return resize(srcFile, outFile, params.resize)
+            return resize(srcFile, outFile, params.resize, params.sharpen)
                 .then(outImageSize => ({
                     id: image.url,
                     sourceImage,
@@ -102,7 +102,7 @@ const resizeModesMapping = {
     'RESIZE_BEZIER': jimp.RESIZE_BEZIER,
 }
 
-async function resize(srcImagePath, outImagePath, {width = 360, height = 360, mode = 'RESIZE_BILINEAR', quality = 92}) {
+async function resize(srcImagePath, outImagePath, {width = 360, height = 360, mode = 'RESIZE_BILINEAR', quality = 92}, {amount = 0.2}) {
     console.log(`Resizing ${srcImagePath} -> ${outImagePath}`);
     const resizeMode = resizeModesMapping[mode] || jimp.RESIZE_BILINEAR;
     const image = await jimp.read(srcImagePath);
@@ -112,6 +112,13 @@ async function resize(srcImagePath, outImagePath, {width = 360, height = 360, mo
         image.resize(jimp.AUTO, height, resizeMode);
     }
     image.quality(quality);
+    image.convolute(
+        [
+            [-1*amount, -1*amount, -1*amount], 
+            [-1*amount, 8*amount+1, -1*amount], 
+            [-1*amount, -1*amount, -1*amount]
+        ]
+    );
     const outImage = await image.writeAsync(outImagePath);
     var stats = await fsPromises.stat(outImagePath)
     return {

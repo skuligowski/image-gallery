@@ -60,6 +60,7 @@ declare namespace Definitions {
      */
     export interface BatchProcessingRequest {
         resize?: /* ProcessingResizeParams */ ProcessingResizeParams;
+        sharpen?: /* ProcessingSharpenParams */ ProcessingSharpenParams;
         urls: string[];
     }
     /**
@@ -191,6 +192,12 @@ declare namespace Definitions {
         height: number;
         mode: string;
         quality: number;
+    }
+    /**
+     * ProcessingSharpenParams
+     */
+    export interface ProcessingSharpenParams {
+        amount: number;
     }
     /**
      * Settings

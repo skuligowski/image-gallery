@@ -1,0 +1,7 @@
+title: ProcessingSharpenParams
+type: object
+properties:
+  amount:
+    type: number
+required:
+- amount

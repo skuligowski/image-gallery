@@ -631,6 +631,8 @@ definitions:
     $ref: defs/BatchProcessingRevertRequest.yaml
   ProcessingResizeParams:
     $ref: defs/ProcessingResizeParams.yaml
+  ProcessingSharpenParams:
+    $ref: defs/ProcessingSharpenParams.yaml
   User:
     $ref: defs/User.yaml
   UsersResponse:

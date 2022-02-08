@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import ProcessingResizeParams = Definitions.ProcessingResizeParams;
+import ProcessingSharpenParams = Definitions.ProcessingSharpenParams;
 
 @Component({
   selector: 'app-batch-processing',
@@ -17,8 +18,12 @@ export class BatchProcessingComponent {
       {code: 'RESIZE_HERMITE', name: 'Hermite'},
       {code: 'RESIZE_BEZIER', name: 'Bezier'},
   ];
-  resizeParams: ProcessingResizeParams = {width: 1024, height: 200, mode: 'RESIZE_BICUBIC', quality: 92};
+  resizeParams: ProcessingResizeParams = (JSON.parse(localStorage.getItem('processing_resize')) as ProcessingResizeParams) 
+    || {width: 1024, height: 768, mode: 'RESIZE_BICUBIC', quality: 92};
   resizeEnabled: boolean = true;
+
+  sharpenParams: ProcessingSharpenParams = (JSON.parse(localStorage.getItem('processing_sharpen')) as ProcessingSharpenParams) 
+  || {amount: 0.2};
 
   @Output()
   process: EventEmitter<BatchProcessingEvent> = new EventEmitter();
@@ -37,8 +42,11 @@ export class BatchProcessingComponent {
   }
 
   doProcess(): void {
+    localStorage.setItem('processing_resize', JSON.stringify(this.resizeParams));
+    localStorage.setItem('processing_sharpen', JSON.stringify(this.sharpenParams));
     this.process.emit({ 
         resizeParams: this.resizeParams,
+        sharpenParams: this.sharpenParams,
         close: () => this.display = false
     });
   }
@@ -53,6 +61,7 @@ export class BatchProcessingComponent {
 
 export interface BatchProcessingEvent {
   resizeParams?: ProcessingResizeParams;
+  sharpenParams?: ProcessingSharpenParams;
   close: Function;
 }
 

@@ -1,4 +1,4 @@
-<app-header-navigation></app-header-navigation>
+<app-header-navigation [back]="'/albums/' + album.permalink"></app-header-navigation>
 <div class="admin-layout-container">
   <nav>
     <p-button class="action" i18n-label label="Add images" (click)="libraryFilesSelector.open()"></p-button>

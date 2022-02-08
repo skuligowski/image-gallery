@@ -88,9 +88,13 @@ export class AlbumDetailsComponent {
   }
 
   onBatchProcessing(event: BatchProcessingEvent): void {
-    this.processingService.runBatchProcessing(this.album.id, this.selected.map(image => image.url), event.resizeParams)
-    .pipe(this.albumsService.refreshAlbums())
-    .pipe(switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id)))
+    this.processingService.runBatchProcessing(
+      this.album.id, 
+      this.selected.map(image => image.url), 
+      event.resizeParams, 
+      event.sharpenParams,
+    ).pipe(this.albumsService.refreshAlbums())
+     .pipe(switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id)))
       .subscribe(response => {
         this.images = response.images;
         this.selected = [];
