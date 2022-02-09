@@ -4,8 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { spinnable } from '../../common/utils/spinnable';
 import ProcessingResizeParams = Definitions.ProcessingResizeParams;
 import ProcessingSharpenParams = Definitions.ProcessingSharpenParams;
-import BatchProcessingRequest = Definitions.BatchProcessingRequest;
-import BatchProcessingRevertRequest = Definitions.BatchProcessingRevertRequest;
+import ProcessingRequest = Definitions.ProcessingRequest;
+import ProcessingRevertRequest = Definitions.ProcessingRevertRequest;
 
 
 
@@ -14,15 +14,14 @@ export class ProcessingService {
 
   constructor(private httpClient: HttpClient) {}
 
-  runBatchProcessing(albumId: string, request: BatchProcessingRequest): Observable<any> {
-      return spinnable(
-        this.httpClient.post<BatchProcessingRequest>(`/api/albums/${albumId}/batch-processing`, request)
-      );
+  runProcessing(albumId: string, request: ProcessingRequest): Observable<any> {
+      return this.httpClient.post<ProcessingRequest>(`/api/albums/${albumId}/processing`, request)
+      
   }
 
   revertProcessing(albumId: string, imageUrls: string[]): Observable<any> {
     return spinnable(
-      this.httpClient.post<BatchProcessingRevertRequest>(`/api/albums/${albumId}/batch-processing/revert`, {
+      this.httpClient.post<ProcessingRevertRequest>(`/api/albums/${albumId}/processing/revert`, {
         urls: imageUrls,
       })
     );

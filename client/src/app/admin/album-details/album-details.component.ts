@@ -8,9 +8,10 @@ import { ThumbnailsService } from '../services/thumbnails.service';
 import Image = Definitions.Image;
 import Album = Definitions.Album;
 import LibraryFile = Definitions.LibraryFile;
-import { BatchProcessingEvent, BatchProcessingRevertEvent } from '../post-processing/batch-processing/batch-processing.component';
+import { BatchProcessDoneEvent, BatchProcessingRevertEvent } from '../post-processing/batch-processing/batch-processing.component';
 import { ProcessingService } from '../services/processing.service';
-import { switchMap } from 'rxjs/operators';
+import { mergeMap, switchMap } from 'rxjs/operators';
+import { from, of } from 'rxjs';
 
 @Component({
   selector: 'app-album-details',
@@ -87,14 +88,8 @@ export class AlbumDetailsComponent {
     });
   }
 
-  onBatchProcessing(event: BatchProcessingEvent): void {
-    this.processingService.runBatchProcessing(
-      this.album.id, 
-      { 
-        urls: this.selected.map(image => image.url),
-        ...event
-      }
-    ).pipe(this.albumsService.refreshAlbums())
+  onBatchProcessingDone(event: BatchProcessDoneEvent): void {
+    of(event).pipe(this.albumsService.refreshAlbums())
      .pipe(switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id)))
       .subscribe(response => {
         this.images = response.images;

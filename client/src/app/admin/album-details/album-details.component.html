@@ -85,4 +85,4 @@
 <p-confirmDialog i18n-header header="Confirmation" icon="pi pi-exclamation-triangle" width="425"
                  i18n-message message="Do you really want to delete this album?"></p-confirmDialog>
 <app-album-create #albumModify [albums]="albums" (confirm)="onUpdateAlbum($event)" i18n-headerLabel headerLabel="Modify album"></app-album-create>
-<app-batch-processing #batchProcessing (process)="onBatchProcessing($event)" (revert)="onBatchProcessingRevert($event)"></app-batch-processing>
+<app-batch-processing [album]="album" [images]="selected" #batchProcessing (done)="onBatchProcessingDone($event)" (revert)="onBatchProcessingRevert($event)"></app-batch-processing>

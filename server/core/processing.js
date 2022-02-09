@@ -57,63 +57,54 @@ async function doExport(image, outFile, {quality}) {
     }
 }
 
-function processImages(albumId, urls, params, concurrency = 5) {
-    return db.findAlbum({_id: albumId})
-        .then(album => album.images)
-        .then(images => images.filter(image => urls.includes(image.url)))
-        .then(images => Promise.map(images, image => {
-            const sourceImage = getSourceImage(image);
-            const srcFile = path.join(config.libraryDir, sourceImage.url);
-            const url = path.parse(sourceImage.url);
-            const ts = Math.floor(Date.now() / 1000);
-            const fileName = url.name + `_${ts}.jpg`;
-            const fileUrl = path.join('/', config.processedDir, url.dir, fileName);
-            const outFile = path.join(config.libraryDir, fileUrl);
-            
-            return doOpen(srcFile).then(image => {
-                if (params.resize) {
-                    doResize(image, params.resize);
+function processImage(albumId, imageUrl, params) {
+    return db.findAlbum({_id: albumId}).then(album => {
+        const imageIndex = album.images.findIndex(image => imageUrl === image.url);
+        if (imageIndex === -1) {
+            throw new Error(`Image ${url} not found!`);
+        }
+        const image = album.images[imageIndex];
+        const sourceImage = getSourceImage(image);
+        const srcFile = path.join(config.libraryDir, sourceImage.url);
+        const url = path.parse(sourceImage.url);
+        const ts = Math.floor(Date.now() / 1000);
+        const fileName = url.name + `_${ts}.jpg`;
+        const fileUrl = path.join('/', config.processedDir, url.dir, fileName);
+        const outFile = path.join(config.libraryDir, fileUrl);
+        
+        return doOpen(srcFile).then(image => {
+            if (params.resize) {
+                doResize(image, params.resize);
+            }
+            if (params.sharpen) {
+                doSharpen(image, params.sharpen)
+            }
+            return doExport(image, outFile, params.export);
+        }).then(outImage => ({
+            sourceImage,
+            outImage: { url: fileUrl, ...outImage }
+        })).then(processing => {
+            const $set = {};
+            const toDelete = image.processing ? image.processing.output.url : undefined;
+            $set[`images.${imageIndex}`] = {
+                ...image,
+                ...processing.outImage,
+                processing: {
+                    source: processing.sourceImage, 
+                    output: processing.outImage,
+                    params,
                 }
-                if (params.sharpen) {
-                    doSharpen(image, params.sharpen)
-                }
-                return doExport(image, outFile, params.export);
-            }).then(outImage => ({
-                id: image.url,
-                sourceImage,
-                outImage: { url: fileUrl, ...outImage }
-            }));
-        }, { concurrency }))
-        .then(all => all.reduce((projection, processing) => ({...projection, [processing.id]: processing }), {}))
-        .then(processings => {
-            return db.findAlbum({_id: albumId})
-                .then(album => album.images.reduce((result, image, index) => {
-                    const processing = processings[image.url];
-                    if (processing) {
-                        result.$set[`images.${index}`] = {
-                            ...image,
-                            ...processing.outImage,
-                            processing: {
-                                source: processing.sourceImage, 
-                                output: processing.outImage,
-                                params,
-                            }
-                        }
-                        if (image.processing) {
-                            result.toDelete.push(image.processing.output.url);
-                        }
-                    }
-                    return result;
-                }, {$set: {}, toDelete: []}));
-        })
-        .then(result => {
-            console.log(JSON.stringify(result, null, 4));
-            return db.updateAlbum({ _id: albumId }, { $set: result.$set })
-                .then(() => Promise.map(result.toDelete, file => {
-                    console.log(`Removing processed image: ${file}`);
-                    fs.unlinkSync(path.join(config.libraryDir, file))
-                }, { concurrency }))
+            }
+            return {$set, toDelete};
+        }).then(({$set, toDelete}) => {
+            console.log(JSON.stringify($set, null, 4));
+            return db.updateAlbum({ _id: albumId }, { $set })
+                .then(() => {
+                    console.log(`Removing processed image: ${toDelete}`);
+                    fs.unlinkSync(path.join(config.libraryDir, toDelete))
+                })
         });
+    });
 }
 
 function revertImages(albumId, urls, concurrency = 5) {
@@ -142,5 +133,5 @@ function revertImages(albumId, urls, concurrency = 5) {
         });
 }
 
-exports.processImages = processImages;
+exports.processImage = processImage;
 exports.revertImages = revertImages

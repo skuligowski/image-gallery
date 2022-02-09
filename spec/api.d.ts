@@ -55,23 +55,6 @@ declare namespace Definitions {
      */
     export type AlbumsResponse = /* Albums */ Album[];
     /**
-     * BatchProcessingRequest
-     * Parameters that allow to post process the image
-     */
-    export interface BatchProcessingRequest {
-        resize?: /* ProcessingResizeParams */ ProcessingResizeParams;
-        sharpen?: /* ProcessingSharpenParams */ ProcessingSharpenParams;
-        export: /* ProcessingExportParams */ ProcessingExportParams;
-        urls: string[];
-    }
-    /**
-     * BatchProcessingRevertRequest
-     * tbd
-     */
-    export interface BatchProcessingRevertRequest {
-        urls: string[];
-    }
-    /**
      * Config
      */
     export interface Config {
@@ -192,12 +175,29 @@ declare namespace Definitions {
         quality: number;
     }
     /**
+     * ProcessingRequest
+     * Parameters that allow to post process the image
+     */
+    export interface ProcessingRequest {
+        resize?: /* ProcessingResizeParams */ ProcessingResizeParams;
+        sharpen?: /* ProcessingSharpenParams */ ProcessingSharpenParams;
+        export: /* ProcessingExportParams */ ProcessingExportParams;
+        url: string;
+    }
+    /**
      * ProcessingResizeParams
      */
     export interface ProcessingResizeParams {
         width: number;
         height: number;
         mode: string;
+    }
+    /**
+     * ProcessingRevertRequest
+     * tbd
+     */
+    export interface ProcessingRevertRequest {
+        urls: string[];
     }
     /**
      * ProcessingSharpenParams
@@ -483,20 +483,20 @@ declare namespace Paths {
             export type $401 = string;
         }
     }
-    namespace ProcessImages {
+    namespace ProcessImage {
         export interface BodyParameters {
-            BatchProcessingRequest?: Parameters.BatchProcessingRequest;
+            ProcessingRequest?: Parameters.ProcessingRequest;
         }
         namespace Parameters {
-            export type BatchProcessingRequest = /**
-             * BatchProcessingRequest
-             * Parameters that allow to post process the image
-             */
-            Definitions.BatchProcessingRequest;
             /**
              * Id of the album
              */
             export type Id = string;
+            export type ProcessingRequest = /**
+             * ProcessingRequest
+             * Parameters that allow to post process the image
+             */
+            Definitions.ProcessingRequest;
         }
         export interface PathParameters {
             id: /* Id of the album */ Parameters.Id;
@@ -545,18 +545,18 @@ declare namespace Paths {
     }
     namespace RevertProcessedImages {
         export interface BodyParameters {
-            BatchProcessingRevertRequest?: Parameters.BatchProcessingRevertRequest;
+            ProcessingRevertRequest?: Parameters.ProcessingRevertRequest;
         }
         namespace Parameters {
-            export type BatchProcessingRevertRequest = /**
-             * BatchProcessingRevertRequest
-             * tbd
-             */
-            Definitions.BatchProcessingRevertRequest;
             /**
              * Id of the album
              */
             export type Id = string;
+            export type ProcessingRevertRequest = /**
+             * ProcessingRevertRequest
+             * tbd
+             */
+            Definitions.ProcessingRevertRequest;
         }
         export interface PathParameters {
             id: /* Id of the album */ Parameters.Id;

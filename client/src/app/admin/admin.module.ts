@@ -44,6 +44,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ProcessingService } from './services/processing.service';
 import { SliderModule } from 'primeng/slider';
 import { VarDirective } from '../common/var/var.directive';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { VarDirective } from '../common/var/var.directive';
     TreeModule,
     FieldsetModule,
     SliderModule,
+    ProgressBarModule,
   ],
   providers: [
     AdminGuard,

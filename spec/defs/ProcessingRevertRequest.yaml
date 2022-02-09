@@ -1,4 +1,4 @@
-title: BatchProcessingRevertRequest
+title: ProcessingRevertRequest
 type: object
 description: tbd
 properties:

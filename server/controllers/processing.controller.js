@@ -1,9 +1,8 @@
 const processing = require('../core/processing')
 
-function processImages(req, res) {
+function processImage(req, res) {
     const albumId = req.swagger.params.id.value;
-    console.log(req.body);
-    processing.processImages(albumId, req.body.urls, {
+    processing.processImage(albumId, req.body.url, {
         resize: req.body.resize,
         sharpen: req.body.sharpen,
         export: req.body.export,
@@ -17,7 +16,7 @@ function revertProcessedImages(req, res) {
 }
 
 module.exports = { 
-    processImages,
+    processImage,
     revertProcessedImages
 };
   
