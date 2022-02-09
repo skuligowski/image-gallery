@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { from } from 'rxjs';
-import { concatMap, map, mergeMap } from 'rxjs/operators';
+import { concatMap, delay, map, mergeMap, tap, toArray } from 'rxjs/operators';
+import { ProgressComponent } from '../../../common/progress/progress.component';
 import { ProcessingService } from '../../services/processing.service';
 import ProcessingResizeParams = Definitions.ProcessingResizeParams;
 import ProcessingSharpenParams = Definitions.ProcessingSharpenParams;
@@ -34,7 +35,6 @@ export class BatchProcessingComponent {
   exportEnabled: boolean = true;
 
   isProcessing: boolean = false;
-  processingProgress: number = 0;
   processingImage: string;
 
   @Input()
@@ -49,6 +49,9 @@ export class BatchProcessingComponent {
   @Output()
   revert: EventEmitter<BatchProcessingRevertEvent> = new EventEmitter();
 
+  @ViewChild('processingProgress', { static: true })
+  processingProgress: ProgressComponent;
+
   constructor(private processingService: ProcessingService) {
     const params = (JSON.parse(localStorage.getItem('_ig_proc_params_snapshot')) as BatchProcessingParamsSnapshot);
     if (params) {
@@ -62,8 +65,6 @@ export class BatchProcessingComponent {
 
   open(): void {
     this.display = true;
-    this.processingProgress = 0;
-    this.isProcessing = false;
   }
 
   close(): void {
@@ -78,14 +79,11 @@ export class BatchProcessingComponent {
       sharpenParams: this.sharpenParams,
       exportParams: this.exportParams,
     }));
-    this.isProcessing = true;
+    this.processingProgress.open(this.images.length);
     from(this.images.map((image, index) => ({ filename: image.filename, url: image.url, index })))
       .pipe(
         concatMap(image => {
-          setTimeout(() => {
-            this.processingImage = image.filename;
-            this.processingProgress = Math.round((image.index + 1) / (this.images.length + 1) * 100);
-          }, 0);
+          this.processingProgress.setDescription(`Processing ${image.filename}`);
           return this.processingService.runProcessing(
             this.album.id, 
             { 
@@ -94,15 +92,15 @@ export class BatchProcessingComponent {
               sharpen: this.sharpenEnabled ? this.sharpenParams: undefined,
               export: this.exportParams,
             }
-          ).pipe(map(res => image));
+          ).pipe(tap(() => this.processingProgress.tick()))
         }),
+        toArray(),
+        delay(3000),
       ).subscribe(res => {
-        
-      }, (e) => console.log(), () => {
-        setTimeout(() => { this.processingProgress = 100; }, 0);
-        setTimeout(() => this.done.emit({
+        this.processingProgress.close();
+        this.done.emit({
           close: () => this.display = false
-        }), 2000);
+        });
       });
   }
 

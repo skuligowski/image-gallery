@@ -45,6 +45,7 @@ import { ProcessingService } from './services/processing.service';
 import { SliderModule } from 'primeng/slider';
 import { VarDirective } from '../common/var/var.directive';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { ProgressComponent } from '../common/progress/progress.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
     UserCreateComponent,
     UsersManagerComponent,
     VarDirective,
+    ProgressComponent,
   ],
   imports: [  
     AdminRoutingModule,

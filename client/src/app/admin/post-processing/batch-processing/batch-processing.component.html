@@ -4,7 +4,7 @@
     <p-header>
         Batch processing
     </p-header>
-    <div class="grid p-fluid" *ngIf="!isProcessing">
+    <div class="grid p-fluid">
         <div class="field col-12 md:col-3 field-enabled">
             <p-checkbox id="resize" [binary]="true" [(ngModel)]="resizeEnabled"></p-checkbox> 
             <span>Resize image</span>
@@ -45,12 +45,8 @@
         <p-progressBar [value]="processingProgress"></p-progressBar>
     </div>
     <p-footer>
-        <ng-container *ngIf="!isProcessing">
-            <button (click)="doRevert()" pButton pRipple type="button" i18n-label label="Revert to original" class="p-button-outlined p-button-warning"></button>
-            <button (click)="doProcess()" pButton pRipple type="button" i18n-label label="Process" class="p-button-primary"></button>                
-        </ng-container>
-        <ng-container *ngIf="isProcessing">
-            Processing image: {{processingImage}}
-        </ng-container>
+        <button (click)="doRevert()" pButton pRipple type="button" i18n-label label="Revert to original" class="p-button-outlined p-button-warning"></button>
+        <button (click)="doProcess()" pButton pRipple type="button" i18n-label label="Process" class="p-button-primary"></button>                
     </p-footer>
 </p-dialog>
+<app-progress #processingProgress header="Processing images..."></app-progress>

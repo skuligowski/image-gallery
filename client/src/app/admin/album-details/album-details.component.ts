@@ -10,8 +10,9 @@ import Album = Definitions.Album;
 import LibraryFile = Definitions.LibraryFile;
 import { BatchProcessDoneEvent, BatchProcessingRevertEvent } from '../post-processing/batch-processing/batch-processing.component';
 import { ProcessingService } from '../services/processing.service';
-import { mergeMap, switchMap } from 'rxjs/operators';
+import { concatMap, switchMap, tap, toArray } from 'rxjs/operators';
 import { from, of } from 'rxjs';
+import { ProgressComponent } from '../../common/progress/progress.component';
 
 @Component({
   selector: 'app-album-details',
@@ -30,6 +31,9 @@ export class AlbumDetailsComponent {
 
   @ViewChild('libraryFilesSelector', { static: true })
   libraryFilesSelector: LibraryFilesSelectorComponent;
+
+  @ViewChild('thumbnailsProgress', { static: true })
+  thumbnailsProgress: ProgressComponent;
 
   constructor(private route: ActivatedRoute,
               private albumsService: AlbumsService,
@@ -51,17 +55,25 @@ export class AlbumDetailsComponent {
     const fileList = files
       .filter(file => !file.dir)
       .map(file => file.path);
-
+    
+    this.thumbnailsProgress.open(fileList.length);
     this.albumsService.addImages(this.album.id, fileList)
-      .pipe(
-        switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id)),
-        switchMap((response: AlbumDetails) => this.thumbnailsService.createThumbnails(response.images.map(image => image.url))),
+      .pipe(        
+        switchMap(() => 
+          from(fileList).pipe(            
+            concatMap(fileUrl => {
+              this.thumbnailsProgress.tick(`Adding ${fileUrl}`);
+              return this.thumbnailsService.createThumbnails([fileUrl])
+            }),
+            toArray()
+          )
+        ),
+        tap(() => this.thumbnailsProgress.close()),
         this.albumsService.refreshAlbums(),
-        switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id))
-      )
-      .subscribe(response => {
-        this.images = response.images;
+        switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id))          
+      ).subscribe(response => {
         this.libraryFilesSelector.close();
+        this.images = response.images;
         this.router.navigated = false;
         this.router.navigate([this.router.url]);
       });

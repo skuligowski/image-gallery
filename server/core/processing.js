@@ -61,7 +61,7 @@ function processImage(albumId, imageUrl, params) {
     return db.findAlbum({_id: albumId}).then(album => {
         const imageIndex = album.images.findIndex(image => imageUrl === image.url);
         if (imageIndex === -1) {
-            throw new Error(`Image ${url} not found!`);
+            throw new Error(`Image ${imageUrl} not found!`);
         }
         const image = album.images[imageIndex];
         const sourceImage = getSourceImage(image);
@@ -100,8 +100,10 @@ function processImage(albumId, imageUrl, params) {
             console.log(JSON.stringify($set, null, 4));
             return db.updateAlbum({ _id: albumId }, { $set })
                 .then(() => {
-                    console.log(`Removing processed image: ${toDelete}`);
-                    fs.unlinkSync(path.join(config.libraryDir, toDelete))
+                    if (toDelete) {
+                        console.log(`Removing processed image: ${toDelete}`);
+                        fs.unlinkSync(path.join(config.libraryDir, toDelete));    
+                    }
                 })
         });
     });
