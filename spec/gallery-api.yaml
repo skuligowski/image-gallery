@@ -240,14 +240,14 @@ paths:
     post:
       x-authentication-required: true
       x-admin-required: true
-      description: Creates, regenerates thumbnails for selected image urls or all if empty ids
+      description: Creates, regenerates thumbnails for selected image
       tags:
         - admin
-      operationId: createThumbnails
+      operationId: createThumbnail
       parameters:
         - name: ThumbnailsCreateRequest
           in: body
-          description: Thumbnails regeneration request
+          description: Thumbnail regeneration request
           schema:
             $ref: defs/ThumbnailsCreateRequest.yaml
       responses:

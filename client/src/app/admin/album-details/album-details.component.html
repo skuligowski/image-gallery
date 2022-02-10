@@ -86,4 +86,5 @@
                  i18n-message message="Do you really want to delete this album?"></p-confirmDialog>
 <app-album-create #albumModify [albums]="albums" (confirm)="onUpdateAlbum($event)" i18n-headerLabel headerLabel="Modify album"></app-album-create>
 <app-batch-processing [album]="album" [images]="selected" #batchProcessing (done)="onBatchProcessingDone($event)" (revert)="onBatchProcessingRevert($event)"></app-batch-processing>
-<app-progress #thumbnailsProgress header="Adding new images"></app-progress>
+<app-progress #addingImagesProgress header="Adding new images"></app-progress>
+<app-progress #thumbnailsProgress header="Generating thumbnails"></app-progress>

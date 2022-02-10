@@ -97,7 +97,6 @@ function processImage(albumId, imageUrl, params) {
             }
             return {$set, toDelete};
         }).then(({$set, toDelete}) => {
-            console.log(JSON.stringify($set, null, 4));
             return db.updateAlbum({ _id: albumId }, { $set })
                 .then(() => {
                     if (toDelete) {

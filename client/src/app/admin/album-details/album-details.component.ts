@@ -10,7 +10,7 @@ import Album = Definitions.Album;
 import LibraryFile = Definitions.LibraryFile;
 import { BatchProcessDoneEvent, BatchProcessingRevertEvent } from '../post-processing/batch-processing/batch-processing.component';
 import { ProcessingService } from '../services/processing.service';
-import { concatMap, switchMap, tap, toArray } from 'rxjs/operators';
+import { concatMap, delay, switchMap, tap, toArray } from 'rxjs/operators';
 import { from, of } from 'rxjs';
 import { ProgressComponent } from '../../common/progress/progress.component';
 
@@ -35,6 +35,9 @@ export class AlbumDetailsComponent {
   @ViewChild('thumbnailsProgress', { static: true })
   thumbnailsProgress: ProgressComponent;
 
+  @ViewChild('addingImagesProgress', { static: true })
+  addingImagesProgress: ProgressComponent;
+
   constructor(private route: ActivatedRoute,
               private albumsService: AlbumsService,
               private thumbnailsService: ThumbnailsService,
@@ -56,22 +59,23 @@ export class AlbumDetailsComponent {
       .filter(file => !file.dir)
       .map(file => file.path);
     
-    this.thumbnailsProgress.open(fileList.length);
+    this.addingImagesProgress.open(fileList.length);
     this.albumsService.addImages(this.album.id, fileList)
       .pipe(        
         switchMap(() => 
           from(fileList).pipe(            
             concatMap(fileUrl => {
-              this.thumbnailsProgress.tick(`Adding ${fileUrl}`);
-              return this.thumbnailsService.createThumbnails([fileUrl])
+              this.addingImagesProgress.tick(`Adding ${fileUrl}`);
+              return this.thumbnailsService.createThumbnail(fileUrl);
             }),
             toArray()
           )
         ),
-        tap(() => this.thumbnailsProgress.close()),
         this.albumsService.refreshAlbums(),
-        switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id))          
+        switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id)),
+        delay(1500),       
       ).subscribe(response => {
+        this.addingImagesProgress.close();
         this.libraryFilesSelector.close();
         this.images = response.images;
         this.router.navigated = false;
@@ -126,10 +130,19 @@ export class AlbumDetailsComponent {
   }
 
   createThumbnails(images: Image[]): void {
-    this.thumbnailsService.createThumbnails(images.map(image => image.url))
-      .pipe(this.albumsService.refreshAlbums())
-      .pipe(switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id)))
-      .subscribe(response => {
+    this.thumbnailsProgress.open(images.length);
+    from(images.map(image => image.url))
+      .pipe(
+        concatMap(fileUrl => {
+          this.thumbnailsProgress.tick(`Creating thub: ${fileUrl}`);
+          return this.thumbnailsService.createThumbnail(fileUrl);
+        }),
+        toArray(),
+        this.albumsService.refreshAlbums(),
+        switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id)),
+        delay(1500),
+      ).subscribe(response => {
+        this.thumbnailsProgress.close();
         this.images = response.images;
         this.selected = [];
         this.router.navigated = false;

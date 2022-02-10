@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { interval, Subject } from 'rxjs';
+import { throttle } from 'rxjs/operators';
 
 @Component({
     selector: 'app-progress',
@@ -7,9 +9,17 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 
 export class ProgressComponent implements OnInit {
-    constructor() { }
+    constructor() { 
+
+        this.ticksSubject
+            .pipe(throttle(val => interval(1500)))
+            .subscribe(val => {
+                this.progress = Math.round(this.value / this.size * 100);
+            })
+    }
 
     public display: boolean = false;
+    private ticksSubject: Subject<number> = new Subject();
 
     @Input()
     header: string;
@@ -25,11 +35,14 @@ export class ProgressComponent implements OnInit {
         this.progress = Math.round(this.value / this.size * 100);
         this.description = '';
         this.display = true;
+        
     }
 
     tick(description?: string): void {
         this.value = this.value + 1;
-        this.progress = Math.round(this.value / this.size * 100);
+        this.ticksSubject.next(this.value);
+        if (this.value === this.size)
+            this.progress = Math.round(this.value / this.size * 100);
         if (description) {
             this.description = description;
         }

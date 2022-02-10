@@ -248,9 +248,11 @@ declare namespace Definitions {
     }
     /**
      * ThumbnailsCreateRequest
-     * list of image urls for which thumbs should be create/regenerted
+     * object holding url to generate thumbnail for
      */
-    export type ThumbnailsCreateRequest = string[];
+    export interface ThumbnailsCreateRequest {
+        url?: string;
+    }
     /**
      * User
      */
@@ -366,14 +368,14 @@ declare namespace Paths {
             export type $401 = string;
         }
     }
-    namespace CreateThumbnails {
+    namespace CreateThumbnail {
         export interface BodyParameters {
             ThumbnailsCreateRequest?: Parameters.ThumbnailsCreateRequest;
         }
         namespace Parameters {
             export type ThumbnailsCreateRequest = /**
              * ThumbnailsCreateRequest
-             * list of image urls for which thumbs should be create/regenerted
+             * object holding url to generate thumbnail for
              */
             Definitions.ThumbnailsCreateRequest;
         }
