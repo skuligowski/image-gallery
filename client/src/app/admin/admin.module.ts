@@ -46,6 +46,8 @@ import { SliderModule } from 'primeng/slider';
 import { VarDirective } from '../common/var/var.directive';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ProgressComponent } from '../common/progress/progress.component';
+import { LibraryPreviewComponent } from './library-browser/library-preview.component';
+import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog';
 
 @NgModule({
   declarations: [
@@ -68,6 +70,7 @@ import { ProgressComponent } from '../common/progress/progress.component';
     UsersManagerComponent,
     VarDirective,
     ProgressComponent,
+    LibraryPreviewComponent,
   ],
   imports: [  
     AdminRoutingModule,
@@ -89,6 +92,7 @@ import { ProgressComponent } from '../common/progress/progress.component';
     FieldsetModule,
     SliderModule,
     ProgressBarModule,
+    DynamicDialogModule
   ],
   providers: [
     AdminGuard,
@@ -100,6 +104,7 @@ import { ProgressComponent } from '../common/progress/progress.component';
     ThumbnailsService,
     UsersService,
     ProcessingService,
+    DialogService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true}
   ]
 })

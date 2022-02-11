@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json",
+    "start": "ng serve --proxy-config proxy.conf.json --verbose --configuration development",
     "start:ci": "ng serve --proxy-config proxy.conf.json --configuration production",
     "build": "ng build --configuration production",
     "locale": "ng xi18n --output-path locale && xliffmerge --profile ./xliffmerge.json && rimraf src/locale/messages.xlf",

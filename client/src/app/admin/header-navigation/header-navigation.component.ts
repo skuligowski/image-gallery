@@ -15,6 +15,9 @@ export class HeaderNavigationComponent {
   @Input()
   back?: string;
 
+  @Input()
+  label?: string;
+
   navigateToAlbums(): void {
     this.router.navigate(['admin/albums']);
   }

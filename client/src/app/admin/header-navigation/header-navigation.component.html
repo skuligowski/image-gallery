@@ -1,7 +1,7 @@
 <header class="admin-layout-header">
   <div class="title"><span i18n>Administration</span></div>
   <div class="push-right">
-    <div class="back"><a [routerLink]="back || '/'"><i class="icon-prev"></i><span i18n>Return to gallery</span></a></div>
+    <div class="back"><a [routerLink]="back || '/'"><i class="icon-prev"></i><span i18n>{{label || 'Return to gallery'}}</span></a></div>
     <div class="logout"><a (click)="authService.logout()"><i class="icon-logout always-visible"></i></a></div>
   </div>
 </header>

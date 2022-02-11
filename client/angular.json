@@ -64,6 +64,18 @@
                 }
               ],
               "localize": true
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": {
+                "scripts": false,
+                "styles": false,
+                "fonts": false
+              },
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           }
         },
@@ -73,8 +85,8 @@
             "browserTarget": "image-gallery:build"
           },
           "configurations": {
-            "production": {
-              "browserTarget": "image-gallery:build:production"
+            "development": {
+              "browserTarget": "image-gallery:build:development"
             }
           }
         },
