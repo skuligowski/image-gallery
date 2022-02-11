@@ -1,43 +1,43 @@
 <p-dialog [(visible)]="display" [positionTop]="100" [resizable]="false"
           [blockScroll]="true" [modal]="true" [draggable]="false" [style]="{width: '800px'}"
           [contentStyle]="{'max-height': '500px'}">
-    <p-header>
+    <p-header i18n>
         Batch processing
     </p-header>
     <div class="grid p-fluid">
         <div class="field col-12 md:col-3 field-enabled">
             <p-checkbox id="resize" [binary]="true" [(ngModel)]="resizeEnabled"></p-checkbox> 
-            <span>Resize image</span>
+            <span i18n>Resize image</span>
         </div>
         <div class="field col-12 md:col-3">
-            <label for="width">Width</label>
+            <label for="width" i18n>Width</label>
             <p-inputNumber id="width" [(ngModel)]="resizeParams.width" [useGrouping]="false" mode="decimal" [disabled]="!resizeEnabled"></p-inputNumber>
         </div>
         <div class="field col-12 md:col-3">
-            <label for="height">Height</label>
+            <label for="height" i18n>Height</label>
             <p-inputNumber id="height" [(ngModel)]="resizeParams.height" [useGrouping]="false" mode="decimal" [disabled]="!resizeEnabled"></p-inputNumber>
         </div>
         <div class="field col-12 md:col-3">
-            <label for="modes">Modes</label>
+            <label for="modes" i18n>Modes</label>
             <p-dropdown id="modes" [options]="resizeModes" [(ngModel)]="resizeParams.mode" optionLabel="name" optionValue="code" [appendTo]="'body'" [disabled]="!resizeEnabled"></p-dropdown>
         </div>
 
 
         <div class="field col-12 md:col-3 field-enabled">
             <p-checkbox id="resize" [binary]="true" [(ngModel)]="sharpenEnabled"></p-checkbox> 
-            <span>Sharpen image</span>
+            <span i18n>Sharpen image</span>
         </div>
         <div class="field col-12 md:col-9 amount">
-            <label for="amount">Amount ({{sharpenParams.amount}})</label>
+            <label for="amount" i18n>Amount ({{sharpenParams.amount}})</label>
             <p-slider [(ngModel)]="sharpenParams.amount" [min]="0" [max]="2" [step]="0.01" [disabled]="!sharpenEnabled"></p-slider>
         </div>
         
         <div class="field col-12 md:col-3 field-enabled">
             <p-checkbox id="export" [binary]="true" [disabled]="true" [(ngModel)]="exportEnabled"></p-checkbox> 
-            <span>Export</span>
+            <span i18n>Export</span>
         </div>
         <div class="field col-12 md:col-9 quality">
-            <label for="quality">Quality ({{exportParams.quality}}%)</label>
+            <label for="quality" i18n>Quality ({{exportParams.quality}}%)</label>
             <p-slider [(ngModel)]="exportParams.quality" [min]="0" [max]="100"></p-slider>
         </div>
     </div>
@@ -49,4 +49,4 @@
         <button (click)="doProcess()" pButton pRipple type="button" i18n-label label="Process" class="p-button-primary"></button>                
     </p-footer>
 </p-dialog>
-<app-progress #processingProgress header="Processing images..."></app-progress>
+<app-progress #processingProgress i18n-header header="Processing images..."></app-progress>
