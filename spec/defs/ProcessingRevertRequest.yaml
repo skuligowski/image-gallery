@@ -1,0 +1,10 @@
+title: ProcessingRevertRequest
+type: object
+description: tbd
+properties:
+  urls:
+    type: array
+    items:
+      type: string
+required:
+- urls

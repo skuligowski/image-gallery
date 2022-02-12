@@ -1,0 +1,7 @@
+title: ProcessingExportParams
+type: object
+properties:
+  quality:
+    type: number
+required:
+- quality

@@ -4,6 +4,8 @@ import { Observable, Subscription } from 'rxjs';
 import LibraryFile = Definitions.LibraryFile;
 import { spinnable } from '../../common/utils/spinnable';
 import { tap } from 'rxjs/operators';
+import { DialogService } from 'primeng/dynamicdialog';
+import { LibraryPreviewComponent } from './library-preview.component';
 
 @Component({
   selector: 'app-library-browser',
@@ -16,6 +18,8 @@ export class LibraryBrowserComponent implements OnInit, OnDestroy {
   loading = true;
 
   selectedFiles: LibraryFile[] = [];
+  previewEnabled: boolean = false;
+  currentFile: LibraryFile;
 
   @Output()
   directoryChange: EventEmitter<string> = new EventEmitter<string>();
@@ -45,13 +49,25 @@ export class LibraryBrowserComponent implements OnInit, OnDestroy {
     );
   }
 
-  constructor(private libraryService: LibraryService) {}
+  public preview(current: LibraryFile): void {
+    this.currentFile = current;
+    console.log(this.previewEnabled);
+    this.previewEnabled = true;
+  }
+
+  constructor(private libraryService: LibraryService, private dialogService: DialogService) {}
 
   ngOnInit() {
     this.cols = [
       { field: 'filename', header: 'Name' },
       { field: 'size', header: 'Size' },
     ];
+  }
+
+  onSelect(files: LibraryFile[]): void {
+    this.selectedFiles=files;
+    this.selectFiles.emit(files);
+    console.log(files);
   }
 
   onDirSelect(dir: LibraryFile): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/auth/auth.service';
 
@@ -11,6 +11,12 @@ export class HeaderNavigationComponent {
 
   constructor(private router: Router,
               public authService: AuthService) {}
+
+  @Input()
+  back?: string;
+
+  @Input()
+  label?: string;
 
   navigateToAlbums(): void {
     this.router.navigate(['admin/albums']);

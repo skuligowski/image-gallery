@@ -1,4 +1,7 @@
 declare namespace Definitions {
+    /**
+     * Albums
+     */
     export interface Album {
         /**
          * unique identifier of the album
@@ -33,6 +36,9 @@ declare namespace Definitions {
          */
         createDate: string; // date-time
     }
+    /**
+     * AlbumCreate
+     */
     export interface AlbumCreate {
         /**
          * album name
@@ -44,7 +50,13 @@ declare namespace Definitions {
         permalink: string;
         date?: string; // date
     }
-    export type AlbumsResponse = Album[];
+    /**
+     * AlbumsResponse
+     */
+    export type AlbumsResponse = /* Albums */ Album[];
+    /**
+     * Config
+     */
     export interface Config {
         /**
          * Main page title, the name for the gallery
@@ -63,13 +75,22 @@ declare namespace Definitions {
          */
         imageDownload: boolean;
     }
+    /**
+     * DirectoryCreateRequest
+     */
     export interface DirectoryCreateRequest {
         /**
          * directory name
          */
         name: string;
     }
-    export type FilesResponse = LibraryFile[];
+    /**
+     * LibraryFilesResponse
+     */
+    export type FilesResponse = /* LibraryFile */ LibraryFile[];
+    /**
+     * Image
+     */
     export interface Image {
         /**
          * image filename
@@ -95,29 +116,48 @@ declare namespace Definitions {
          * height of the image
          */
         height: number;
+        /**
+         * size of the image (optional)
+         */
+        size?: number;
     }
     /**
+     * ImagesAddRequest
      * list of library paths of new images for the album
      */
     export type ImagesAddRequest = string[];
     /**
+     * ImagesOrderRequest
      * list of filenames with proper order, all images should be listed that belong to the album
      */
     export type ImagesOrderRequest = string[];
     /**
+     * ImagesRemovalRequest
      * list of image filenames to remove
      */
     export type ImagesRemovalRequest = string[];
-    export type ImagesResponse = Image[];
+    /**
+     * ImagesResponse
+     */
+    export type ImagesResponse = /* Image */ Image[];
+    /**
+     * LibraryDirValidationRequest
+     */
     export interface LibraryDirValidationRequest {
         libraryDir: string;
     }
+    /**
+     * LibraryFile
+     */
     export interface LibraryFile {
         filename: string;
         path?: string;
         dir: boolean;
         size?: number;
     }
+    /**
+     * Login
+     */
     export interface Login {
         /**
          * Username
@@ -128,6 +168,46 @@ declare namespace Definitions {
          */
         password: string;
     }
+    /**
+     * ProcessingExportParams
+     */
+    export interface ProcessingExportParams {
+        quality: number;
+    }
+    /**
+     * ProcessingRequest
+     * Parameters that allow to post process the image
+     */
+    export interface ProcessingRequest {
+        resize?: /* ProcessingResizeParams */ ProcessingResizeParams;
+        sharpen?: /* ProcessingSharpenParams */ ProcessingSharpenParams;
+        export: /* ProcessingExportParams */ ProcessingExportParams;
+        url: string;
+    }
+    /**
+     * ProcessingResizeParams
+     */
+    export interface ProcessingResizeParams {
+        width: number;
+        height: number;
+        mode: string;
+    }
+    /**
+     * ProcessingRevertRequest
+     * tbd
+     */
+    export interface ProcessingRevertRequest {
+        urls: string[];
+    }
+    /**
+     * ProcessingSharpenParams
+     */
+    export interface ProcessingSharpenParams {
+        amount: number;
+    }
+    /**
+     * Settings
+     */
     export interface Settings {
         /**
          * Main page title, the name for the gallery
@@ -167,9 +247,15 @@ declare namespace Definitions {
         imageDownload?: boolean;
     }
     /**
-     * list of image urls for which thumbs should be create/regenerted
+     * ThumbnailsCreateRequest
+     * object holding url to generate thumbnail for
      */
-    export type ThumbnailsCreateRequest = string[];
+    export interface ThumbnailsCreateRequest {
+        url?: string;
+    }
+    /**
+     * User
+     */
     export interface User {
         /**
          * Username
@@ -184,6 +270,9 @@ declare namespace Definitions {
          */
         guest?: boolean;
     }
+    /**
+     * UserCreateRequest
+     */
     export interface UserCreateRequest {
         /**
          * album name
@@ -195,6 +284,9 @@ declare namespace Definitions {
         password: string;
         admin: boolean;
     }
+    /**
+     * UserPasswordChangeRequest
+     */
     export interface UserPasswordChangeRequest {
         /**
          * album name
@@ -205,11 +297,334 @@ declare namespace Definitions {
          */
         password: string;
     }
-    export type UsersResponse = User[];
+    /**
+     * UsersResponse
+     */
+    export type UsersResponse = /* User */ User[];
+    /**
+     * Validation
+     */
     export interface Validation {
         /**
          * Validation result
          */
         valid: boolean;
+    }
+}
+declare namespace Paths {
+    namespace AddImages {
+        export interface BodyParameters {
+            ImagesAddRequest?: Parameters.ImagesAddRequest;
+        }
+        namespace Parameters {
+            /**
+             * Id of the album
+             */
+            export type Id = string;
+            export type ImagesAddRequest = /**
+             * ImagesAddRequest
+             * list of library paths of new images for the album
+             */
+            Definitions.ImagesAddRequest;
+        }
+        export interface PathParameters {
+            id: /* Id of the album */ Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = /* ImagesResponse */ Definitions.ImagesResponse;
+        }
+    }
+    namespace ChangePassword {
+        export interface BodyParameters {
+            UserPasswordChangeRequest?: Parameters.UserPasswordChangeRequest;
+        }
+        namespace Parameters {
+            export type UserPasswordChangeRequest = /* UserPasswordChangeRequest */ Definitions.UserPasswordChangeRequest;
+        }
+        namespace Responses {
+            export type $401 = string;
+        }
+    }
+    namespace CreateAlbum {
+        export interface BodyParameters {
+            AlbumCreateRequest?: Parameters.AlbumCreateRequest;
+        }
+        namespace Parameters {
+            export type AlbumCreateRequest = /* AlbumCreate */ Definitions.AlbumCreate;
+        }
+    }
+    namespace CreateDirectory {
+        export interface BodyParameters {
+            AlbumCreateRequest?: Parameters.AlbumCreateRequest;
+        }
+        namespace Parameters {
+            export type AlbumCreateRequest = /* DirectoryCreateRequest */ Definitions.DirectoryCreateRequest;
+            export type Parent = string;
+        }
+        export interface QueryParameters {
+            parent?: Parameters.Parent;
+        }
+        namespace Responses {
+            export type $401 = string;
+        }
+    }
+    namespace CreateThumbnail {
+        export interface BodyParameters {
+            ThumbnailsCreateRequest?: Parameters.ThumbnailsCreateRequest;
+        }
+        namespace Parameters {
+            export type ThumbnailsCreateRequest = /**
+             * ThumbnailsCreateRequest
+             * object holding url to generate thumbnail for
+             */
+            Definitions.ThumbnailsCreateRequest;
+        }
+    }
+    namespace CreateUser {
+        export interface BodyParameters {
+            UserAddRequest?: Parameters.UserAddRequest;
+        }
+        namespace Parameters {
+            export type UserAddRequest = /* UserCreateRequest */ Definitions.UserCreateRequest;
+        }
+        namespace Responses {
+            export type $401 = string;
+        }
+    }
+    namespace DownloadImage {
+        namespace Parameters {
+            /**
+             * File name to download
+             */
+            export type Filename = string;
+            /**
+             * Id of the album
+             */
+            export type Id = string;
+        }
+        export interface PathParameters {
+            id: /* Id of the album */ Parameters.Id;
+            filename: /* File name to download */ Parameters.Filename;
+        }
+    }
+    namespace GetAlbums {
+        namespace Responses {
+            export type $200 = /* AlbumsResponse */ Definitions.AlbumsResponse;
+            export type $401 = string;
+        }
+    }
+    namespace GetConfig {
+        namespace Responses {
+            export type $200 = /* Config */ Definitions.Config;
+        }
+    }
+    namespace GetFiles {
+        namespace Parameters {
+            export type Parent = string;
+        }
+        export interface QueryParameters {
+            parent?: Parameters.Parent;
+        }
+        namespace Responses {
+            export type $200 = /* LibraryFilesResponse */ Definitions.FilesResponse;
+            export type $401 = string;
+        }
+    }
+    namespace GetImages {
+        namespace Parameters {
+            /**
+             * Id of the album
+             */
+            export type Id = string;
+        }
+        export interface PathParameters {
+            id: /* Id of the album */ Parameters.Id;
+        }
+        namespace Responses {
+            export type $200 = /* ImagesResponse */ Definitions.ImagesResponse;
+        }
+    }
+    namespace GetSettings {
+        namespace Responses {
+            export type $200 = /* Settings */ Definitions.Settings;
+            export type $401 = string;
+        }
+    }
+    namespace GetUser {
+        namespace Responses {
+            export type $200 = /* User */ Definitions.User;
+            export type $401 = string;
+        }
+    }
+    namespace GetUsers {
+        namespace Responses {
+            export type $200 = /* UsersResponse */ Definitions.UsersResponse;
+            export type $401 = string;
+        }
+    }
+    namespace Login {
+        export interface BodyParameters {
+            LoginRequest?: Parameters.LoginRequest;
+        }
+        namespace Parameters {
+            export type LoginRequest = /* Login */ Definitions.Login;
+        }
+        namespace Responses {
+            export type $200 = /* User */ Definitions.User;
+            export type $401 = string;
+        }
+    }
+    namespace ModifySettings {
+        export interface BodyParameters {
+            Settings?: Parameters.Settings;
+        }
+        namespace Parameters {
+            export type Settings = /* Settings */ Definitions.Settings;
+        }
+        namespace Responses {
+            export type $401 = string;
+        }
+    }
+    namespace ProcessImage {
+        export interface BodyParameters {
+            ProcessingRequest?: Parameters.ProcessingRequest;
+        }
+        namespace Parameters {
+            /**
+             * Id of the album
+             */
+            export type Id = string;
+            export type ProcessingRequest = /**
+             * ProcessingRequest
+             * Parameters that allow to post process the image
+             */
+            Definitions.ProcessingRequest;
+        }
+        export interface PathParameters {
+            id: /* Id of the album */ Parameters.Id;
+        }
+    }
+    namespace RemoveAlbum {
+        namespace Parameters {
+            /**
+             * Id of the album
+             */
+            export type Id = string;
+        }
+        export interface PathParameters {
+            id: /* Id of the album */ Parameters.Id;
+        }
+    }
+    namespace RemoveImages {
+        export interface BodyParameters {
+            ImagesRemovalRequest?: Parameters.ImagesRemovalRequest;
+        }
+        namespace Parameters {
+            /**
+             * Id of the album
+             */
+            export type Id = string;
+            export type ImagesRemovalRequest = /**
+             * ImagesRemovalRequest
+             * list of image filenames to remove
+             */
+            Definitions.ImagesRemovalRequest;
+        }
+        export interface PathParameters {
+            id: /* Id of the album */ Parameters.Id;
+        }
+    }
+    namespace RemoveUser {
+        namespace Parameters {
+            export type Username = string;
+        }
+        export interface QueryParameters {
+            username?: Parameters.Username;
+        }
+        namespace Responses {
+            export type $401 = string;
+        }
+    }
+    namespace RevertProcessedImages {
+        export interface BodyParameters {
+            ProcessingRevertRequest?: Parameters.ProcessingRevertRequest;
+        }
+        namespace Parameters {
+            /**
+             * Id of the album
+             */
+            export type Id = string;
+            export type ProcessingRevertRequest = /**
+             * ProcessingRevertRequest
+             * tbd
+             */
+            Definitions.ProcessingRevertRequest;
+        }
+        export interface PathParameters {
+            id: /* Id of the album */ Parameters.Id;
+        }
+    }
+    namespace SetImagesOrder {
+        export interface BodyParameters {
+            ImagesOrderRequest?: Parameters.ImagesOrderRequest;
+        }
+        namespace Parameters {
+            /**
+             * Id of the album
+             */
+            export type Id = string;
+            export type ImagesOrderRequest = /**
+             * ImagesOrderRequest
+             * list of filenames with proper order, all images should be listed that belong to the album
+             */
+            Definitions.ImagesOrderRequest;
+        }
+        export interface PathParameters {
+            id: /* Id of the album */ Parameters.Id;
+        }
+    }
+    namespace UpdateAlbum {
+        export interface BodyParameters {
+            AlbumCreateRequest?: Parameters.AlbumCreateRequest;
+        }
+        namespace Parameters {
+            export type AlbumCreateRequest = /* AlbumCreate */ Definitions.AlbumCreate;
+            /**
+             * Id of the album
+             */
+            export type Id = string;
+        }
+        export interface PathParameters {
+            id: /* Id of the album */ Parameters.Id;
+        }
+    }
+    namespace UploadFile {
+        export interface FormDataParameters {
+            file: Parameters.File;
+        }
+        namespace Parameters {
+            export type File = unknown;
+            export type Parent = string;
+        }
+        export interface QueryParameters {
+            parent?: Parameters.Parent;
+        }
+        namespace Responses {
+            export interface $200 {
+            }
+            export type $401 = string;
+        }
+    }
+    namespace ValidateLibraryDir {
+        export interface BodyParameters {
+            LibraryDirValidationRequest?: Parameters.LibraryDirValidationRequest;
+        }
+        namespace Parameters {
+            export type LibraryDirValidationRequest = /* LibraryDirValidationRequest */ Definitions.LibraryDirValidationRequest;
+        }
+        namespace Responses {
+            export type $200 = /* Validation */ Definitions.Validation;
+            export type $401 = string;
+        }
     }
 }

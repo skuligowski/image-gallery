@@ -1,0 +1,13 @@
+<p-dialog [(visible)]="display" [positionTop]="100" [resizable]="false"
+          [blockScroll]="true" [modal]="true" [draggable]="false" [style]="{width: '600px'}"
+          [contentStyle]="{'max-height': '500px'}">
+    <p-header>
+        {{header}}
+    </p-header>
+    <div>
+        <p-progressBar [value]="progress" ></p-progressBar>
+    </div>
+    <p-footer>
+        {{description}}
+    </p-footer>
+</p-dialog>

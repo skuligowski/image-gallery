@@ -19,6 +19,9 @@ properties:
   height:
     type: number
     description: height of the image
+  size:
+    type: number
+    description: size of the image (optional)
 required:
 - filename
 - url

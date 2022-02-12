@@ -1,9 +1,10 @@
 const fs = require('fs');
 const Promise = require('bluebird');
 const readFile = Promise.promisify(fs.readFile, {context: fs});
+const db = require('./core/db')
+db.initialize('../db');
 const config = require('./core/config');
 const albums = require('./core/albums');
-const db = require('./core/db');
 const initialize = require('./core/initialize');
 const thumbnails = require('./core/thumbnails');
 

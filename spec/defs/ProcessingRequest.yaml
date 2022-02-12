@@ -1,0 +1,15 @@
+title: ProcessingRequest
+type: object
+description: Parameters that allow to post process the image
+properties:
+  resize: 
+    $ref: ProcessingResizeParams.yaml
+  sharpen:
+    $ref: ProcessingSharpenParams.yaml
+  export:
+    $ref: ProcessingExportParams.yaml
+  url:
+    type: string
+required:
+- url
+- export

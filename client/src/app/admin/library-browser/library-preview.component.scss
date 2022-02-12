@@ -1,0 +1,26 @@
+.bounding-box {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+
+.buttons-pane {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+::ng-deep .p-dialog .p-dialog-footer button {
+    &.select-button, &.left-button, &.right-button {
+        width: 2.357rem;
+        margin: 0;
+    }
+    &.right-button {
+        margin-left: 10px;
+    }
+    &.done-button {
+        margin: 0;
+    }
+}

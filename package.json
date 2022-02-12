@@ -12,14 +12,15 @@
     "dist:server": "cpy '**/*' '!**/node_modules/**' '../dist' --parents --cwd=server",
     "dist:spec": "cpy 'spec/**/*' 'dist' --parents",
     "dist:client": "mkdirp dist/public && cpy '**/*' '../../dist/public' --parents --cwd=client/dist",
-    "postinstall": "node node_modules/recursive-install/recursive-install.js --skip-root"
+    "postinstall": "node node_modules/recursive-install/recursive-install.js --skip-root",
+    "spec": "node ./scripts/declarations.js"
   },
   "private": true,
   "devDependencies": {
     "bestzip": "^2.1.2",
     "concurrently": "^4.1.0",
     "cpy-cli": "^2.0.0",
-    "dtsgenerator": "0.9.6",
+    "dtsgenerator": "^3.14.0",
     "gulp": "^3.9.1",
     "gulp-consolidate": "^0.2.0",
     "gulp-iconfont": "^9.1.0",

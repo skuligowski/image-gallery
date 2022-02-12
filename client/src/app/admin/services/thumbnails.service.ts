@@ -10,9 +10,7 @@ export class ThumbnailsService {
 
   constructor(private httpClient: HttpClient) {}
 
-  createThumbnails(imageUrls: string[]): Observable<any> {
-    return spinnable(
-      this.httpClient.post<ThumbnailsCreateRequest>(`/api/thumbnails`, imageUrls)
-    );
+  createThumbnail(imageUrl: string): Observable<any> {
+    return this.httpClient.post<ThumbnailsCreateRequest>(`/api/thumbnails`, {url: imageUrl});
   }
 }

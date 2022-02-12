@@ -1,4 +1,4 @@
-<app-header-navigation></app-header-navigation>
+<app-header-navigation [back]="'/albums/' + album.permalink" [label]="'Preview in gallery'"></app-header-navigation>
 <div class="admin-layout-container">
   <nav>
     <p-button class="action" i18n-label label="Add images" (click)="libraryFilesSelector.open()"></p-button>
@@ -7,6 +7,7 @@
     <p-button class="action" i18n-label label="Delete album" (click)="removeAlbum(album.id)"></p-button>
     <p-button class="action" [disabled]="!selected.length" i18n-label label="Create thumbnails" (click)="selected.length && createThumbnails(selected)"></p-button>
     <p-button class="action" [disabled]="!reordered" i18n-label label="Update order" (click)="setImagesOrder()"></p-button>
+    <p-button class="action" [disabled]="!selected.length" i18n-label label="Batch processing" (click)="selected.length && batchProcessing.open()"></p-button>
   </nav>
   <p-table [value]="images" dataKey="url" [(selection)]="selected" (onRowReorder)="onRowReorder()">
     <ng-template pTemplate="header">
@@ -29,11 +30,48 @@
         </td>
         <td>
           <ul class="data-list">
-            <li><span class="label" i18n>Filename:</span> {{image.filename}}</li>
-            <li><span class="label" i18n>Resolution:</span> {{image.width}} x {{image.height}}</li>
-            <li><span class="label" i18n>Url:</span> {{image.url}}</li>
-            <li><span class="label" i18n>Thumbnail url:</span> {{image.thumbUrl}}</li>
-            <li *ngIf="image.title"><span class="label" i18n>Title:</span> {{image.title}}</li>
+            <li>
+              <span class="label" i18n>Filename:</span>
+              <span class="value">{{image.filename}}</span></li>
+            <li>
+              <span class="label" i18n>Size:</span> 
+              <span class="value">
+                {{image.width}}x{{image.height}}
+                <span *ngIf="image.size"> @ {{image.size | size}}</span>
+              </span>
+            </li>
+            <li>
+              <span class="label" i18n>Url:</span> 
+              <span class="value">{{image.url}}</span>
+            </li>
+            <li>
+              <span class="label" i18n>Thumbnail url:</span>
+              <span class="value">{{image.thumbUrl}}</span>
+            </li>
+            <li *ngIf="image.title">
+              <span class="label" i18n>Title:</span> 
+              <span class="value">{{image.title}}</span>
+            </li>
+            <li class="processing" *ngIf="image.processing">
+              <span class="label" i18n>Processing</span>
+              <div *ngVar="image.processing.source as source" class="step">
+                Original (size={{source.width}}x{{source.height}}<span *ngIf="source.size"> @ {{source.size | size}}</span>, url={{source.url}})
+              </div>
+              <ng-container *ngIf="image.processing.params.resize">
+                <div *ngVar="image.processing.params.resize as resize" class="step">
+                  Resize (w={{resize.width}}, h={{resize.height}}, mode={{resize.mode}})
+                </div>  
+              </ng-container>
+              <ng-container *ngIf="image.processing.params.sharpen">
+                <div *ngVar="image.processing.params.sharpen as sharpen" class="step">
+                  Sharpen (amount={{sharpen.amount}})
+                </div>
+              </ng-container>
+              <div *ngVar="image.processing.output as output" class="step">
+                Export (quality={{image.processing.params.export?.quality}}, size={{output.width}}x{{output.height}}
+                <span *ngIf="output.size"> @ {{output.size | size}}</span>, url={{output.url}})
+              </div>
+            </li>
           </ul>
         </td>
         <td class="actions">
@@ -47,3 +85,6 @@
 <p-confirmDialog i18n-header header="Confirmation" icon="pi pi-exclamation-triangle" width="425"
                  i18n-message message="Do you really want to delete this album?"></p-confirmDialog>
 <app-album-create #albumModify [albums]="albums" (confirm)="onUpdateAlbum($event)" i18n-headerLabel headerLabel="Modify album"></app-album-create>
+<app-batch-processing [album]="album" [images]="selected" #batchProcessing (done)="onBatchProcessingDone($event)" (revert)="onBatchProcessingRevert($event)"></app-batch-processing>
+<app-progress #addingImagesProgress header="Adding new images"></app-progress>
+<app-progress #thumbnailsProgress header="Generating thumbnails"></app-progress>

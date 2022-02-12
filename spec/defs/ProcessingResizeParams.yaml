@@ -1,0 +1,13 @@
+title: ProcessingResizeParams
+type: object
+properties:
+  width:
+    type: number
+  height:
+    type: number
+  mode:
+    type: string
+required:
+- width
+- height
+- mode

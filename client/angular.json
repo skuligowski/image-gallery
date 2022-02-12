@@ -34,6 +34,7 @@
             ],
             "styles": [
               "node_modules/normalize.css/normalize.css",
+              "node_modules/primeflex/primeflex.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css",
               "src/styles.scss"
@@ -63,6 +64,18 @@
                 }
               ],
               "localize": true
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": {
+                "scripts": false,
+                "styles": false,
+                "fonts": false
+              },
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           }
         },
@@ -72,8 +85,8 @@
             "browserTarget": "image-gallery:build"
           },
           "configurations": {
-            "production": {
-              "browserTarget": "image-gallery:build:production"
+            "development": {
+              "browserTarget": "image-gallery:build:development"
             }
           }
         },
