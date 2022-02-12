@@ -36,12 +36,15 @@ function insertVersionProperty() {
     .then(versionProperty => {
       const currentVersion = versionProperty?.value;
       const newVersion = require('../package.json').version;
-      if (!currentVersion || newVersion !== currentVersion) {
+      if (!currentVersion) {
         return updateScript(currentVersion, newVersion)
           .then(() => db.insertProperty({key: 'version', value: newVersion}));
-      } else {
-        return Promise.resolve();
+      } 
+      if (newVersion !== currentVersion) {
+        return updateScript(currentVersion, newVersion)
+          .then(() => db.updateConfigProperty({_id: versionProperty._id}, {key: 'version', value: newVersion}));
       }
+      return Promise.resolve();
     });
 }
 
