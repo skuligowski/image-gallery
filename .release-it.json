@@ -12,8 +12,8 @@
     "publish": false
   },
   "use": "pkg.version",
-  "scripts": {
-    "afterBump": "npm run build && cd dist && bestzip v${version}.zip * && cd ..",
-    "afterRelease": "echo Successfully released v${version}."
+  "hooks": {
+    "after:bump": "npm run build && cd dist && bestzip v${version}.zip * && cd ..",
+    "after:release": "echo Successfully released v${version}."
   }
 }
