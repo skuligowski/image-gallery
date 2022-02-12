@@ -18,6 +18,7 @@ It contains fully featured administration panel that supports:
 - custom permalinks for photos
 - date grouping
 - allowing to download image
+- batch images processing (resize and keep aspect ratio, sharpen, export with quality)
 
 Image Gallery does not require any database or native graphic modules (eg. ImageMagick).
 It simply works after the installation.
