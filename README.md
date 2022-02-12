@@ -120,7 +120,14 @@ The distribution package will be created in `dist` directory.
 
 ## Release notes
 
-### 1.0.0 (not released yet)
+
+### 1.1.0
+ - feat: Batch image processing (resize, sharpen, export)
+ - feat: Progress bars for intensive tasks
+ - feat: Library images preview and selector mode
+ - fix: many fixes in the admin
+
+### 1.0.0 
  - Angular upgrade to 13.x
  - PrimeNg upgrade to 13.x
  - NodeJs min version: 12+
