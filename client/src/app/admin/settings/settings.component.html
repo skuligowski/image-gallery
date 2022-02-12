@@ -58,6 +58,10 @@
             i18n-name name="Processed images directory" type="string"
             i18n-description description="A directory where all processed images are created. This directory is created dierectly under the library directory."
         ></tr>
+        <tr app-property-presenter key="version" [(value)]="settings['version']" [formGroup]="settingsForm"
+            i18n-name name="Gallery version" type="readonly"
+            i18n-description description="The actual version of the application."
+        ></tr>
       </ng-template>
     </p-table>
   </ng-container>

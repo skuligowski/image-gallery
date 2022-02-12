@@ -1,8 +1,10 @@
 const users = require('./users');
 const db = require('./db');
+const { update } = require('./config');
 
 function initialize(libraryDir) {
   return Promise.resolve()
+    .then(() => insertVersionProperty())
     .then(() => insertConfigProperty({key: 'galleryName', value: 'Photo Gallery'}))
     .then(() => insertConfigProperty({key: 'dashboardTilesCount', value: 6}))
     .then(() => insertConfigProperty({key: 'dashboardImageUrl', value: ''}))
@@ -27,6 +29,25 @@ function insertConfigProperty(prop) {
         return Promise.resolve();
       }
     });
+}
+
+function insertVersionProperty() {
+  return db.getConfigProperty({ key: 'version' })
+    .then(versionProperty => {
+      const currentVersion = versionProperty?.value;
+      const newVersion = require('../package.json').version;
+      if (!currentVersion || newVersion !== currentVersion) {
+        return updateScript(currentVersion, newVersion)
+          .then(() => db.insertProperty({key: 'version', value: newVersion}));
+      } else {
+        return Promise.resolve();
+      }
+    });
+}
+
+function updateScript(oldVersion, newVersion) {
+  console.log(`Updating from ${oldVersion} to ${newVersion}`)
+  return Promise.resolve();
 }
 
 module.exports = initialize;

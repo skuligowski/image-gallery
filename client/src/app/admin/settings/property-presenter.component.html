@@ -36,3 +36,8 @@
     </p-cellEditor>
   </td>
 </ng-container>
+<ng-container *ngIf="type === 'readonly'">
+  <td>
+    {{value}}
+  </td>
+</ng-container>
