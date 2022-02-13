@@ -44,7 +44,7 @@ docker run -d \
     -v /home/pi/gallery_db:/app/resources/db \
     -v /media/hdd/images:/app/resources/library \
     -p 80:3000 \
-    skuligowski/image-gallery:1.1.0
+    skuligowski/image-gallery:1.1.1
 ```
 
 You may also modify the external port (*80*), to expose library using your favorite one.
@@ -64,7 +64,7 @@ Now you are ready to manage your photos, compose albums and upload photos to the
 The other valid approach is to download the latest zip pacakge and manually install the application.
 The only requirement is to have [NodeJS 12.x+](https://nodejs.org/en/download/) isntalled in your systemn.
 
-1\. Download the latest released version of the gallery: [v1.1.0](https://github.com/skuligowski/image-gallery/releases/download/v1.1.0/v1.1.0.zip)
+1\. Download the latest released version of the gallery: [v1.1.1](https://github.com/skuligowski/image-gallery/releases/download/v1.1.1/v1.1.1.zip)
 
 2\. Unzip it somewhere and type: `npm install` 
 
@@ -121,6 +121,8 @@ The distribution package will be created in `dist` directory.
 
 ## Release notes
 
+### 1.1.1
+- fix: allows to use spaces in library dirs
 
 ### 1.1.0
  - feat: Batch image processing (resize, sharpen, export)
