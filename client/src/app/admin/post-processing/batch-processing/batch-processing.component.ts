@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { from } from 'rxjs';
+import { from, Subscription } from 'rxjs';
 import { concatMap, delay, map, mergeMap, tap, toArray } from 'rxjs/operators';
 import { ProgressComponent } from '../../../common/progress/progress.component';
 import { ProcessingService } from '../../services/processing.service';
@@ -79,8 +79,10 @@ export class BatchProcessingComponent {
       sharpenParams: this.sharpenParams,
       exportParams: this.exportParams,
     }));
-    this.processingProgress.open(this.images.length);
-    from(this.images.map((image, index) => ({ filename: image.filename, url: image.url, index })))
+    let subscription: Subscription = Subscription.EMPTY;  
+    this.processingProgress.open(this.images.length)
+      .then(() => subscription.unsubscribe());
+    subscription = from(this.images.map((image, index) => ({ filename: image.filename, url: image.url, index })))
       .pipe(
         concatMap(image => {
           this.processingProgress.setDescription(`Processing ${image.filename}`);

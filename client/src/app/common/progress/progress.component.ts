@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { interval, Subject } from 'rxjs';
+import { interval, Subject, Observable } from 'rxjs';
 import { throttle } from 'rxjs/operators';
 
 @Component({
@@ -28,14 +28,16 @@ export class ProgressComponent implements OnInit {
     size: number = 0;
     progress: number = 0;
     description: string = '';
+    promise: Subject<any>;
 
-    open(size: number): void {
+    open(size: number): Promise<any> {
         this.value = 0;
         this.size = size;
         this.progress = Math.round(this.value / this.size * 100);
         this.description = '';
         this.display = true;
-        
+        this.promise = new Subject();
+        return this.promise.toPromise();
     }
 
     tick(description?: string): void {
@@ -54,6 +56,11 @@ export class ProgressComponent implements OnInit {
 
     close(): void {
         this.display = false;
+        this.promise.complete();
+    }
+
+    onHide() {
+        this.promise.complete();
     }
 
     ngOnInit() { }

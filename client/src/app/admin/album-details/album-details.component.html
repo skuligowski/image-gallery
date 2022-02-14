@@ -26,7 +26,7 @@
           <p-tableCheckbox [value]="image"></p-tableCheckbox>
         </td>
         <td>
-          <img class="image-preview" [src]="'/library' + (image.thumbUrl || image.url)" (click)="onPreview(image)"/>
+          <img loading="lazy" class="image-preview" [src]="'/library' + (image.thumbUrl || image.url)" (click)="onPreview(image)"/>
         </td>
         <td>
           <ul class="data-list">
