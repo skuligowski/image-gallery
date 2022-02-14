@@ -24,8 +24,9 @@ export class AlbumDetailsComponent {
   album: Album;
   albums: Album[];
   images: Image[];
+  current: Image;
   selected: Image[] = [];
-
+  previewEnabled: boolean = false;
   reordered: boolean = false;
   orderHash: string;
 
@@ -52,6 +53,19 @@ export class AlbumDetailsComponent {
       this.orderHash = this.getOrderHash(this.images);
       this.onRowReorder();
     });
+  }
+
+  browseFiles() {
+    const utilizedUrls = this.images
+      .reduce((all, image) => {
+        image.processing ? [image.processing.source.url, image.url] : [image.url]
+        all.push(image.url);
+        if (image.processing) {
+          all.push(image.processing.source.url);
+        }
+        return all;
+      }, []);
+      this.libraryFilesSelector.open(utilizedUrls);
   }
 
   addImages(files: LibraryFile[]): void {
@@ -164,6 +178,15 @@ export class AlbumDetailsComponent {
 
   navigateToAlbums(): void {
     this.router.navigate(['admin', 'albums']);
+  }
+
+  onPreview(image: Image): void {
+    this.current = image;
+    this.previewEnabled = true;
+  }
+
+  onSelect(images: Image[]): void {
+    this.selected = images;
   }
 
   onUpdateAlbum(event: AlbumCreateEvent): void {

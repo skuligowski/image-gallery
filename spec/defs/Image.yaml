@@ -22,6 +22,8 @@ properties:
   size:
     type: number
     description: size of the image (optional)
+  processing:
+    $ref: Processing.yaml
 required:
 - filename
 - url

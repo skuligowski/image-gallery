@@ -46,8 +46,9 @@ import { SliderModule } from 'primeng/slider';
 import { VarDirective } from '../common/var/var.directive';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ProgressComponent } from '../common/progress/progress.component';
-import { LibraryPreviewComponent } from './library-browser/library-preview.component';
+import { LibraryPreviewComponent } from './library-preview/library-preview.component';
 import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog';
     FieldsetModule,
     SliderModule,
     ProgressBarModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    TagModule
   ],
   providers: [
     AdminGuard,

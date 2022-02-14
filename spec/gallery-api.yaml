@@ -627,6 +627,12 @@ definitions:
     $ref: defs/ThumbnailsCreateRequest.yaml
   ProcessingRequest:
     $ref: defs/ProcessingRequest.yaml
+  Processing:
+    $ref: defs/Processing.yaml
+  ProcessingImage:
+    $ref: defs/ProcessingImage.yaml
+  ProcessingParams:
+    $ref: defs/ProcessingParams.yaml
   ProcessingRevertRequest:
     $ref: defs/ProcessingRevertRequest.yaml
   ProcessingResizeParams:

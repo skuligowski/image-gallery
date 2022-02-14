@@ -1,0 +1,16 @@
+title: ProcessingImage
+type: object
+description: Processing image metadata
+properties:
+  url: 
+    type: string
+  width:
+    type: number
+  height:
+    type: number
+  size:
+    type: number
+required:
+- url
+- width
+- height

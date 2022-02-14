@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 import LibraryFile = Definitions.LibraryFile;
 
 @Component({
@@ -8,28 +7,44 @@ import LibraryFile = Definitions.LibraryFile;
     styleUrls: ['library-preview.component.scss']
 })
 
-export class LibraryPreviewComponent implements OnInit {
+export class LibraryPreviewComponent<T> implements OnInit {
     
     @Input()
-    current: LibraryFile;
+    current: T;
     
     @Input()
-    set files(files: LibraryFile[]) {
-        this._files = (files || []).filter(file => !file.dir)
+    set files(files: T[]) {
+        this._files = files || [];
     }
-    get files(): LibraryFile[] {
+    get files(): T[] {
         return this._files;
     }
-    _files: LibraryFile[];
+    _files: T[];
 
     @Input()
-    selected: LibraryFile[];
+    utilizedUrlsMap: {[key: string]: boolean} = {};
+    isUrlUtilized(url: string): boolean {
+      return this.utilizedUrlsMap[url];
+    }
+  
+
+    @Input()
+    set selected(selected: T[]) {
+        this._selected = selected || [];
+    }
+    get selected(): T[] {
+        return this._selected;
+    }
+    _selected: T[];
 
     @Output()
-    selectedChange: EventEmitter<LibraryFile[]> = new EventEmitter();
+    selectedChange: EventEmitter<T[]> = new EventEmitter();
 
     @Input()
     display: boolean;
+
+    @Input()
+    urlProperty: string;
 
     @Output()
     displayChange: EventEmitter<boolean> = new EventEmitter();
@@ -47,13 +62,20 @@ export class LibraryPreviewComponent implements OnInit {
     }
 
     public select(): void {
-        const fileIndex = this.selected.findIndex(file => file.path === this.current.path);
+        const fileIndex = this.selected.findIndex(file => file[this.urlProperty] === (this.current || {})[this.urlProperty]);
         console.log(fileIndex);
         if (fileIndex === -1) {
             this.selectedChange.emit(this.selected.concat(this.current));
         } else {
             this.selected.splice(fileIndex, 1);
             this.selectedChange.emit([].concat(this.selected));
+        }
+    }
+
+    public getUrl(): any {
+        const encoded = encodeURI('/library' + (this.current || {})[this.urlProperty]);
+        return {
+            backgroundImage: `url('${encoded}')`
         }
     }
 
@@ -76,7 +98,7 @@ export class LibraryPreviewComponent implements OnInit {
     }
 
     private getIndex(): number {
-        return this.files.findIndex(file => file.filename === this.current?.filename);
+        return this.files.findIndex(file => file[this.urlProperty] === (this.current || {})[this.urlProperty]);
     }
 
     ngOnInit() { 
