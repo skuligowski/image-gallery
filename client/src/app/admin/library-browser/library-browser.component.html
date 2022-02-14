@@ -7,6 +7,7 @@
       </th>
       <th style="width: 100px" i18n>Preview</th>
       <th i18n>Name</th>
+      <th style="width: 150px"></th>
       <th i18n>Size</th>
     </tr>
   </ng-template>
@@ -20,13 +21,16 @@
           <img src="/library{{rowData.path}}" style="width: 50px;" (click)="preview(rowData)"/>
         </td>
         <td>{{rowData.filename}}</td>
+        <td>
+          <p-tag *ngIf="isUrlUtilized(rowData.path)" styleClass="mr-2" icon="pi pi-image" severity="success" value="in album"></p-tag>
+        </td>
         <td>{{rowData.size | size}}</td>
       </ng-container>
       <ng-template #dirTemplate>
         <td style="width: 100px; text-align: center">
           <i class="icon icon-folder"></i>
         </td>
-        <td colspan="2" style="cursor: pointer" (click)="onDirSelect(rowData)">
+        <td colspan="3" style="cursor: pointer" (click)="onDirSelect(rowData)">
           {{rowData.filename}}
         </td>
       </ng-template>
@@ -35,8 +39,10 @@
 </p-table>
 <app-library-preview 
   [(display)]="previewEnabled" 
+  [urlProperty]="'path'"
   [current]="currentFile" 
-  [files]="files" 
+  [files]="images" 
+  [utilizedUrlsMap]="utilizedUrlsMap"
   [selected]="selectedFiles"
   (selectedChange)="onSelect($event)">
 </app-library-preview>

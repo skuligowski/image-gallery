@@ -1,0 +1,14 @@
+title: Processing
+type: object
+description: Processing 
+properties:
+  source: 
+    $ref: ProcessingImage.yaml
+  output:
+    $ref: ProcessingImage.yaml
+  params:
+    $ref: ProcessingParams.yaml
+required:
+- source
+- output
+- params

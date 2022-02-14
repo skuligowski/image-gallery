@@ -120,6 +120,11 @@ declare namespace Definitions {
          * size of the image (optional)
          */
         size?: number;
+        processing?: /**
+         * Processing
+         * Processing
+         */
+        Processing;
     }
     /**
      * ImagesAddRequest
@@ -169,14 +174,54 @@ declare namespace Definitions {
         password: string;
     }
     /**
+     * Processing
+     * Processing
+     */
+    export interface Processing {
+        source: /**
+         * ProcessingImage
+         * Processing image metadata
+         */
+        ProcessingImage;
+        output: /**
+         * ProcessingImage
+         * Processing image metadata
+         */
+        ProcessingImage;
+        params: /**
+         * ProcessingParams
+         * Processing params
+         */
+        ProcessingParams;
+    }
+    /**
      * ProcessingExportParams
      */
     export interface ProcessingExportParams {
         quality: number;
     }
     /**
+     * ProcessingImage
+     * Processing image metadata
+     */
+    export interface ProcessingImage {
+        url: string;
+        width: number;
+        height: number;
+        size?: number;
+    }
+    /**
+     * ProcessingParams
+     * Processing params
+     */
+    export interface ProcessingParams {
+        resize?: /* ProcessingResizeParams */ ProcessingResizeParams;
+        sharpen?: /* ProcessingSharpenParams */ ProcessingSharpenParams;
+        export: /* ProcessingExportParams */ ProcessingExportParams;
+    }
+    /**
      * ProcessingRequest
-     * Parameters that allow to post process the image
+     * Processing params
      */
     export interface ProcessingRequest {
         resize?: /* ProcessingResizeParams */ ProcessingResizeParams;
@@ -496,7 +541,7 @@ declare namespace Paths {
             export type Id = string;
             export type ProcessingRequest = /**
              * ProcessingRequest
-             * Parameters that allow to post process the image
+             * Processing params
              */
             Definitions.ProcessingRequest;
         }

@@ -10,6 +10,7 @@ export class LibraryFilesSelectorComponent {
   display: boolean;
 
   selectedFiles: LibraryFile[] = [];
+  utilizedUrls: string[] = [];
 
   @Output()
   selectFiles: EventEmitter<LibraryFile[]> = new EventEmitter();
@@ -18,7 +19,8 @@ export class LibraryFilesSelectorComponent {
 
   constructor() {}
 
-  open(): void {
+  open(utilizedUrls: string[]): void {
+    this.utilizedUrls = utilizedUrls;
     this.selectedFiles = [];
     this.display = true;
   }

@@ -1,0 +1,12 @@
+title: ProcessingParams
+type: object
+description: Processing params
+properties:
+  resize: 
+    $ref: ProcessingResizeParams.yaml
+  sharpen:
+    $ref: ProcessingSharpenParams.yaml
+  export:
+    $ref: ProcessingExportParams.yaml
+required:
+- export

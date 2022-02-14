@@ -5,7 +5,7 @@ import LibraryFile = Definitions.LibraryFile;
 import { spinnable } from '../../common/utils/spinnable';
 import { tap } from 'rxjs/operators';
 import { DialogService } from 'primeng/dynamicdialog';
-import { LibraryPreviewComponent } from './library-preview.component';
+import { LibraryPreviewComponent } from '../library-preview/library-preview.component';
 
 @Component({
   selector: 'app-library-browser',
@@ -14,6 +14,7 @@ import { LibraryPreviewComponent } from './library-preview.component';
 })
 export class LibraryBrowserComponent implements OnInit, OnDestroy {
   files: LibraryFile[];
+  images: LibraryFile[];
   cols: any[];
   loading = true;
 
@@ -29,6 +30,15 @@ export class LibraryBrowserComponent implements OnInit, OnDestroy {
 
   @Input()
   insideSpinner = true;
+
+  @Input()
+  set utilizedUrls(utilizedUrls: string[]) {
+    this.utilizedUrlsMap = utilizedUrls.reduce((map, url) => ({...map, [url]: true}), {});
+  }
+  isUrlUtilized(url: string): boolean {
+    return this.utilizedUrlsMap[url];
+  }
+  utilizedUrlsMap: {[key: string]: boolean} = {};
 
   private currentDir: LibraryFile;
   private subscription: Subscription = Subscription.EMPTY;
@@ -67,7 +77,6 @@ export class LibraryBrowserComponent implements OnInit, OnDestroy {
   onSelect(files: LibraryFile[]): void {
     this.selectedFiles=files;
     this.selectFiles.emit(files);
-    console.log(files);
   }
 
   onDirSelect(dir: LibraryFile): void {
@@ -94,6 +103,7 @@ export class LibraryBrowserComponent implements OnInit, OnDestroy {
         dir: true,
       });
     }
+    this.images = this.files.filter(file => !file.dir);
   }
 
   ngOnDestroy(): void {

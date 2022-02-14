@@ -1,7 +1,7 @@
 <app-header-navigation [back]="'/albums/' + album.permalink" [label]="'Preview in gallery'"></app-header-navigation>
 <div class="admin-layout-container">
   <nav>
-    <p-button class="action" i18n-label label="Add images" (click)="libraryFilesSelector.open()"></p-button>
+    <p-button class="action" i18n-label label="Add images" (click)="browseFiles()"></p-button>
     <p-button class="action" [disabled]="!selected.length" i18n-label label="Delete images" (click)="selected.length && removeImages(selected)"></p-button>
     <p-button class="action" i18n-label label="Modify album" (click)="albumModify.open(album);"></p-button>
     <p-button class="action" i18n-label label="Delete album" (click)="removeAlbum(album.id)"></p-button>
@@ -26,7 +26,7 @@
           <p-tableCheckbox [value]="image"></p-tableCheckbox>
         </td>
         <td>
-          <img class="image-preview" [src]="'/library' + (image.thumbUrl || image.url)" />
+          <img class="image-preview" [src]="'/library' + (image.thumbUrl || image.url)" (click)="onPreview(image)"/>
         </td>
         <td>
           <ul class="data-list">
@@ -88,3 +88,12 @@
 <app-batch-processing [album]="album" [images]="selected" #batchProcessing (done)="onBatchProcessingDone($event)" (revert)="onBatchProcessingRevert($event)"></app-batch-processing>
 <app-progress #addingImagesProgress header="Adding new images"></app-progress>
 <app-progress #thumbnailsProgress header="Generating thumbnails"></app-progress>
+<app-library-preview 
+  [(display)]="previewEnabled" 
+  [current]="current" 
+  [files]="images" 
+  [urlProperty]="'url'"
+  [utilizedUrlsMap]="[]"
+  [selected]="selected"
+  (selectedChange)="onSelect($event)">
+</app-library-preview>

@@ -1,0 +1,24 @@
+<p-dialog [(visible)]="display" [resizable]="false"
+          [blockScroll]="true" [modal]="true" [draggable]="false" [style]="{width: '900px'}"
+          [contentStyle]="{'height': '100vh'}" (onHide)="this.displayChange.emit(false)"
+          appendTo="body">
+  <p-header i18n>
+    Select images ({{selected?.length}}/{{files?.length}})
+  </p-header>
+  <div *ngIf="current" class="bounding-box" [ngStyle]="getUrl()">
+  </div>
+  <p-footer class="buttons-pane">
+    <div class="preview-nav">
+        <button (click)="prev()" [disabled]="isFirst()" pButton pRipple type="button" icon="pi pi-arrow-left" class="left-button select-button p-button-rounded"></button>
+        <button (click)="next()" [disabled]="isLast()" pButton pRipple type="button" icon="pi pi-arrow-right" class="right-button select-button p-button-rounded"></button>
+        <p-tag *ngIf="isUrlUtilized(current?.path)" styleClass="mr-2" icon="pi pi-image" severity="success" value="in album"></p-tag>
+      </div>
+    <div class="selection-nav">
+      <button *ngIf="!isSelected()" (click)="select()" pButton pRipple type="button" icon="pi pi-plus" class="done-button p-button-primary" i18n-label label="Select"></button>
+      <button *ngIf="isSelected()" (click)="select()" pButton pRipple type="button" icon="pi pi-minus" class="done-button p-button-primary p-button-warning" i18n-label label="Unselect"></button>
+    </div>
+    <div>
+        <button pButton pRipple type="button" icon="pi pi-check" class="done-button p-button-primary" i18n-label label="Done" (click)="this.display=false"></button>
+    </div>
+  </p-footer>
+</p-dialog>

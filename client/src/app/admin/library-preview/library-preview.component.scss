@@ -10,17 +10,40 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
+    .preview-nav {
+        display: flex;
+        align-items: center;
+    
+        > button {
+            margin-right: 10px;
+        }
+    
+        p-tag {
+            margin-left: 20px;
+        }
+    }
+
+    .selection-nav {
+        text-align: center;
+    }
+
+    > div {
+        width: 33%;
+    }
 }
 
 ::ng-deep .p-dialog .p-dialog-footer button {
-    &.select-button, &.left-button, &.right-button {
+    &.left-button, &.right-button {
         width: 2.357rem;
         margin: 0;
-    }
-    &.right-button {
-        margin-left: 10px;
     }
     &.done-button {
         margin: 0;
     }
 }
+
+p-tag {
+    text-align: center;
+}
+
