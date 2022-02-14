@@ -1,6 +1,6 @@
 <p-dialog [(visible)]="display" [positionTop]="100" [resizable]="false"
           [blockScroll]="true" [modal]="true" [draggable]="false" [style]="{width: '600px'}"
-          [contentStyle]="{'max-height': '500px'}">
+          [contentStyle]="{'max-height': '500px'}" (onHide)="onHide()">
     <p-header>
         {{header}}
     </p-header>

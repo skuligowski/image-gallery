@@ -11,7 +11,7 @@ import LibraryFile = Definitions.LibraryFile;
 import { BatchProcessDoneEvent, BatchProcessingRevertEvent } from '../post-processing/batch-processing/batch-processing.component';
 import { ProcessingService } from '../services/processing.service';
 import { concatMap, delay, switchMap, tap, toArray } from 'rxjs/operators';
-import { from, of } from 'rxjs';
+import { Subscription, from, of } from 'rxjs';
 import { ProgressComponent } from '../../common/progress/progress.component';
 
 @Component({
@@ -73,8 +73,10 @@ export class AlbumDetailsComponent {
       .filter(file => !file.dir)
       .map(file => file.path);
     
-    this.addingImagesProgress.open(fileList.length);
-    this.albumsService.addImages(this.album.id, fileList)
+    let subscription: Subscription = Subscription.EMPTY;  
+    this.addingImagesProgress.open(fileList.length)
+      .then(() => {subscription.unsubscribe(); console.log('dupa')});
+    subscription = this.albumsService.addImages(this.album.id, fileList)
       .pipe(        
         switchMap(() => 
           from(fileList).pipe(            
@@ -144,8 +146,10 @@ export class AlbumDetailsComponent {
   }
 
   createThumbnails(images: Image[]): void {
-    this.thumbnailsProgress.open(images.length);
-    from(images.map(image => image.url))
+    let subscription: Subscription = Subscription.EMPTY;  
+    this.thumbnailsProgress.open(images.length)
+      .then(() => subscription.unsubscribe());
+    subscription = from(images.map(image => image.url))
       .pipe(
         concatMap(fileUrl => {
           this.thumbnailsProgress.tick(`Creating thub: ${fileUrl}`);
