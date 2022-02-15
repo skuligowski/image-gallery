@@ -23,7 +23,7 @@ function createAlbum(req, res) {
     name: req.body.name,
     permalink: req.body.permalink,
     date: req.body.date
-  }).then(() => res.status(201).send());
+  }).then(response => res.send(response));
 }
 
 function updateAlbum(req, res) {

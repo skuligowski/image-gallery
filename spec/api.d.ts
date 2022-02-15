@@ -51,6 +51,15 @@ declare namespace Definitions {
         date?: string; // date
     }
     /**
+     * AlbumCreateResponse
+     */
+    export interface AlbumCreateResponse {
+        /**
+         * album identifier
+         */
+        id: string;
+    }
+    /**
      * AlbumsResponse
      */
     export type AlbumsResponse = /* Albums */ Album[];
@@ -396,6 +405,9 @@ declare namespace Paths {
         }
         namespace Parameters {
             export type AlbumCreateRequest = /* AlbumCreate */ Definitions.AlbumCreate;
+        }
+        namespace Responses {
+            export type $200 = /* AlbumCreateResponse */ Definitions.AlbumCreateResponse;
         }
     }
     namespace CreateDirectory {

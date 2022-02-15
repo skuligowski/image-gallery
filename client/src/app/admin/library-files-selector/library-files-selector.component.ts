@@ -37,6 +37,7 @@ export class LibraryFilesSelectorComponent {
 
   onDirectoryChange(dirName: string): void {
     this.currentDirectory = dirName;
+    this.selectedFiles = [];
   }
 
 }

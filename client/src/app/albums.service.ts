@@ -5,6 +5,7 @@ import { spinnable } from './common/utils/spinnable';
 import { HttpClient } from '@angular/common/http';
 import Album = Definitions.Album;
 import Image = Definitions.Image;
+import AlbumCreateResponse = Definitions.AlbumCreateResponse;
 
 
 @Injectable()
@@ -39,7 +40,7 @@ export class AlbumsService {
     ).pipe(this.refreshAlbums());
   }
 
-  createAlbum(name: string, permalink: string, date: string): Observable<any> {
+  createAlbum(name: string, permalink: string, date: string): Observable<AlbumCreateResponse> {
     return spinnable(
       this.httpClient.post<any>('/api/albums', { name, permalink, date })
     ).pipe(this.refreshAlbums());

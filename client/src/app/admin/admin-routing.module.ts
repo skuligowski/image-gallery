@@ -17,7 +17,7 @@ const adminRoutes: Routes = [
     children: [
       { path: 'albums', component: AlbumsManagerComponent, resolve: { albums: AlbumsResolver }, runGuardsAndResolvers: 'always' },
       { path: 'albums/:id', component: AlbumDetailsComponent, resolve: { albums: AlbumsResolver, album: AlbumDetailsResolver }, runGuardsAndResolvers: 'always' },
-      { path: 'library', component: LibraryManagerComponent },
+      { path: 'library', component: LibraryManagerComponent, resolve: { albums: AlbumsResolver } },
       { path: 'library/upload', component: LibraryUploadComponent },
       { path: 'users', component: UsersManagerComponent },
       { path: 'settings', component: SettingsComponent },

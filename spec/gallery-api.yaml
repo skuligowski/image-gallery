@@ -56,9 +56,11 @@ paths:
         schema:
           $ref: defs/AlbumCreateRequest.yaml
       responses:
-        201:
+        200:
           description: album created
-
+          schema:
+            $ref: defs/AlbumCreateResponse.yaml
+          
 
   /albums/{id}:
     x-swagger-router-controller: albums.controller
@@ -597,6 +599,8 @@ definitions:
     $ref: defs/Album.yaml
   AlbumCreate:
     $ref: defs/AlbumCreateRequest.yaml
+  AlbumCreateResponse:
+    $ref: defs/AlbumCreateResponse.yaml    
   Image:
     $ref: defs/Image.yaml
   AlbumsResponse:

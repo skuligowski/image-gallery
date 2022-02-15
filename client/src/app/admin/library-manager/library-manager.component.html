@@ -3,8 +3,11 @@
   <nav>
     <p-button class="action" i18n-label label="Create directory" (click)="directoryCreate.open()"></p-button>
     <p-button class="action" i18n-label label="Upload" (click)="libraryUpload.open(currentDirectory)"></p-button>
+    <p-button class="action" i18n-label label="Create album" (click)="albumCreate.open()" [disabled]="!selectedFiles.length"></p-button>
   </nav>
   <app-library-browser (selectFiles)="selectedFiles=$event" (directoryChange)="onDirectoryChange($event)" #libraryBrowser></app-library-browser>
 </div>
 <app-library-directory-create #directoryCreate (confirm)="onCreateDirectory($event)"></app-library-directory-create>
 <app-library-upload #libraryUpload (upload)="onUpload()"></app-library-upload>
+<app-album-create #albumCreate [albums]="albums" (confirm)="onCreateAlbum($event)" i18n-headerLabel headerLabel="Create new album"></app-album-create>
+<app-progress #addingImagesProgress header="Adding new images"></app-progress>
