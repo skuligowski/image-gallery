@@ -75,7 +75,7 @@ export class AlbumDetailsComponent {
     
     let subscription: Subscription = Subscription.EMPTY;  
     this.addingImagesProgress.open(fileList.length)
-      .then(() => {subscription.unsubscribe(); console.log('dupa')});
+      .then(() => subscription.unsubscribe());
     subscription = this.albumsService.addImages(this.album.id, fileList)
       .pipe(        
         switchMap(() => 

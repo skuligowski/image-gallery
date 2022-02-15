@@ -1,0 +1,8 @@
+title: AlbumCreateResponse
+type: object
+properties:
+  id:
+    type: string
+    description: album identifier
+required:
+- id

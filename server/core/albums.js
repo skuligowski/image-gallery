@@ -11,7 +11,7 @@ function createAlbum({name, permalink, date, createDate = new Date().toISOString
     lastModified: createDate,
     createDate,
     images: []
-  });
+  }).then(res => ({id: res._id}));
 }
 
 function updateAlbum(id, {name, permalink, date}) {
