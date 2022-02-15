@@ -22,7 +22,6 @@ export class AnchorsDirective implements AfterViewInit, OnDestroy {
             .pipe(map((queryList: QueryList<AnchorDirective>) => 
             queryList.reduce((map, el) => {
                 map[el.name] = el;
-                console.log(el.name)
                 return map;
             }, {})), tap(map => {
                 this.anchorsMap = map;

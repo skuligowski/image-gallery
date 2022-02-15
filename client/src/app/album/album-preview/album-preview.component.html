@@ -11,7 +11,7 @@
   <app-image-grid>
     <app-image-grid-item *ngFor="let image of album.images;">
       <div class="image-wrapper" [style.padding-bottom.%]="image.height/image.width*100">
-        <img [appAnchor]="image.filename" [routerLink]="[image.filename]" src="/library{{image.thumbUrl || image.url}}">
+        <img loading="lazy" [appAnchor]="image.filename" [routerLink]="[image.filename]" src="/library{{image.thumbUrl || image.url}}">
       </div>
     </app-image-grid-item>
   </app-image-grid>

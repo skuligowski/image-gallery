@@ -4,7 +4,8 @@ const Promise = require('bluebird');
 const db = require('./db');
 const config = require('./config');
 const fs = require('fs');
-const fsPromises = fs.promises;
+const fsp = require('fs').promises;
+const autoRotate = require('../lib/auto-rotate');
 
 function getSourceImage(image) {
     return image.processing ? image.processing.source : {
@@ -16,7 +17,9 @@ function getSourceImage(image) {
 } 
 
 async function doOpen(srcFile) {
-    return await jimp.read(srcFile);
+    const fileIn = await fsp.readFile(srcFile);
+    const buffer = await autoRotate(fileIn);
+    return await jimp.read(buffer);
 }
 
 const resizeModesMapping = {
@@ -49,7 +52,7 @@ function doSharpen(image, {amount}) {
 async function doExport(image, outFile, {quality}) {
     image.quality(quality);
     const outImage = await image.writeAsync(outFile);
-    var stats = await fsPromises.stat(outFile)
+    var stats = await fsp.stat(outFile)
     return {
         width: outImage.bitmap.width,
         height: outImage.bitmap.height,
