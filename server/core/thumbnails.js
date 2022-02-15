@@ -4,6 +4,8 @@ const path = require('path');
 const Promise = require('bluebird');
 const db = require('./db');
 const md5 = require('md5');
+const fsp = require('fs').promises;
+const autoRotate = require('../lib/auto-rotate');
 
 function create(imageUrl) {
   const srcFile = path.join(config.libraryDir, imageUrl);
@@ -30,7 +32,9 @@ function create(imageUrl) {
 
 async function resize(srcImagePath, outImagePath, {size = 360, quality = 92}) {
   console.log(`Creating thumbnail ${srcImagePath} -> ${outImagePath}`);
-  const image = await jimp.read(srcImagePath);
+  const fileIn = await fsp.readFile(srcImagePath);
+  const buffer = await autoRotate(fileIn);
+  const image = await jimp.read(buffer);
   image.resize(size, jimp.AUTO);
   image.quality(quality);
   return await image.write(outImagePath);
@@ -39,3 +43,4 @@ async function resize(srcImagePath, outImagePath, {size = 360, quality = 92}) {
 module.exports = {
   create
 };
+

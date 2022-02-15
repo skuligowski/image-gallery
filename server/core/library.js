@@ -53,8 +53,8 @@ function getImageDetails(filePath) {
       .then(file => sizeOf(absoluteFilePath)
         .then(dimensions => ({
           ...file,
-          width: dimensions.width,
-          height: dimensions.height
+          width: dimensions.orientation < 5 ? dimensions.width : dimensions.height,
+          height: dimensions.orientation < 5 ? dimensions.height : dimensions.width,
         })))
       .then(file => {
         if (file.dir) {
