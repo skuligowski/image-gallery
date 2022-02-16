@@ -28,7 +28,6 @@ export class AlbumDetailsComponent {
   selected: Image[] = [];
   previewEnabled: boolean = false;
   reordered: boolean = false;
-  orderHash: string;
 
   @ViewChild('libraryFilesSelector', { static: true })
   libraryFilesSelector: LibraryFilesSelectorComponent;
@@ -50,8 +49,6 @@ export class AlbumDetailsComponent {
       this.album = data.album;
       this.albums = data.albums;
       this.images = data.album.images;
-      this.orderHash = this.getOrderHash(this.images);
-      this.onRowReorder();
     });
   }
 
@@ -168,16 +165,12 @@ export class AlbumDetailsComponent {
       });
   }
 
-  setImagesOrder(): void {
+  onRowReorder(): void {
     this.albumsService.setImagesOrder(this.album.id, this.images.map(image => image.filename))
       .subscribe(() => {
         this.router.navigated = false;
         this.router.navigate([this.router.url]);
-      });
-  }
-
-  onRowReorder(): void {
-    this.reordered = this.getOrderHash(this.images) !== this.orderHash;
+    });
   }
 
   navigateToAlbums(): void {
@@ -201,9 +194,5 @@ export class AlbumDetailsComponent {
         this.router.navigated = false;
         this.router.navigate([this.router.url]);
       });
-  }
-
-  private getOrderHash(images): string {
-    return images.reduce((str, image) => str.concat(image.filename), '');
   }
 }
