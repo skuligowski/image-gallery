@@ -93,11 +93,11 @@ paths:
         type: string
         required: true
         description: Id of the album
-      - name: AlbumCreateRequest
+      - name: AlbumUpdateRequest
         in: body
-        description: Album create request
+        description: Album update request
         schema:
-          $ref: defs/AlbumCreateRequest.yaml
+          $ref: defs/AlbumUpdateRequest.yaml
       responses:
         200:
           description: album updated
@@ -599,6 +599,8 @@ definitions:
     $ref: defs/Album.yaml
   AlbumCreate:
     $ref: defs/AlbumCreateRequest.yaml
+  AlbumUpdateRequest:
+    $ref: defs/AlbumUpdateRequest.yaml
   AlbumCreateResponse:
     $ref: defs/AlbumCreateResponse.yaml    
   Image:

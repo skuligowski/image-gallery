@@ -48,9 +48,18 @@ function insertVersionProperty() {
     });
 }
 
-function updateScript(oldVersion, newVersion) {
-  console.log(`Updating from ${oldVersion} to ${newVersion}`)
-  return Promise.resolve();
+function updateScript(currentVersion, newVersion) {
+  console.log(`Updating from ${currentVersion} to ${newVersion}`)
+  const semver = require('semver');
+  const chain = Promise.resolve();
+  if (semver.lt(currentVersion, '1.2.0') 
+    && semver.gte(newVersion, '1.2.0')
+    && semver.gt(newVersion, currentVersion)) {      
+      console.log(` -> 1.2.0+ : adding active status for album`)
+      chain.then(() => db.updateAlbum({active: {$exists: false}},
+        {$set: {active: true}}, {multi: true}));
+  }
+  return chain;
 }
 
 module.exports = initialize;
