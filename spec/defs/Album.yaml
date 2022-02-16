@@ -28,6 +28,9 @@ properties:
     type: string
     format: date-time
     description: date of creation
+  active:
+    type: boolean
+    description: if album is visible in gallery
 required:
 - id
 - name
@@ -35,3 +38,4 @@ required:
 - size
 - lastModified
 - createDate
+- active

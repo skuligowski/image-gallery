@@ -1,6 +1,6 @@
 {
   "name": "image-gallery-server",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -28,6 +28,7 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "piexifjs": "^1.0.6",
+    "semver": "^7.3.5",
     "serve-static": "^1.13.2",
     "swagger-parser": "^4.1.0",
     "swagger-tools": "^0.10.3",

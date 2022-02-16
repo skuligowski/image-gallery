@@ -35,6 +35,10 @@ declare namespace Definitions {
          * date of creation
          */
         createDate: string; // date-time
+        /**
+         * if album is visible in gallery
+         */
+        active: boolean;
     }
     /**
      * AlbumCreate
@@ -58,6 +62,21 @@ declare namespace Definitions {
          * album identifier
          */
         id: string;
+    }
+    /**
+     * AlbumUpdateRequest
+     */
+    export interface AlbumUpdateRequest {
+        /**
+         * album name
+         */
+        name?: string;
+        /**
+         * album permalink
+         */
+        permalink?: string;
+        date?: string | null; // date
+        active?: boolean;
     }
     /**
      * AlbumsResponse
@@ -642,10 +661,10 @@ declare namespace Paths {
     }
     namespace UpdateAlbum {
         export interface BodyParameters {
-            AlbumCreateRequest?: Parameters.AlbumCreateRequest;
+            AlbumUpdateRequest?: Parameters.AlbumUpdateRequest;
         }
         namespace Parameters {
-            export type AlbumCreateRequest = /* AlbumCreate */ Definitions.AlbumCreate;
+            export type AlbumUpdateRequest = /* AlbumUpdateRequest */ Definitions.AlbumUpdateRequest;
             /**
              * Id of the album
              */

@@ -188,11 +188,29 @@ export class AlbumDetailsComponent {
 
   onUpdateAlbum(event: AlbumCreateEvent): void {
     this.albumsService
-      .patchAlbum(this.album.id, event.name, event.permalink, event.date)
+      .patchAlbum(this.album.id, event)
       .subscribe(() => {
         event.close();
         this.router.navigated = false;
         this.router.navigate([this.router.url]);
       });
+  }
+
+  publish(): void {
+    this.albumsService
+    .patchAlbum(this.album.id, {active: true})
+    .subscribe(() => {
+      this.router.navigated = false;
+      this.router.navigate([this.router.url]);
+    });
+  }
+
+  suspend(): void {
+    this.albumsService
+    .patchAlbum(this.album.id, {active: false})
+    .subscribe(() => {
+      this.router.navigated = false;
+      this.router.navigate([this.router.url]);
+    });
   }
 }

@@ -5,7 +5,8 @@ const library = require('../core/library');
 const config = require('../core/config');
 
 function getAlbums(req, res) {
-  db.albums.find({}).sort({createDate: -1}).exec((err, albums) =>
+  const predicate = req.user && req.user.admin ? {} : {active: true};
+  db.albums.find(predicate).sort({createDate: -1}).exec((err, albums) =>
     res.send(albums.map(album => ({
       id: album._id,
       permalink: album.permalink,
@@ -14,7 +15,8 @@ function getAlbums(req, res) {
       lastModified: album.lastModified,
       createDate: album.createDate,
       thumbUrl: album.images[0] ? album.images[0].thumbUrl || album.images[0].url : undefined,
-      size: album.images.length
+      size: album.images.length,
+      active: album.active
     }))));
 }
 
@@ -22,16 +24,13 @@ function createAlbum(req, res) {
   albums.createAlbum({
     name: req.body.name,
     permalink: req.body.permalink,
-    date: req.body.date
+    date: req.body.date,
   }).then(response => res.send(response));
 }
 
 function updateAlbum(req, res) {
   const id = req.swagger.params.id.value;
-  albums.updateAlbum(id, {
-    name: req.body.name,
-    permalink: req.body.permalink,
-    date: req.body.date})
+  albums.updateAlbum(id, req.body)
   .then(() => res.status(200).send())
   .catch(e => {
     console.log(e);

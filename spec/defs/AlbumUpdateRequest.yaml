@@ -1,0 +1,14 @@
+title: AlbumUpdateRequest
+type: object
+properties:
+  name:
+    type: string
+    description: album name
+  permalink:
+    type: string
+    description: album permalink
+  date:
+    type: ['string', 'null']
+    format: date
+  active:
+    type: boolean

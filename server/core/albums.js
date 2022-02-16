@@ -10,14 +10,14 @@ function createAlbum({name, permalink, date, createDate = new Date().toISOString
     date: date,
     lastModified: createDate,
     createDate,
-    images: []
+    images: [],
+    active: false,
   }).then(res => ({id: res._id}));
 }
 
-function updateAlbum(id, {name, permalink, date}) {
+function updateAlbum(id, request) {
   return db.findAlbum({ _id: id })
-    .then(album => db.updateAlbum({_id: album._id},
-      {...album, name, permalink, date}));
+    .then(album => db.updateAlbum({_id: album._id}, {$set: request}));
 }
 
 function addImages(id, paths) {

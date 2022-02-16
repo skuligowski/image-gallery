@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import Album = Definitions.Album;
 import Image = Definitions.Image;
 import AlbumCreateResponse = Definitions.AlbumCreateResponse;
-
+import AlbumUpdateRequest = Definitions.AlbumUpdateRequest;
 
 @Injectable()
 export class AlbumsService {
@@ -46,9 +46,9 @@ export class AlbumsService {
     ).pipe(this.refreshAlbums());
   }
 
-  patchAlbum(albumId: string, name: string, permalink: string, date: string): Observable<any> {
+  patchAlbum(albumId: string, albumUpdateRequest: AlbumUpdateRequest): Observable<any> {
     return spinnable(
-      this.httpClient.patch<any>(`/api/albums/${albumId}`, { name, permalink, date })
+      this.httpClient.patch<any>(`/api/albums/${albumId}`, {...albumUpdateRequest})
     ).pipe(this.refreshAlbums());
   }
 

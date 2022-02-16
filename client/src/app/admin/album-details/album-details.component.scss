@@ -5,8 +5,21 @@
 
 nav {
   padding: 20px 0 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   .action {
     margin: 0 10px 10px 0;
+  }
+  .right-action {
+    display: flex;
+    align-items: center;
+    span {
+      font-size: 13px;
+      color: #eee;
+      font-weight: 600;
+      margin-right: 20px;
+    }
   }
 }
 
