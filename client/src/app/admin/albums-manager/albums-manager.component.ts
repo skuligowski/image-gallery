@@ -26,6 +26,10 @@ export class AlbumsManagerComponent implements OnInit {
     this.router.navigateByUrl(`admin/albums/${row.data.id}`);
   }
 
+  onRowReorder(row: any): void {
+    console.log(row);
+  }
+
   onCreateAlbum(event: AlbumCreateEvent): void {
     this.albumsService
       .createAlbum(event.name, event.permalink, event.date)

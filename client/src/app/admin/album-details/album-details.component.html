@@ -6,7 +6,6 @@
     <p-button class="action" i18n-label label="Modify album" (click)="albumModify.open(album);"></p-button>
     <p-button class="action" i18n-label label="Delete album" (click)="removeAlbum(album.id)"></p-button>
     <p-button class="action" [disabled]="!selected.length" i18n-label label="Create thumbnails" (click)="selected.length && createThumbnails(selected)"></p-button>
-    <p-button class="action" [disabled]="!reordered" i18n-label label="Update order" (click)="setImagesOrder()"></p-button>
     <p-button class="action" [disabled]="!selected.length" i18n-label label="Batch processing" (click)="selected.length && batchProcessing.open()"></p-button>
   </nav>
   <p-table [value]="images" dataKey="url" [(selection)]="selected" (onRowReorder)="onRowReorder()">
