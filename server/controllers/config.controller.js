@@ -9,13 +9,14 @@ function getConfig(req, res) {
         dashboardImageUrl: config.dashboardImageUrl,
         imageDownload: config.imageDownload,
     }))
-    .then(config => config.dashboardImageUrl ? config : getLastRecentImageUrl(config))
+    .then(config => config.dashboardImageUrl ? config : getLastRecentImageUrl(config, req))
     .then(config => res.status(200).send(config));
 };
 
-function getLastRecentImageUrl(config) {
+function getLastRecentImageUrl(config, req) {
   return new Promise((resolve) => {
-    db.albums.find({}).sort({lastModified: -1}).limit(1).exec((err, albums) => {
+    const predicate = req.user && req.user.admin ? {} : {active: true};
+    db.albums.find(predicate).sort({lastModified: -1}).limit(1).exec((err, albums) => {
       if (albums.length && albums[0].images.length) {
         config.dashboardImageUrl = albums[0].images[0].url;
       } else {
