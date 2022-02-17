@@ -47,6 +47,6 @@ export class IndexComponent implements OnInit {
   }
 
   getWelcomeImageUrl(): string {
-    return `url(/library${this.config.dashboardImageUrl})`;
+    return 'url("' + encodeURI('/library' + this.config.dashboardImageUrl) + '")';
   }
 }
