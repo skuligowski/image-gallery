@@ -121,6 +121,15 @@ The distribution package will be created in `dist` directory.
 
 ## Release notes
 
+### 1.2.0
+- feat: publish/suspend album 
+- feat: auto-rotating images with a different orientation (exif orientation >= 5)
+- feat: creating an album from library
+- feat: reordering of images with drag&drop
+- feat: images lazy load (optimization)
+- feat: preview of album images
+- fix: url encoding for thumbnails
+
 ### 1.1.1
 - fix: allows to use spaces in library dirs
 
