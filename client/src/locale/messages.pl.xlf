@@ -169,6 +169,10 @@
           <context context-type="sourcefile">src/app/admin/albums-manager/albums-manager.component.html</context>
           <context context-type="linenumber">4</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/library-manager/library-manager.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="7faaaa08f56427999f3be41df1093ce4089bbd75" datatype="html">
         <source>Size</source>
@@ -179,7 +183,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/library-browser/library-browser.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="681a802d32ee0d866f50fc1f527404b3a6eb0765" datatype="html">
@@ -197,17 +201,21 @@
           <context context-type="sourcefile">src/app/admin/albums-manager/albums-manager.component.html</context>
           <context context-type="linenumber">27</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/library-manager/library-manager.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="d59e84644db82b7b6775d099ae130610473584c4" datatype="html">
         <source>Add images</source>
         <target>Dodaj zdjęcia</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">4</context>
+          <context context-type="linenumber">5</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/library-files-selector/library-files-selector.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7bfe1273fc4d4d1d96d463e4a01c5d4293a7bbdc" datatype="html">
@@ -215,7 +223,7 @@
         <target>Usuń zdjęcia</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="695f3f6eacd59b5a7d197e38bafca4565da3a9e5" datatype="html">
@@ -223,11 +231,11 @@
         <target>Modyfikuj album</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">7</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">94</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ef598541ae1643980d19faea9ae1571e9d22a3cf" datatype="html">
@@ -235,7 +243,7 @@
         <target>Usuń album</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e369d5a9264f86464009ccb830e13f753f23b325" datatype="html">
@@ -243,23 +251,47 @@
         <target>Utwórz miniatury</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6d7aba2a1defd58d1feec30502a38fa5f48c6529" datatype="html">
-        <source>Update order</source>
-        <target>Ustaw kolejność</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
           <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ea600fde721fc2971b75e96132946d87f477a919" datatype="html">
         <source>Batch processing</source>
-        <target state="new">Przetwarzanie</target>
+        <target>Przetwarzanie</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
           <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9acf395707a159d4b2c0d8d0349c349ffe2763ad" datatype="html">
+        <source>DRAFT</source>
+        <target>SZKIC</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7f05d572fdaae41c92266908c0a68cfeef3aea01" datatype="html">
+        <source>ACTIVE</source>
+        <target>AKTYWNY</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="223aae0477f79f0bc4436c1c57619415f04cbbb3" datatype="html">
+        <source>Publish</source>
+        <target>Publikuj</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6102631f4c0bb904089bacb6ef53f0dab0cdbe58" datatype="html">
+        <source>Suspend</source>
+        <target>Zawieś</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a5f9ba9bb9faa8284bcadb1cdbc6aaf969e9c4bb" datatype="html">
@@ -267,7 +299,7 @@
         <target>Zdjęcie</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ff1051d895c62d59c3d4c96edb759f8f09fe42c6" datatype="html">
@@ -275,7 +307,7 @@
         <target>Dane zdjęcia</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="57cf305f9bfd681c70dc26e914108d06384ade9f" datatype="html">
@@ -283,7 +315,7 @@
         <target>Przenieś</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="752aa617e12a72f4e148527815e7632d2a4ec99c" datatype="html">
@@ -291,15 +323,15 @@
         <target>Nazwa pliku:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="04380b03179685f28fc991c2ae855696d7f6ca44" datatype="html">
         <source>Size:</source>
-        <target state="new">Wielkość:</target>
+        <target>Wielkość:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit>
       <trans-unit id="753b122e5b6919fbee7387ff462ec993da59bc29" datatype="html">
@@ -307,7 +339,7 @@
         <target>Url:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5ed2d4f688e06ce23efb174c5c2883c449780fd7" datatype="html">
@@ -315,7 +347,7 @@
         <target>Url miniatury:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8737210008395d7b014e5118d2ed198ae9745215" datatype="html">
@@ -323,15 +355,47 @@
         <target>Tytuł:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8aaab7900b39fc1307d70bd5886ba66396668b1f" datatype="html">
         <source>Processing</source>
-        <target state="new">Przetwarzanie</target>
+        <target>Przetwarzanie</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1826fc8845730e984c1f266ecb6b05713b72f9f1" datatype="html">
+        <source> Original (size=<x id="INTERPOLATION" equiv-text="{{source.width}}"/>x<x id="INTERPOLATION_1" equiv-text="{{source.height}}"/><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span *ngIf=&quot;source.size&quot;>"/> @ <x id="INTERPOLATION_2" equiv-text="{{source.size | size}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span>"/>, url=<x id="INTERPOLATION_3" equiv-text="{{source.url}}"/>) </source>
+        <target> Oryginał (size=<x id="INTERPOLATION" equiv-text="{{source.width}}"/>x<x id="INTERPOLATION_1" equiv-text="{{source.height}}"/><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span *ngIf=&quot;source.size&quot;>"/> @ <x id="INTERPOLATION_2" equiv-text="{{source.size | size}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span>"/>, url=<x id="INTERPOLATION_3" equiv-text="{{source.url}}"/>) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">64,66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fb1811f7a8aa7fda4a239cc43adbedf94c3cd61c" datatype="html">
+        <source> Resize (w=<x id="INTERPOLATION" equiv-text="{{resize.width}}"/>, h=<x id="INTERPOLATION_1" equiv-text="{{resize.height}}"/>, mode=<x id="INTERPOLATION_2" equiv-text="{{resize.mode}}"/>) </source>
+        <target> Skaluj (w=<x id="INTERPOLATION" equiv-text="{{resize.width}}"/>, h=<x id="INTERPOLATION_1" equiv-text="{{resize.height}}"/>, mode=<x id="INTERPOLATION_2" equiv-text="{{resize.mode}}"/>) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">68,70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f9b2dc7e2c09a33cb7cf1289914f03814af96558" datatype="html">
+        <source> Sharpen (amount=<x id="INTERPOLATION" equiv-text="{{sharpen.amount}}"/>) </source>
+        <target> Wyostrz (amount=<x id="INTERPOLATION" equiv-text="{{sharpen.amount}}"/>) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">73,75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3a7601a04a63752c3a56b20276d1f4d64c746279" datatype="html">
+        <source> Export (quality=<x id="INTERPOLATION" equiv-text="{{image.processing.params.export?.quality}}"/>, size=<x id="INTERPOLATION_1" equiv-text="{{output.width}}"/>x<x id="INTERPOLATION_2" equiv-text="{{output.height}}"/> <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span *ngIf=&quot;output.size&quot;>"/> @ <x id="INTERPOLATION_3" equiv-text="{{output.size | size}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span>"/>, url=<x id="INTERPOLATION_4" equiv-text="{{output.url}}"/>) </source>
+        <target> Export (quality=<x id="INTERPOLATION" equiv-text="{{image.processing.params.export?.quality}}"/>, size=<x id="INTERPOLATION_1" equiv-text="{{output.width}}"/>x<x id="INTERPOLATION_2" equiv-text="{{output.height}}"/> <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span *ngIf=&quot;output.size&quot;>"/> @ <x id="INTERPOLATION_3" equiv-text="{{output.size | size}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span>"/>, url=<x id="INTERPOLATION_4" equiv-text="{{output.url}}"/>) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
+          <context context-type="linenumber">77,80</context>
         </context-group>
       </trans-unit>
       <trans-unit id="0295e37c88ba1f28e569a35e3c6871b90529f8fa" datatype="html">
@@ -339,11 +403,11 @@
         <target>Potwierdzenie</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">92</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">65</context>
+          <context context-type="linenumber">69</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ca1bf8d84b8ba51b7d4c99d8140975a8b1dbd928" datatype="html">
@@ -351,7 +415,7 @@
         <target>Czy na pewno chcesz usunąć ten album?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/album-details/album-details.component.html</context>
-          <context context-type="linenumber">86</context>
+          <context context-type="linenumber">93</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ad05290fc01e5b51b5dca67c20c9e5e27f70e37a" datatype="html">
@@ -362,9 +426,33 @@
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="2d824d9babb677351ffa8faacf63e69999056da6" datatype="html">
+        <source> Select images (<x id="INTERPOLATION" equiv-text="{{selected?.length}}"/>/<x id="INTERPOLATION_1" equiv-text="{{files?.length}}"/>) </source>
+        <target> Wybór zdjęć (<x id="INTERPOLATION" equiv-text="{{selected?.length}}"/>/<x id="INTERPOLATION_1" equiv-text="{{files?.length}}"/>) </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/library-preview/library-preview.component.html</context>
+          <context context-type="linenumber">5,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9ca82952a6bc860b5391d5975322d8af8ceddfa4" datatype="html">
+        <source>Select</source>
+        <target>Zaznacz</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/library-preview/library-preview.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="78d3f62c9a920e556dae0c1c702f2733a5df44e7" datatype="html">
+        <source>Unselect</source>
+        <target>Odznacz</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/library-preview/library-preview.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="833afc8e2fc5afb8c631655c6e22c2e44a9cc65e" datatype="html">
         <source> Batch processing </source>
-        <target state="new"> Przetwarzanie </target>
+        <target> Przetwarzanie </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/post-processing/batch-processing/batch-processing.component.html</context>
           <context context-type="linenumber">4,6</context>
@@ -372,7 +460,7 @@
       </trans-unit>
       <trans-unit id="00ee25a29cea5ade86bcbe0a5f43c10e41194e5f" datatype="html">
         <source>Resize image</source>
-        <target state="new">Zmień rozmiar</target>
+        <target>Zmień rozmiar</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/post-processing/batch-processing/batch-processing.component.html</context>
           <context context-type="linenumber">10</context>
@@ -380,7 +468,7 @@
       </trans-unit>
       <trans-unit id="828bc0d28636c4fda125fbf32af8df99cf1fe83e" datatype="html">
         <source>Width</source>
-        <target state="new">Długość</target>
+        <target>Długość</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/post-processing/batch-processing/batch-processing.component.html</context>
           <context context-type="linenumber">13</context>
@@ -388,7 +476,7 @@
       </trans-unit>
       <trans-unit id="179eb5c4a21ad324f75f723218a621d120e39d30" datatype="html">
         <source>Height</source>
-        <target state="new">Szerokość</target>
+        <target>Szerokość</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/post-processing/batch-processing/batch-processing.component.html</context>
           <context context-type="linenumber">17</context>
@@ -396,7 +484,7 @@
       </trans-unit>
       <trans-unit id="84179be0a765ac2da1a2bcf6b5b476a4e9253aab" datatype="html">
         <source>Modes</source>
-        <target state="new">Filtr</target>
+        <target>Filtr</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/post-processing/batch-processing/batch-processing.component.html</context>
           <context context-type="linenumber">21</context>
@@ -404,7 +492,7 @@
       </trans-unit>
       <trans-unit id="6a7ae5a9cfb54e3dd58bc7629030ab6d512ffca7" datatype="html">
         <source>Sharpen image</source>
-        <target state="new">Wyostrz</target>
+        <target>Wyostrz</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/post-processing/batch-processing/batch-processing.component.html</context>
           <context context-type="linenumber">28</context>
@@ -412,7 +500,7 @@
       </trans-unit>
       <trans-unit id="99b5589a96f86883ecf8f479c2b9744f7fffccd3" datatype="html">
         <source>Amount (<x id="INTERPOLATION" equiv-text="{{sharpenParams.amount}}"/>)</source>
-        <target state="new">Ilość (<x id="INTERPOLATION" equiv-text="{{sharpenParams.amount}}"/>)</target>
+        <target>Ilość (<x id="INTERPOLATION" equiv-text="{{sharpenParams.amount}}"/>)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/post-processing/batch-processing/batch-processing.component.html</context>
           <context context-type="linenumber">31</context>
@@ -420,7 +508,7 @@
       </trans-unit>
       <trans-unit id="5f19586aba912ec6eb123ec5ab609a3bcc073066" datatype="html">
         <source>Export</source>
-        <target state="new">Export</target>
+        <target>Export</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/post-processing/batch-processing/batch-processing.component.html</context>
           <context context-type="linenumber">37</context>
@@ -428,7 +516,7 @@
       </trans-unit>
       <trans-unit id="55a85a11c3dd77e1c1b4afba9de87eef2bef83e0" datatype="html">
         <source>Quality (<x id="INTERPOLATION" equiv-text="{{exportParams.quality}}"/>%)</source>
-        <target state="new">Jakość (<x id="INTERPOLATION" equiv-text="{{exportParams.quality}}"/>%)</target>
+        <target>Jakość (<x id="INTERPOLATION" equiv-text="{{exportParams.quality}}"/>%)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/post-processing/batch-processing/batch-processing.component.html</context>
           <context context-type="linenumber">40</context>
@@ -436,7 +524,7 @@
       </trans-unit>
       <trans-unit id="557e9fee5ee7713a65b05e7db03fc9181b14f009" datatype="html">
         <source>Revert to original</source>
-        <target state="new">Przywróć oryginalne</target>
+        <target>Przywróć oryginalne</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/post-processing/batch-processing/batch-processing.component.html</context>
           <context context-type="linenumber">48</context>
@@ -444,7 +532,7 @@
       </trans-unit>
       <trans-unit id="6b6a341244987842b9a398da39530352bb9dab9f" datatype="html">
         <source>Process</source>
-        <target state="new">Procesowanie</target>
+        <target>Procesowanie</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/post-processing/batch-processing/batch-processing.component.html</context>
           <context context-type="linenumber">49</context>
@@ -452,7 +540,7 @@
       </trans-unit>
       <trans-unit id="004a2ceec12f2929c5708211bf9d048810576574" datatype="html">
         <source>Processing images...</source>
-        <target state="new">Przetwarzanie zdjęć...</target>
+        <target>Przetwarzanie zdjęć...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/post-processing/batch-processing/batch-processing.component.html</context>
           <context context-type="linenumber">52</context>
@@ -482,20 +570,12 @@
           <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3f674cc0e6478ff96c3cc0cf6f028a5d9be3c828" datatype="html">
-        <source> Select images (<x id="INTERPOLATION" equiv-text="{{selected.length}}"/>/<x id="INTERPOLATION_1" equiv-text="{{files.length}}"/>) </source>
-        <target state="new"> Wybierz zdjęcia (<x id="INTERPOLATION" equiv-text="{{selected.length}}"/>/<x id="INTERPOLATION_1" equiv-text="{{files.length}}"/>) </target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/admin/library-browser/library-preview.component.html</context>
-          <context context-type="linenumber">4,6</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="8dd413cee2228118c536f503709329a4d1a395e2" datatype="html">
         <source>Done</source>
-        <target state="new">Koniec</target>
+        <target>Koniec</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/admin/library-browser/library-preview.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="sourcefile">src/app/admin/library-preview/library-preview.component.html</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="87d4b52afb51ec8ecc13f53a26a926138be3a327" datatype="html">
@@ -603,7 +683,7 @@
         <target>Czy na pewno chcesz usunąć tego użytkownika?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/settings/settings.component.html</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">70</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/users-manager/users-manager.component.html</context>
@@ -767,7 +847,7 @@
       </trans-unit>
       <trans-unit id="79db50e0188e32084270e71ae9579e55cc2137e6" datatype="html">
         <source>Thumbnails directory</source>
-        <target state="new">Katalog miniatur</target>
+        <target>Katalog miniatur</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/settings/settings.component.html</context>
           <context context-type="linenumber">50</context>
@@ -775,7 +855,7 @@
       </trans-unit>
       <trans-unit id="74056c9664fb8c4277467ef8f3071b5414fb591a" datatype="html">
         <source>Thumbnails directory is created directly under the library directory. This is a place where all thumbnails are generated.</source>
-        <target state="new">Katalog miniatur powinien znajdować się bezpośrednio w katalogu biblioteki.</target>
+        <target>Katalog miniatur powinien znajdować się bezpośrednio w katalogu biblioteki.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/settings/settings.component.html</context>
           <context context-type="linenumber">51</context>
@@ -799,7 +879,7 @@
       </trans-unit>
       <trans-unit id="86f6a3bd07532d33f8ee542ac57202f6bb47c751" datatype="html">
         <source>Processed images directory</source>
-        <target state="new">Katalog przetworzonych zdjęć</target>
+        <target>Katalog przetworzonych zdjęć</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/settings/settings.component.html</context>
           <context context-type="linenumber">58</context>
@@ -807,10 +887,26 @@
       </trans-unit>
       <trans-unit id="839e6a044f777fba7b453d230a7f4d1505ab8817" datatype="html">
         <source>A directory where all processed images are created. This directory is created dierectly under the library directory.</source>
-        <target state="new">Katalog, gdzie wszystkie przetworzone zdjęcia są zapisywane. Katalog musi być bezpośrednio w katalogu bilioteki.</target>
+        <target>Katalog, gdzie wszystkie przetworzone zdjęcia są zapisywane. Katalog musi być bezpośrednio w katalogu bilioteki.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/settings/settings.component.html</context>
           <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="73e2ee8366d08e9117ad8955f678df3212558adf" datatype="html">
+        <source>Gallery version</source>
+        <target>Wersja galerii</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9a45f31ffaf04ef615d714ccace51056d8cf68f7" datatype="html">
+        <source>The actual version of the application.</source>
+        <target>Atkualna wersja aplikacji</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/admin/settings/settings.component.html</context>
+          <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b7648e7aced164498aa843b5c4e8f2f1c36a7919" datatype="html">
@@ -823,7 +919,7 @@
       </trans-unit>
       <trans-unit id="579db56f8ad4f85553e1fc8ff242641e40da75bd" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{label || 'Return to gallery'}}"/></source>
-        <target state="new"><x id="INTERPOLATION" equiv-text="{{label || 'Powrót do galerii'}}"/></target>
+        <target><x id="INTERPOLATION" equiv-text="{{label || 'Powrót do galerii'}}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/admin/header-navigation/header-navigation.component.html</context>
           <context context-type="linenumber">4</context>
