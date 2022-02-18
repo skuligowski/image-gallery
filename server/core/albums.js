@@ -45,7 +45,7 @@ function addImages(id, paths) {
           const allImages = new UniqueFilenames(oldImages.map(image => image.filename));
           const newImages = images.filter(image => !!newImagesMap[image.url])
             .map(image => ({...image, filename: allImages.getUniqueFilename(image.filename)}));
-          return [...newImages, ...oldImages];
+          return [...oldImages, ...newImages];
         })
         .then(images => db.updateAlbum({_id: album._id}, {
           ...album, images, lastModified: new Date().toISOString()

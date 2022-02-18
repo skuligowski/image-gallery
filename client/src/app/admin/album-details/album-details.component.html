@@ -44,6 +44,11 @@
         [disabled]="!selected.length"
         icon="pi pi-times" class="p-button-primary p-button-sm">
       </button>
+      <button #sortButton pButton pRipple type="button" 
+        (click)="menu.toggle($event)"
+        i18n-label label="Sort all images" 
+        icon="pi pi-sort-alt" class="p-button-primary p-button-sm">
+      </button>
       <button pButton pRipple type="button" 
         i18n-label label="Create thumbnails" 
         (click)="selected.length && createThumbnails(selected)"
@@ -61,6 +66,7 @@
       {{selected.length}} of {{images.length}} images selected
     </div>
   </nav>
+  <p-menu #menu [popup]="true" [model]="sortMenuItems" appendTo="body"></p-menu>
   <p-table [value]="images" dataKey="url" [(selection)]="selected" (onRowReorder)="onRowReorder()">
     <ng-template pTemplate="header">
       <tr>
@@ -69,7 +75,7 @@
         </th>
         <th style="width: 200px" i18n>Image</th>
         <th i18n>Image data</th>
-        <th style="width: 80px" i18n>Move</th>
+        <th style="width: 80px" i18n>Order</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-image let-index="rowIndex">
