@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlbumsService, AlbumDetails} from '../../albums.service';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, MenuItem } from 'primeng/api';
 import { AlbumCreateEvent } from '../album-create/album-create.component';
 import { LibraryFilesSelectorComponent } from '../library-files-selector/library-files-selector.component';
 import { ThumbnailsService } from '../services/thumbnails.service';
@@ -37,6 +37,19 @@ export class AlbumDetailsComponent {
 
   @ViewChild('addingImagesProgress', { static: true })
   addingImagesProgress: ProgressComponent;
+
+  sortMenuItems: MenuItem[] = [
+    {
+      label: 'By filename asc', 
+      icon: 'pi pi-fw pi-sort-alpha-up', 
+      command: () => this.sortBy('filename', 'asc') 
+    },
+    {
+      label: 'By filename desc', 
+      icon: 'pi pi-fw pi-sort-alpha-down-alt',
+      command: () => this.sortBy('filename', 'desc'),
+    },
+  ];
 
   constructor(private route: ActivatedRoute,
               private albumsService: AlbumsService,
@@ -163,6 +176,18 @@ export class AlbumDetailsComponent {
         this.router.navigated = false;
         this.router.navigate([this.router.url]);
       });
+  }
+  
+  sortBy(param: 'filename', order: 'asc'|'desc'): void {
+    const filenames = this.images
+        .sort((a: Image, b: Image) => (order === 'asc' ? 1 : -1) * a[param].localeCompare(b[param]))
+        .map(image => image.filename);
+    
+    this.albumsService.setImagesOrder(this.album.id, filenames)
+      .subscribe(() => {
+        this.router.navigated = false;
+        this.router.navigate([this.router.url]);
+    });
   }
 
   onRowReorder(): void {

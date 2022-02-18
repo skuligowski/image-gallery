@@ -49,6 +49,7 @@ import { ProgressComponent } from '../common/progress/progress.component';
 import { LibraryPreviewComponent } from './library-preview/library-preview.component';
 import { DynamicDialogModule, DialogService } from 'primeng/dynamicdialog';
 import { TagModule } from 'primeng/tag';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { TagModule } from 'primeng/tag';
     SliderModule,
     ProgressBarModule,
     DynamicDialogModule,
-    TagModule
+    TagModule,
+    MenuModule,
   ],
   providers: [
     AdminGuard,
