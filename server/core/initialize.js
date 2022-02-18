@@ -48,7 +48,7 @@ function insertVersionProperty() {
     });
 }
 
-function updateScript(currentVersion, newVersion) {
+function updateScript(currentVersion = '0.0.0', newVersion) {
   console.log(`Updating from ${currentVersion} to ${newVersion}`)
   const semver = require('semver');
   const chain = Promise.resolve();

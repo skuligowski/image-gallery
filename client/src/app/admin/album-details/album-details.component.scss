@@ -4,24 +4,49 @@
 }
 
 nav {
-  padding: 20px 0 10px 0;
+  padding: 15px 0 0px 0;
+  color: #eee;
   display: flex;
   justify-content: space-between;
   align-items: center;
   .action {
     margin: 0 10px 10px 0;
   }
-  .right-action {
+  .album-title {
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .album-permalink {
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 200;
+  }
+  .album-actions {
     display: flex;
     align-items: center;
     span {
       font-size: 13px;
-      color: #eee;
       font-weight: 600;
-      margin-right: 20px;
+      margin-right: 10px;
+    }
+    button {
+      margin-left: 10px;
+    }
+  }
+  &.images-actions {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0px;
+    z-index: 1000;
+    background: #232323;
+
+    padding: 21px 0 20px 0;
+    button {
+      margin-right: 10px;
     }
   }
 }
+
 
 
 .image-preview {
