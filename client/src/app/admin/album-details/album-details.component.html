@@ -2,18 +2,63 @@
 <div class="admin-layout-container">
   <nav>
     <div>
-      <p-button class="action" i18n-label label="Add images" (click)="browseFiles()"></p-button>
-      <p-button class="action" [disabled]="!selected.length" i18n-label label="Delete images" (click)="selected.length && removeImages(selected)"></p-button>
-      <p-button class="action" i18n-label label="Modify album" (click)="albumModify.open(album);"></p-button>
-      <p-button class="action" i18n-label label="Delete album" (click)="removeAlbum(album.id)"></p-button>
-      <p-button class="action" [disabled]="!selected.length" i18n-label label="Create thumbnails" (click)="selected.length && createThumbnails(selected)"></p-button>
-      <p-button class="action" [disabled]="!selected.length" i18n-label label="Batch processing" (click)="selected.length && batchProcessing.open()"></p-button>
+      <div class="album-title">{{album.name}}</div>
+      <div class="album-permalink">/{{album.permalink}}</div>
     </div>
-    <div class="right-action">
+    <div class="album-actions">
       <span *ngIf="!album.active" i18n>DRAFT</span>
       <span *ngIf="album.active" i18n>ACTIVE</span>
-      <button *ngIf="!album.active" (click)="publish()" pButton pRipple type="button" icon="pi pi-thumbs-up" class="done-button p-button-primary p-button-success p-button-sm" i18n-label label="Publish"></button>
-      <button *ngIf="album.active" (click)="suspend()" pButton pRipple type="button" icon="pi pi-flag" class="done-button p-button-primary p-button-warning p-button-sm" i18n-label label="Suspend"></button>
+      <button pButton pRipple type="button" 
+        i18n-label label="Publish"
+        *ngIf="!album.active"
+        (click)="publish()"
+        icon="pi pi-thumbs-up" class="p-button-primary p-button-success p-button-sm">
+      </button>
+      <button pButton pRipple type="button"
+        i18n-label label="Suspend"
+        *ngIf="album.active" 
+        (click)="suspend()"
+        icon="pi pi-flag" class="p-button-primary p-button-warning p-button-sm">
+      </button>
+      <button pButton pRipple type="button"
+        i18n-label label="Modify"
+        (click)="albumModify.open(album);" 
+        icon="pi pi-pencil" class="p-button-primary p-button-sm">
+      </button>
+      <button pButton pRipple type="button"
+        i18n-label label="Delete"
+        (click)="removeAlbum(album.id)" 
+        icon="pi pi-times" class="p-button-primary p-button-danger p-button-sm">
+      </button>
+    </div>
+  </nav>
+  <nav class="images-actions">
+    <div>
+      <button pButton pRipple type="button" 
+        i18n-label label="Add images" 
+        (click)="browseFiles()" 
+        icon="pi pi-plus" class="p-button-primary p-button-sm"></button>
+      <button pButton pRipple type="button" 
+        i18n-label label="Delete images" 
+        (click)="selected.length && removeImages(selected)" 
+        [disabled]="!selected.length"
+        icon="pi pi-times" class="p-button-primary p-button-sm">
+      </button>
+      <button pButton pRipple type="button" 
+        i18n-label label="Create thumbnails" 
+        (click)="selected.length && createThumbnails(selected)"
+        [disabled]="!selected.length"
+        icon="pi pi-image" class="p-button-primary p-button-sm">
+      </button>
+      <button pButton pRipple type="button" 
+        i18n-label label="Batch processing" 
+        (click)="selected.length && batchProcessing.open()"
+        [disabled]="!selected.length"
+        icon="pi pi-cog" class="p-button-primary p-button-sm">
+      </button>
+    </div>
+    <div>
+      {{selected.length}} of {{images.length}} images selected
     </div>
   </nav>
   <p-table [value]="images" dataKey="url" [(selection)]="selected" (onRowReorder)="onRowReorder()">
