@@ -44,7 +44,7 @@ export class BatchProcessingComponent {
   album: Album;
 
   @Output()
-  done: EventEmitter<BatchProcessDoneEvent> = new EventEmitter();
+  done: EventEmitter<BatchProcessingDoneEvent> = new EventEmitter();
 
   @Output()
   revert: EventEmitter<BatchProcessingRevertEvent> = new EventEmitter();
@@ -115,7 +115,7 @@ export class BatchProcessingComponent {
 
 }
 
-export interface BatchProcessDoneEvent {
+export interface BatchProcessingDoneEvent {
   close: Function;
 }
 

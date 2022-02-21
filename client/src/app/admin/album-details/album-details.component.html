@@ -115,12 +115,17 @@
               <div *ngVar="image.processing.source as source" class="step" i18n>
                 Original (size={{source.width}}x{{source.height}}<span *ngIf="source.size"> @ {{source.size | size}}</span>, url={{source.url}})
               </div>
+              <ng-container *ngIf="image.processing.params.adjust?.exposure">
+                <div *ngVar="image.processing.params.adjust as adjust" class="step" i18n>
+                  Exposure (level={{adjust.exposure}})
+                </div>  
+              </ng-container>
               <ng-container *ngIf="image.processing.params.resize">
                 <div *ngVar="image.processing.params.resize as resize" class="step" i18n>
                   Resize (w={{resize.width}}, h={{resize.height}}, mode={{resize.mode}})
                 </div>  
               </ng-container>
-              <ng-container *ngIf="image.processing.params.sharpen">
+              <ng-container *ngIf="image.processing.params.sharpen?.amount">
                 <div *ngVar="image.processing.params.sharpen as sharpen" class="step" i18n>
                   Sharpen (amount={{sharpen.amount}})
                 </div>
@@ -133,7 +138,7 @@
           </ul>
         </td>
         <td class="actions">
-          <i class="pi pi-pencil" (click)="manualProcessing.open(image)"></i>
+          <i class="pi pi-pencil" (click)="manualProcessing.open(image, album)"></i>
           <i class="pi pi-bars" pReorderableRowHandle></i>
         </td>
       </tr>
@@ -144,7 +149,7 @@
 <p-confirmDialog i18n-header header="Confirmation" icon="pi pi-exclamation-triangle" width="425"
                  i18n-message message="Do you really want to delete this album?"></p-confirmDialog>
 <app-album-create #albumModify [albums]="albums" (confirm)="onUpdateAlbum($event)" i18n-headerLabel headerLabel="Modify album"></app-album-create>
-<app-batch-processing [album]="album" [images]="selected" #batchProcessing (done)="onBatchProcessingDone($event)" (revert)="onBatchProcessingRevert($event)"></app-batch-processing>
+<app-batch-processing [album]="album" [images]="selected" #batchProcessing (done)="onProcessingDone($event)" (revert)="onBatchProcessingRevert($event)"></app-batch-processing>
 <app-progress #addingImagesProgress header="Adding new images"></app-progress>
 <app-progress #thumbnailsProgress header="Generating thumbnails"></app-progress>
 <app-library-preview 
@@ -156,4 +161,4 @@
   [selected]="selected"
   (selectedChange)="onSelect($event)">
 </app-library-preview>
-<app-manual-processing #manualProcessing></app-manual-processing>
+<app-manual-processing #manualProcessing (done)="onProcessingDone($event)"></app-manual-processing>

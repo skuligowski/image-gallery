@@ -1,13 +1,14 @@
-import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
-import * as Jimp from 'jimp/browser/lib/jimp';
-import { asyncScheduler, interval, Observable, Subject, Subscription } from 'rxjs';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { asyncScheduler, Observable, Subject, Subscription } from 'rxjs';
+import { delay, tap, throttleTime } from 'rxjs/operators';
+import { ProgressComponent } from '../../../common/progress/progress.component';
+import { ProcessingService } from '../../services/processing.service';
 import Image = Definitions.Image;
+import Album = Definitions.Album;
 import ProcessingResizeParams = Definitions.ProcessingResizeParams;
 import ProcessingSharpenParams = Definitions.ProcessingSharpenParams;
 import ProcessingExportParams = Definitions.ProcessingExportParams;
 import ProcessingAdjustParams = Definitions.ProcessingAdjustParams;
-import { throttle, switchMap, debounceTime, throttleTime } from 'rxjs/operators';
-import { ConsoleLogger } from '@angular/compiler-cli/private/localize';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class ManualProcessingComponent implements OnInit {
     
     display: boolean;
     current: Image;
+    album: Album;
 
     worker: Worker;
     imageUrl: string;
@@ -46,9 +48,18 @@ export class ManualProcessingComponent implements OnInit {
     exportParams: ProcessingExportParams = {quality: 92};
     adjustParams: ProcessingAdjustParams = {exposure: 0};
     
-    open(current: Image): void {
+    @ViewChild('processingProgress', { static: true })
+    processingProgress: ProgressComponent;
+
+    @Output()
+    done: EventEmitter<ManualProcessingDoneEvent> = new EventEmitter();
+
+    regenerateThumbnail: boolean = true;
+
+    open(current: Image, album: Album): void {
         this.display = true;
         let imageUrl = current.url;
+        this.album = album;
         this.zoomRate = 0;
         this.image = {
             backgroundImage: '',
@@ -68,6 +79,7 @@ export class ManualProcessingComponent implements OnInit {
             if (current.processing.params.sharpen) {
                 this.sharpenParams = {...current.processing.params.sharpen};
             }
+            this.adjustParams = {...current.processing.params.adjust};
             this.exportParams = {...current.processing.params.export};
             imageUrl = current.processing.source.url;
         }
@@ -109,12 +121,38 @@ export class ManualProcessingComponent implements OnInit {
         }
     }
     
+    save(): void {
+        let subscription: Subscription = Subscription.EMPTY;  
+        this.processingProgress.open(2)
+            .then(() => subscription.unsubscribe());
+        this.processingProgress.tick(`Processing ${this.current.filename}`);
+        subscription = this.processingService.runProcessing(
+            this.album.id, 
+            { 
+              url: this.current.url,
+              resize: this.resizeEnabled ? this.resizeParams : undefined,
+              sharpen: this.sharpenParams,
+              adjust: this.adjustParams, 
+              export: this.exportParams,
+            }).pipe(
+                tap(() => this.processingProgress.tick()),
+                delay(3000)
+            )
+            .subscribe(res => {
+                this.processingProgress.close();
+                this.refreshSubscription.unsubscribe();
+                this.done.emit({
+                    close: () => this.display = false
+                });
+            });
+    }
+    
     close(): void {
         this.refreshSubscription.unsubscribe();
         this.display = false;
     }
 
-    constructor() {
+    constructor(private processingService: ProcessingService) {
         this.worker = new Worker('processing.worker.js');
         this.worker.onmessage = (e) => {
             this.loading = false;
@@ -157,3 +195,7 @@ export class ManualProcessingComponent implements OnInit {
         
     }
 }
+
+export interface ManualProcessingDoneEvent {
+    close: Function;
+  }

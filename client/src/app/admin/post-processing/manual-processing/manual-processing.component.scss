@@ -50,3 +50,14 @@
         }
     }
 }
+
+p-footer {
+    display: flex;
+    justify-content: end;
+}
+.buttons-group {
+    display: flex;
+    button {
+        margin-left: 20px;
+    }
+}

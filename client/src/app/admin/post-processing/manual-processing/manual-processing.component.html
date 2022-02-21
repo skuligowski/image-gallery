@@ -18,7 +18,7 @@
             </div>
             <div class="parameter">
                 <div class="enabler">
-                    <span i18n>Sharpen image (amount={{sharpenParams.amount}}%)</span>
+                    <span i18n>Sharpen image (amount={{sharpenParams.amount}})</span>
                 </div>
                 <div class="control">
                     <p-slider [(ngModel)]="sharpenParams.amount" (onChange)="nextRefresh()" [min]="0" [max]="2" [step]="0.01"></p-slider>
@@ -58,9 +58,11 @@
             <div (click)="zoom()" [ngStyle]="image"></div>
         </div>
     </div>
-    <p-footer class="buttons-pane">
-        <div>
-            <button pButton pRipple type="button" icon="pi pi-check" class="done-button p-button-primary" i18n-label label="Done" (click)="close()"></button>
+    <p-footer>
+        <div class="buttons-group">
+            <p-checkbox [binary]="true" [(ngModel)]="regenerateThumbnail" label="Regenerate thumbnail"></p-checkbox>
+            <button pButton pRipple type="button" icon="pi pi-check" class="done-button p-button-primary" i18n-label label="Done" (click)="save()"></button>
         </div>
     </p-footer>
 </p-dialog>
+<app-progress #processingProgress i18n-header header="Processing images..."></app-progress>
