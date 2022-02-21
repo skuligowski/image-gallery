@@ -92,6 +92,7 @@ export class BatchProcessingComponent {
               url: image.url,
               resize: this.resizeEnabled ? this.resizeParams : undefined,
               sharpen: this.sharpenEnabled ? this.sharpenParams: undefined,
+              adjust: { exposure: 0 }, 
               export: this.exportParams,
             }
           ).pipe(tap(() => this.processingProgress.tick()))

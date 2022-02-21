@@ -1,0 +1,66 @@
+<p-dialog [(visible)]="display" [resizable]="false"
+          [blockScroll]="true" [modal]="true" [draggable]="false" [style]="{width: '95%', 'max-height': '95%'}"
+          [contentStyle]="{'height': '100vh', 'padding': '0'}"
+          (onHide)="close()"
+          appendTo="body">
+    <p-header i18n>
+        Manual processing
+    </p-header>
+    <div class="processing-view">
+        <div class="toolbar">
+            <div class="parameter">
+                <div class="enabler">
+                    <span i18n>Exposure (level={{adjustParams.exposure}})</span>
+                </div>
+                <div class="control">
+                    <p-slider [(ngModel)]="adjustParams.exposure" (onChange)="nextRefresh()" [min]="-100" [max]="100"></p-slider>
+                </div>
+            </div>
+            <div class="parameter">
+                <div class="enabler">
+                    <span i18n>Sharpen image (amount={{sharpenParams.amount}}%)</span>
+                </div>
+                <div class="control">
+                    <p-slider [(ngModel)]="sharpenParams.amount" (onChange)="nextRefresh()" [min]="0" [max]="2" [step]="0.01"></p-slider>
+                </div>
+            </div>
+            <div class="parameter">
+                <div class="enabler">
+                    <span i18n>Export (quality={{exportParams.quality}}%)</span>
+                </div>
+                <div class="control">
+                    <p-slider [(ngModel)]="exportParams.quality" (onChange)="nextRefresh()" [min]="0" [max]="100"></p-slider>
+                </div>
+            </div>
+            <div class="parameter">
+                <div class="enabler">
+                    <p-checkbox id="resize" [binary]="true" [(ngModel)]="resizeEnabled"></p-checkbox> 
+                    <span i18n>Resize image</span>
+                </div>
+                <div class="control flex">
+                    <div>
+                        <label for="width" i18n>Width</label>
+                        <p-inputNumber id="width" [(ngModel)]="resizeParams.width" [useGrouping]="false" mode="decimal" [disabled]="!resizeEnabled"></p-inputNumber>
+                    </div>
+                    <div>
+                        <label for="height" i18n>Height</label>
+                        <p-inputNumber id="height" [(ngModel)]="resizeParams.height" [useGrouping]="false" mode="decimal" [disabled]="!resizeEnabled"></p-inputNumber>
+                    </div>
+                    <div>
+                        <label for="modes" i18n>Mode</label>
+                        <p-dropdown id="modes" (onChange)="nextRefresh()" [options]="resizeModes" [(ngModel)]="resizeParams.mode" optionLabel="name" optionValue="code" [appendTo]="'body'" [disabled]="!resizeEnabled"></p-dropdown>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="image-container">
+            <div *ngIf="loading" class="loading">Loading ...</div>
+            <div (click)="zoom()" [ngStyle]="image"></div>
+        </div>
+    </div>
+    <p-footer class="buttons-pane">
+        <div>
+            <button pButton pRipple type="button" icon="pi pi-check" class="done-button p-button-primary" i18n-label label="Done" (click)="close()"></button>
+        </div>
+    </p-footer>
+</p-dialog>

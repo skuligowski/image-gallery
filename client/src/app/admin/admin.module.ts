@@ -3,6 +3,7 @@ import { AlbumsManagerComponent } from './albums-manager/albums-manager.componen
 import { AlbumCreateComponent } from './album-create/album-create.component';
 import { AlbumDetailsComponent } from './album-details/album-details.component';
 import { BatchProcessingComponent } from './post-processing/batch-processing/batch-processing.component';
+import { ManualProcessingComponent } from './post-processing/manual-processing/manual-processing.component';
 import { LibraryUploadComponent } from './library-manager/library-upload/library-upload.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -58,6 +59,7 @@ import { MenuModule } from 'primeng/menu';
     AlbumDetailsComponent,
     AlbumsManagerComponent,
     BatchProcessingComponent,
+    ManualProcessingComponent,
     HeaderNavigationComponent,
     LibraryBrowserComponent,
     LibraryDirectoryCreateComponent,

@@ -6,7 +6,10 @@ properties:
     $ref: ProcessingResizeParams.yaml
   sharpen:
     $ref: ProcessingSharpenParams.yaml
+  adjust:
+    $ref: ProcessingAdjustParams.yaml
   export:
     $ref: ProcessingExportParams.yaml
 required:
+- adjust
 - export
