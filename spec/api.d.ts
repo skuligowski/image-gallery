@@ -223,6 +223,12 @@ declare namespace Definitions {
         ProcessingParams;
     }
     /**
+     * ProcessingAdjustParams
+     */
+    export interface ProcessingAdjustParams {
+        exposure: number;
+    }
+    /**
      * ProcessingExportParams
      */
     export interface ProcessingExportParams {
@@ -245,6 +251,7 @@ declare namespace Definitions {
     export interface ProcessingParams {
         resize?: /* ProcessingResizeParams */ ProcessingResizeParams;
         sharpen?: /* ProcessingSharpenParams */ ProcessingSharpenParams;
+        adjust: /* ProcessingAdjustParams */ ProcessingAdjustParams;
         export: /* ProcessingExportParams */ ProcessingExportParams;
     }
     /**
@@ -254,6 +261,7 @@ declare namespace Definitions {
     export interface ProcessingRequest {
         resize?: /* ProcessingResizeParams */ ProcessingResizeParams;
         sharpen?: /* ProcessingSharpenParams */ ProcessingSharpenParams;
+        adjust: /* ProcessingAdjustParams */ ProcessingAdjustParams;
         export: /* ProcessingExportParams */ ProcessingExportParams;
         url: string;
     }

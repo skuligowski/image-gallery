@@ -133,6 +133,7 @@
           </ul>
         </td>
         <td class="actions">
+          <i class="pi pi-pencil" (click)="manualProcessing.open(image)"></i>
           <i class="pi pi-bars" pReorderableRowHandle></i>
         </td>
       </tr>
@@ -155,3 +156,4 @@
   [selected]="selected"
   (selectedChange)="onSelect($event)">
 </app-library-preview>
+<app-manual-processing #manualProcessing></app-manual-processing>

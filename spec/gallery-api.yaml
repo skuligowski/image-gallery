@@ -641,6 +641,8 @@ definitions:
     $ref: defs/ProcessingParams.yaml
   ProcessingRevertRequest:
     $ref: defs/ProcessingRevertRequest.yaml
+  ProcessingAdjustParams:
+    $ref: defs/ProcessingAdjustParams.yaml
   ProcessingResizeParams:
     $ref: defs/ProcessingResizeParams.yaml
   ProcessingSharpenParams:

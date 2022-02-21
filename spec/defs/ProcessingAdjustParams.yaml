@@ -1,0 +1,7 @@
+title: ProcessingAdjustParams
+type: object
+properties:
+  exposure:
+    type: number
+required:
+- exposure

@@ -30,7 +30,17 @@
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
             "assets": [
-              "src/favicon.ico"
+              "src/favicon.ico",
+              { 
+                "glob": "processing.worker.js",
+                "input": "src/app/admin/post-processing/manual-processing",
+                "output": "/"
+              },
+              {
+                "glob": "jimp.js",
+                "input": "src/assets/lib",
+                "output": "/"
+              }
             ],
             "styles": [
               "node_modules/normalize.css/normalize.css",
