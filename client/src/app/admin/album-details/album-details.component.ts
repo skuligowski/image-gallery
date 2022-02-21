@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlbumsService, AlbumDetails} from '../../albums.service';
+import { AlbumsService } from '../../albums.service';
 import { ConfirmationService, MenuItem } from 'primeng/api';
 import { AlbumCreateEvent } from '../album-create/album-create.component';
 import { LibraryFilesSelectorComponent } from '../library-files-selector/library-files-selector.component';
@@ -8,11 +8,12 @@ import { ThumbnailsService } from '../services/thumbnails.service';
 import Image = Definitions.Image;
 import Album = Definitions.Album;
 import LibraryFile = Definitions.LibraryFile;
-import { BatchProcessDoneEvent, BatchProcessingRevertEvent } from '../post-processing/batch-processing/batch-processing.component';
+import { BatchProcessingDoneEvent, BatchProcessingRevertEvent } from '../post-processing/batch-processing/batch-processing.component';
 import { ProcessingService } from '../services/processing.service';
 import { concatMap, delay, switchMap, tap, toArray } from 'rxjs/operators';
 import { Subscription, from, of } from 'rxjs';
 import { ProgressComponent } from '../../common/progress/progress.component';
+import { ManualProcessingDoneEvent } from '../post-processing/manual-processing/manual-processing.component';
 
 @Component({
   selector: 'app-album-details',
@@ -130,7 +131,7 @@ export class AlbumDetailsComponent {
     });
   }
 
-  onBatchProcessingDone(event: BatchProcessDoneEvent): void {
+  onProcessingDone(event: BatchProcessingDoneEvent | ManualProcessingDoneEvent): void {
     of(event).pipe(this.albumsService.refreshAlbums())
      .pipe(switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id)))
       .subscribe(response => {

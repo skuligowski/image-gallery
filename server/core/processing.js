@@ -49,6 +49,12 @@ function doSharpen(image, {amount}) {
     );
 }
 
+function doAdjust(image, {exposure}) {
+    if (exposure !== 0) {
+        image.brightness(exposure / 100);
+    }
+}
+
 async function doExport(image, outFile, {quality}) {
     image.quality(quality);
     const outImage = await image.writeAsync(outFile);
@@ -79,6 +85,7 @@ function processImage(albumId, imageUrl, params) {
             if (params.resize) {
                 doResize(image, params.resize);
             }
+            doAdjust(image, params.adjust);
             if (params.sharpen) {
                 doSharpen(image, params.sharpen)
             }

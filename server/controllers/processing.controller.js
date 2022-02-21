@@ -5,6 +5,7 @@ function processImage(req, res) {
     processing.processImage(albumId, req.body.url, {
         resize: req.body.resize,
         sharpen: req.body.sharpen,
+        adjust: req.body.adjust,
         export: req.body.export,
     }).then(out => res.status(201).send());
 }
