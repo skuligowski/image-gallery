@@ -152,6 +152,7 @@
 <app-batch-processing [album]="album" [images]="selected" #batchProcessing (done)="onProcessingDone($event)" (revert)="onBatchProcessingRevert($event)"></app-batch-processing>
 <app-progress #addingImagesProgress header="Adding new images"></app-progress>
 <app-progress #thumbnailsProgress header="Generating thumbnails"></app-progress>
+<app-progress #revertProgress header="Reverting images"></app-progress>
 <app-library-preview 
   [(display)]="previewEnabled" 
   [current]="current" 

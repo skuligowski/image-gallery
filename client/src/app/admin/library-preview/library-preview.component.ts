@@ -63,7 +63,6 @@ export class LibraryPreviewComponent<T> implements OnInit {
 
     public select(): void {
         const fileIndex = this.selected.findIndex(file => file[this.urlProperty] === (this.current || {})[this.urlProperty]);
-        console.log(fileIndex);
         if (fileIndex === -1) {
             this.selectedChange.emit(this.selected.concat(this.current));
         } else {

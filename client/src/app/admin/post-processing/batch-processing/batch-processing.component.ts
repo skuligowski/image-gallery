@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { from, Subscription } from 'rxjs';
-import { concatMap, delay, map, mergeMap, tap, toArray } from 'rxjs/operators';
+import { concatMap, delay, map, mergeMap, switchMap, tap, toArray } from 'rxjs/operators';
 import { ProgressComponent } from '../../../common/progress/progress.component';
 import { ProcessingService } from '../../services/processing.service';
 import ProcessingResizeParams = Definitions.ProcessingResizeParams;
@@ -8,6 +8,7 @@ import ProcessingSharpenParams = Definitions.ProcessingSharpenParams;
 import ProcessingExportParams = Definitions.ProcessingExportParams;
 import Image = Definitions.Image;
 import Album = Definitions.Album;
+import { ThumbnailsService } from '../../services/thumbnails.service';
 
 @Component({
   selector: 'app-batch-processing',
@@ -52,7 +53,7 @@ export class BatchProcessingComponent {
   @ViewChild('processingProgress', { static: true })
   processingProgress: ProgressComponent;
 
-  constructor(private processingService: ProcessingService) {
+  constructor(private processingService: ProcessingService, private thumbnailsService: ThumbnailsService) {
     const params = (JSON.parse(localStorage.getItem('_ig_proc_params_snapshot')) as BatchProcessingParamsSnapshot);
     if (params) {
       this.resizeEnabled = params.resizeEnabled;
@@ -80,7 +81,7 @@ export class BatchProcessingComponent {
       exportParams: this.exportParams,
     }));
     let subscription: Subscription = Subscription.EMPTY;  
-    this.processingProgress.open(this.images.length)
+    this.processingProgress.open(2*this.images.length)
       .then(() => subscription.unsubscribe());
     subscription = from(this.images.map((image, index) => ({ filename: image.filename, url: image.url, index })))
       .pipe(
@@ -95,7 +96,13 @@ export class BatchProcessingComponent {
               adjust: { exposure: 0 }, 
               export: this.exportParams,
             }
-          ).pipe(tap(() => this.processingProgress.tick()))
+          ).pipe(
+              switchMap(image => {
+                this.processingProgress.tick();
+                return this.thumbnailsService.createThumbnail(image.url);
+              }),
+              tap(() => this.processingProgress.tick())
+          )
         }),
         toArray(),
         delay(3000),

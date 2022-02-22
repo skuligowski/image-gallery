@@ -587,6 +587,9 @@ declare namespace Paths {
         export interface PathParameters {
             id: /* Id of the album */ Parameters.Id;
         }
+        namespace Responses {
+            export type $200 = /* Image */ Definitions.Image;
+        }
     }
     namespace RemoveAlbum {
         namespace Parameters {

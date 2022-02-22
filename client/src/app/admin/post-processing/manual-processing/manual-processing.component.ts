@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { asyncScheduler, Observable, Subject, Subscription } from 'rxjs';
-import { delay, tap, throttleTime } from 'rxjs/operators';
+import { delay, switchMap, tap, throttleTime } from 'rxjs/operators';
 import { ProgressComponent } from '../../../common/progress/progress.component';
 import { ProcessingService } from '../../services/processing.service';
 import Image = Definitions.Image;
@@ -9,6 +9,7 @@ import ProcessingResizeParams = Definitions.ProcessingResizeParams;
 import ProcessingSharpenParams = Definitions.ProcessingSharpenParams;
 import ProcessingExportParams = Definitions.ProcessingExportParams;
 import ProcessingAdjustParams = Definitions.ProcessingAdjustParams;
+import { ThumbnailsService } from '../../services/thumbnails.service';
 
 
 @Component({
@@ -53,8 +54,6 @@ export class ManualProcessingComponent implements OnInit {
 
     @Output()
     done: EventEmitter<ManualProcessingDoneEvent> = new EventEmitter();
-
-    regenerateThumbnail: boolean = true;
 
     open(current: Image, album: Album): void {
         this.display = true;
@@ -123,7 +122,7 @@ export class ManualProcessingComponent implements OnInit {
     
     save(): void {
         let subscription: Subscription = Subscription.EMPTY;  
-        this.processingProgress.open(2)
+        this.processingProgress.open(3)
             .then(() => subscription.unsubscribe());
         this.processingProgress.tick(`Processing ${this.current.filename}`);
         subscription = this.processingService.runProcessing(
@@ -135,6 +134,10 @@ export class ManualProcessingComponent implements OnInit {
               adjust: this.adjustParams, 
               export: this.exportParams,
             }).pipe(
+                switchMap(image => {
+                    this.processingProgress.tick();
+                    return this.thumbnailsService.createThumbnail(image.url);
+                }),
                 tap(() => this.processingProgress.tick()),
                 delay(3000)
             )
@@ -152,7 +155,7 @@ export class ManualProcessingComponent implements OnInit {
         this.display = false;
     }
 
-    constructor(private processingService: ProcessingService) {
+    constructor(private processingService: ProcessingService, private thumbnailsService: ThumbnailsService) {
         this.worker = new Worker('processing.worker.js');
         this.worker.onmessage = (e) => {
             this.loading = false;

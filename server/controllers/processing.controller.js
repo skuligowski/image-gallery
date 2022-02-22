@@ -7,7 +7,7 @@ function processImage(req, res) {
         sharpen: req.body.sharpen,
         adjust: req.body.adjust,
         export: req.body.export,
-    }).then(out => res.status(201).send());
+    }).then(out => res.send(out));
 }
 
 function revertProcessedImages(req, res) {
