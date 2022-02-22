@@ -279,8 +279,10 @@ paths:
             schema:
               $ref: defs/ProcessingRequest.yaml
         responses:
-          201:
-            description: Action successfull
+          200:
+            description: modified file
+            schema:
+              $ref: defs/Image.yaml
           404:
             description: An album with given id was not found
 

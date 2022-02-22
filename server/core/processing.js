@@ -113,7 +113,11 @@ function processImage(albumId, imageUrl, params) {
                         console.log(`Removing processed image: ${toDelete}`);
                         fs.unlinkSync(path.join(config.libraryDir, toDelete));    
                     }
-                })
+                }).then(() => {
+                    return db.findAlbum({_id: albumId}).then(album => 
+                        album.images.find(image => image.url === fileUrl)
+                    );
+                });
         });
     });
 }

@@ -39,6 +39,9 @@ export class AlbumDetailsComponent {
   @ViewChild('addingImagesProgress', { static: true })
   addingImagesProgress: ProgressComponent;
 
+  @ViewChild('revertProgress', { static: true })
+  revertProgress: ProgressComponent;
+
   sortMenuItems: MenuItem[] = [
     {
       label: 'By filename asc', 
@@ -85,8 +88,7 @@ export class AlbumDetailsComponent {
       .map(file => file.path);
     
     let subscription: Subscription = Subscription.EMPTY;  
-    this.addingImagesProgress.open(fileList.length)
-      .then(() => subscription.unsubscribe());
+    this.addingImagesProgress.open(fileList.length).then(() => subscription.unsubscribe());
     subscription = this.albumsService.addImages(this.album.id, fileList)
       .pipe(        
         switchMap(() => 
@@ -144,10 +146,26 @@ export class AlbumDetailsComponent {
   }
 
   onBatchProcessingRevert(event: BatchProcessingRevertEvent): void {
-    this.processingService.revertProcessing(this.album.id, this.selected.map(image => image.url))
-    .pipe(this.albumsService.refreshAlbums())
-    .pipe(switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id)))
+    const fileList = this.selected.map(image => image.url);
+    
+    let subscription: Subscription = Subscription.EMPTY;  
+    this.revertProgress.open(fileList.length).then(() => subscription.unsubscribe());
+    subscription = this.processingService.revertProcessing(this.album.id, fileList)
+      .pipe(        
+        switchMap(() => 
+          from(fileList).pipe(            
+            concatMap(fileUrl => {
+              this.revertProgress.tick(`Reverting ${fileUrl}`);
+              return this.thumbnailsService.createThumbnail(fileUrl);
+            }),
+            toArray()
+          )
+        ),
+        this.albumsService.refreshAlbums(),
+        switchMap(() => this.albumsService.getAlbumDetailsById(this.album.id))
+      )
       .subscribe(response => {
+        this.revertProgress.close();
         this.images = response.images;
         this.selected = [];
         this.router.navigated = false;
