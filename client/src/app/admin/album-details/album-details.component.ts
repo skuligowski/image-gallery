@@ -152,11 +152,11 @@ export class AlbumDetailsComponent {
     this.revertProgress.open(fileList.length).then(() => subscription.unsubscribe());
     subscription = this.processingService.revertProcessing(this.album.id, fileList)
       .pipe(        
-        switchMap(() => 
-          from(fileList).pipe(            
-            concatMap(fileUrl => {
-              this.revertProgress.tick(`Reverting ${fileUrl}`);
-              return this.thumbnailsService.createThumbnail(fileUrl);
+        switchMap(images => 
+          from(images).pipe(            
+            concatMap(image => {
+              this.revertProgress.tick(`Reverting ${image.filename}`);
+              return this.thumbnailsService.createThumbnail(image.url);
             }),
             toArray()
           )

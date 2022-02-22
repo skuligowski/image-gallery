@@ -18,6 +18,14 @@
             </div>
             <div class="parameter">
                 <div class="enabler">
+                    <span i18n>Contrast (level={{adjustParams.contrast}})</span>
+                </div>
+                <div class="control">
+                    <p-slider [(ngModel)]="adjustParams.contrast" (onChange)="nextRefresh()" [min]="-100" [max]="100"></p-slider>
+                </div>
+            </div>
+            <div class="parameter">
+                <div class="enabler">
                     <span i18n>Sharpen image (amount={{sharpenParams.amount}})</span>
                 </div>
                 <div class="control">

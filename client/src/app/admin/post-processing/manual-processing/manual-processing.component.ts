@@ -47,7 +47,7 @@ export class ManualProcessingComponent implements OnInit {
 
     sharpenParams: ProcessingSharpenParams = {amount: 0.2};
     exportParams: ProcessingExportParams = {quality: 92};
-    adjustParams: ProcessingAdjustParams = {exposure: 0};
+    adjustParams: ProcessingAdjustParams = {exposure: 0, contrast: 0};
     
     @ViewChild('processingProgress', { static: true })
     processingProgress: ProgressComponent;
@@ -81,6 +81,12 @@ export class ManualProcessingComponent implements OnInit {
             this.adjustParams = {...current.processing.params.adjust};
             this.exportParams = {...current.processing.params.export};
             imageUrl = current.processing.source.url;
+        } else {
+            this.sharpenParams = { amount: 0.2 };
+            this.exportParams = { quality: 92 };
+            this.adjustParams = { exposure: 0, contrast: 0 };
+            this.resizeEnabled = false;
+            this.resizeParams = {width: 1024, height: 768, mode: 'RESIZE_BICUBIC'};
         }
         this.current = current;
         this.imageUrl = '/library'+imageUrl;

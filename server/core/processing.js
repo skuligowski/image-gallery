@@ -49,9 +49,12 @@ function doSharpen(image, {amount}) {
     );
 }
 
-function doAdjust(image, {exposure}) {
+function doAdjust(image, {exposure, contrast}) {
     if (exposure !== 0) {
         image.brightness(exposure / 100);
+    }
+    if (contrast !== 0) {
+        image.contrast(contrast / 100);
     }
 }
 
@@ -122,7 +125,7 @@ function processImage(albumId, imageUrl, params) {
     });
 }
 
-function revertImages(albumId, urls, concurrency = 5) {
+function revertImages(albumId, urls, concurrency = 1) {
     return db.findAlbum({_id: albumId})
         .then(album => 
             album.images.reduce((result, image, index) => {
@@ -134,9 +137,10 @@ function revertImages(albumId, urls, concurrency = 5) {
                         ...processing.source,
                     }
                     result.toDelete.push(processing.output.url);
+                    result.toReturn.push(processing.source.url);
                 }
                 return result;
-            }, {$set: {}, toDelete: []})
+            }, {$set: {}, toDelete: [], toReturn: []})
         )
         .then(result => {
             console.log(JSON.stringify(result, null, 4));
@@ -144,7 +148,12 @@ function revertImages(albumId, urls, concurrency = 5) {
                 .then(() => Promise.map(result.toDelete, file => {
                     console.log(`Removing processed image: ${file}`);
                     fs.unlinkSync(path.join(config.libraryDir, file))
-                }, { concurrency }));
+                }, { concurrency }))
+                .then(() => {
+                    return db.findAlbum({_id: albumId}).then(album => 
+                        album.images.filter(image => result.toReturn.includes(image.url))
+                    );
+                });
         });
 }
 
