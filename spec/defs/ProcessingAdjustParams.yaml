@@ -3,5 +3,8 @@ type: object
 properties:
   exposure:
     type: number
+  contrast:
+    type: number
 required:
 - exposure
+- contrast

@@ -22,6 +22,9 @@ function process(image, params) {
     if (params.adjust.exposure !== 0) {
         image.brightness(params.adjust.exposure / 100);
     }
+    if (params.adjust.contrast !== 0) {
+        image.contrast(params.adjust.contrast / 100);
+    }
     if (params.sharpen) {
         const amount = params.sharpen.amount || 0;
         image.convolute(

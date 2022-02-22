@@ -13,7 +13,7 @@ function processImage(req, res) {
 function revertProcessedImages(req, res) {
     const albumId = req.swagger.params.id.value;
     processing.revertImages(albumId, req.body.urls)
-        .then(out => res.status(201).send());
+        .then(out => res.send(out));
 }
 
 module.exports = { 

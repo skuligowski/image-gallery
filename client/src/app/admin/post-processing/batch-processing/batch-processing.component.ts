@@ -93,7 +93,7 @@ export class BatchProcessingComponent {
               url: image.url,
               resize: this.resizeEnabled ? this.resizeParams : undefined,
               sharpen: this.sharpenEnabled ? this.sharpenParams: undefined,
-              adjust: { exposure: 0 }, 
+              adjust: { exposure: 0, contrast: 0 }, 
               export: this.exportParams,
             }
           ).pipe(

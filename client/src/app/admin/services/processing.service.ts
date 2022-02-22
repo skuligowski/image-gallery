@@ -6,6 +6,8 @@ import ProcessingResizeParams = Definitions.ProcessingResizeParams;
 import ProcessingSharpenParams = Definitions.ProcessingSharpenParams;
 import ProcessingRequest = Definitions.ProcessingRequest;
 import ProcessingRevertRequest = Definitions.ProcessingRevertRequest;
+import ImagesResponse = Definitions.ImagesResponse;
+import Image= Definitions.Image;
 
 
 
@@ -15,13 +17,13 @@ export class ProcessingService {
   constructor(private httpClient: HttpClient) {}
 
   runProcessing(albumId: string, request: ProcessingRequest): Observable<any> {
-      return this.httpClient.post<ProcessingRequest>(`/api/albums/${albumId}/processing`, request)
+      return this.httpClient.post<Image>(`/api/albums/${albumId}/processing`, request)
       
   }
 
-  revertProcessing(albumId: string, imageUrls: string[]): Observable<any> {
+  revertProcessing(albumId: string, imageUrls: string[]): Observable<ImagesResponse> {
     return spinnable(
-      this.httpClient.post<ProcessingRevertRequest>(`/api/albums/${albumId}/processing/revert`, {
+      this.httpClient.post<ImagesResponse>(`/api/albums/${albumId}/processing/revert`, {
         urls: imageUrls,
       })
     );

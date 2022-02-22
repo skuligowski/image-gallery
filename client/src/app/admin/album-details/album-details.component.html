@@ -120,6 +120,11 @@
                   Exposure (level={{adjust.exposure}})
                 </div>  
               </ng-container>
+              <ng-container *ngIf="image.processing.params.adjust?.contrast">
+                <div *ngVar="image.processing.params.adjust as adjust" class="step" i18n>
+                  Contrast (level={{adjust.contrast}})
+                </div>  
+              </ng-container>
               <ng-container *ngIf="image.processing.params.resize">
                 <div *ngVar="image.processing.params.resize as resize" class="step" i18n>
                   Resize (w={{resize.width}}, h={{resize.height}}, mode={{resize.mode}})
