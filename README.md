@@ -20,6 +20,7 @@ It contains fully featured administration panel that supports:
 - allowing to download image
 - batch images processing (resize and keep aspect ratio, sharpen, export with quality)
 - manual processing with live preview (exposure, contrast, sharpen, resize, export)
+- sorting images by filename (asc / desc)
 
 Image Gallery does not require any database or native graphic modules (eg. ImageMagick).
 It simply works after the installation.
@@ -126,6 +127,7 @@ The distribution package will be created in `dist` directory.
 - feat: manual processing - exposure, contrast, sharpening, resize
 - feat: manual processing - live preview, zooming
 - feat: auto regeneration of thumbnails
+- feat: sorting images by filename (asc/desc)
 
 ### 1.2.0
 - feat: publish/suspend album 
