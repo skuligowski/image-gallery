@@ -19,6 +19,7 @@ It contains fully featured administration panel that supports:
 - date grouping
 - allowing to download image
 - batch images processing (resize and keep aspect ratio, sharpen, export with quality)
+- manual processing with live preview (exposure, contrast, sharpen, resize, export)
 
 Image Gallery does not require any database or native graphic modules (eg. ImageMagick).
 It simply works after the installation.
@@ -44,7 +45,7 @@ docker run -d \
     -v /home/pi/gallery_db:/app/resources/db \
     -v /media/hdd/images:/app/resources/library \
     -p 80:3000 \
-    skuligowski/image-gallery:1.1.1
+    skuligowski/image-gallery:1.3.0
 ```
 
 You may also modify the external port (*80*), to expose library using your favorite one.
@@ -64,7 +65,7 @@ Now you are ready to manage your photos, compose albums and upload photos to the
 The other valid approach is to download the latest zip pacakge and manually install the application.
 The only requirement is to have [NodeJS 12.x+](https://nodejs.org/en/download/) isntalled in your systemn.
 
-1\. Download the latest released version of the gallery: [v1.1.1](https://github.com/skuligowski/image-gallery/releases/download/v1.1.1/v1.1.1.zip)
+1\. Download the latest released version of the gallery: [v1.3.0](https://github.com/skuligowski/image-gallery/releases/download/v1.3.0/v1.3.0.zip)
 
 2\. Unzip it somewhere and type: `npm install` 
 
@@ -120,6 +121,11 @@ The distribution package will be created in `dist` directory.
 
 
 ## Release notes
+
+### 1.3.0
+- feat: manual processing - exposure, contrast, sharpening, resize
+- feat: manual processing - live preview, zooming
+- feat: auto regeneration of thumbnails
 
 ### 1.2.0
 - feat: publish/suspend album 
