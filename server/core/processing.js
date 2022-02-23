@@ -143,7 +143,6 @@ function revertImages(albumId, urls, concurrency = 1) {
             }, {$set: {}, toDelete: [], toReturn: []})
         )
         .then(result => {
-            console.log(JSON.stringify(result, null, 4));
             return db.updateAlbum({ _id: albumId }, { $set: result.$set })
                 .then(() => Promise.map(result.toDelete, file => {
                     console.log(`Removing processed image: ${file}`);

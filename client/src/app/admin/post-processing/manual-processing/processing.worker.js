@@ -41,12 +41,10 @@ function process(image, params) {
 let resizedImage = undefined;
 
 onmessage=function(event) {
-    console.log(event);
     const params = event.data.params;
     if (!resizedImage 
         || resizedImage.url !== event.data.imageUrl 
         || params.resize && params.resize.mode !== resizedImage.mode) {
-        console.log('Resizing');
         Jimp.read(event.data.imageUrl)
             .then(image => {
                 const mode = params.resize?.mode || 'RESIZE_BEZIER';
@@ -59,7 +57,6 @@ onmessage=function(event) {
                 })
             })
     } else {
-        console.log('Optimized');
         const image = resizedImage.image.clone();
         process(image, params);
         image.getBase64(image.getMIME(), (err, src) => {
