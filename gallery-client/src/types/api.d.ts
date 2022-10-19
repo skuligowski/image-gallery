@@ -392,7 +392,7 @@
          */
         valid: boolean;
     }
-}
+
 declare namespace Paths {
     namespace AddImages {
         export interface BodyParameters {
@@ -718,4 +718,4 @@ declare namespace Paths {
             export type $401 = string;
         }
     }
-
+}

@@ -1,13 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
-import { AlbumsContext, AlbumsContextProvider } from './components/AlbumsContext';
-import { AlbumsTree } from './components/AlbumsTree';
+import React, { useEffect } from 'react';
+import style from './App.module.scss';
+import { fetchAlbums, selectAlbums } from './app/albums/albumsSlice';
+import { useAppDispatch } from './app/hooks';
+import { useSelector } from 'react-redux';
+import AlbumsDirectory from './components/AlbumsDirectory';
+import AlbumPreview from './components/AlbumPreview';
 
 function App() {
+  const dispatch = useAppDispatch();
+  const { loading, error } = useSelector(selectAlbums);
+
+  useEffect(() => {
+    dispatch(fetchAlbums());
+  }, []);
+  
   return (
-    <AlbumsContextProvider>
-      <AlbumsTree />
-    </AlbumsContextProvider>
+    <div className={style.app}>
+      {loading ? 'Loading albums ....' : (
+        <>
+          <AlbumsDirectory />
+          <AlbumPreview />
+        </>
+      )
+      }
+    </div>
   );
 }
 
