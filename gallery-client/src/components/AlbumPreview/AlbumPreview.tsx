@@ -2,9 +2,12 @@ import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import { albumNotFound, fetchAlbum, selectCurrentAlbum, selectImage } from "../../state/albums/albumSlice";
 import style from './AlbumPreview.module.scss';
 import { useMatches, useNavigate } from "react-router-dom";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { parsePermalink } from '../parsePermalink';
-import { Image } from '../../types/api.d';
+import { Album, Image } from '../../types/api.d';
+import Masonry from "masonry-layout";
+import imagesLoaded from "imagesloaded";
+
 
 function useMatchedPermalink(): string | undefined {
     const matches = useMatches();
@@ -44,19 +47,55 @@ function useAlbum() {
 }
 
 const AlbumPreview: React.FC = () => {
-    let navigate = useNavigate();
     const { album, image, loading, error } = useAlbum();
-    const previewImage = (image: Image) => {
-        navigate(album?.permalink + '/' + image.filename);
-    }
     return <div className={style.container}>
         {loading ? <div>Album is loading</div> : null}
         {error ? <div>{error}</div> : null}
-        {!loading && album && !error ? 
-            album.images.map(image => <div className={style.image} key={image.filename} onClick={() => previewImage(image)}><img src={`/library${image.thumbUrl || image.url}`} width="200" /></div>)
-        : null}
+        {!loading && album && !error ? (
+            <ImagesGrid album={album} images={album.images} />
+        ) : null}
         {image ? <div>Selected image: {image.filename} </div> : null}
     </div>
+}
+
+const ImagesGrid: React.FC< {album: Album, images: Image[] }> = ({ album, images }) => {
+    let navigate = useNavigate();
+    let gridRef = useRef<HTMLDivElement | null>(null);
+    useEffect(() => {
+        new Masonry( gridRef.current as HTMLElement, {
+            itemSelector: '.grid-item',
+            columnWidth: '.grid-item',
+            gutter: 10,
+            horizontalOrder: true,
+            initLayout: true,
+        });
+        const applyLoaded: ImagesLoaded.ImagesLoadedListener = (_instance, image) => {
+            setTimeout(() => {
+                image?.img.parentElement?.classList.add('loaded');
+            }, Math.random()*300);
+        };
+        const imgsLoaded = imagesLoaded(gridRef.current as HTMLElement);
+        imgsLoaded.on('progress', applyLoaded);
+        return () => {
+            imgsLoaded.off('progress', applyLoaded);
+        };
+    }, []);
+
+    const previewImage = (image: Image) => {
+        navigate(album?.permalink + '/' + image.filename);
+    }
+
+    return (
+        <div className="grid" ref={gridRef}>
+           {images.map(image => (
+            <div className="grid-item" key={image.filename} onClick={() => previewImage(image)}>
+                <div className="image-wrapper" style={{paddingBottom: `${image.height/image.width*100}%`}}>
+                    <img loading="lazy" src={`/library${image.thumbUrl || image.url}`} />
+                </div>
+            </div>
+            ))}
+        </div>
+    );
 }
 
 export default AlbumPreview;
