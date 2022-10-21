@@ -1,0 +1,29 @@
+.container {
+    width: 300px;
+    overflow-y: auto;
+    flex-shrink: 0;
+    padding: 15px;
+}
+.yearAlbums {
+    margin-bottom: 10px;
+    .year {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+}
+.monthAlbums {
+    margin-left: 15px;
+    margin-bottom: 5px;
+    .month {
+        font-size: 14px;
+    }
+    .albums {
+        margin-left: 10px;
+        > div {
+            cursor: pointer;
+            &:hover {
+                background-color: #eee;
+            }
+        }
+    }
+}

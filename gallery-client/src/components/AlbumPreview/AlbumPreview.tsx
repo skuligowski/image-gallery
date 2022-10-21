@@ -1,10 +1,10 @@
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { albumNotFound, fetchAlbum, selectCurrentAlbum, selectImage } from "../app/albums/albumSlice";
+import { useAppDispatch, useAppSelector } from "../../state/hooks";
+import { albumNotFound, fetchAlbum, selectCurrentAlbum, selectImage } from "../../state/albums/albumSlice";
 import style from './AlbumPreview.module.scss';
 import { useMatches, useNavigate } from "react-router-dom";
 import { useEffect, useMemo } from "react";
-import { parsePermalink } from './parsePermalink';
-import { Image } from '../types/api.d';
+import { parsePermalink } from '../parsePermalink';
+import { Image } from '../../types/api.d';
 
 function useMatchedPermalink(): string | undefined {
     const matches = useMatches();
