@@ -12,7 +12,7 @@ const AlbumsDirectory: React.FC = () => {
         dispatch(fetchAlbums());
     }, []);
 
-    return <div className={style.sidePanel}>
+    return <div className={style.container}>
         {loading ? null : 
             albums.map(album => <div key={album.id} onClick={() => {
                 navigate(album.permalink);
