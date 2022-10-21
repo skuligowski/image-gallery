@@ -20,6 +20,30 @@ function getAlbums(req, res) {
     }))));
 }
 
+function getAlbum(req, res) {
+  const predicate = req.user && req.user.admin ? {} : {active: true};
+  const permalink = req.swagger.params.permalink.value;
+  db.findAlbum({ ...predicate, permalink })
+    .then(album => {
+      if (album) {
+        res.send({
+          id: album._id,
+          permalink: album.permalink,
+          name: album.name,
+          date: album.date,
+          lastModified: album.lastModified,
+          createDate: album.createDate,
+          thumbUrl: album.images[0] ? album.images[0].thumbUrl || album.images[0].url : undefined,
+          size: album.images.length,
+          active: album.active,
+          images: album.images,
+        });
+      } else {
+        res.status(404).send();
+      }
+    });
+}
+
 function createAlbum(req, res) {
   albums.createAlbum({
     name: req.body.name,
@@ -130,6 +154,7 @@ function setImagesOrder(req, res) {
 module.exports = {
   getImages,
   getAlbums,
+  getAlbum,
   uploadFile,
   createAlbum,
   updateAlbum,

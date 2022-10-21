@@ -1,0 +1,12 @@
+title: AlbumResponse
+type: object
+allOf:
+  - $ref: Album.yaml
+  - type: object
+    properties:
+      images: 
+        type: array
+        items:
+          $ref: Image.yaml
+required:
+- images

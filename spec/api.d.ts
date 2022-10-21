@@ -1,6 +1,6 @@
 declare namespace Definitions {
     /**
-     * Albums
+     * Album
      */
     export interface Album {
         /**
@@ -64,6 +64,48 @@ declare namespace Definitions {
         id: string;
     }
     /**
+     * AlbumResponse
+     */
+    export interface AlbumResponse {
+        /**
+         * unique identifier of the album
+         */
+        id: string;
+        /**
+         * albums
+         */
+        name: string;
+        /**
+         * unique link for album
+         */
+        permalink: string;
+        /**
+         * date when images were taken
+         */
+        date?: string; // date
+        /**
+         * entry photo for the album
+         */
+        thumbUrl?: string;
+        /**
+         * size of the album
+         */
+        size: number;
+        /**
+         * last modified date time
+         */
+        lastModified: string; // date-time
+        /**
+         * date of creation
+         */
+        createDate: string; // date-time
+        /**
+         * if album is visible in gallery
+         */
+        active: boolean;
+        images: /* Image */ Image[];
+    }
+    /**
      * AlbumUpdateRequest
      */
     export interface AlbumUpdateRequest {
@@ -81,7 +123,7 @@ declare namespace Definitions {
     /**
      * AlbumsResponse
      */
-    export type AlbumsResponse = /* Albums */ Album[];
+    export type AlbumsResponse = /* Album */ Album[];
     /**
      * Config
      */
@@ -490,6 +532,20 @@ declare namespace Paths {
         export interface PathParameters {
             id: /* Id of the album */ Parameters.Id;
             filename: /* File name to download */ Parameters.Filename;
+        }
+    }
+    namespace GetAlbum {
+        namespace Parameters {
+            /**
+             * Id of the album or permalink
+             */
+            export type Permalink = string;
+        }
+        export interface QueryParameters {
+            permalink: /* Id of the album or permalink */ Parameters.Permalink;
+        }
+        namespace Responses {
+            export type $200 = /* AlbumResponse */ Definitions.AlbumResponse;
         }
     }
     namespace GetAlbums {

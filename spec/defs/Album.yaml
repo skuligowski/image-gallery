@@ -1,4 +1,4 @@
-title: Albums
+title: Album
 type: object
 properties:
   id:

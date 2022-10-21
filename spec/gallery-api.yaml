@@ -61,6 +61,24 @@ paths:
           schema:
             $ref: defs/AlbumCreateResponse.yaml
           
+  /album:
+      x-swagger-router-controller: albums.controller
+      get:
+        description: Retrieves album with all images
+        tags:
+        - gallery
+        operationId: getAlbum
+        parameters:
+        - in: query
+          name: permalink
+          type: string
+          required: true
+          description: Id of the album or permalink
+        responses:
+          200:
+            description: album retrieved
+            schema:
+              $ref: defs/AlbumResponse.yaml
 
   /albums/{id}:
     x-swagger-router-controller: albums.controller
@@ -601,6 +619,8 @@ paths:
 definitions:
   Album:
     $ref: defs/Album.yaml
+  AlbumResponse:
+    $ref: defs/AlbumResponse.yaml       
   AlbumCreate:
     $ref: defs/AlbumCreateRequest.yaml
   AlbumUpdateRequest:

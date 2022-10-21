@@ -5,24 +5,21 @@ import { useAppDispatch } from './app/hooks';
 import { useSelector } from 'react-redux';
 import AlbumsDirectory from './components/AlbumsDirectory';
 import AlbumPreview from './components/AlbumPreview';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { GalleryDashboard } from './components/GalleryDashboard';
 
-function App() {
-  const dispatch = useAppDispatch();
-  const { loading, error } = useSelector(selectAlbums);
 
-  useEffect(() => {
-    dispatch(fetchAlbums());
-  }, []);
-  
+const router = createBrowserRouter([
+  {
+    path: "/albums/*",
+    element: <GalleryDashboard />,
+  },
+]);
+
+function App() { 
   return (
     <div className={style.app}>
-      {loading ? 'Loading albums ....' : (
-        <>
-          <AlbumsDirectory />
-          <AlbumPreview />
-        </>
-      )
-      }
+      <RouterProvider router={router} />
     </div>
   );
 }

@@ -16,7 +16,7 @@ const initialState: AlbumsState = {
 export const fetchAlbums = createAsyncThunk(
     'api/albums',
     async () => {
-        const albums = await (await fetch('api/albums')).json() as Album[];
+        const albums = await (await fetch('/api/albums')).json() as Album[];
         return albums;
     }
 );
