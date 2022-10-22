@@ -90,7 +90,7 @@ const ImagesGrid: React.FC< {album: Album, images: Image[] }> = ({ album, images
            {images.map(image => (
             <div className="grid-item" key={image.filename} onClick={() => previewImage(image)}>
                 <div className="image-wrapper" style={{paddingBottom: `${image.height/image.width*100}%`}}>
-                    <img loading="lazy" src={`/library${image.thumbUrl || image.url}`} />
+                    <img src={`/library${image.thumbUrl || image.url}`} />
                 </div>
             </div>
             ))}
