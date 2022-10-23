@@ -1,7 +1,11 @@
+import { selectCurrentAlbum } from "../../state/albums/albumSlice";
+import { useAppSelector } from "../../state/hooks";
+import ImagePreview from "./ImagePreview";
 import LazyLoadingGrid from "./LazyLoadingGrid";
-import { useAlbum } from "./useAlbum";
+import { useAlbum, useAlbumRoute } from "./useAlbum";
 
 const AlbumPreview: React.FC = () => {
+    useAlbumRoute();
     const { album, image, loading, error } = useAlbum();
     return (
         <>
@@ -10,7 +14,7 @@ const AlbumPreview: React.FC = () => {
             {!loading && album && !error ? (
                 <LazyLoadingGrid album={album} images={album.images} />
             ) : null}
-            {image ? <div>Selected image: {image.filename} </div> : null}
+            {image ? <ImagePreview /> : null}
         </>
     );
 }

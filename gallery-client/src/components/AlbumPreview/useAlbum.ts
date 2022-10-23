@@ -17,7 +17,7 @@ function useAlbumPermalink() {
     return {albumPermalink: album, imagePermalink: image};
 }
 
-export function useAlbum() {
+export function useAlbumRoute(): void {
     const dispatch = useAppDispatch();
     const {albumPermalink, imagePermalink} = useAlbumPermalink();
     useEffect(() => {
@@ -27,7 +27,7 @@ export function useAlbum() {
             dispatch(fetchAlbum(albumPermalink || ''));
         }
     }, [albumPermalink])
-    const { album, image, loading, error } = useAppSelector(selectCurrentAlbum);
+    const { album } = useAppSelector(selectCurrentAlbum);
     useEffect(() => {
         if (album) {
             if (imagePermalink) {
@@ -37,5 +37,8 @@ export function useAlbum() {
             }
         }
     }, [album, imagePermalink]);
-    return { album, image, loading, error };
+}
+
+export function useAlbum() {
+    return useAppSelector(selectCurrentAlbum);
 }
