@@ -1,9 +1,53 @@
 .container {
-    position: fixed;
+    background-color: #111;
+    position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: #eee;
-    opacity: 0.12;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    .imageFrame {
+        img {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+        }
+    }
+
+    .navigation {
+        .navButton {
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+            color: #ccc;
+            text-decoration: none;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            font-size: 1.4rem;
+            cursor: pointer;
+        
+        
+            &:hover {
+              color: #fff;
+            }
+        
+            &.prev {
+              left: 10px;
+            }
+        
+            &.next {
+              right: 10px;
+            }
+        }
+    }
+    
 }
