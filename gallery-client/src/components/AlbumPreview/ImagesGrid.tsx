@@ -2,6 +2,7 @@ import Masonry from "masonry-layout";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Album, Image } from '../../types/api.d';
+import style from './ImagesGrid.module.scss';
 
 const ImagesGrid: React.FC< {album: Album, images: Image[] }> = ({ album, images }) => {
     let navigate = useNavigate();
@@ -28,7 +29,7 @@ const ImagesGrid: React.FC< {album: Album, images: Image[] }> = ({ album, images
     }
 
     return (
-        <div className="grid" ref={gridRef}>
+        <div className={style.grid} ref={gridRef}>
            {images.map(image => (
             <div className="grid-item" key={image.filename} onClick={() => previewImage(image)}>
                 <div className="image-wrapper" style={{paddingBottom: `${image.height/image.width*100}%`}}>
