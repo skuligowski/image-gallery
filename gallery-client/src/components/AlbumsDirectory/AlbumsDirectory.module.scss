@@ -1,10 +1,10 @@
 .container {
-    width: 300px;
+    width: 250px;
     overflow-y: auto;
     flex-shrink: 0;
     padding: 15px;
-    color: #fff;
-    background-color: #000;
+    color: #ccc;
+    background-color: #111;
 }
 .yearAlbums {
     margin-bottom: 10px;
@@ -16,15 +16,21 @@
 .monthAlbums {
     margin-left: 15px;
     margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
     .month {
         font-size: 14px;
+        width: 25px;
+        text-align: right;
+        color: #777;
     }
     .albums {
-        margin-left: 10px;
+        margin-left: 15px;
         > div {
             cursor: pointer;
+            margin-bottom: 4px;
             &:hover {
-                background-color: #eee;
+                background-color: #333;
             }
         }
     }
