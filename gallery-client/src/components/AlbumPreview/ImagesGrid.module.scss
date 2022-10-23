@@ -9,6 +9,7 @@
             margin-bottom: 10px;
         }
         .image-wrapper {
+            cursor: pointer;
             position: relative;
             transform: translate3d(0, 10px, 0);
             opacity: 0;
@@ -17,6 +18,9 @@
             &.loaded {
                 transform: translate3d(0, 0, 0);
                 opacity: 1;
+            }
+            &:hover {
+                opacity: 0.6;
             }
             img {
               width: 100%;

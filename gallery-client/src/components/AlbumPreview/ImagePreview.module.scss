@@ -6,47 +6,71 @@
     bottom: 0;
     right: 0;
     text-align: center;
+    
     .imageFrame {
+        user-select: none;
         img {
             position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
+            left: 10px;
+            right: 10px;
+            top: 50px;
+            bottom: 10px;
             margin: auto;
             display: block;
-            max-width: 100%;
-            max-height: 100%;
+            max-width: calc(100% - 20px);
+            max-height: calc(100% - 60px);
             width: auto;
             height: auto;
         }
     }
 
     .navigation {
-        .navButton {
-            position: absolute;
-            top: 50%;
-            transform: translate(0, -50%);
-            color: #ccc;
-            text-decoration: none;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 4px;
-            font-size: 1.4rem;
+        height: 40px;
+        border-bottom: 1px solid #333;
+ 
+        .prev, .next, .close {
+            top: 9px;
+            width: 23px;
+            height: 23px;
             cursor: pointer;
-        
-        
+            svg { 
+              transition: fill 0.4s;
+              fill: #444;
+            }
             &:hover {
-              color: #fff;
+              svg {
+                  fill: #999;
+              }
             }
-        
-            &.prev {
-              left: 10px;
-            }
-        
-            &.next {
-              right: 10px;
-            }
+        }
+
+        .close {
+            position: absolute;
+            right: 10px;
+        }
+
+        .prev {
+            position: absolute;
+            right: calc(50% + 20px - 23px);
+        }
+
+        .next {
+            position: absolute;
+            right: calc(50% - 20px - 23px);
+        }
+    
+        .navButton {
+            color: #aaa;
+        }
+
+        .filename {
+            position: absolute;
+            user-select: none;
+            top: 10px;
+            left: 10px;
+            font-size: 14px;
+            line-height: 20px;
+            color: #aaa;
         }
     }
     
