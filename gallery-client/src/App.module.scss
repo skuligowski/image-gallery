@@ -1,3 +1,10 @@
+:global {
+    body {
+        overscroll-behavior-y: none;
+    }
+}
 .app {
     font-size: 14px;
+    height: 100vh;
+    overflow-y: hidden;
 }

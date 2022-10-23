@@ -3,7 +3,6 @@
     flex-shrink: 1;
     flex-basis: 100%;
     overflow-y: auto;
-    padding: 15px;
 }
 .image {
     display: inline-block;
@@ -11,6 +10,11 @@
 }
 
 :global {
+    .grid {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        margin: 15px auto;
+    }
     .grid-item {
         width: 200px;
         margin-bottom: 10px;
