@@ -1,5 +1,5 @@
 .container {
-    background-color: #000;
+    background-color: #1B1D1E;
     position: absolute;
     top: 0;
     left: 0;
@@ -25,7 +25,7 @@
     }
 
     .navigation {
-        background-color: #111;
+        background-color: #212121;
         height: 40px;
         border-bottom: 1px solid #333;
  
@@ -67,10 +67,8 @@
         .filename {
             position: absolute;
             user-select: none;
-            top: 10px;
-            left: 10px;
+            padding: 12px;
             font-size: 14px;
-            line-height: 20px;
             color: #aaa;
         }
     }

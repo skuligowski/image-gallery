@@ -1,25 +1,24 @@
 import style from './ImagePreview.module.scss';
 import { useAlbum } from './useAlbum';
-import { useAppDispatch } from '../../state/hooks';
-import { selectImage } from '../../state/albums/albumSlice';
+import { useNavigate } from 'react-router-dom';
 
 const ImagePreview: React.FC = () => {
     const { album, image } = useAlbum();
-    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const prevImage = () => {
         const index = album?.images.findIndex(item => item.filename === image?.filename)
         if (index !== undefined && index > -1 && album?.images[index - 1] !== undefined) {
-            dispatch(selectImage(album.images[index - 1]));
+            navigate(`${album?.permalink}/${album.images[index - 1].filename}`)
         }
     }
     const nextImage = () => {
         const index = album?.images.findIndex(item => item.filename === image?.filename);
         if (index !== undefined && index > -1 && album?.images[index + 1] !== undefined) {
-            dispatch(selectImage(album.images[index + 1]));
+            navigate(`${album?.permalink}/${album.images[index + 1].filename}`)
         }
     }
     const close = () => {
-        dispatch(selectImage(undefined));
+        navigate(`${album?.permalink}`)
     }
     return (
         <div className={style.container}>

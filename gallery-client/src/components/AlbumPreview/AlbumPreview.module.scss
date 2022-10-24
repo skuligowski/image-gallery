@@ -4,5 +4,18 @@
     flex-shrink: 1;
     flex-basis: 100%;
     position: relative;
-    background-color: #000;
+    background-color: #1B1D1E;
+    display: flex;
+    flex-direction: column;
+    
+    .albumHeader {
+        height: 40px;
+        flex-shrink: 0;
+        background-color: #212121;
+        border-bottom: 1px solid #333;
+        .albumName {
+            padding: 12px;
+            color: #aaa;
+        }
+    }
 }

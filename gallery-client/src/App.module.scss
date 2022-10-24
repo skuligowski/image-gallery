@@ -4,18 +4,17 @@
     }
     ::-webkit-scrollbar {
         width: 9px;
-      }
-      ::-webkit-scrollbar-track {
+    }
+    ::-webkit-scrollbar-track {
         background: transparent;
-      }
-      ::-webkit-scrollbar-thumb {
+    }
+    ::-webkit-scrollbar-thumb {
         background-color: rgba(155, 155, 155, 0.2);
         border-radius: 20px;
         border: transparent;
-      }
+    }
     body {
         overscroll-behavior-y: none;
-        
     }
 }
 .app {

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import style from './GalleryDashboard.module.scss';
-import AlbumsDirectory from './AlbumsDirectory/AlbumsDirectory';
 import AlbumPreview from './AlbumPreview/AlbumPreview';
+import SidePanel from './SidePanel/SidePanel';
 
 export const GalleryDashboard: React.FC<{welcome?: boolean}> = ({welcome}) => {
     return (
         <div className={style.container}>
-            <AlbumsDirectory />
+            <SidePanel />
             {welcome ? <div>welcome</div> : <AlbumPreview />}
         </div>
     )

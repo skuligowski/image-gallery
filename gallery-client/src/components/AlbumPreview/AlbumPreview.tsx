@@ -8,6 +8,9 @@ const AlbumPreview: React.FC = () => {
     const { album, image, loading, error } = useAlbum();
     return (
         <div className={style.container}>
+            <div className={style.albumHeader}>
+                <div className={style.albumName}>{album?.name}</div>                        
+            </div>
             {loading ? <div>Album is loading</div> : null}
             {error ? <div>{error}</div> : null}
             {!loading && album && !error ? (
