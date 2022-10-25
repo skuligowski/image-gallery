@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { albumReducer } from './albums/albumSlice';
 import { albumsReducer } from './albums/albumsSlice';
+import { layoutReducer } from './layout/layoutSlice';
 
 export const store = configureStore({
   reducer: {
     albums: albumsReducer,
     album: albumReducer,
+    layout: layoutReducer,
   },
 });
 

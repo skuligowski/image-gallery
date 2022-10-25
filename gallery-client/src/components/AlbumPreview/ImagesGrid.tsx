@@ -2,13 +2,15 @@ import Masonry from "masonry-layout";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Album, Image } from '../../types/api.d';
+import { useSidePanelAnimationEnd } from "../SidePanel/useSidePanel";
 import style from './ImagesGrid.module.scss';
 
 const ImagesGrid: React.FC< {album: Album, images: Image[] }> = ({ album, images }) => {
     let navigate = useNavigate();
-    let gridRef = useRef<HTMLDivElement | null>(null);
+    const gridRef = useRef<HTMLDivElement | null>(null);
+    const masonryRef = useRef<Masonry | null>(null);
     useEffect(() => {
-        new Masonry( gridRef.current as HTMLElement, {
+        masonryRef.current = new Masonry( gridRef.current as HTMLElement, {
             itemSelector: '.grid-item',
             columnWidth: '.grid-item',
             gutter: 10,
@@ -17,6 +19,7 @@ const ImagesGrid: React.FC< {album: Album, images: Image[] }> = ({ album, images
             initLayout: true,
         });
     }, [images]);
+    useSidePanelAnimationEnd(() =>  masonryRef.current?.layout && masonryRef.current.layout());
     
     const previewImage = (image: Image) => {
         navigate(album?.permalink + '/' + image.filename);
