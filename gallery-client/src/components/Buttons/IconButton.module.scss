@@ -1,0 +1,24 @@
+.button {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    svg {
+        display: block;
+        margin: auto;
+        width: 12px;
+        height: 12px;
+        fill: #e1e1e1;
+    }
+    transition: background-color 0.4s;
+    &:hover {
+        cursor: pointer;
+        background-color: #3d3d3d;
+        border-radius: 5px;
+    }
+    &:active {
+        background-color: #4d4d4d;
+    }
+}

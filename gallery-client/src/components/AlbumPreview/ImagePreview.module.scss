@@ -23,54 +23,5 @@
             height: auto;
         }
     }
-
-    .navigation {
-        background-color: #212121;
-        height: 40px;
-        border-bottom: 1px solid #333;
- 
-        .prev, .next, .close {
-            top: 9px;
-            width: 23px;
-            height: 23px;
-            cursor: pointer;
-            svg { 
-              transition: fill 0.4s;
-              fill: #444;
-            }
-            &:hover {
-              svg {
-                  fill: #999;
-              }
-            }
-        }
-
-        .close {
-            position: absolute;
-            right: 10px;
-        }
-
-        .prev {
-            position: absolute;
-            right: calc(50% + 20px - 23px);
-        }
-
-        .next {
-            position: absolute;
-            right: calc(50% - 20px - 23px);
-        }
-    
-        .navButton {
-            color: #aaa;
-        }
-
-        .filename {
-            position: absolute;
-            user-select: none;
-            padding: 12px;
-            font-size: 14px;
-            color: #aaa;
-        }
-    }
     
 }

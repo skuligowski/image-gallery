@@ -9,7 +9,7 @@ export const useSidePanel = () => {
     const animationClass = ((sidePanel && sidePanelAniamationEnd === undefined) ? '' : 
         sidePanel ? style.expand : style.hidden);
     const handleAnimationEnd = () => dispatch(finishSidePanelAnimation());
-    return { animationClass, handleAnimationEnd };
+    return { sidePanel, animationClass, handleAnimationEnd };
 } 
 
 export const useSidePanelToggle = () => {

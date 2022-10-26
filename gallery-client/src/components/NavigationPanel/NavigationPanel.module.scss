@@ -1,0 +1,42 @@
+.navigation {
+    background-color: #212121;
+    height: 40px;
+    border-bottom: 1px solid #333;
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+
+    .breadcrumb {
+        flex-grow: 1;
+        width: 40%;
+        font-size: 14px;
+        margin-left: 15px;
+        line-height: 1;
+        color: #e1e1e1;
+        text-align: left;
+        display: flex;
+        align-items: center;
+    }
+
+    .imageControl {
+        text-align: center;
+        width: 125px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .pages {
+            font-size: 13px;
+            margin: 0 5px;
+        }
+    }
+
+    .close {
+        flex-grow: 1;
+        width: 40%;
+        text-align: right;
+        margin-right: 10px;
+    }
+}
