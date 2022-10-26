@@ -7,6 +7,7 @@ export interface AlbumsInYear {
 
 export interface AlbumsInMonth {
     month: string;
+    monthIndex: number;
     albums: Album[];
 }
 
@@ -33,7 +34,8 @@ export function groupAlbumsByYear(albums: Album[]): AlbumsInYear[] {
         .map(year => ({
              year, 
              months: byYearMap[year]
-                .map((month, i) => ({ month: monthNames[i - 1], albums: month }))
+                .map((month, i) => ({ month: monthNames[i - 1], monthIndex: i, albums: month }))
                 .filter(month => month)
+                .sort((a1, a2) => a2.monthIndex - a1.monthIndex)
         }))
 }

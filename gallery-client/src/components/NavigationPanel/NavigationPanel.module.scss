@@ -17,6 +17,16 @@
         text-align: left;
         display: flex;
         align-items: center;
+
+        .albumLink {
+            transition: background-color 0.4s;
+            padding: 3px 0;
+            border-radius: 5px;
+            &:hover {
+                cursor: pointer;
+                background-color: #3d3d3d;
+            }
+        }
     }
 
     .imageControl {

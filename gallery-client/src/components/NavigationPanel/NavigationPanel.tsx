@@ -1,8 +1,6 @@
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAlbum } from "../AlbumPreview/useAlbum";
-import CloseButton from "../Buttons/CloseButton";
-import SidePanelToggle from "../SidePanel/SidePanelToggle";
 import ImageClose from "./ImageClose";
 import ImageControl from "./ImageControl";
 import style from './NavigationPanel.module.scss';
