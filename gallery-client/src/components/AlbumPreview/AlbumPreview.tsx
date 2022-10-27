@@ -2,8 +2,8 @@ import ImagePreview from "./ImagePreview";
 import LazyLoadingGrid from "./LazyLoadingGrid";
 import { useAlbum, useAlbumRoute } from "./useAlbum";
 import style from './AlbumPreview.module.scss';
-import SidePanelToggle from "../SidePanel/SidePanelToggle";
 import NavigationPanel from '../NavigationPanel/NavigationPanel';
+import Loader from "../Loader/Loader";
 
 const AlbumPreview: React.FC = () => {
     useAlbumRoute();
@@ -11,12 +11,18 @@ const AlbumPreview: React.FC = () => {
     return (
         <div className={style.container}>
             <NavigationPanel />
-            {loading ? <div>Album is loading</div> : null}
-            {error ? <div>{error}</div> : null}
-            {!loading && album && !error ? (
-                <LazyLoadingGrid album={album} images={album.images} />
-            ) : null}
-            {image ? <ImagePreview /> : null}
+            { loading ? (
+                <Loader />
+            ) : (
+                error || !album ? (
+                    <div>{error}</div>
+                ) : (
+                    <>
+                        <LazyLoadingGrid album={album} images={album.images} />
+                        {image ? <ImagePreview /> : null}
+                    </>
+                )
+            )}
         </div>
     );
 }

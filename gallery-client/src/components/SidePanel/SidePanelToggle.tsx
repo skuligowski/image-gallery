@@ -1,10 +1,12 @@
-import { useSidePanel, useSidePanelToggle } from "./useSidePanel";
+import { useSidePanelToggle } from "./useSidePanel";
 import style from './SidePanelToggle.module.scss';
 import IconButton from "../Buttons/IconButton";
+import { useAppSelector } from "../../state/hooks";
+import { selectLayout } from "../../state/layout/layoutSlice";
 
 const SidePanelToggle: React.FC = () => {
     const toggle = useSidePanelToggle()
-    const { sidePanel } = useSidePanel();
+    const { sidePanel } = useAppSelector(selectLayout);
     return (
         <IconButton className={`${style.toggle} ${sidePanel ? '' : style.hidden}`} onClick={toggle}>
             <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1">

@@ -3,7 +3,6 @@ import { fetchAlbums, selectAlbums } from '../../state/albums/albumsSlice';
 import { useAppDispatch, useAppSelector } from '../../state/hooks';
 import { useNavigate } from 'react-router-dom';
 import style from './AlbumsDirectory.module.scss';
-import { Album } from '../../types/api';
 import { AlbumsInMonth, AlbumsInYear, groupAlbumsByYear } from './groupAlbumsByYear';
 import { groupAlbumsNoDate } from './groupAlbumsNoDate';
 
