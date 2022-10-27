@@ -1,17 +1,13 @@
-import React, { useEffect, useMemo } from 'react';
-import { fetchAlbums, selectAlbums } from '../../state/albums/albumsSlice';
-import { useAppDispatch, useAppSelector } from '../../state/hooks';
+import React, { useMemo } from 'react';
+import { selectAlbums } from '../../state/albums/albumsSlice';
+import { useAppSelector } from '../../state/hooks';
 import { useNavigate } from 'react-router-dom';
 import style from './AlbumsDirectory.module.scss';
 import { AlbumsInMonth, AlbumsInYear, groupAlbumsByYear } from './groupAlbumsByYear';
 import { groupAlbumsNoDate } from './groupAlbumsNoDate';
 
 const AlbumsDirectory: React.FC = () => {    
-    const dispatch = useAppDispatch();
     const { albums, loading } = useAppSelector(selectAlbums);
-    useEffect(() => {
-        dispatch(fetchAlbums());
-    }, []);
     const [groupedByYear, withoutDate] = useMemo(() => 
         [groupAlbumsByYear(albums || []), groupAlbumsNoDate(albums || [])], [albums]);
 
