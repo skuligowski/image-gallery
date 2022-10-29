@@ -34,7 +34,7 @@ const AlbumsInMonthView: React.FC<{ data: AlbumsInMonth }> = ({ data }) => {
             <div className={style.month}>{data.month}</div>
             <div className={style.albums}>
                 {data.albums.map(album => (
-                    <div key={album.id} onClick={() => { navigate(album.permalink); }}>{album.name}</div>
+                    <div key={album.id} onClick={() => { navigate(`/albums/${album.permalink}`); }}>{album.name}</div>
                 ))}    
             </div>                   
         </div>

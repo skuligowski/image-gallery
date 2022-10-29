@@ -4,4 +4,12 @@ const Loader: React.FC = () => {
     return <div className={style.loader}></div>
 }
 
-export default Loader;
+const FullScreenLoader: React.FC = () => {
+    return (
+        <div className={style.fullScreenContainer}>
+            <Loader />
+        </div>
+    );
+}
+
+export { Loader, FullScreenLoader };

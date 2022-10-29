@@ -3,7 +3,7 @@ import LazyLoadingGrid from "./LazyLoadingGrid";
 import { useAlbum, useAlbumRoute } from "./useAlbum";
 import style from './AlbumPreview.module.scss';
 import NavigationPanel from '../NavigationPanel/NavigationPanel';
-import Loader from "../Loader/Loader";
+import { Loader } from "../Loader/Loader";
 
 const AlbumPreview: React.FC = () => {
     useAlbumRoute();

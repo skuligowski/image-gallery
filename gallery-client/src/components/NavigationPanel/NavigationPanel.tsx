@@ -5,6 +5,7 @@ import ImageClose from "./ImageClose";
 import ImageControl from "./ImageControl";
 import style from './NavigationPanel.module.scss';
 import Breadcrumb from './Breadcrumb';
+import CurrentUser from './CurrentUser';
 
 const NavigationPanel: React.FC = () => {
     const { image } = useAlbum();
@@ -15,7 +16,7 @@ const NavigationPanel: React.FC = () => {
             <>
                 <ImageControl />
                 <ImageClose />
-            </> : null }
+            </> : <CurrentUser /> }
         </div>
     );
 }

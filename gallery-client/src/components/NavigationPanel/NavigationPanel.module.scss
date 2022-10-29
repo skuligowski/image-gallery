@@ -49,4 +49,16 @@
         text-align: right;
         margin-right: 10px;
     }
+
+    .user {
+        margin-right: 10px;
+        display: flex;
+        line-height: 1;
+        align-items: center;
+        .username {
+            margin-right: 5px;
+            color: #aaa;
+            position: relative;
+        }
+    }
 }

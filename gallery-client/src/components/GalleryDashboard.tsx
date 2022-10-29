@@ -2,26 +2,24 @@ import React, { useEffect } from 'react';
 import style from './GalleryDashboard.module.scss';
 import AlbumPreview from './AlbumPreview/AlbumPreview';
 import SidePanel from './SidePanel/SidePanel';
-import { useAppDispatch, useAppSelector } from '../state/hooks';
-import { fetchAlbums, selectAlbums } from '../state/albums/albumsSlice';
-import Loader from './Loader/Loader';
+import { useAppDispatch } from '../state/hooks';
+import { fetchAlbums } from '../state/albums/albumsSlice';
+import { useAuthenticate } from './LoginPanel/useLogin';
 
 export const GalleryDashboard: React.FC<{welcome?: boolean}> = ({welcome}) => {
-    const { loading } = useAppSelector(selectAlbums);
     const dispatch = useAppDispatch();
+    const { authenticated } = useAuthenticate();
     useEffect(() => {
-        dispatch(fetchAlbums());
-    }, []);
+        if (authenticated) {
+            dispatch(fetchAlbums());
+        }
+    }, [authenticated]);
     return (
-        <div className={style.container}>
-            { loading ? (
-                <Loader />
-            ) : (
-                <>
-                    <SidePanel />
-                    {welcome ? <div>welcome</div> : <AlbumPreview />}
-                </>
-            )}
-        </div>
+        authenticated ? (
+            <div className={style.container}>
+                <SidePanel />
+                {welcome ? <div>welcome</div> : <AlbumPreview />}
+            </div>
+        ) : null
     )
 }
