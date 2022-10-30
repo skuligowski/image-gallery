@@ -8,6 +8,11 @@ const LoginPanel: React.FC = () => {
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const handleLogin = () => login({ username, password });
+    const onEnter = (callback: () => any) => (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            callback();
+        }
+    } 
     return (
         <div className={style.container}>
             <div className={style.loginPane}>
@@ -27,6 +32,7 @@ const LoginPanel: React.FC = () => {
                             onChange={(e) => setPassword(e.target.value)} 
                             placeholder="Password" 
                             disabled={loading}
+                            onKeyDown={onEnter(handleLogin)}
                         />
                     </div>
                     <div className={style.formField}>
