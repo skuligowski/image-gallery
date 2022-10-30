@@ -16,7 +16,7 @@
             flex-direction: column;
             height: 100%;
             padding: 40px 60px;
-            background-color: rgb(37, 37, 37, 0.72);
+            background-color: rgb(44, 44, 44, 0.72);
             box-sizing: border-box;
             
 
@@ -33,12 +33,12 @@
                     width: 100%;
                     border-radius: 5px;
                     border: 1px solid #666;
-                    background-color: rgb( 32, 32, 32, 0.77 );
+                    background-color: rgb( 88, 88, 88, 0.77 );
                     outline-color: #666;
                     padding: 4px 10px;
-                    color: #aaa;
+                    color: #eee;
                     &::placeholder {
-                        color: #444;
+                        color: #999;
                     }
                     box-sizing: border-box;
                 }
@@ -75,7 +75,7 @@
                 text-align: left;
                 font-size: 12px;
                 margin-top: 29px;
-                color: #866161;
+                color: #eebbbb;
             }
         }
 
@@ -86,6 +86,8 @@
             background-image: url(../../../public/login.jpg);
             width: 320px;
             box-shadow: 0px 0px 26px 3px rgb(0,0,0,0.25);
+            border-right: 1px solid #444;
+            z-index: 10;
         }
     }
 }

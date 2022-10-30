@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
+import { resetLayout } from "../../state/layout/layoutSlice";
 import { selectUser, fetchUser, logoutUser, LoginData, loginUser } from "../../state/user/userSlice";
 
 export function useAuthenticate() {
@@ -23,8 +24,10 @@ export function useLogout() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    return () => {
-        dispatch(logoutUser()).then(() => navigate('/login'));
+    return async () => {
+        await dispatch(logoutUser());
+        await navigate('/login');
+        await dispatch(resetLayout());
     };
 }
 

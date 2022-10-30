@@ -28,6 +28,12 @@ const layoutSlice = createSlice({
         finishSidePanelAnimation: (state) => {
             state.sidePanelAniamationEnd = true;
         },
+        resetLayout: (state) => {
+            state.loading = false;
+            state.callsCount = 0;
+            state.sidePanel = true;
+            state.sidePanelAniamationEnd = undefined;
+        }
     },
     extraReducers: (builder) => 
         builder
@@ -49,6 +55,6 @@ const layoutSlice = createSlice({
             })
 });
 
-export const { toggleSidePanel, finishSidePanelAnimation } = layoutSlice.actions;
+export const { resetLayout, toggleSidePanel, finishSidePanelAnimation } = layoutSlice.actions;
 export const layoutReducer = layoutSlice.reducer;
 export const selectLayout = (rootState: RootState): LayoutState => rootState.layout;
