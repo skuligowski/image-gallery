@@ -7,7 +7,7 @@ const LoginPanel: React.FC = () => {
     const { login, loading, error } = useLogin();
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const handleLogin = () => login({ username, password });
+    const handleLogin = () => username && password && login({ username, password });
     const onEnter = (callback: () => any) => (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
             callback();

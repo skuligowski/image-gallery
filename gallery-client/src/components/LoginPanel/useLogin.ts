@@ -7,15 +7,15 @@ export function useAuthenticate() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-    const { user, error } = useAppSelector(selectUser);
+    const { user, userError } = useAppSelector(selectUser);
     useEffect(() => {
         dispatch(fetchUser({ refLocation: location.pathname }));
     }, []);
     useEffect(() => {
-        if (error) {
+        if (userError) {
             navigate('/login');
         }
-    }, [error]);
+    }, [userError]);
     return { authenticated: !!user };
 }
 
@@ -31,7 +31,7 @@ export function useLogout() {
 export function useLogin() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const { user, refLocation, loading, error } = useAppSelector(selectUser);
+    const { user, refLocation, loading, loginError } = useAppSelector(selectUser);
     useEffect(() => {
         if (user) {
             navigate(refLocation || '/');
@@ -40,5 +40,5 @@ export function useLogin() {
     const login = (loginData: LoginData) => {
         dispatch(loginUser(loginData));
     }
-    return { login, loading, error };
+    return { login, loading, error: loginError };
 }

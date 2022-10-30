@@ -6,7 +6,8 @@ export interface UserState {
     user: User | undefined;
     refLocation?: string;
     loading: boolean;
-    error?: string;
+    loginError?: string;
+    userError?: string;
 }
 
 export interface LoginData {
@@ -28,7 +29,6 @@ export const fetchUser = createAsyncThunk(
     async ({ refLocation }: FetchUserData, { rejectWithValue }) => {
         const response = await fetch(`/api/user`);
         if (response.status === 401) {
-            console.log('rejected');
             return rejectWithValue({ refLocation });
         } 
         return await response.json();
@@ -73,22 +73,28 @@ const userSlice = createSlice({
             .addCase(logoutUser.fulfilled, (state) => {
                 state.user = undefined;
             })
-            .addCase(fetchUser.rejected, (state, action) => {
-                state.refLocation = (action.payload as any).refLocation;
-            })
-            .addMatcher(isPending(fetchUser, loginUser), (state, action) => {
+            .addCase(fetchUser.pending, (state, action) => {
                 state.loading = true;
                 state.user = undefined;
-                state.error = undefined;
+                state.userError = undefined;
+            })
+            .addCase(fetchUser.rejected, (state, action) => {
+                state.refLocation = (action.payload as any).refLocation;
+                state.loading = false;
+                state.userError = action.error.message;
+            })
+            .addCase(loginUser.pending, (state, action) => {
+                state.loading = true;
+                state.user = undefined;
+                state.loginError = undefined;
+            })
+            .addCase(loginUser.rejected, (state, action) => {
+                state.loading = false;
+                state.loginError = action.error.message;
             })
             .addMatcher(isFulfilled(fetchUser, loginUser), (state, action) => {
-                console.log('User fullfiled', action.payload);
                 state.loading = false;
                 state.user = action.payload;
-            })
-            .addMatcher(isRejected(fetchUser, loginUser), (state, action) => {
-                state.loading = false;
-                state.error = action.error.message;
             })
     }
 });
