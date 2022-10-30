@@ -12,4 +12,8 @@ const FullScreenLoader: React.FC = () => {
     );
 }
 
-export { Loader, FullScreenLoader };
+const ButtonLoader: React.FC<{ className?: string }> = ({ className }) => {
+    return <div className={`${style.loader} ${className} ${style.small}`}></div>
+}
+
+export { Loader, FullScreenLoader, ButtonLoader };

@@ -20,7 +20,7 @@ export interface FetchUserData {
 
 const initialState: UserState = {
     user: undefined,
-    loading: true,
+    loading: false,
 }
 
 export const fetchUser = createAsyncThunk(

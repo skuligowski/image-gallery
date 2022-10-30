@@ -15,6 +15,18 @@
         border-color: #fff transparent #fff transparent;
         animation: lds-dual-ring 1.2s linear infinite;
     }
+
+    &.small {
+        width: 15px;
+        height: 15px;
+        &:after {
+            margin: auto;
+            width: 10px;
+            height: 10px;
+            border: 3px solid #ccc;
+            border-color: #ccc transparent #ccc transparent;
+        }
+    }
 }
 
 .fullScreenContainer {

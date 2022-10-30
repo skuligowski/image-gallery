@@ -31,13 +31,14 @@ export function useLogout() {
 export function useLogin() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const { user, refLocation } = useAppSelector(selectUser);
+    const { user, refLocation, loading, error } = useAppSelector(selectUser);
     useEffect(() => {
         if (user) {
             navigate(refLocation || '/');
         }
     }, [user]);
-    return (loginData: LoginData) => {
+    const login = (loginData: LoginData) => {
         dispatch(loginUser(loginData));
     }
+    return { login, loading, error };
 }
