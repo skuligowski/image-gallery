@@ -1,5 +1,5 @@
-import ImagePreview from "./ImagePreview";
-import LazyLoadingGrid from "./LazyLoadingGrid";
+import ImagePreview from "./ImagePreview/ImagePreview";
+import LazyLoadingGrid from "./ImagesGrid/LazyLoadingGrid";
 import { useAlbum, useAlbumRoute } from "./useAlbum";
 import style from './AlbumPreview.module.scss';
 import NavigationPanel from '../NavigationPanel/NavigationPanel';

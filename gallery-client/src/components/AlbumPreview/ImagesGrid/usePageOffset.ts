@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Image } from '../../types/api.d';
+import { Image } from '../../../types/api';
 
 const step: number = 5;
 

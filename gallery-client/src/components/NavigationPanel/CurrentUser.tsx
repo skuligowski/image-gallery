@@ -1,6 +1,6 @@
 
 import LogoutButton from '../Buttons/LogoutButton';
-import { useLogout } from '../../state/user/useLogin';
+import { useLogout } from '../LoginPanel/useLogin';
 import style from './NavigationPanel.module.scss';
 
 const CurrentUser: React.FC = () => {

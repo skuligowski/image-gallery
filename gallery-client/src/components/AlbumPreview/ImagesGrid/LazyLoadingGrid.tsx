@@ -1,6 +1,6 @@
 import style from './LazyLoadingGrid.module.scss';
 import { useEffect, useRef } from "react";
-import { Album, Image } from '../../types/api.d';
+import { Album, Image } from '../../../types/api.d';
 import { usePageOffset } from "./usePageOffset";
 import ImagesGrid from './ImagesGrid';
 

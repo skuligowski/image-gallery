@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ButtonLoader } from '../Loader/Loader';
 import style from './LoginPanel.module.scss';
-import { useLogin } from '../../state/user/useLogin';
+import { useLogin } from './useLogin';
 
 const LoginPanel: React.FC = () => {
     const { login, loading, error } = useLogin();

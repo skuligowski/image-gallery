@@ -1,8 +1,8 @@
 import Masonry from "masonry-layout";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Album, Image } from '../../types/api.d';
-import { useSidePanelAnimationEnd } from "../SidePanel/useSidePanel";
+import { Album, Image } from '../../../types/api.d';
+import { useSidePanelAnimationEnd } from "../../SidePanel/useSidePanel";
 import style from './ImagesGrid.module.scss';
 
 const ImagesGrid: React.FC< {album: Album, images: Image[] }> = ({ album, images }) => {

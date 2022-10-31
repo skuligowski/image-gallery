@@ -1,8 +1,8 @@
 import { useCallback, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { resetLayout } from "../layout/layoutSlice";
-import { selectUser, fetchUser, logoutUser, LoginData, loginUser } from "./userSlice";
+import { useAppDispatch, useAppSelector } from "../../state/hooks";
+import { resetLayout } from "../../state/layout/layoutSlice";
+import { selectUser, fetchUser, logoutUser, LoginData, loginUser } from "../../state/user/userSlice";
 
 export function useAuthenticate() {
     const dispatch = useAppDispatch();

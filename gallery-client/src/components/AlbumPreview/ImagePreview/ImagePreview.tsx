@@ -1,6 +1,6 @@
 import style from './ImagePreview.module.scss';
-import { useAlbum } from './useAlbum';
-import NavigationPanel from '../NavigationPanel/NavigationPanel';
+import { useAlbum } from '../useAlbum';
+import NavigationPanel from '../../NavigationPanel/NavigationPanel';
 
 const ImagePreview: React.FC = () => {
     const { image } = useAlbum();
