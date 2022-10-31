@@ -1,8 +1,9 @@
-import { createAsyncThunk, createSlice, isFulfilled, isPending, isRejected } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { User } from '../../types/api.d';
 
 export interface UserState {
+    authenticated: boolean;
     user: User | undefined;
     refLocation?: string;
     loading: boolean;
@@ -20,6 +21,7 @@ export interface FetchUserData {
 }
 
 const initialState: UserState = {
+    authenticated: false,
     user: undefined,
     loading: false,
 }
@@ -66,16 +68,16 @@ export const logoutUser = createAsyncThunk(
 const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: {
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(logoutUser.fulfilled, (state) => {
                 state.user = undefined;
+                state.authenticated = false;
+                state.refLocation = undefined;
             })
             .addCase(fetchUser.pending, (state, action) => {
                 state.loading = true;
-                state.user = undefined;
                 state.userError = undefined;
             })
             .addCase(fetchUser.rejected, (state, action) => {
@@ -83,19 +85,27 @@ const userSlice = createSlice({
                 state.loading = false;
                 state.userError = action.error.message;
             })
+            .addCase(fetchUser.fulfilled, (state, action) => {
+                state.loading = false;
+                state.authenticated = true;
+                state.user = action.payload;
+                state.userError = undefined;
+            })
             .addCase(loginUser.pending, (state, action) => {
                 state.loading = true;
-                state.user = undefined;
                 state.loginError = undefined;
             })
             .addCase(loginUser.rejected, (state, action) => {
                 state.loading = false;
                 state.loginError = action.error.message;
             })
-            .addMatcher(isFulfilled(fetchUser, loginUser), (state, action) => {
+            .addCase(loginUser.fulfilled, (state, action) => {
                 state.loading = false;
+                state.authenticated = true;
                 state.user = action.payload;
-            })
+                state.loginError = undefined;
+                state.userError = undefined;
+            });
     }
 });
 

@@ -1,23 +1,25 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../state/hooks";
-import { resetLayout } from "../../state/layout/layoutSlice";
-import { selectUser, fetchUser, logoutUser, LoginData, loginUser } from "../../state/user/userSlice";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { resetLayout } from "../layout/layoutSlice";
+import { selectUser, fetchUser, logoutUser, LoginData, loginUser } from "./userSlice";
 
 export function useAuthenticate() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-    const { user, userError } = useAppSelector(selectUser);
-    useEffect(() => {
-        dispatch(fetchUser({ refLocation: location.pathname }));
+    const { authenticated, userError } = useAppSelector(selectUser);
+    useEffect(() => {   
+        if (!authenticated) {
+            dispatch(fetchUser({ refLocation: location.pathname }));
+        }    
     }, []);
     useEffect(() => {
         if (userError) {
             navigate('/login');
         }
     }, [userError]);
-    return { authenticated: !!user };
+    return { authenticated };
 }
 
 export function useLogout() {
@@ -34,14 +36,14 @@ export function useLogout() {
 export function useLogin() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const { user, refLocation, loading, loginError } = useAppSelector(selectUser);
+    const { authenticated, refLocation, loading, loginError } = useAppSelector(selectUser);
     useEffect(() => {
-        if (user) {
+        if (authenticated) {
             navigate(refLocation || '/');
         }
-    }, [user]);
-    const login = (loginData: LoginData) => {
+    }, [authenticated]);
+    const login = useCallback((loginData: LoginData) => {
         dispatch(loginUser(loginData));
-    }
+    }, []);
     return { login, loading, error: loginError };
 }

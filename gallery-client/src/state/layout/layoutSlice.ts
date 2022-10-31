@@ -1,5 +1,6 @@
 import { createSlice, isFulfilled, isPending, isRejected } from "@reduxjs/toolkit";
 import { fetchAlbums } from "../albums/albumsSlice";
+import { fetchConfig } from "../config/configSlice";
 import { RootState } from "../store";
 import { fetchUser, logoutUser } from '../user/userSlice';
 
@@ -37,17 +38,17 @@ const layoutSlice = createSlice({
     },
     extraReducers: (builder) => 
         builder
-            .addMatcher(isPending(fetchUser, fetchAlbums, logoutUser), (state) => {
+            .addMatcher(isPending(fetchUser, fetchAlbums, fetchConfig, logoutUser), (state) => {
                 state.callsCount += 1;
                 state.loading = true;
             })
-            .addMatcher(isFulfilled(fetchUser, fetchAlbums, logoutUser), (state) => {
+            .addMatcher(isFulfilled(fetchUser, fetchAlbums, fetchConfig, logoutUser), (state) => {
                 if (state.callsCount != 0) {
                     state.callsCount -= 1;
                     state.loading = state.callsCount > 0;
                 }
             })
-            .addMatcher(isRejected(fetchUser, fetchAlbums, logoutUser), (state) => {
+            .addMatcher(isRejected(fetchUser, fetchAlbums, fetchConfig, logoutUser), (state) => {
                 if (state.callsCount != 0) {
                     state.callsCount -= 1;
                     state.loading = state.callsCount > 0;

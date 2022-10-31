@@ -3,6 +3,7 @@ import { albumReducer } from './albums/albumSlice';
 import { albumsReducer } from './albums/albumsSlice';
 import { layoutReducer } from './layout/layoutSlice';
 import { userReducer } from './user/userSlice';
+import { configReducer } from './config/configSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     album: albumReducer,
     layout: layoutReducer,
     user: userReducer,
+    config: configReducer,
   },
 });
 

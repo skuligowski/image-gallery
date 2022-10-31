@@ -1,14 +1,10 @@
 import style from './App.module.scss';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { GalleryDashboard } from './components/GalleryDashboard';
+import GalleryDashboard from './components/GalleryDashboard';
 import LoginPanel from './components/LoginPanel/LoginPanel';
-import { useAppDispatch, useAppSelector } from './state/hooks';
-import { fetchUser, selectUser } from './state/user/userSlice';
-import { useEffect } from 'react';
+import { useAppSelector } from './state/hooks';
 import { selectLayout } from './state/layout/layoutSlice';
 import { FullScreenLoader } from './components/Loader/Loader';
-import { useNavigate } from 'react-router-dom';
-
 
 const router = createBrowserRouter([
   {

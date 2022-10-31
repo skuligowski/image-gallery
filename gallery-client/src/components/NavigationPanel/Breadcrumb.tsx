@@ -15,7 +15,7 @@ const Breadcrumb: React.FC = () => {
             {image ? 
                 <div><span className={style.albumLink} onClick={close}>{album?.name}</span> {'>'} {image?.filename}</div>
                 :
-                <div>{album?.name}</div> }    
+                <div>{album?.name || 'Gallery'}</div> }    
         </div>
     );
 }

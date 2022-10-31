@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Image, Album, AlbumsResponse, AlbumResponse } from "../../types/api";
-import { AppThunk, RootState } from "../store";
+import { Image, AlbumResponse } from "../../types/api";
+import { RootState } from "../store";
 
 export interface AlbumState {
     album: AlbumResponse | undefined;
@@ -35,6 +35,11 @@ const albumSlice = createSlice({
             state.image = undefined;
             state.error = 'Album was not found';
         },
+        resetAlbum: (state) => {
+            state.album = undefined;
+            state.image = undefined;
+            state.error = undefined;
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -55,6 +60,6 @@ const albumSlice = createSlice({
     }
 });
 
-export const { selectImage, albumNotFound } = albumSlice.actions;
+export const { selectImage, albumNotFound, resetAlbum } = albumSlice.actions;
 export const albumReducer = albumSlice.reducer;
 export const selectCurrentAlbum = (rootState: RootState): AlbumState => rootState.album;
