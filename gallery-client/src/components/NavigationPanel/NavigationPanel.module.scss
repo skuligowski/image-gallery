@@ -7,12 +7,41 @@
     flex-shrink: 0;
     align-items: center;
 
-    .breadcrumb {
+    .separator {
+        width: 1px;
+        height: 18px;
+        background-color: #555;
+        margin: 0 8px;
+    }
+
+    .left {
         flex-grow: 1;
         width: 40%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 10px;
+    }
+
+    .center {
+        width: 125px;
+        flex-grow: 0;
+        flex-shrink: 0;
+    }
+
+    .right {
+        flex-grow: 1;
+        width: 40%;
+        display: flex;
+        align-items: center;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-right: 10px;
+    }
+
+    .breadcrumb {
         font-size: 14px;
-        margin-left: 15px;
-        line-height: 1;
         color: #e1e1e1;
         text-align: left;
         display: flex;
@@ -31,15 +60,13 @@
 
     .imageControl {
         text-align: center;
-        width: 125px;
-        flex-grow: 0;
-        flex-shrink: 0;
         display: flex;
         align-items: center;
         justify-content: center;
         .pages {
             font-size: 13px;
             margin: 0 5px;
+            user-select: none;
         }
     }
 
@@ -51,9 +78,7 @@
     }
 
     .user {
-        margin-right: 10px;
         display: flex;
-        line-height: 1;
         align-items: center;
         .username {
             margin-right: 5px;

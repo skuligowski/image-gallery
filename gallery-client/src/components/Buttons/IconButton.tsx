@@ -5,10 +5,11 @@ export interface IconButtonProps {
     onClick?: MouseEventHandler<HTMLDivElement>,
     className?: string,
     style?: CSSProperties,
+    disabled?: boolean,
 }
-const IconButton: React.FC<{ children: any } & IconButtonProps> = ({ children, onClick, className, style }) => {
+const IconButton: React.FC<{ children: any } & IconButtonProps> = ({ children, onClick, className, style, disabled }) => {
     return (
-        <div className={`${styles.button} ${className}`} onClick={onClick} style={style}>
+        <div className={`${styles.button} ${className || ''} ${disabled ? styles.disabled: ''}`} onClick={onClick} style={style}>
             {children}
         </div>
     );

@@ -23,9 +23,9 @@ const ImageControl: React.FC = () => {
     }
     return (
         <div className={style.imageControl}>
-            <PrevButton onClick={prevImage} />
+            <PrevButton onClick={prevImage} disabled={index === 0} />
             <span className={style.pages}>{(index || 0) + 1} / {album?.images.length}</span>
-            <NextButton onClick={nextImage} />
+            <NextButton onClick={nextImage} disabled={index === ((album?.images || []).length - 1)} />
         </div>   
     );
 }
