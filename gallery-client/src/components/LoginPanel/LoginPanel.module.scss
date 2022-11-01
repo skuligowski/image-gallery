@@ -3,6 +3,8 @@
     flex-direction: row;
     align-items: center;
     height: 100%;
+    overflow-y: auto;
+    
     .loginPane {
         margin: auto;
         height: 480px;

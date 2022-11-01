@@ -7,4 +7,12 @@
     background-color: #1B1D1E;
     display: flex;
     flex-direction: column;
+
+    .image {
+        width: 100%;
+        height: 300px;
+        background-size: cover;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+      }
 }
