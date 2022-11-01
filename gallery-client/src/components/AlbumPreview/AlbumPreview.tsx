@@ -1,9 +1,11 @@
 import ImagePreview from "./ImagePreview/ImagePreview";
-import LazyLoadingGrid from "./ImagesGrid/LazyLoadingGrid";
 import { useAlbum, useAlbumRoute } from "./useAlbum";
 import style from './AlbumPreview.module.scss';
 import NavigationPanel from '../NavigationPanel/NavigationPanel';
 import { Loader } from "../Loader/Loader";
+import ImagesGrid from "./ImagesGrid/ImagesGrid";
+import { Image } from '../../types/api.d';
+import LazyLoadingGrid from "../Commons/LazyLoadingGrid/LazyLoadingGrid";
 
 const AlbumPreview: React.FC = () => {
     useAlbumRoute();
@@ -18,7 +20,10 @@ const AlbumPreview: React.FC = () => {
                     <div>{error}</div>
                 ) : (
                     <>
-                        <LazyLoadingGrid album={album} images={album.images} />
+                        <LazyLoadingGrid<Image> 
+                            render={images => <ImagesGrid album={album} images={images}/>} 
+                            items={album.images} 
+                        />
                         {image ? <ImagePreview /> : null}
                     </>
                 )

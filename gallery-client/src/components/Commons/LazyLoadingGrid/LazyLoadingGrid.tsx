@@ -1,11 +1,14 @@
 import style from './LazyLoadingGrid.module.scss';
-import { useEffect, useRef } from "react";
-import { Album, Image } from '../../../types/api.d';
+import { ReactElement, useEffect, useRef } from "react";
 import { usePageOffset } from "./usePageOffset";
-import ImagesGrid from './ImagesGrid';
 
-const LazyLoadingGrid: React.FC< { album: Album, images: Image[] }> = ({ album, images }) => {
-    const [imagesSlice, loaded, next] = usePageOffset(images);
+interface SourceableProps<T> { 
+    render: (items: T[]) => ReactElement<any>, 
+    items: T[] 
+};
+
+function LazyLoadingGrid<T>({ render, items }: SourceableProps<T>): React.ReactElement<any, any> {
+    const [itemsSlice, loaded, next] = usePageOffset(items);
     const containerRef = useRef<HTMLDivElement | null>(null);
     
     const isBottom = (el: HTMLElement): boolean =>
@@ -19,13 +22,14 @@ const LazyLoadingGrid: React.FC< { album: Album, images: Image[] }> = ({ album, 
     
     useEffect(() => {
         handleFillUp(containerRef.current as HTMLElement);
-    }, [imagesSlice]);
+    }, [itemsSlice]);
+    const girdItems = render(itemsSlice);
 
     return (
         <div className={style.container} onScroll={handleScroll} ref={containerRef}>
-            <ImagesGrid album={album} images={imagesSlice} />
+            {girdItems}
         </div>
     );
-};
+}
 
 export default LazyLoadingGrid;

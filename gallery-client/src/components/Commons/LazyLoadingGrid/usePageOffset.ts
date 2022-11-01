@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { Image } from '../../../types/api';
 
 const step: number = 5;
 
-export function usePageOffset(images: Image[]): [Image[], boolean, () => void] {
+export function usePageOffset<T>(images: T[]): [T[], boolean, () => void] {
     const [, setOffset] = useState<number>(step);
-    const [imagesSlice, setImagesSlice] = useState<Image[]>(images.slice(0, step));
+    const [imagesSlice, setImagesSlice] = useState<T[]>(images.slice(0, step));
     const next = () => {
         setOffset(currentOffset => {
             const newOffset = currentOffset + step;
