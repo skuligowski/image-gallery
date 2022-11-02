@@ -12,6 +12,7 @@
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "fscreen": "^1.2.0",
+    "http-proxy-middleware": "^2.0.6",
     "masonry-layout": "^4.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -46,7 +47,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3000",
   "devDependencies": {
     "@types/fscreen": "^1.0.1",
     "@types/masonry-layout": "^4.2.5"

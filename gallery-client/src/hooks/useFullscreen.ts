@@ -1,12 +1,16 @@
 import fscreen from "fscreen";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 
 export function useFullscreen() {
-    return useCallback(() => {
+    const [isFullscreen, setIsFullscreen] = useState<boolean>(false);
+    const toggleFullscreen = useCallback(() => {
         if (fscreen.fullscreenElement) {
-           fscreen.exitFullscreen();
+            fscreen.exitFullscreen();
+            setIsFullscreen(false);
         } else {
-          fscreen.requestFullscreen(document.documentElement);
+            fscreen.requestFullscreen(document.documentElement);
+            setIsFullscreen(true);
         }
     }, []);
+    return { toggleFullscreen, isFullscreen };
 }

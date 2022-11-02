@@ -6,6 +6,7 @@ import CurrentUser from './CurrentUser';
 import SidePanelToggle from "../Buttons/SidePanelToggle";
 import BackButton from "../Buttons/BackButton";
 import FullScreenButton from '../Buttons/FullScreenButton';
+import DownloadButton from "../Buttons/DownloadButton";
 
 const NavSeparator: React.FC = () => {
     return <div className={style.separator}></div>
@@ -27,8 +28,14 @@ const NavigationPanel: React.FC = () => {
             ) : null}
             
             <div className={style.right}>
-                <SidePanelToggle />
+                { image ? (
+                    <>
+                        <DownloadButton />
+                        <NavSeparator />
+                    </>
+                ) : null}
                 <FullScreenButton />
+                <SidePanelToggle />
                 <NavSeparator />
                 <CurrentUser />
             </div>
