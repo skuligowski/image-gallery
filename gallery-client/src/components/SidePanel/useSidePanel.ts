@@ -1,15 +1,18 @@
 import style from "./SidePanel.module.scss";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
-import { finishSidePanelAnimation, selectLayout, toggleSidePanel } from "../../state/layout/layoutSlice";
-import { useEffect } from "react";
+import { updateLayout, selectLayout, toggleSidePanel } from "../../state/layout/layoutSlice";
+import { useState } from "react";
 
 export const useSidePanel = () => {
+    const [initial, setInitial] = useState<boolean>(true);
     const dispatch = useAppDispatch();
-    const { sidePanel, sidePanelAniamationEnd } = useAppSelector(selectLayout);
-    const animationClass = ((sidePanel && sidePanelAniamationEnd === undefined) ? '' : 
-        sidePanel ? style.expand : style.hidden);
-    const handleAnimationEnd = () => dispatch(finishSidePanelAnimation());
-    return { sidePanel, animationClass, handleAnimationEnd };
+    const { sidePanel } = useAppSelector(selectLayout);
+    const animationClass = (sidePanel && initial) ? '' : sidePanel ? style.expand : style.hidden;
+    if (!sidePanel && initial) {
+        setInitial(false);
+    }
+    const onAnimationEnd = () => dispatch(updateLayout());
+    return { sidePanel, animationClass, onAnimationEnd };
 } 
 
 export const useSidePanelToggle = () => {
@@ -19,11 +22,3 @@ export const useSidePanelToggle = () => {
     }
 }
 
-export const useSidePanelAnimationEnd = (callback: () => void) => {
-    const { sidePanelAniamationEnd } = useAppSelector(selectLayout);
-    useEffect(() => {
-        if (sidePanelAniamationEnd) {
-            callback();
-        }
-    }, [ sidePanelAniamationEnd ]);
-}

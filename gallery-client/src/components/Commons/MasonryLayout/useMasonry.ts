@@ -1,6 +1,6 @@
 import Masonry from "masonry-layout";
 import { MutableRefObject, useEffect, useRef } from "react";
-import { useSidePanelAnimationEnd } from "../../SidePanel/useSidePanel";
+import { useLayoutUpdate } from "../../../hooks/useLayout";
 
 export function useMasonry(gridRef: MutableRefObject<HTMLDivElement | null>, itemSelector: string, deps: any[]) {
     const masonryRef = useRef<Masonry | null>(null);
@@ -14,7 +14,7 @@ export function useMasonry(gridRef: MutableRefObject<HTMLDivElement | null>, ite
             initLayout: true,
         });
     }, deps);
-    useSidePanelAnimationEnd(() =>  masonryRef.current?.layout && masonryRef.current.layout());
+    useLayoutUpdate(() =>  masonryRef.current?.layout && masonryRef.current.layout());
 
     const onImageLoad: React.ReactEventHandler<HTMLImageElement> = (e) => {
         setTimeout(() => {

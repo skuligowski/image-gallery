@@ -1,14 +1,12 @@
 import AlbumsDirectory from "../AlbumsDirectory/AlbumsDirectory";
 import style from "./SidePanel.module.scss";
-import { useAppDispatch, useAppSelector } from "../../state/hooks";
-import { finishSidePanelAnimation, selectLayout } from "../../state/layout/layoutSlice";
 import { useSidePanel } from './useSidePanel';
 
 const SidePanel: React.FC = () => {
-    const { animationClass, handleAnimationEnd } = useSidePanel();
+    const { animationClass, onAnimationEnd } = useSidePanel();
     
     return (
-        <div className={`${style.container} ${animationClass}`} onAnimationEnd={handleAnimationEnd}>
+        <div className={`${style.container} ${animationClass}`} onAnimationEnd={onAnimationEnd}>
             <div className={style.content}>
                 <div className={style.tabs}>
                     <nav>

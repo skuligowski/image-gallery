@@ -1,6 +1,8 @@
 import style from './LazyLoadingGrid.module.scss';
 import { ReactElement, useEffect, useRef } from "react";
 import { usePageOffset } from "./usePageOffset";
+import { useAppSelector } from '../../../state/hooks';
+import { selectLayout } from '../../../state/layout/layoutSlice';
 
 interface SourceableProps<T> { 
     render: (items: T[]) => ReactElement<any>, 
@@ -9,10 +11,11 @@ interface SourceableProps<T> {
 
 function LazyLoadingGrid<T>({ render, items }: SourceableProps<T>): React.ReactElement<any, any> {
     const [itemsSlice, loaded, next] = usePageOffset(items);
+    const { layoutUpdated } = useAppSelector(selectLayout);
     const containerRef = useRef<HTMLDivElement | null>(null);
     
     const isBottom = (el: HTMLElement): boolean =>
-        Math.abs(el.scrollHeight - el.scrollTop - el.clientHeight) < 160;
+        Math.abs(el.scrollHeight - el.scrollTop - el.clientHeight) < 200;
     const noScroll = (el: HTMLElement): boolean => el.scrollHeight === el.clientHeight;
     
     const handleScroll: React.UIEventHandler<HTMLElement> = (e) => 
@@ -22,7 +25,7 @@ function LazyLoadingGrid<T>({ render, items }: SourceableProps<T>): React.ReactE
     
     useEffect(() => {
         handleFillUp(containerRef.current as HTMLElement);
-    }, [itemsSlice]);
+    }, [itemsSlice, layoutUpdated]);
     const girdItems = render(itemsSlice);
 
     return (
