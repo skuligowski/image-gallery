@@ -26,6 +26,10 @@
         animation: expand 0.3s forwards;
     }
 
+    &.expand.noAnimation .content, &.hidden.noAnimation .content {
+        animation-duration: 0s;
+    }
+
     &.hidden {
         width: 0;
     }

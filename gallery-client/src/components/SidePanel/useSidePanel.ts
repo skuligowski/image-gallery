@@ -1,24 +1,20 @@
 import style from "./SidePanel.module.scss";
-import { useAppDispatch, useAppSelector } from "../../state/hooks";
-import { updateLayout, selectLayout, toggleSidePanel } from "../../state/layout/layoutSlice";
+import { useLayout, useUpdateLayout } from "../../hooks/useLayout";
 import { useState } from "react";
+import { useEffectSkippedFirst } from "../../hooks/useEffect";
 
 export const useSidePanel = () => {
-    const [initial, setInitial] = useState<boolean>(true);
-    const dispatch = useAppDispatch();
-    const { sidePanel } = useAppSelector(selectLayout);
-    const animationClass = (sidePanel && initial) ? '' : sidePanel ? style.expand : style.hidden;
-    if (!sidePanel && initial) {
-        setInitial(false);
+    const updateLayout = useUpdateLayout();
+    const [touched, setTouched] = useState<boolean>(false);
+    const { sidePanel } = useLayout();
+    useEffectSkippedFirst(() => {
+        setTouched(true);
+    }, [sidePanel]);
+    let animationClass = sidePanel ? style.expand : style.hidden;
+    if (!touched) {
+        animationClass += ` ${style.noAnimation}`;
     }
-    const onAnimationEnd = () => dispatch(updateLayout());
+    const onAnimationEnd = () => updateLayout();
     return { sidePanel, animationClass, onAnimationEnd };
 } 
-
-export const useSidePanelToggle = () => {
-    const dispatch = useAppDispatch();
-    return () => {
-        dispatch(toggleSidePanel());
-    }
-}
 

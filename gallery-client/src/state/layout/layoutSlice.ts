@@ -22,10 +22,17 @@ const initialState: LayoutState = {
 
 const layoutSlice = createSlice({
     name: 'layout',
-    initialState,
+    initialState: () => {
+        const isMobile = !window.matchMedia("(min-width: 768px)").matches;
+        return isMobile ? {...initialState, sidePanel: false} : initialState;
+    },
     reducers: {
-        toggleSidePanel: (state) => {
-            state.sidePanel = !state.sidePanel;
+        toggleSidePanel: (state, action) => {
+            if (action.payload !== undefined) {
+                state.sidePanel = action.payload;
+            } else {
+                state.sidePanel = !state.sidePanel;
+            }
         },
         updateLayout: (state) => {
             state.layoutUpdated += 1;

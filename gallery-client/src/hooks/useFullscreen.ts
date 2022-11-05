@@ -1,18 +1,17 @@
 import fscreen from "fscreen";
 import { useCallback } from "react";
-import { useAppDispatch, useAppSelector } from "../state/hooks";
-import { selectLayout, updateLayout } from "../state/layout/layoutSlice";
+import { useLayout, useUpdateLayout } from "./useLayout";
 
 export function useFullscreen() {
-    const dispatch = useAppDispatch();
-    const { fullscreen } = useAppSelector(selectLayout);
+    const { fullscreen } = useLayout();
+    const updateLayout = useUpdateLayout();
     const toggleFullscreen = useCallback(() => {
         if (fscreen.fullscreenElement) {
             fscreen.exitFullscreen();
-            setTimeout(() => dispatch(updateLayout()), 200);
+            updateLayout(200);
         } else {
             fscreen.requestFullscreen(document.documentElement);
-            setTimeout(() => dispatch(updateLayout()), 200);
+            updateLayout(200);
         }
     }, []);
     return { toggleFullscreen, isFullscreen: fullscreen };

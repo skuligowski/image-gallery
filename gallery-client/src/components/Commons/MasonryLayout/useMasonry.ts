@@ -1,6 +1,6 @@
 import Masonry from "masonry-layout";
 import { MutableRefObject, useEffect, useRef } from "react";
-import { useLayoutUpdate } from "../../../hooks/useLayout";
+import { useOnLayoutUpdated } from "../../../hooks/useLayout";
 
 export function useMasonry(gridRef: MutableRefObject<HTMLDivElement | null>, itemSelector: string, deps: any[]) {
     const masonryRef = useRef<Masonry | null>(null);
@@ -14,7 +14,7 @@ export function useMasonry(gridRef: MutableRefObject<HTMLDivElement | null>, ite
             initLayout: true,
         });
     }, deps);
-    useLayoutUpdate(() =>  masonryRef.current?.layout && masonryRef.current.layout());
+    useOnLayoutUpdated(() =>  masonryRef.current?.layout && masonryRef.current.layout());
 
     const onImageLoad: React.ReactEventHandler<HTMLImageElement> = (e) => {
         setTimeout(() => {
