@@ -4,6 +4,9 @@
         .grid-item {
             width: 200px;
             margin-bottom: 10px;
+            @media screen and (max-width: 500px) { 
+                width: 180px;
+            }
         }
         .image-wrapper {
             cursor: pointer;

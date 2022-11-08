@@ -14,9 +14,11 @@
         fill: #e1e1e1;
     }
     transition: background-color 0.4s;
-    &:not(.disabled):hover {
-        cursor: pointer;
-        background-color: #3d3d3d;
+    @media (hover: hover) and (pointer: fine) {
+        &:not(.disabled):hover {
+            cursor: pointer;
+            background-color: #3d3d3d;
+        }
     }
     &:active {
         background-color: #292929;

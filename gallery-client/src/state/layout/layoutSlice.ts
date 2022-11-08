@@ -3,6 +3,7 @@ import { fetchAlbums } from "../albums/albumsSlice";
 import { fetchConfig } from "../config/configSlice";
 import { RootState } from "../store";
 import { fetchUser, logoutUser } from '../user/userSlice';
+import { isMobile } from "./isMobile";
 
 export interface LayoutState {
     loading: boolean;
@@ -23,8 +24,7 @@ const initialState: LayoutState = {
 const layoutSlice = createSlice({
     name: 'layout',
     initialState: () => {
-        const isMobile = !window.matchMedia("(min-width: 768px)").matches;
-        return isMobile ? {...initialState, sidePanel: false} : initialState;
+        return isMobile() ? {...initialState, sidePanel: false} : initialState;
     },
     reducers: {
         toggleSidePanel: (state, action) => {

@@ -5,7 +5,10 @@ import NextButton from "../Buttons/NextButton";
 import PrevButton from "../Buttons/PrevButton";
 import style from './NavigationPanel.module.scss';
 
-const ImageControl: React.FC = () => {
+const ImageControl: React.FC<{ 
+    prevClassName: string, 
+    nextClassName: string 
+}>  = ({ prevClassName, nextClassName }) => {
     const { album, image } = useAlbum();
     const index = useMemo(() => {
         return album?.images.findIndex(item => item.filename === image?.filename);
@@ -23,9 +26,9 @@ const ImageControl: React.FC = () => {
     }
     return (
         <div className={style.imageControl}>
-            <PrevButton onClick={prevImage} disabled={index === 0} />
+            <PrevButton onClick={prevImage} className={prevClassName} disabled={index === 0} />
             <span className={style.pages}>{(index || 0) + 1} / {album?.images.length}</span>
-            <NextButton onClick={nextImage} disabled={index === ((album?.images || []).length - 1)} />
+            <NextButton onClick={nextImage} className={nextClassName} disabled={index === ((album?.images || []).length - 1)} />
         </div>   
     );
 }

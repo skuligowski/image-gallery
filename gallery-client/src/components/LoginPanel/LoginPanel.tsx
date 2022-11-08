@@ -21,6 +21,9 @@ const LoginPanel: React.FC = () => {
                     <h2>Login</h2>
                     <div className={style.formField}>
                         <input 
+                            autoCorrect="off"
+                            autoCapitalize="off"
+                            autoComplete="off"
                             onChange={(e) => setUsername(e.target.value)} 
                             placeholder="Username" 
                             disabled={loading}

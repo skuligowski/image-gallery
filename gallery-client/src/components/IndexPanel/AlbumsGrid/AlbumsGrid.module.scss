@@ -4,6 +4,9 @@
         .grid-item {
             width: 200px;
             margin-bottom: 20px;
+            @media screen and (max-width: 500px) { 
+                width: 180px;
+            }
         }
         .image-wrapper {
             cursor: pointer;
@@ -22,6 +25,10 @@
             img {
               width: 200px;
               height: 200px;
+              @media screen and (max-width: 500px) { 
+                width: 180px;
+                height: 180px;
+            }
               position: absolute;
               outline: none;
               object-fit: cover;

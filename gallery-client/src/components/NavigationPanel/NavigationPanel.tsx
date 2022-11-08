@@ -4,9 +4,9 @@ import style from './NavigationPanel.module.scss';
 import Breadcrumb from './Breadcrumb';
 import CurrentUser from './CurrentUser';
 import SidePanelToggle from "../Buttons/SidePanelToggle";
-import BackButton from "../Buttons/BackButton";
 import FullScreenButton from '../Buttons/FullScreenButton';
 import DownloadButton from "../Buttons/DownloadButton";
+import { useLayout } from "../../hooks/useLayout";
 
 const NavSeparator: React.FC = () => {
     return <div className={style.separator}></div>
@@ -14,30 +14,30 @@ const NavSeparator: React.FC = () => {
 
 const NavigationPanel: React.FC = () => {
     const { album, image } = useAlbum();
+    const { sidePanel } = useLayout();
     return (
-        <div className={style.navigation}>
+        <div className={`${style.navigation} ${sidePanel ? style.withSidePanel : ''}`}>
             <div className={style.left}>
-                <BackButton href={image ? `/albums/${album?.permalink}` : '/'} disabled={!album} />
+                <SidePanelToggle />
                 <NavSeparator />
                 <Breadcrumb />
-            </div>
-            { image ? (
-                <div className={style.center}>
-                    <ImageControl />
-                </div>
-            ) : null}
-            
+            </div>         
             <div className={style.right}>
                 { image ? (
                     <>
+                        <ImageControl prevClassName={style.prevButton} nextClassName={style.nextButton} />
+                        <NavSeparator />
                         <DownloadButton />
                         <NavSeparator />
                     </>
                 ) : null}
                 <FullScreenButton />
-                <SidePanelToggle />
-                <NavSeparator />
-                <CurrentUser />
+                { !album ? (
+                    <>
+                        <NavSeparator />
+                        <CurrentUser />
+                    </>
+                ) : null }
             </div>
         </div>
     );

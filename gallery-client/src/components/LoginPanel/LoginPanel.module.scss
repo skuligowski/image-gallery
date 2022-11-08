@@ -5,11 +5,23 @@
     height: 100%;
     overflow-y: auto;
     
+    @media screen and (max-width: 768px) {
+        background-color: rgba(44, 44, 44);
+    }
+    
     .loginPane {
         margin: auto;
         height: 480px;
         display: flex;
         flex-direction: row;
+
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+            height: auto;
+            margin-top: 0;
+            padding: 0;
+            width: 100%;
+        }
 
         .form {
             margin: auto;
@@ -21,6 +33,11 @@
             background-color: rgb(44, 44, 44, 0.72);
             box-sizing: border-box;
             
+            @media screen and (max-width: 768px) {
+                width: 100%;
+                height: auto;
+                margin: 0;
+            }
 
             h2 {
                 color: #ccc;
@@ -90,6 +107,14 @@
             box-shadow: 0px 0px 26px 3px rgb(0,0,0,0.25);
             border-right: 1px solid #444;
             z-index: 10;
+
+
+            @media screen and (max-width: 768px) {
+                height: 100px;
+                width: 100%;
+                border-bottom: 1px solid #444;
+                border-right: 0;
+            }
         }
     }
 }

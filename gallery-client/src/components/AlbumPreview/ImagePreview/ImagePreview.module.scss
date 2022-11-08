@@ -21,6 +21,11 @@
             max-height: calc(100% - 60px);
             width: auto;
             height: auto;
+
+            @media screen and (max-width: 768px) { 
+                bottom: 45px;
+                max-height: calc(100% - 95px);
+            }
         }
     }
     
