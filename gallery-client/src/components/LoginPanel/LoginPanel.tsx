@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ButtonLoader } from '../Loader/Loader';
 import style from './LoginPanel.module.scss';
 import { useLogin } from './useLogin';
 
 const LoginPanel: React.FC = () => {
     const { login, loading, error } = useLogin();
+    const { t } = useTranslation();
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const handleLogin = () => username && password && login({ username, password });
@@ -25,7 +27,7 @@ const LoginPanel: React.FC = () => {
                             autoCapitalize="off"
                             autoComplete="off"
                             onChange={(e) => setUsername(e.target.value)} 
-                            placeholder="Username" 
+                            placeholder={t('Username')} 
                             disabled={loading}
                         />
                     </div>
@@ -33,20 +35,20 @@ const LoginPanel: React.FC = () => {
                         <input 
                             type="password" 
                             onChange={(e) => setPassword(e.target.value)} 
-                            placeholder="Password" 
+                            placeholder={t('Password')} 
                             disabled={loading}
                             onKeyDown={onEnter(handleLogin)}
                         />
                     </div>
                     <div className={style.formField}>
                         <button onClick={handleLogin} disabled={!username || !password} className={loading ? style.loading : undefined}>
-                            <span className={style.label}>Login</span>
+                            <span className={style.label}>{t('Login')}</span>
                         </button>
                         {loading ? <ButtonLoader className={style.loader} /> : null}
                     </div>
                     { error ? (
                         <div className={style.errorInfo}>
-                            The username or password is incorrect, please try again.
+                            {t('The username or password is incorrect, please try again.')}
                         </div>
                     ) : null }
                 </div>

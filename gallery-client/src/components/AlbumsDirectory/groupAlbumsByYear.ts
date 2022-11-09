@@ -11,13 +11,7 @@ export interface AlbumsInMonth {
     albums: Album[];
 }
 
-export function groupAlbumsByYear(albums: Album[]): AlbumsInYear[] {
-    const monthNames = [
-        "Jan", "Feb", "Mar",
-        "Apr", "May", "Jun",
-        "Jul", "Aug", "Sep",
-        "Oct", "Nov", "Dec"
-    ];
+export function groupAlbumsByYear(albums: Album[], monthNames: string[]): AlbumsInYear[] {
     const sortedAlbums = [...albums].sort((a1, a2) => `${a1.date} ${a1.name}`.localeCompare(`${a2.date} ${a2.name}`));
     const byYearMap = sortedAlbums.reduce(( map, album ) => {
         if (album.date) {

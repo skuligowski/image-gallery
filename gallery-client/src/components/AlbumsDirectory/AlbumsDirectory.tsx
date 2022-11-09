@@ -7,11 +7,23 @@ import { AlbumsInMonth, AlbumsInYear, groupAlbumsByYear } from './groupAlbumsByY
 import { groupAlbumsNoDate } from './groupAlbumsNoDate';
 import { useToggleSidePanel } from '../../hooks/useLayout';
 import { isMobile } from '../../state/layout/isMobile';
+import { useTranslation } from 'react-i18next';
+
+const useMonthNames = () => {
+    const { t } = useTranslation();
+    return useMemo(() => ([
+        t('Jan'), t('Feb'), t('Mar'),
+        t('Apr'), t('May'), t('Jun'),
+        t('Jul'), t('Aug'), t('Sep'),
+        t('Oct'),  t('Mov'), t('Dec')
+    ]), []);
+}
 
 const AlbumsDirectory: React.FC = () => {    
     const { albums, loading } = useAppSelector(selectAlbums);
+    const monthNames = useMonthNames();
     const [groupedByYear, withoutDate] = useMemo(() => 
-        [groupAlbumsByYear(albums || []), groupAlbumsNoDate(albums || [])], [albums]);
+        [groupAlbumsByYear(albums || [], monthNames), groupAlbumsNoDate(albums || [])], [albums]);
 
     return <div className={style.container}>
         {loading ? null : 

@@ -1,0 +1,20 @@
+{
+    "Username": "Użytkownik",
+    "Password": "Hasło",
+    "Login": "Zaloguj",
+    "The username or password is incorrect, please try again.": "Login lub hasł są nieprawidłowe, spróbuj ponownie.",
+    "Albums": "Albumy",
+    "Images": "Zdjęcia",
+    "Jan": "Sty",
+    "Feb": "Lut",
+    "Mar": "Mar",
+    "Apr": "Kwi",
+    "May": "Maj",
+    "Jun": "Cze",
+    "Jul": "Lip",
+    "Aug": "Sie",
+    "Sep": "Wrz",
+    "Oct": "Paź",
+    "Nov": "Lis",
+    "Dec": "Gru"
+}
