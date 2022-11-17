@@ -12,7 +12,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { AdminComponent } from './admin.component';
 
 const adminRoutes: Routes = [
-  { path: '', 
+  { path: 'admin', 
     component: AdminComponent,
     children: [
       { path: 'albums', component: AlbumsManagerComponent, resolve: { albums: AlbumsResolver }, runGuardsAndResolvers: 'always' },

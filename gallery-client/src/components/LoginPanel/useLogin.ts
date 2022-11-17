@@ -1,5 +1,5 @@
 import { useCallback, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../state/hooks";
 import { resetLayout } from "../../state/layout/layoutSlice";
 import { selectUser, fetchUser, logoutUser, LoginData, loginUser } from "../../state/user/userSlice";
@@ -36,10 +36,12 @@ export function useLogout() {
 export function useLogin() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const [params] = useSearchParams();
     const { authenticated, refLocation, loading, loginError } = useAppSelector(selectUser);
     useEffect(() => {
         if (authenticated) {
-            navigate(refLocation || '/');
+            const redirectUrl = params.get('redirectUrl');
+            navigate(redirectUrl || refLocation || '/');
         }
     }, [authenticated]);
     const login = useCallback((loginData: LoginData) => {

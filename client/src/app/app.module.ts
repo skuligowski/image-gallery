@@ -5,7 +5,6 @@ import { AlbumComponent } from './album/album.component';
 import { ImagePreviewComponent } from './album/image-preview/image-preview.component';
 import { LoginComponent } from './login/login.component';
 import { AlbumsService } from './albums.service';
-import { IndexComponent } from './index/index.component';
 import { AlbumResolver } from './album.resolver';
 import { ImageGridComponent } from './album/album-preview/image-grid/image-grid.component';
 import { ImageGridItemComponent } from './album/album-preview/image-grid/image-grid-item.component';
@@ -28,6 +27,7 @@ import { ConfigGuard } from './core/config/config.guard';
 import { ConfigService } from './core/config/config.service';
 import { EnterModule } from './common/enter/enter.module';
 import { AnchorsModule } from './common/anchors/anchors.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -40,18 +40,18 @@ import { AnchorsModule } from './common/anchors/anchors.module';
     ImageGridComponent,
     ImageGridItemComponent,
     ImagePreviewComponent,
-    IndexComponent,
     LoginComponent,
     SpinnerComponent,
   ],
   imports: [
-    AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
     EnterModule,
     FormsModule,
     HttpClientModule,
     AnchorsModule,
+    AdminModule,
+    AppRoutingModule,
   ],
   providers: [
     AlbumResolver,

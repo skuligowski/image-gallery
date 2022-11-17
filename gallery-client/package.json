@@ -14,6 +14,7 @@
     "fscreen": "^1.2.0",
     "http-proxy-middleware": "^2.0.6",
     "i18next": "^22.0.4",
+    "js-cookie": "^3.0.1",
     "masonry-layout": "^4.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -51,6 +52,7 @@
   },
   "devDependencies": {
     "@types/fscreen": "^1.0.1",
+    "@types/js-cookie": "^3.0.2",
     "@types/masonry-layout": "^4.2.5"
   }
 }

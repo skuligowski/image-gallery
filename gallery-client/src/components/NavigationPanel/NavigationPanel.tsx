@@ -7,12 +7,15 @@ import SidePanelToggle from "../Buttons/SidePanelToggle";
 import FullScreenButton from '../Buttons/FullScreenButton';
 import DownloadButton from "../Buttons/DownloadButton";
 import { useLayout } from "../../hooks/useLayout";
+import EditButton from "../Buttons/EditButton";
+import { useUser } from "../../hooks/useUser";
 
 const NavSeparator: React.FC = () => {
     return <div className={style.separator}></div>
 }
 
 const NavigationPanel: React.FC = () => {
+    const { user } = useUser();
     const { album, image } = useAlbum();
     const { sidePanel } = useLayout();
     return (
@@ -31,6 +34,13 @@ const NavigationPanel: React.FC = () => {
                         <NavSeparator />
                     </>
                 ) : null}
+                {}
+                { user?.admin ? (
+                    <>
+                        <EditButton />
+                        <NavSeparator />
+                    </>
+                ) : null }
                 <FullScreenButton />
                 { !album ? (
                     <>

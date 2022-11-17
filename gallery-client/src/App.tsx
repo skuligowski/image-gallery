@@ -5,11 +5,17 @@ import LoginPanel from './components/LoginPanel/LoginPanel';
 import { useAppSelector } from './state/hooks';
 import { selectLayout } from './state/layout/layoutSlice';
 import { FullScreenLoader } from './components/Loader/Loader';
+import { environment } from './utils/enviroment';
+import Admin from './components/Admin';
 
 const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPanel />,
+  },
+  {
+    path: '/admin/*',
+    element: <Admin />,
   },
   {
     path: "/albums/",

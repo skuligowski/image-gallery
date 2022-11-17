@@ -54,10 +54,33 @@ initialize(options.libraryDir)
       app.use(authMiddleware());
       app.use(middleware.swaggerRouter({ useStubs: false, controllers: path.resolve(__dirname, 'controllers') }));
       app.use(middleware.swaggerUi());
-      app.use('/', serveStatic(path.join(__dirname, `public/${config.language}`)));
-      app.use('*', (req, res, next)=> {
-        res.sendFile(path.join(__dirname, `public/${config.language}/index.html`));
+      app.use(serveStatic(path.join(__dirname, `public/client`), { index: false }));
+      app.use((req, res, next) => {
+        console.log(req.url);
+        if (req.url.match(/.*\.[a-z]+$/)) {
+          console.log(req.url.split('/'));
+          req.url = ['', config.language, req.url.split('/')[1]].join('/');
+        }
+        next();
       });
+      app.use(serveStatic(path.join(__dirname, `public/admin`), { index: false }));
+      app.use('/admin', (req, res, next)=> {
+        let options = {
+          maxAge: 1000 * 60 * 1, 
+          httpOnly: false, 
+        }
+        res.cookie('lang', config.language, options);
+        res.sendFile(path.join(__dirname, `public/admin/${config.language}/index.html`));
+      });
+      app.use('/', (req, res, next)=> {
+        let options = {
+          maxAge: 1000 * 60 * 1, 
+          httpOnly: false, 
+        }
+        res.cookie('lang', config.language, options);
+        res.sendFile(path.join(__dirname, `public/client/index.html`));
+      });
+
       app.use((err, req, res, next) => {
         console.log(err);
         if (err.code === 'ENOENT') {

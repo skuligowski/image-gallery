@@ -14,7 +14,7 @@ export class AuthHttpInterceptor implements HttpInterceptor {
     return next.handle(req)
       .pipe(catchError((err: HttpErrorResponse) => {
         if (err.status === 401) {
-          this.router.navigate(['login']);
+          this.router.navigateByUrl(`/login?redirectUrl=/admin`, { replaceUrl: true});
         }
         return throwError('Unauthorized access!');
       }));

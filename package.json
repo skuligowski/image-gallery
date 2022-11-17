@@ -4,13 +4,14 @@
   "license": "MIT",
   "scripts": {
     "start": "concurrently --kill-others --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgMagenta.bold\" --handle-input \"cd server && npm start\" \"cd client && npm start\"",
-    "build": "cd client && npm run build && cd .. && npm run dist:make",
+    "build": "cd client && npm run build && cd .. && cd gallery-client && npm run build && cd .. && npm run dist:make && cd dist && npm install",
     "release": "release-it",
-    "dist:make": "npm run dist:clean && npm run dist:server && npm run dist:spec && npm run dist:client",
+    "dist:make": "npm run dist:clean && npm run dist:server && npm run dist:spec && npm run dist:client && npm run dist:admin",
     "dist:clean": "rimraf dist",
     "dist:server": "cpy '**/*' '!**/node_modules/**' '../dist' --parents --cwd=server",
     "dist:spec": "cpy 'spec/**/*' 'dist' --parents",
-    "dist:client": "mkdirp dist/public && cpy '**/*' '../../dist/public' --parents --cwd=client/dist",
+    "dist:admin": "mkdirp dist/public/admin && cpy '**/*' '../../dist/public/admin' --parents --cwd=client/dist",
+    "dist:client": "mkdirp dist/public/client && cpy '**/*' '../../dist/public/client' --parents --cwd=gallery-client/build",
     "postinstall": "node node_modules/recursive-install/recursive-install.js --skip-root",
     "spec": "node ./scripts/declarations.js"
   },

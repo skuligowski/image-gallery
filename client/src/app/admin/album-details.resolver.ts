@@ -13,8 +13,7 @@ export class AlbumDetailsResolver implements Resolve<AlbumDetails> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<AlbumDetails> {
     return this.albumsService.getAlbumDetailsById(route.params.id).pipe(
       catchError((e) => {
-        console.log(e);
-        this.router.navigate(['/']);
+        this.router.navigate(['/admin']);
         return of<AlbumDetails>();
       })
     );
