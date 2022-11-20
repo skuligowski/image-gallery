@@ -1,6 +1,6 @@
 {
   "name": "image-gallery",
-  "version": "1.3.0",
+  "version": "2.0.0_rc1",
   "license": "MIT",
   "scripts": {
     "start": "concurrently --kill-others --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgMagenta.bold\" --handle-input \"cd server && npm start\" \"cd client && npm start\"",
