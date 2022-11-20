@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY package.json ./
 COPY client/package.json client/
+COPY gallery-clientclient/package.json gallery-client/
 COPY server/package.json server/
 
 RUN npm install
