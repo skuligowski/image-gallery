@@ -15,6 +15,7 @@ const LoginPanel: React.FC = () => {
             callback();
         }
     }
+    
     return (
         <div className={style.container}>
             <div className={style.loginPane}>
