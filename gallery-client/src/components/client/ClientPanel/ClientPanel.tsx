@@ -4,7 +4,7 @@ import AlbumPreview from '../AlbumPreview/AlbumPreview';
 import SidePanel from '../SidePanel/SidePanel';
 import { useAppDispatch } from '../../../state/hooks';
 import { fetchAlbums } from '../../../state/albums/albumsSlice';
-import IndexPanel from '../IndexPanel/IndexPanel';
+import AlbumsTiles from '../AlbumsTiles/AlbumsTiles';
 import { fetchConfig } from '../../../state/config/configSlice';
 import { withAuth } from '../../../hooks/withAuth';
   
@@ -18,7 +18,7 @@ const GalleryDashboard: React.FC<{welcome?: boolean}> = withAuth(({welcome}) => 
     return (
         <div className={style.container}>
             <SidePanel />
-            {welcome ? <IndexPanel /> : <AlbumPreview />}
+            {welcome ? <AlbumsTiles /> : <AlbumPreview />}
         </div>
     )
 });

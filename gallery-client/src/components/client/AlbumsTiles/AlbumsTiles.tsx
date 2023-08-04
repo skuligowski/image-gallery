@@ -1,5 +1,5 @@
 import NavigationPanel from "../NavigationPanel/NavigationPanel";
-import style from './IndexPanel.module.scss';
+import style from './AlbumsTiles.module.scss';
 import { useAppDispatch, useAppSelector } from '../../../state/hooks';
 import { useEffect } from 'react';
 import { resetAlbum } from "../../../state/albums/albumSlice";
