@@ -1,4 +1,4 @@
-import { useAuthenticate } from "../components/LoginPanel/useLogin";
+import { useAuthenticate } from "../components/login/LoginPanel/useLogin";
 
 export function withAuth<T extends object>(Component: React.ComponentType<T>): React.FC<T> {
     return (props: T) => {
