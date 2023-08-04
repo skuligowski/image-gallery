@@ -14,7 +14,7 @@ const LoginPanel: React.FC = () => {
         if (e.key === 'Enter') {
             callback();
         }
-    } 
+    }
     return (
         <div className={style.container}>
             <div className={style.loginPane}>
