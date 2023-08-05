@@ -12,7 +12,6 @@ const AlbumPreview: React.FC = () => {
     const { album, image, loading, error } = useAlbum();
     return (
         <div className={style.container}>
-            <NavigationPanel />
             { loading ? (
                 <Loader />
             ) : (

@@ -7,6 +7,7 @@ import { fetchAlbums } from '../../../state/albums/albumsSlice';
 import AlbumsTiles from '../AlbumsTiles/AlbumsTiles';
 import { fetchConfig } from '../../../state/config/configSlice';
 import { withAuth } from '../../../hooks/withAuth';
+import NavigationPanel from '../NavigationPanel/NavigationPanel';
   
 
 const GalleryDashboard: React.FC<{welcome?: boolean}> = withAuth(({welcome}) => {
@@ -18,7 +19,10 @@ const GalleryDashboard: React.FC<{welcome?: boolean}> = withAuth(({welcome}) => 
     return (
         <div className={style.container}>
             <SidePanel />
-            {welcome ? <AlbumsTiles /> : <AlbumPreview />}
+            <div className={style.contentContainer}>
+                <NavigationPanel />
+                {welcome ? <AlbumsTiles /> : <AlbumPreview />}
+            </div>
         </div>
     )
 });

@@ -18,7 +18,6 @@ const IndexPanel: React.FC = () => {
     }, []);
     return (
         <div className={style.container}>
-            <NavigationPanel />    
             { !loading ? (
                 <LazyLoadingGrid<Album> 
                     render={albums => <AlbumsGrid albums={albums}/>} 
