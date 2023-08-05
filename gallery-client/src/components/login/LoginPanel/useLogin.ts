@@ -8,7 +8,7 @@ export function useAuthenticate() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-    const { authenticated, userError } = useAppSelector(selectUser);
+    const { authenticated, userError, isAdmin } = useAppSelector(selectUser);
     useEffect(() => {   
         if (!authenticated) {
             dispatch(fetchUser({ refLocation: location.pathname }));
@@ -19,7 +19,7 @@ export function useAuthenticate() {
             navigate('/login');
         }
     }, [userError]);
-    return { authenticated };
+    return { authenticated, isAdmin };
 }
 
 export function useLogout() {

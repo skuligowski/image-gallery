@@ -4,6 +4,7 @@ import { User } from '../../types/api.d';
 
 export interface UserState {
     authenticated: boolean;
+    isAdmin: boolean;
     user: User | undefined;
     refLocation?: string;
     loading: boolean;
@@ -22,6 +23,7 @@ export interface FetchUserData {
 
 const initialState: UserState = {
     authenticated: false,
+    isAdmin: false,
     user: undefined,
     loading: false,
 }
@@ -89,6 +91,7 @@ const userSlice = createSlice({
                 state.loading = false;
                 state.authenticated = true;
                 state.user = action.payload;
+                state.isAdmin = state.user?.admin || false;
                 state.userError = undefined;
             })
             .addCase(loginUser.pending, (state, action) => {
@@ -103,6 +106,7 @@ const userSlice = createSlice({
                 state.loading = false;
                 state.authenticated = true;
                 state.user = action.payload;
+                state.isAdmin = state.user?.admin || false;
                 state.loginError = undefined;
                 state.userError = undefined;
             });
