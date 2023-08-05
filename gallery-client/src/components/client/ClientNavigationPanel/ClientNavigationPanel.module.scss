@@ -1,0 +1,68 @@
+.imageControl {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .pages {
+        font-size: 13px;
+        margin: 0 5px;
+        user-select: none;
+    }
+    .prevButton {
+        margin-right: 5px;
+    }
+    .nextButton {
+        margin-left: 5px;
+    }
+
+    @media screen and (max-width: 768px) { 
+        position: fixed;
+        bottom: 10px;
+        z-index: 2;
+        justify-content: center;
+        left: 0;
+        width: 100%;
+    }
+}
+
+.breadcrumb {
+    font-size: 14px;
+    color: #e1e1e1;
+    text-align: left;
+    display: flex;
+    align-items: baseline;
+    .albumLink, .defaultName, .fileName {
+        align-self: baseline;
+        flex-shrink: 2;
+        padding: 3px 5px;
+        margin: 0 3px;
+        white-space: nowrap;
+    }
+    .filePart {
+        @media screen and (max-width: 768px) { 
+            display: none;
+        }
+    }
+    .backButton {
+        margin-right: 3px;
+    }
+    .albumLink {
+        transition: background-color 0.4s;
+        border-radius: 5px;
+        &:hover {
+            cursor: pointer;
+            background-color: #3d3d3d;
+        }
+    }
+}
+
+.currentUser {
+    display: flex;
+    align-items: center;
+    .username {
+        margin-right: 5px;
+        color: #aaa;
+        position: relative;
+    }
+    
+}

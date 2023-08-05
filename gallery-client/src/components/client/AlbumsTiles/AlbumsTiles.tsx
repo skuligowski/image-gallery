@@ -1,4 +1,3 @@
-import NavigationPanel from "../NavigationPanel/NavigationPanel";
 import style from './AlbumsTiles.module.scss';
 import { useAppDispatch, useAppSelector } from '../../../state/hooks';
 import { useEffect } from 'react';

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAlbum } from "../AlbumPreview/useAlbum";
 import NextButton from "../../shared/Buttons/NextButton";
 import PrevButton from "../../shared/Buttons/PrevButton";
-import style from './NavigationPanel.module.scss';
+import style from './ClientNavigationPanel.module.scss';
 
 const ImageControl: React.FC<{ 
     prevClassName: string, 

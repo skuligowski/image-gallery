@@ -1,7 +1,6 @@
 import ImagePreview from "./ImagePreview/ImagePreview";
 import { useAlbum, useAlbumRoute } from "./useAlbum";
 import style from './AlbumPreview.module.scss';
-import NavigationPanel from '../NavigationPanel/NavigationPanel';
 import { Loader } from "../../shared/Loader/Loader";
 import ImagesGrid from "./ImagesGrid/ImagesGrid";
 import { Image } from '../../../types/api';

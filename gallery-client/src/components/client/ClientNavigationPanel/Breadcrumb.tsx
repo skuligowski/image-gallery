@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useConfig } from "../../../hooks/useConfig";
 import { useAlbum } from "../AlbumPreview/useAlbum";
 import BackButton from "../../shared/Buttons/BackButton";
-import style from './NavigationPanel.module.scss';
+import style from './ClientNavigationPanel.module.scss';
 
 const PathSeparator: React.FC = () => {
     return <span>{' > '}</span>;

@@ -1,7 +1,7 @@
 
 import UserButton from '../../shared/Buttons/UserButton';
 import { useLogout } from '../../login/LoginPanel/useLogin';
-import style from './NavigationPanel.module.scss';
+import style from './ClientNavigationPanel.module.scss';
 
 const CurrentUser: React.FC = () => {
     const logout = useLogout();

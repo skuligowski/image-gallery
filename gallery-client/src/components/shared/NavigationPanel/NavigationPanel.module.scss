@@ -1,0 +1,29 @@
+.navigation {
+    background-color: #212121;
+    height: 40px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+
+    .separator {
+        width: 1px;
+        height: 18px;
+        background-color: #555;
+        margin: 0 8px;
+    }
+
+    .left {
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+    }
+
+    .right {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+        flex-shrink: 0;
+    }
+}
