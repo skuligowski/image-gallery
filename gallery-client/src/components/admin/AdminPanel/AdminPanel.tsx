@@ -7,6 +7,8 @@ import SidePanel from "../../shared/SidePanel/SidePanel";
 import style from "./AdminPanel.module.scss";
 import AdminNavigationPanel from "../AdminNavigationPanel/AdminNavigationPanel";
 import { useTranslation } from "react-i18next";
+import { Outlet, Route, Routes } from "react-router-dom";
+import AlbumsList from "../AlbumsList/AlbumsList";
 
 const AdminPanel: React.FC = withAdminAuth(() => {
     const dispatch = useAppDispatch();
@@ -18,14 +20,19 @@ const AdminPanel: React.FC = withAdminAuth(() => {
     return (
         <div className={style.container}>
             <SidePanel title={t('Admin')}>
-                <div>a</div>
+                <nav>
+                    <div>Albums</div>
+                </nav>
             </SidePanel>
             <div className={style.contentContainer}>
                 <AdminNavigationPanel />
                 <div>
-                    Hello admin!
+                <Routes>
+                    <Route path="/albums" element={<AlbumsList />} />
+                </Routes>
                 </div>
             </div>
+            
         </div>
     )
 })
