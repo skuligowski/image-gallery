@@ -54,6 +54,7 @@
   "devDependencies": {
     "@types/fscreen": "^1.0.1",
     "@types/js-cookie": "^3.0.2",
-    "@types/masonry-layout": "^4.2.5"
+    "@types/masonry-layout": "^4.2.5",
+    "prettier": "3.0.1"
   }
 }

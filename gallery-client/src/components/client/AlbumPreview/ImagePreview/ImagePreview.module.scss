@@ -1,32 +1,31 @@
 .container {
-    background-color: #1B1D1E;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    text-align: center;
-    
-    .imageFrame {
-        user-select: none;
-        img {
-            position: absolute;
-            left: 10px;
-            right: 10px;
-            top: 10px;
-            bottom: 10px;
-            margin: auto;
-            display: block;
-            max-width: calc(100% - 20px);
-            max-height: calc(100% - 60px);
-            width: auto;
-            height: auto;
+  background-color: #1b1d1e;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
 
-            @media screen and (max-width: 768px) { 
-                bottom: 45px;
-                max-height: calc(100% - 95px);
-            }
-        }
+  .imageFrame {
+    user-select: none;
+    img {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      top: 10px;
+      bottom: 10px;
+      margin: auto;
+      display: block;
+      max-width: calc(100% - 20px);
+      max-height: calc(100% - 60px);
+      width: auto;
+      height: auto;
+
+      @media screen and (max-width: 768px) {
+        bottom: 45px;
+        max-height: calc(100% - 95px);
+      }
     }
-    
+  }
 }

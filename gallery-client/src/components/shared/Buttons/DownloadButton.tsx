@@ -1,21 +1,22 @@
-import IconButton, { IconButtonProps } from "./IconButton";
-import { useAlbum } from "../../client/AlbumPreview/useAlbum";
-import { useCallback } from "react";
+import IconButton, { IconButtonProps } from './IconButton';
+import { useAlbum } from '../../client/AlbumPreview/useAlbum';
+import { useCallback } from 'react';
 
 const DownloadButton: React.FC<IconButtonProps> = (props) => {
-    const { album, image } = useAlbum();
-    const download = useCallback(() => {
-        const link = document.createElement('a');
-        link.href = `/api/albums/${album?.id}/images/${image?.filename}`
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    }, []);
-    return (
-        <IconButton {...props} onClick={download}>
-            <svg version="1.1" x="0px" y="0px" viewBox="0 0 330 330" style={{ width: '14px', height: '14px' }}>
-                <g>
-                    <path d="M154.389,255.602c0.351,0.351,0.719,0.683,1.103,0.998c0.169,0.138,0.347,0.258,0.52,0.388
+  const { album, image } = useAlbum();
+  const download = useCallback(() => {
+    const link = document.createElement('a');
+    link.href = `/api/albums/${album?.id}/images/${image?.filename}`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, []);
+  return (
+    <IconButton {...props} onClick={download}>
+      <svg version="1.1" x="0px" y="0px" viewBox="0 0 330 330" style={{ width: '14px', height: '14px' }}>
+        <g>
+          <path
+            d="M154.389,255.602c0.351,0.351,0.719,0.683,1.103,0.998c0.169,0.138,0.347,0.258,0.52,0.388
                         c0.218,0.164,0.432,0.333,0.659,0.484c0.212,0.142,0.432,0.265,0.649,0.395c0.202,0.121,0.4,0.248,0.608,0.359
                         c0.223,0.12,0.453,0.221,0.681,0.328c0.215,0.102,0.427,0.21,0.648,0.301c0.223,0.092,0.45,0.167,0.676,0.247
                         c0.236,0.085,0.468,0.175,0.709,0.248c0.226,0.068,0.456,0.119,0.684,0.176c0.246,0.062,0.489,0.131,0.739,0.181
@@ -27,13 +28,16 @@ const DownloadButton: React.FC<IconButtonProps> = (props) => {
                         c0.179-0.134,0.362-0.258,0.536-0.4c0.365-0.3,0.714-0.617,1.049-0.949c0.016-0.016,0.034-0.028,0.049-0.044l70.002-69.998
                         c5.858-5.858,5.858-15.355,0-21.213c-5.857-5.857-15.355-5.858-21.213-0.001l-44.396,44.393V25c0-8.284-6.716-15-15-15
                         c-8.284,0-15,6.716-15,15v183.785l-44.392-44.391c-5.857-5.858-15.355-5.858-21.213,0c-5.858,5.858-5.858,15.355,0,21.213
-                        L154.389,255.602z"/>
-                    <path d="M315,160c-8.284,0-15,6.716-15,15v115H30V175c0-8.284-6.716-15-15-15c-8.284,0-15,6.716-15,15v130
-                        c0,8.284,6.716,15,15,15h300c8.284,0,15-6.716,15-15V175C330,166.716,323.284,160,315,160z"/>
-                </g>
-            </svg>
-        </IconButton>
-    )
-}
+                        L154.389,255.602z"
+          />
+          <path
+            d="M315,160c-8.284,0-15,6.716-15,15v115H30V175c0-8.284-6.716-15-15-15c-8.284,0-15,6.716-15,15v130
+                        c0,8.284,6.716,15,15,15h300c8.284,0,15-6.716,15-15V175C330,166.716,323.284,160,315,160z"
+          />
+        </g>
+      </svg>
+    </IconButton>
+  );
+};
 
 export default DownloadButton;

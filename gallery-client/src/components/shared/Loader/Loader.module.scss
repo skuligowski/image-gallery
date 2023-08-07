@@ -1,51 +1,50 @@
 .loader {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    margin: auto;
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  margin: auto;
 
+  &:after {
+    content: ' ';
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+
+  &.small {
+    width: 15px;
+    height: 15px;
     &:after {
-        content: " ";
-        display: block;
-        width: 16px;
-        height: 16px;
-        margin: 8px;
-        border-radius: 50%;
-        border: 3px solid #fff;
-        border-color: #fff transparent #fff transparent;
-        animation: lds-dual-ring 1.2s linear infinite;
+      margin: auto;
+      width: 10px;
+      height: 10px;
+      border: 3px solid #ccc;
+      border-color: #ccc transparent #ccc transparent;
     }
-
-    &.small {
-        width: 15px;
-        height: 15px;
-        &:after {
-            margin: auto;
-            width: 10px;
-            height: 10px;
-            border: 3px solid #ccc;
-            border-color: #ccc transparent #ccc transparent;
-        }
-    }
+  }
 }
 
 .fullScreenContainer {
-    position: fixed;
-    z-index: 101;
-    display: flex;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #1B1D1E
+  position: fixed;
+  z-index: 101;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1b1d1e;
 }
 
 @keyframes lds-dual-ring {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+  0% {
+    transform: rotate(0deg);
   }
-  
+  100% {
+    transform: rotate(360deg);
+  }
+}

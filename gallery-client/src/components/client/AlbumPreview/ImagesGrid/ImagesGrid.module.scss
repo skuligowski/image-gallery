@@ -1,33 +1,35 @@
 .grid {
-    margin: 0 auto;
-    :global {
-        .grid-item {
-            width: 200px;
-            margin-bottom: 10px;
-            @media screen and (max-width: 500px) { 
-                width: 180px;
-            }
-        }
-        .image-wrapper {
-            cursor: pointer;
-            position: relative;
-            transform: translate3d(0, 10px, 0);
-            opacity: 0;
-            transition: transform 0.3s, opacity 0.5s;
-            transition-timing-function:cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            &.loaded {
-                transform: translate3d(0, 0, 0);
-                opacity: 1;
-            }
-            &:hover {
-                opacity: 0.6;
-            }
-            img {
-              width: 100%;
-              height: auto !important;
-              position: absolute;
-              outline: none;
-            }
-        }
+  margin: 0 auto;
+  :global {
+    .grid-item {
+      width: 200px;
+      margin-bottom: 10px;
+      @media screen and (max-width: 500px) {
+        width: 180px;
+      }
     }
+    .image-wrapper {
+      cursor: pointer;
+      position: relative;
+      transform: translate3d(0, 10px, 0);
+      opacity: 0;
+      transition:
+        transform 0.3s,
+        opacity 0.5s;
+      transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      &.loaded {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+      &:hover {
+        opacity: 0.6;
+      }
+      img {
+        width: 100%;
+        height: auto !important;
+        position: absolute;
+        outline: none;
+      }
+    }
+  }
 }

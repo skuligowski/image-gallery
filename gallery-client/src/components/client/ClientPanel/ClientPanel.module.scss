@@ -1,16 +1,16 @@
 .container {
-    height: 100vh;
-    display: flex;
-    flex-direction: row;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
 
-    .contentContainer {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        overflow: hidden;
-        flex-shrink: 1;
-        flex-basis: 100%;
-        position: relative;
-        background-color: #1B1D1E;
-    }
+  .contentContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    flex-shrink: 1;
+    flex-basis: 100%;
+    position: relative;
+    background-color: #1b1d1e;
+  }
 }

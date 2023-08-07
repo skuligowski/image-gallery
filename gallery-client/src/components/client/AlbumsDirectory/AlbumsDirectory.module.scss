@@ -1,33 +1,33 @@
 .container {
-    overflow-y: auto;
-    padding: 15px;
+  overflow-y: auto;
+  padding: 15px;
 }
 .yearAlbums {
-    margin-bottom: 10px;
-    .year {
-        font-size: 18px;
-        margin-bottom: 5px;
-    }
+  margin-bottom: 10px;
+  .year {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
 }
 .monthAlbums {
+  margin-left: 15px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+  .month {
+    font-size: 14px;
+    width: 25px;
+    text-align: right;
+    color: #777;
+  }
+  .albums {
     margin-left: 15px;
-    margin-bottom: 5px;
-    display: flex;
-    flex-direction: row;
-    .month {
-        font-size: 14px;
-        width: 25px;
-        text-align: right;
-        color: #777;
+    > div {
+      cursor: pointer;
+      margin-bottom: 4px;
+      &:hover {
+        background-color: #333;
+      }
     }
-    .albums {
-        margin-left: 15px;
-        > div {
-            cursor: pointer;
-            margin-bottom: 4px;
-            &:hover {
-                background-color: #333;
-            }
-        }
-    }
+  }
 }

@@ -1,103 +1,103 @@
-
 .container {
-    width: 250px;
-    flex-shrink: 0;
+  width: 250px;
+  flex-shrink: 0;
+  position: relative;
+  background-color: #1b1d1e;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    position: fixed;
+    z-index: 10;
+    height: 100vh;
+  }
+
+  .content {
     position: relative;
-    background-color: #1B1D1E;
-    
+    width: 250px;
+    color: #ccc;
+    background-color: #252526;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #292929;
+    box-shadow: 10px 0px 6px -10px rgb(0 0 0 / 30%);
+    margin-right: 0px;
+    height: 100%;
+    z-index: 20;
+
     @media screen and (max-width: 768px) {
-        width: 100%;
-        position: fixed;
-        z-index: 10;
-        height: 100vh;
+      width: 100%;
     }
+  }
 
-    .content {
-        position: relative;
-        width: 250px;
-        color: #ccc;
-        background-color: #252526;
-        display: flex;
-        flex-direction: column;
-        border-right: 1px solid #292929;
-        box-shadow: 10px 0px 6px -10px rgb(0 0 0 / 30%);
-        margin-right: 0px;
-        height: 100%;
-        z-index: 20;
-        
-        @media screen and (max-width: 768px) {
-            width: 100%;
-        }
-    }
+  &.hidden .content {
+    animation: hide 0.3s forwards;
+  }
 
-    &.hidden .content {
-        animation: hide 0.3s forwards;
-    }
+  &.expand .content {
+    animation: expand 0.3s forwards;
+  }
 
-    &.expand .content {
-        animation: expand 0.3s forwards;
-    }
+  &.expand.noAnimation .content,
+  &.hidden.noAnimation .content {
+    animation-duration: 0s;
+  }
 
-    &.expand.noAnimation .content, &.hidden.noAnimation .content {
-        animation-duration: 0s;
-    }
-
-    &.hidden {
-        width: 0;
-    }
-    transition: width 0.3s;
+  &.hidden {
+    width: 0;
+  }
+  transition: width 0.3s;
 }
 
 @keyframes hide {
-    0% {
-        position: fixed;
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-250px);
-    }
+  0% {
+    position: fixed;
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-250px);
+  }
 }
 
 @keyframes expand {
-    0% {
-        transform: translateX(-250px);
-    }
-    100% {
-        position: relative;
-        transform: translateX(0);
-    }
+  0% {
+    transform: translateX(-250px);
+  }
+  100% {
+    position: relative;
+    transform: translateX(0);
+  }
 }
 
 .tabs {
-    height: 40px;
-    flex-shrink: 0;
-    border-bottom: 1px solid #333;
-    background-color: #212121;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    nav {
-        z-index: 1;
-        left: -1px;
-        position: relative;
-    }
-    .tab {
-        display: inline-block;
-        padding: 12px 20px;
+  height: 40px;
+  flex-shrink: 0;
+  border-bottom: 1px solid #333;
+  background-color: #212121;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  nav {
+    z-index: 1;
+    left: -1px;
+    position: relative;
+  }
+  .tab {
+    display: inline-block;
+    padding: 12px 20px;
 
-        &.active {
-            border: 1px solid #333;
-            background-color: #252526;
-            border-bottom: 1px solid #252526;
-            box-shadow: 0px -6px 8px -2px rgb(0, 0, 0, 0.64)
-        }
+    &.active {
+      border: 1px solid #333;
+      background-color: #252526;
+      border-bottom: 1px solid #252526;
+      box-shadow: 0px -6px 8px -2px rgb(0, 0, 0, 0.64);
     }
-    .sidePanelToggle {
-        display: none;
-        @media screen and (max-width: 768px) {
-            display: block;
-            margin-right: 10px;
-        }
+  }
+  .sidePanelToggle {
+    display: none;
+    @media screen and (max-width: 768px) {
+      display: block;
+      margin-right: 10px;
     }
+  }
 }

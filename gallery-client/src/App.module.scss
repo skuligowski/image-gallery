@@ -1,25 +1,25 @@
 :global {
-    :root {
-        color-scheme: dark;
-    }
-    ::-webkit-scrollbar {
-        width: 9px;
-    }
-    ::-webkit-scrollbar-track {
-        background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-        background-color: rgba(155, 155, 155, 0.2);
-        border-radius: 20px;
-        border: transparent;
-    }
-    body {
-        overscroll-behavior-y: none;
-    }
+  :root {
+    color-scheme: dark;
+  }
+  ::-webkit-scrollbar {
+    width: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(155, 155, 155, 0.2);
+    border-radius: 20px;
+    border: transparent;
+  }
+  body {
+    overscroll-behavior-y: none;
+  }
 }
 .app {
-    font-size: 14px;
-    height: 100vh;
-    overflow-y: hidden;
-    background-color: #1B1D1E
+  font-size: 14px;
+  height: 100vh;
+  overflow-y: hidden;
+  background-color: #1b1d1e;
 }

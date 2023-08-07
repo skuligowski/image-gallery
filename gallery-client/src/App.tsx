@@ -11,7 +11,7 @@ const AdminPanel = lazy(() => import('./components/admin/AdminPanel/AdminPanel')
 
 const router = createBrowserRouter([
   {
-    path: "/login",
+    path: '/login',
     element: <LoginPanel />,
   },
   {
@@ -19,24 +19,24 @@ const router = createBrowserRouter([
     element: <AdminPanel />,
   },
   {
-    path: "/albums/",
-    element: <ClientPanel welcome={true}/>,
+    path: '/albums/',
+    element: <ClientPanel welcome={true} />,
   },
   {
-    path: "/albums/*",
+    path: '/albums/*',
     element: <ClientPanel />,
   },
   {
-    path: "/*",
-    element: <ClientPanel welcome={true}/>,
+    path: '/*',
+    element: <ClientPanel welcome={true} />,
   },
 ]);
 
-function App() { 
+function App() {
   const { loading } = useAppSelector(selectLayout);
   return (
     <>
-      {loading ? <FullScreenLoader /> : null }
+      {loading ? <FullScreenLoader /> : null}
       <div className={style.app}>
         <Suspense fallback={<FullScreenLoader />}>
           <RouterProvider router={router} />
