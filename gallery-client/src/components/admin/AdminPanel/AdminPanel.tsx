@@ -1,4 +1,4 @@
-import { Button } from 'antd';
+import { ConfigProvider, theme } from 'antd';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Route, Routes } from 'react-router-dom';
@@ -19,22 +19,23 @@ const AdminPanel: React.FC = withAdminAuth(() => {
     dispatch(fetchConfig());
   }, []);
   return (
-    <div className={style.container}>
-      <SidePanel title={t('Admin')}>
-        <nav>
-          <div>Albums</div>
-        </nav>
-      </SidePanel>
-      <div className={style.contentContainer}>
-        <AdminNavigationPanel />
-        <div>
-          <Button type="primary">Button</Button>
-          <Routes>
-            <Route path="/albums" element={<AlbumsList />} />
-          </Routes>
+    <ConfigProvider theme={{ algorithm: [theme.darkAlgorithm], token: { colorBgContainer: '#1e2021' } }}>
+      <div className={style.container}>
+        <SidePanel title={t('Admin')}>
+          <nav>
+            <div>Albums</div>
+          </nav>
+        </SidePanel>
+        <div className={style.contentSide}>
+          <AdminNavigationPanel />
+          <div className={style.contentContainer}>
+            <Routes>
+              <Route path="/albums" element={<AlbumsList />} />
+            </Routes>
+          </div>
         </div>
       </div>
-    </div>
+    </ConfigProvider>
   );
 });
 export default AdminPanel;
