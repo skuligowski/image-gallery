@@ -29,7 +29,7 @@ const AlbumsList: React.FC = () => {
   return !loading ? (
     <div>
       {albumsSorted.map((album) => (
-        <div className={style.albumView}>
+        <div key={album.id} className={style.albumView}>
           <div className={style.imageWrapper}>
             <img src={'/library' + album.thumbUrl} />
           </div>

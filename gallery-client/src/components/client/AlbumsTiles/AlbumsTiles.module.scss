@@ -1,11 +1,5 @@
 .container {
+  background-color: #1b1d1e;
   height: 100%;
-
-  .image {
-    width: 100%;
-    height: 300px;
-    background-size: cover;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-  }
+  overflow: hidden;
 }
