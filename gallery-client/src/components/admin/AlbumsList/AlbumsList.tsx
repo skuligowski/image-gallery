@@ -1,5 +1,5 @@
 import { Tag } from 'antd';
-import { useMemo } from 'react';
+import { memo, useMemo } from 'react';
 import { selectAlbums } from 'src/state/albums/albumsSlice';
 import { useAppSelector } from 'src/state/hooks';
 import { Album } from 'src/types/api';
@@ -26,28 +26,30 @@ const AlbumsList: React.FC = () => {
   const { albums, loading } = useAppSelector(selectAlbums);
   const albumsSorted = useMemo(() => [...albums].sort(compareFn), [albums]);
 
-  return !loading ? (
-    <div>
-      {albumsSorted.map((album) => (
-        <div key={album.id} className={style.albumView}>
-          <div className={style.imageWrapper}>
-            <img src={'/library' + album.thumbUrl} />
+  return !loading ? <AlbumsListView albums={albumsSorted} /> : null;
+};
+
+const AlbumsListView: React.FC<{ albums: Album[] }> = memo(({ albums }) => (
+  <div>
+    {albums.map((album) => (
+      <div key={album.id} className={style.albumView}>
+        <div className={style.imageWrapper}>
+          <img loading="lazy" src={'/library' + album.thumbUrl} />
+        </div>
+        <div className={style.albumData}>
+          <div>
+            <div className={style.name}>{album.name}</div>
+            <div className={style.permalink}>{album.permalink}</div>
+            <div>{album.active ? <Tag color="green">Active</Tag> : <Tag>Inactive</Tag>}</div>
           </div>
-          <div className={style.albumData}>
-            <div>
-              <div className={style.name}>{album.name}</div>
-              <div className={style.permalink}>{album.permalink}</div>
-              <div>{album.active ? <Tag color="green">Active</Tag> : <Tag>Inactive</Tag>}</div>
-            </div>
-            <div>
-              <span className={style.year}>&nbsp;{album.date?.substring(0, 4) || ''}</span>
-              <span className={style.month}> | {monthMapping[album.date?.substring(5, 7) || '']}</span>
-            </div>
+          <div>
+            <span className={style.year}>&nbsp;{album.date?.substring(0, 4) || ''}</span>
+            <span className={style.month}> | {monthMapping[album.date?.substring(5, 7) || '']}</span>
           </div>
         </div>
-      ))}
-    </div>
-  ) : null;
-};
+      </div>
+    ))}
+  </div>
+));
 
 export default AlbumsList;
