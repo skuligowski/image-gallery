@@ -42,7 +42,7 @@ initialize(options.libraryDir)
   .then(() => config.initialize())
   .then(() => libraryStatics.use(app))
   .then(() => auth.initialize(app))
-  .then(() => firstExists(__dirname, '/spec/gallery-api.yaml', '../spec/gallery-api.yaml'))
+  .then(() => firstExists(__dirname, '/spec/gallery-api.yaml', '../../spec/gallery-api.yaml'))
   .then(specFile => swaggerParser.bundle(specFile))
   .then(spec => {
     swaggerTools.initializeMiddleware(spec, function (middleware) {

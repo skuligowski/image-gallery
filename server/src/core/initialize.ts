@@ -2,7 +2,7 @@ const users = require('./users');
 const db = require('./db');
 const { update } = require('./config');
 
-function initialize(libraryDir) {
+function initialize(libraryDir: string) {
   return Promise.resolve()
     .then(() => insertVersionProperty())
     .then(() => insertConfigProperty({key: 'galleryName', value: 'Photo Gallery'}))
@@ -19,9 +19,9 @@ function initialize(libraryDir) {
     .then(() => users.addUser( 'admin', '1234', true));
 }
 
-function insertConfigProperty(prop) {
+function insertConfigProperty(prop: any) {
   return db.getConfigProperty({ key: prop.key })
-    .then(property => {
+    .then((property: any) => {
       if (!property) {
         console.log(`Configuring default property: ${prop.key} = ${prop.value}`);
         return db.insertProperty(prop);
@@ -33,9 +33,9 @@ function insertConfigProperty(prop) {
 
 function insertVersionProperty() {
   return db.getConfigProperty({ key: 'version' })
-    .then(versionProperty => {
+    .then((versionProperty: any) => {
       const currentVersion = versionProperty?.value;
-      const newVersion = require('../package.json').version;
+      const newVersion = require('./../../package.json').version;
       if (!currentVersion) {
         return updateScript(currentVersion, newVersion)
           .then(() => db.insertProperty({key: 'version', value: newVersion}));
@@ -48,7 +48,7 @@ function insertVersionProperty() {
     });
 }
 
-function updateScript(currentVersion = '0.0.0', newVersion) {
+function updateScript(currentVersion = '0.0.0', newVersion: string) {
   console.log(`Updating from ${currentVersion} to ${newVersion}`)
   const semver = require('semver');
   const chain = Promise.resolve();
