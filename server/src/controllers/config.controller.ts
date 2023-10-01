@@ -1,7 +1,10 @@
 const config = require('../core/config');
-const db = require('../core/db').api;
+import { Request, Response } from 'express';
+import { Config, User } from '../api';
+import { api } from '../core/db';
+import { AlbumDTO } from '../model/AlbumDTO';
 
-function getConfig(req, res) {
+function getConfig(req: Request & { user: User }, res: Response) {
   Promise.resolve()
     .then(() => ({
         galleryName: config.galleryName,
@@ -13,10 +16,10 @@ function getConfig(req, res) {
     .then(config => res.status(200).send(config));
 };
 
-function getLastRecentImageUrl(config, req) {
+function getLastRecentImageUrl(config: Config, req: Request & { user: User }) {
   return new Promise((resolve) => {
     const predicate = req.user && req.user.admin ? {} : {active: true};
-    db.albums.find(predicate).sort({lastModified: -1}).limit(1).exec((err, albums) => {
+    api.albums.find(predicate).sort({lastModified: -1}).limit(1).exec((_err: any, albums: AlbumDTO[]) => {
       if (albums.length && albums[0].images.length) {
         config.dashboardImageUrl = albums[0].images[0].url;
       } else {
