@@ -8,7 +8,7 @@ const optionDefinitions = [
 
 const commandLineArgs = require('command-line-args')
 const options = commandLineArgs(optionDefinitions);
-require('./core/db').initialize(options.dbDir);
+require('./core/db').api.initialize(options.dbDir);
 
 const swaggerParser = require('swagger-parser');
 const swaggerTools = require('swagger-tools');
@@ -24,7 +24,7 @@ const config = require('./core/config');
 const authMiddleware = require('./lib/auth-middleware');
 const serveStatic = require('serve-static');
 const path = require('path');
-const firstExists = require('./lib/first-exists');
+const { firstExists } = require('./lib/first-exists');
 
 const app = express();
 app.use(compression());

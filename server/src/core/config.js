@@ -1,4 +1,4 @@
-const db = require('./db');
+const db = require('./db').api;
 const Promise = require('bluebird');
 const fs = require('fs');
 const stat = Promise.promisify(fs.stat, {context: fs});

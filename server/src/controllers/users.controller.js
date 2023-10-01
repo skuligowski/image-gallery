@@ -1,4 +1,4 @@
-const db = require('../core/db');
+const db = require('../core/db').api;
 const users = require('../core/users');
 
 function getUsers(req, res) {

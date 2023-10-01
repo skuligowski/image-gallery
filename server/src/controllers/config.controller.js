@@ -1,5 +1,5 @@
 const config = require('../core/config');
-const db = require('../core/db');
+const db = require('../core/db').api;
 
 function getConfig(req, res) {
   Promise.resolve()

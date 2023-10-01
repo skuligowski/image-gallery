@@ -1,5 +1,5 @@
 const bcrypt = require('../lib/bcrypt');
-const db = require('./db');
+const db = require('./db').api;
 
 function addUser(username, password, isAdmin) {
   return db.findUser({ username })

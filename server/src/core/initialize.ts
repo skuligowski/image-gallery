@@ -1,5 +1,5 @@
 const users = require('./users');
-const db = require('./db');
+const db = require('./db').api;
 const { update } = require('./config');
 
 function initialize(libraryDir: string) {

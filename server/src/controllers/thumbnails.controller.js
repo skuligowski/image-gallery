@@ -1,5 +1,5 @@
 "use strict";
-const db = require('../core/db');
+const db = require('../core/db').api;
 const albums = require('../core/albums');
 const library = require('../core/library');
 const config = require('../core/config');

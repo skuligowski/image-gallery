@@ -1,10 +1,12 @@
-const db = require('./db');
+import { map } from 'bluebird';
+import { AlbumCreate } from '../api';
+import { UniqueFilenames } from '../lib/unique-filenames';
+import { api } from './db';
 const library = require('./library');
-const Promise = require('bluebird');
-const UniqueFilenames = require('../lib/unique-filenames');
 
-function createAlbum({name, permalink, date, createDate = new Date().toISOString()}) {
-  return db.insertAlbum({
+function createAlbum({name, permalink, date}: AlbumCreate) {
+  const createDate = new Date().toISOString();
+  return api.insertAlbum({
     name: name,
     permalink: permalink,
     date: date,
@@ -15,14 +17,14 @@ function createAlbum({name, permalink, date, createDate = new Date().toISOString
   }).then(res => ({id: res._id}));
 }
 
-function updateAlbum(id, request) {
-  return db.findAlbum({ _id: id })
-    .then(album => db.updateAlbum({_id: album._id}, {$set: request}));
+function updateAlbum(id: string, request: any) {
+  return api.findAlbum({ _id: id })
+    .then((album: any) => api.updateAlbum({_id: album._id}, {$set: request}));
 }
 
-function addImages(id, paths) {
-  return db.findAlbum({ _id: id })
-    .then(album => Promise.map(paths, path => library.getImageDetails(path), { concurrency: 5 })
+function addImages(id: string, paths: string[]) {
+  return api.findAlbum({ _id: id })
+    .then(album => map(paths, path => library.getImageDetails(path), { concurrency: 5 })
         .map(imageDetails => ({
           filename: imageDetails.filename,
           url: imageDetails.path,
@@ -31,7 +33,7 @@ function addImages(id, paths) {
           size: imageDetails.size,
         }))
         .then(images => {
-          const newImagesMap = images.reduce((map, image) => { map[image.url] = image; return map}, {});
+          const newImagesMap = images.reduce((map, image) => { map[image.url] = image; return map}, {} as any);
           const oldImages = album.images.reduce((list, image) => {
             if (newImagesMap[image.url]) {
               // adding the same image, update properties and preserve only previous filename
@@ -41,37 +43,37 @@ function addImages(id, paths) {
               list.push(image);
             }
             return list;
-          }, []);
+          }, [] as any[]);
           const allImages = new UniqueFilenames(oldImages.map(image => image.filename));
           const newImages = images.filter(image => !!newImagesMap[image.url])
             .map(image => ({...image, filename: allImages.getUniqueFilename(image.filename)}));
           return [...oldImages, ...newImages];
         })
-        .then(images => db.updateAlbum({_id: album._id}, {
+        .then(images => api.updateAlbum({_id: album._id}, {
           ...album, images, lastModified: new Date().toISOString()
         })));
 }
 
-function removeImages(id, filenames) {
-  return db.findAlbum({ _id: id })
+function removeImages(id: string, filenames: string[]) {
+  return api.findAlbum({ _id: id })
     .then(album => {
-      const imagesToRemove = filenames.reduce((map, filename) => { map[filename] = true; return map}, {});
+      const imagesToRemove = filenames.reduce((map, filename) => { map[filename] = true; return map}, {} as any);
       const images = album.images.reduce((newList, image) => {
         if (!imagesToRemove[image.filename]) {
           newList.push(image);
         }
         return newList;
-      }, []);
-      return db.updateAlbum({_id: album._id}, {...album, images});
+      }, [] as any[]);
+      return api.updateAlbum({_id: album._id}, {...album, images});
     });
 }
 
-function removeAlbum(id) {
-  return db.removeAlbum({ _id: id });
+function removeAlbum(id: string) {
+  return api.removeAlbum({ _id: id });
 }
 
-function setImagesOrder(id, filenames) {
-  return db.findAlbum({ _id: id })
+function setImagesOrder(id: string, filenames: string[]) {
+  return api.findAlbum({ _id: id })
     .then(album => {
       if (!album) {
         throw new Error('Album not found');
@@ -79,7 +81,7 @@ function setImagesOrder(id, filenames) {
       const imagesMap = album.images.reduce((map, image) => {
         map[image.filename] = image;
         return map;
-      }, {});
+      }, {} as any);
       const images = filenames.reduce((list, filename) => {
         if (!imagesMap[filename]) {
           throw new Error('Image does not exists');
@@ -87,11 +89,11 @@ function setImagesOrder(id, filenames) {
         list.push(imagesMap[filename]);
         delete imagesMap[filename];
         return list;
-      }, []);
+      }, [] as any[]);
       if (Object.keys(imagesMap).length !== 0 || images.length !== album.images.length) {
         throw new Error('Wrong request, invalid number of images.')
       }
-      return db.updateAlbum({_id: id}, {...album, images});
+      return api.updateAlbum({_id: id}, {...album, images});
     });
 }
 

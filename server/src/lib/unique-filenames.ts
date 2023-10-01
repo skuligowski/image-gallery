@@ -2,12 +2,13 @@ const path = require('path');
 
 class UniqueFilenames {
 
-  constructor(filenames) {
-    this.filenamesMap = {};
+  private filenamesMap: { [key: string]: boolean} = {};
+
+  constructor(filenames: string[]) {
     filenames.map(filename => this.getUniqueFilename(filename));
   }
 
-  getUniqueFilename(filename) {
+  getUniqueFilename(filename: string): string {
     if (this.filenamesMap[filename]) {
       const ext = path.extname(filename);
       const basename = path.basename(filename, ext);
@@ -19,4 +20,4 @@ class UniqueFilenames {
   }
 }
 
-module.exports = UniqueFilenames;
+export { UniqueFilenames };
