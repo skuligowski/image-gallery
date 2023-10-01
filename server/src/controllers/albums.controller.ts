@@ -1,12 +1,15 @@
 "use strict";
-const db = require('../core/db').api;
-const albums = require('../core/albums');
+import { Request, Response } from 'express';
+import { User } from '../api';
+import * as albums from '../core/albums';
+import { api } from '../core/db';
+import { AlbumDTO } from '../model/AlbumDTO';
 const library = require('../core/library');
 const config = require('../core/config');
 
-function getAlbums(req, res) {
+function getAlbums(req: Request & { user: User }, res: Response) {
   const predicate = req.user && req.user.admin ? {} : {active: true};
-  db.albums.find(predicate).sort({createDate: -1}).exec((err, albums) =>
+  api.albums.find(predicate).sort({createDate: -1}).exec((_err: any, albums: AlbumDTO[]) =>
     res.send(albums.map(album => ({
       id: album._id,
       permalink: album.permalink,
@@ -20,10 +23,10 @@ function getAlbums(req, res) {
     }))));
 }
 
-function getAlbum(req, res) {
+function getAlbum(req: Request & { user: User, swagger: any }, res: Response) {
   const predicate = req.user && req.user.admin ? {} : {active: true};
   const permalink = req.swagger.params.permalink.value;
-  db.findAlbum({ ...predicate, permalink })
+  api.findAlbum({ ...predicate, permalink })
     .then(album => {
       if (album) {
         res.send({
@@ -44,7 +47,7 @@ function getAlbum(req, res) {
     });
 }
 
-function createAlbum(req, res) {
+function createAlbum(req: Request & { user: User, swagger: any }, res: Response) {
   albums.createAlbum({
     name: req.body.name,
     permalink: req.body.permalink,
@@ -52,7 +55,7 @@ function createAlbum(req, res) {
   }).then(response => res.send(response));
 }
 
-function updateAlbum(req, res) {
+function updateAlbum(req: Request & { user: User, swagger: any }, res: Response) {
   const id = req.swagger.params.id.value;
   albums.updateAlbum(id, req.body)
   .then(() => res.status(200).send())
@@ -62,7 +65,7 @@ function updateAlbum(req, res) {
   });
 }
 
-function addImages(req, res) {
+function addImages(req: Request & { user: User, swagger: any }, res: Response) {
   const id = req.swagger.params.id.value;
   const paths = req.body;
   albums.addImages(id, paths)
@@ -73,7 +76,7 @@ function addImages(req, res) {
     });
 }
 
-function removeImages(req, res) {
+function removeImages(req: Request & { user: User, swagger: any }, res: Response) {
   albums.removeImages(req.swagger.params.id.value, req.body)
     .then(() => res.status(201).send())
     .catch(e => {
@@ -82,18 +85,18 @@ function removeImages(req, res) {
     });
 }
 
-function removeAlbum(req, res) {
+function removeAlbum(req: Request & { user: User, swagger: any }, res: Response) {
   albums.removeAlbum(req.swagger.params.id.value)
     .then(() => res.status(201).send())
-    .catch(e => {
+    .catch((e: any) => {
       console.log(e);
       res.status(400).send();
     });
 }
 
-function getImages(req, res) {
+function getImages(req: Request & { user: User, swagger: any }, res: Response) {
   const _id = req.swagger.params.id.value;
-  db.findAlbum({ _id })
+  api.findAlbum({ _id })
     .then(album => {
       if (album) {
         res.send(album.images);
@@ -103,12 +106,12 @@ function getImages(req, res) {
     });
 }
 
-function uploadFile(req, res) {
+function uploadFile(req: Request & { user: User, swagger: any }, res: Response) {
   const file = req.swagger.params.file;
   const fs = require('fs');
   const path = require('path');
   if (file) {
-    fs.writeFile(path.resolve('uploads', file.originalValue.originalname), file.originalValue.buffer, (err, result) => {
+    fs.writeFile(path.resolve('uploads', file.originalValue.originalname), file.originalValue.buffer, (err: any) => {
       if (err) {
         console.log(err);
         res.status(500).send();
@@ -122,14 +125,14 @@ function uploadFile(req, res) {
   }
 }
 
-function downloadImage(req, res, next) {
+function downloadImage(req: Request & { user: User, swagger: any }, res: Response) {
   if (!config.imageDownload) {
     return res.status(404).send();
   }
   const path = require('path');
   const _id = req.swagger.params.id.value;
   const filename = req.swagger.params.filename.value;
-  db.findAlbum({ _id })
+  api.findAlbum({ _id })
     .then(album => album.images.find(image => image.filename === filename))
     .then(image => {
       if (image) {
@@ -140,7 +143,7 @@ function downloadImage(req, res, next) {
     })
 }
 
-function setImagesOrder(req, res) {
+function setImagesOrder(req: Request & { user: User, swagger: any }, res: Response) {
   const id = req.swagger.params.id.value;
   const filenames = req.body;
   albums.setImagesOrder(id, filenames)

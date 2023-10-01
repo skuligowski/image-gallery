@@ -97,6 +97,5 @@ function setImagesOrder(id: string, filenames: string[]) {
     });
 }
 
-module.exports = {
-  createAlbum, updateAlbum, removeAlbum, addImages, removeImages, setImagesOrder
-}
+export { addImages, createAlbum, removeAlbum, removeImages, setImagesOrder, updateAlbum };
+
