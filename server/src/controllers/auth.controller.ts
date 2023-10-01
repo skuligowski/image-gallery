@@ -1,8 +1,10 @@
-const passport = require('passport');
+import { Request, Response } from 'express';
+import passport from 'passport';
+import { User } from '../api';
 const config = require('../core/config');
 
-function login(req, res) {
-  passport.authenticate('local', (err, user) => {
+function login(req: Request, res: Response) {
+  passport.authenticate('local', (err: any, user: User) => {
     if (user) {
       req.login(user, () => {
         res.status(200).send({
@@ -16,12 +18,12 @@ function login(req, res) {
   })(req, res);
 };
 
-function logout(req, res) {
-  req.logout();
+function logout(req: Request, res: Response) {
+  req.logout({}, () => {});
   req.session.regenerate(() => res.status(200).send());
 }
 
-function getUser(req, res) {
+function getUser(req: Request & { user: User }, res: Response) {
   if (req.user || config.authentication) {
     res.status(200).send({
       username: req.user.username,
