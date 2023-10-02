@@ -1,19 +1,21 @@
 "use strict";
-const path = require('path');
+import { promisify } from 'bluebird';
+import fs from 'fs';
+import fse from 'fs-extra';
+import imageSize from 'image-size';
+import path from 'path';
 const config = require('./config');
-const Promise = require('bluebird');
-const fs = require('fs');
-const fse = require('fs-extra');
-const readDir = Promise.promisify(fs.readdir, {context: fs});
-const stat = Promise.promisify(fs.stat, {context: fs});
-const mkDir = Promise.promisify(fs.mkdir, {context: fs});
-const sizeOf = Promise.promisify(require('image-size'));
-const move = Promise.promisify(fse.move, {context: fse});
+
+const readDir = promisify<string[], string>(fs.readdir, {context: fs});
+const stat = promisify<fs.Stats, string>(fs.stat, {context: fs});
+const mkDir = promisify(fs.mkdir, {context: fs});
+const sizeOf = promisify(imageSize);
+const move = promisify(fse.move, {context: fse});
 
 const allowedExtensions = ['.jpg', '.jpeg', '.gif', '.png']
-  .reduce((map, key) => { map[key] = true; return map;}, {});
+  .reduce((map, key) => { map[key] = true; return map;}, {} as { [key: string]: boolean });
 
-function getFiles(parentDir) {
+function getFiles(parentDir: string) {
   if (isValidPath(parentDir)) {
     const absoluteDir = path.join(config.libraryDir, parentDir || '');
     const relativeDir = path.relative(config.libraryDir, absoluteDir);
@@ -31,7 +33,7 @@ function getFiles(parentDir) {
   }
 }
 
-function createDirectory(parentDir = '', name) {
+function createDirectory(parentDir = '', name: string) {
   if (isValidPath(path.join(parentDir, name))) {
     const absoluteDir = path.join(config.libraryDir, parentDir || '', name);
     return mkDir(absoluteDir);
@@ -40,7 +42,7 @@ function createDirectory(parentDir = '', name) {
   }
 }
 
-function getImageDetails(filePath) {
+function getImageDetails(filePath: string) {
   if (isValidPath(filePath)) {
     const absoluteFilePath = path.join(config.libraryDir, filePath);
     return stat(absoluteFilePath)
@@ -53,8 +55,8 @@ function getImageDetails(filePath) {
       .then(file => sizeOf(absoluteFilePath)
         .then(dimensions => ({
           ...file,
-          width: dimensions.orientation >= 5 ? dimensions.height : dimensions.width,
-          height: dimensions.orientation >= 5 ? dimensions.width : dimensions.height,
+          width: (dimensions.orientation || 0) >= 5 ? dimensions.height : dimensions.width,
+          height: (dimensions.orientation || 0) >= 5 ? dimensions.width : dimensions.height,
         })))
       .then(file => {
         if (file.dir) {
@@ -68,17 +70,17 @@ function getImageDetails(filePath) {
   }
 }
 
-function isValidPath(filePath) {
+function isValidPath(filePath: string) {
   const absolutePath = path.join(config.libraryDir, filePath || '');
   const relativePath = path.relative(config.libraryDir, absolutePath);
   return !relativePath || (!relativePath.startsWith('..') && !path.isAbsolute(relativePath));
 }
 
-function isImage(filename) {
+function isImage(filename: string) {
   return allowedExtensions[path.extname(filename).toLowerCase()];
 }
 
-function addFile(parentDir, filePath) {
+function addFile(parentDir: string, filePath: string) {
   if (isValidPath(parentDir)) {
     const newPath = path.join(config.libraryDir, parentDir || '', path.basename(filePath));
     return move(filePath, newPath);
@@ -87,7 +89,4 @@ function addFile(parentDir, filePath) {
   }
 }
 
-exports.getFiles = getFiles;
-exports.createDirectory = createDirectory;
-exports.getImageDetails = getImageDetails;
-exports.addFile = addFile;
+export { addFile, createDirectory, getFiles, getImageDetails };
