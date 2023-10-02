@@ -1,30 +1,28 @@
-'use strict';
-
 const optionDefinitions = [
   { name: 'port', alias: 'p', type: Number, defaultValue: 3000 },
   { name: 'libraryDir', alias: 'l', type: String, defaultValue: 'resources/library' },
   { name: 'dbDir', alias: 'd', type: String, defaultValue: '../db'}
 ]
 
-const commandLineArgs = require('command-line-args')
+import commandLineArgs from 'command-line-args';
 const options = commandLineArgs(optionDefinitions);
 require('./core/db').api.initialize(options.dbDir);
 
-const swaggerParser = require('swagger-parser');
-const swaggerTools = require('swagger-tools');
-const express = require('express');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
-const compression = require('compression');
-const initialize = require('./core/initialize');
-const auth = require('./core/auth');
-const libraryStatics = require('./core/library-statics');
-const config = require('./core/config');
-const authMiddleware = require('./lib/auth-middleware');
-const serveStatic = require('serve-static');
-const path = require('path');
-const { firstExists } = require('./lib/first-exists');
+import SwaggerParser from '@apidevtools/swagger-parser';
+import bodyParser from 'body-parser';
+import compression from 'compression';
+import cookieParser from 'cookie-parser';
+import express, { NextFunction, Request, Response } from 'express';
+import session from 'express-session';
+import path from 'path';
+import serveStatic from 'serve-static';
+import swaggerTools from 'swagger-tools';
+import auth from './core/auth';
+import config from './core/config';
+import initialize from './core/initialize';
+import libraryStatics from './core/library-statics';
+import authMiddleware from './lib/auth-middleware';
+import { firstExists } from './lib/first-exists';
 
 const app = express();
 app.use(compression());
@@ -43,7 +41,7 @@ initialize(options.libraryDir)
   .then(() => libraryStatics.use(app))
   .then(() => auth.initialize(app))
   .then(() => firstExists(__dirname, '/spec/gallery-api.yaml', '../../spec/gallery-api.yaml'))
-  .then(specFile => swaggerParser.bundle(specFile))
+  .then(specFile => SwaggerParser.bundle(specFile))
   .then(spec => {
     swaggerTools.initializeMiddleware(spec, function (middleware) {
       app.use(middleware.swaggerMetadata());
@@ -81,7 +79,7 @@ initialize(options.libraryDir)
         res.sendFile(path.join(__dirname, `public/client/index.html`));
       });
 
-      app.use((err, req, res, next) => {
+      app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
         console.log(err);
         if (err.code === 'ENOENT') {
           return res.status(404).send('404');

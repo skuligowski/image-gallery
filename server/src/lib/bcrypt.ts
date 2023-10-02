@@ -3,7 +3,7 @@ import { promisifyAll } from "bluebird";
 const bcrypt = require('bcryptjs');
 promisifyAll(bcrypt);
 
-function generateHash(text: string) {
+function generateHash(text: string): Promise<string> {
   return bcrypt.genSalt(10)
     .then((salt: string) => bcrypt.hash(text, salt));
 }

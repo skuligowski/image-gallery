@@ -4,7 +4,7 @@ import fs from 'fs';
 import fse from 'fs-extra';
 import imageSize from 'image-size';
 import path from 'path';
-const config = require('./config');
+import config from './config';
 
 const readDir = promisify<string[], string>(fs.readdir, {context: fs});
 const stat = promisify<fs.Stats, string>(fs.stat, {context: fs});
@@ -89,4 +89,4 @@ function addFile(parentDir: string, filePath: string) {
   }
 }
 
-export { addFile, createDirectory, getFiles, getImageDetails };
+export default { addFile, createDirectory, getFiles, getImageDetails };

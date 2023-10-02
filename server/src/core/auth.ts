@@ -14,7 +14,9 @@ passport.use(new LocalStrategy((username, password, done) => {
       .then(authorized => done(null, authorized ? user : false)));
 }));
 
-exports.initialize = (app: Express) => {
-  app.use(passport.initialize());
-  app.use(passport.session());
-};
+export default {
+  initialize: (app: Express) => {
+    app.use(passport.initialize());
+    app.use(passport.session());
+  }
+}

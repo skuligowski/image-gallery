@@ -2,7 +2,7 @@ import { map } from 'bluebird';
 import { AlbumCreate } from '../api';
 import { UniqueFilenames } from '../lib/unique-filenames';
 import { api } from './db';
-const library = require('./library');
+import library from './library';
 
 function createAlbum({name, permalink, date}: AlbumCreate) {
   const createDate = new Date().toISOString();
@@ -97,5 +97,5 @@ function setImagesOrder(id: string, filenames: string[]) {
     });
 }
 
-export { addImages, createAlbum, removeAlbum, removeImages, setImagesOrder, updateAlbum };
+export default { addImages, createAlbum, removeAlbum, removeImages, setImagesOrder, updateAlbum };
 

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import passport from 'passport';
 import { User } from '../api';
-const config = require('../core/config');
+import config from '../core/config';
 
 function login(req: Request, res: Response) {
   passport.authenticate('local', (err: any, user: User) => {
@@ -38,4 +38,5 @@ function getUser(req: Request & { user: User }, res: Response) {
   }
 };
 
-module.exports = { login, getUser, logout };
+export { getUser, login, logout };
+

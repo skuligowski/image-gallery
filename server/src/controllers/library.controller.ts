@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import * as library from '../core/library';
+import library from '../core/library';
 
 function getFiles(req: Request, res: Response) {
   library.getFiles(req.query.parent as string)
@@ -13,4 +13,5 @@ function createDirectory(req: Request, res: Response) {
     .catch(() => res.status(404).send());
 }
 
-module.exports = { getFiles, createDirectory };
+export { createDirectory, getFiles };
+

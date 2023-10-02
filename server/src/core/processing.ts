@@ -4,9 +4,9 @@ import fsp from 'fs/promises';
 import jimp, { Jimp } from 'jimp';
 import path from 'path';
 import { Image, ProcessingAdjustParams, ProcessingExportParams, ProcessingImage, ProcessingParams, ProcessingResizeParams, ProcessingSharpenParams } from "../api";
+import autoRotate from '../lib/auto-rotate';
+import config from './config';
 import { api } from './db';
-const config = require('./config');
-const autoRotate = require('../lib/auto-rotate');
 
 function getSourceImage(image: Image): ProcessingImage {
     return image.processing ? image.processing.source : {
@@ -111,7 +111,7 @@ function processImage(albumId: string, imageUrl: string, params: ProcessingParam
             }
             return {$set, toDelete} as {$set: {[key: string]: Image}, toDelete: string | undefined};
         }).then(({$set, toDelete}) => {
-            return db.updateAlbum({ _id: albumId }, { $set })
+            return api.updateAlbum({ _id: albumId }, { $set })
                 .then(() => {
                     if (toDelete) {
                         console.log(`Removing processed image: ${toDelete}`);
@@ -157,4 +157,4 @@ function revertImages(albumId: string, urls: string[], concurrency = 1) {
         });
 }
 
-export { processImage, revertImages };
+export default { processImage, revertImages };

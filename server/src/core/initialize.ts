@@ -1,6 +1,5 @@
-const users = require('./users');
-const db = require('./db').api;
-const { update } = require('./config');
+import { api } from './db';
+import users from './users';
 
 function initialize(libraryDir: string) {
   return Promise.resolve()
@@ -20,11 +19,11 @@ function initialize(libraryDir: string) {
 }
 
 function insertConfigProperty(prop: any) {
-  return db.getConfigProperty({ key: prop.key })
+  return api.getConfigProperty({ key: prop.key })
     .then((property: any) => {
       if (!property) {
         console.log(`Configuring default property: ${prop.key} = ${prop.value}`);
-        return db.insertProperty(prop);
+        return api.insertProperty(prop);
       } else {
         return Promise.resolve();
       }
@@ -32,17 +31,17 @@ function insertConfigProperty(prop: any) {
 }
 
 function insertVersionProperty() {
-  return db.getConfigProperty({ key: 'version' })
+  return api.getConfigProperty({ key: 'version' })
     .then((versionProperty: any) => {
       const currentVersion = versionProperty?.value;
       const newVersion = require('./../../package.json').version;
       if (!currentVersion) {
         return updateScript(currentVersion, newVersion)
-          .then(() => db.insertProperty({key: 'version', value: newVersion}));
+          .then(() => api.insertProperty({key: 'version', value: newVersion}));
       } 
       if (newVersion !== currentVersion) {
         return updateScript(currentVersion, newVersion)
-          .then(() => db.updateConfigProperty({_id: versionProperty._id}, {key: 'version', value: newVersion}));
+          .then(() => api.updateConfigProperty({_id: versionProperty._id}, {key: 'version', value: newVersion}));
       }
       return Promise.resolve();
     });
@@ -56,10 +55,10 @@ function updateScript(currentVersion = '0.0.0', newVersion: string) {
     && semver.gte(newVersion, '1.2.0')
     && semver.gt(newVersion, currentVersion)) {      
       console.log(` -> 1.2.0+ : adding active status for album`)
-      chain.then(() => db.updateAlbum({active: {$exists: false}},
+      chain.then(() => api.updateAlbum({active: {$exists: false}},
         {$set: {active: true}}, {multi: true}));
   }
   return chain;
 }
 
-module.exports = initialize;
+export default initialize;

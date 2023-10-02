@@ -23,6 +23,6 @@ function deleteThumbnailFromExif(imageBuffer: Buffer) {
     return Buffer.from(newImageString, 'binary')
 }
 
-module.exports = autoRotate;
+export default autoRotate;
 
   

@@ -1,6 +1,6 @@
-const config = require('../core/config');
 import { Request, Response } from 'express';
 import { Config, User } from '../api';
+import config from '../core/config';
 import { api } from '../core/db';
 import { AlbumDTO } from '../model/AlbumDTO';
 
@@ -30,4 +30,4 @@ function getLastRecentImageUrl(config: Config, req: Request & { user: User }) {
   });
 }
 
-module.exports = { getConfig };
+export { getConfig };

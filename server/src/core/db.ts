@@ -1,10 +1,10 @@
 import Bluebird, { promisify } from 'bluebird';
 import DataStore from 'nedb';
+import path from 'path';
 import { Album } from '../api';
 import { AlbumDTO } from '../model/AlbumDTO';
+import { ConfigPropertyDTO } from '../model/ConfigPropertyDTO';
 import { UserDTO } from '../model/UserDTO';
-const path = require('path');
-
 
 type A<T> = (arg1: T) => Bluebird<T>;
 type A2<T1, T2> = (arg1: T1) => Bluebird<T2>
@@ -13,17 +13,17 @@ interface API {
   insertAlbum: A<AlbumDTO>;
   findAlbum: A2<any, AlbumDTO>;
   albums?: any;
-  getConfigProperty?: any;
-  getConfigProperties?: any;
+  getConfigProperty: A2<any, ConfigPropertyDTO>;
+  getConfigProperties: A2<any, ConfigPropertyDTO[]>;
   updateConfigProperty?: any;
   insertProperty?: any;
   getProperty?: any;
   getProperties?: any;
-  findAlbums?: any;
+  findAlbums: A2<any, AlbumDTO[]>;
   removeAlbum?: any;
   updateAlbum?: any;
   findUser: A2<any, UserDTO>;
-  findUsers?: any;
+  findUsers: A2<any, UserDTO[]>;
   insertUser?: any;
   removeUser?: any;
   updateUser?: any;
@@ -33,11 +33,15 @@ const api: API = {
   initialize: initializeDatabase,
   insertAlbum: (el: AlbumDTO) => Bluebird.resolve(el),
   findAlbum: (el: any) => Bluebird.resolve(el),
+  findAlbums: (el: any) => Bluebird.resolve(el),
   findUser: (el: any) => Bluebird.resolve(el),
+  findUsers: (el: any) => Bluebird.resolve(el),
+  getConfigProperty: (el: any) => Bluebird.resolve(el),
+  getConfigProperties: (el: any) => Bluebird.resolve(el),
 }
 
 interface DB {
-    config: any;
+    config: DataStore<ConfigPropertyDTO>;
     users: DataStore<UserDTO>;
     albums: DataStore<AlbumDTO>;
 }
@@ -52,13 +56,16 @@ function initializeDatabase(dbDir: string) {
   };
 
   api.albums = db.albums;
-  api.getConfigProperty = promisify(db.config.findOne, {context: db.config});
-  api.getConfigProperties = promisify(db.config.find, {context: db.config});
+  const getConfigProperty = promisify<ConfigPropertyDTO, any>(db.config.findOne<ConfigPropertyDTO>, {context: db.config});
+  api.getConfigProperty = getConfigProperty;
+  const getConfigProperties = promisify<ConfigPropertyDTO[], any>(db.config.find, {context: db.config});
+  api.getConfigProperties = getConfigProperties;
   api.updateConfigProperty = promisify(db.config.update, {context: db.config});
   api.insertProperty = promisify(db.config.insert, {context: db.config});
   api.getProperty = (key: string) => api.getConfigProperty({ key }).then((property: any) => property ? property.value : undefined);
   api.getProperties = (keys: string[]) => api.getConfigProperties( { key: { $in: keys }} );
-  api.findAlbums = promisify(db.albums.find, {context: db.albums});
+  const findAlbums = promisify<AlbumDTO[], any>(db.albums.find, {context: db.albums});
+  api.findAlbums = findAlbums;
   const findAlbum = promisify<AlbumDTO, any>(db.albums.findOne<AlbumDTO>, {context: db.albums});
   const insertAlbum = promisify<AlbumDTO, AlbumDTO>(db.albums.insert<AlbumDTO>, {context: db.albums});
   api.insertAlbum = insertAlbum;
@@ -67,7 +74,8 @@ function initializeDatabase(dbDir: string) {
   api.updateAlbum = promisify(db.albums.update, {context: db.albums});
   const findUser = promisify<UserDTO, any>(db.users.findOne<UserDTO>, {context: db.users});
   api.findUser = findUser;
-  api.findUsers = promisify(db.users.find, {context: db.users});
+  const findUsers = promisify<UserDTO[], any>(db.users.find, {context: db.users});
+  api.findUsers = findUsers;
   api.insertUser = promisify(db.users.insert, {context: db.users});
   api.removeUser = promisify(db.users.remove, {context: db.users});
   api.updateUser = promisify(db.users.update, {context: db.users});

@@ -1,8 +1,12 @@
-const serveStatic = require('serve-static');
-const config = require('./config');
+import { Express } from 'express';
+import serveStatic from 'serve-static';
+import config from './config';
 
 class LibraryStatics {
-  use(app) {
+
+  serveStaticsFn: any;
+  
+  use(app: Express) {
     this.refresh();
     app.use('/library', (req, res, next) => {
       if (this.serveStaticsFn) {
@@ -21,4 +25,4 @@ class LibraryStatics {
   }
 }
 
-module.exports = new LibraryStatics();
+export default new LibraryStatics();

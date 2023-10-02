@@ -1,11 +1,11 @@
 "use strict";
 import { Request, Response } from 'express';
 import { User } from '../api';
-import * as albums from '../core/albums';
+import albums from '../core/albums';
+import config from '../core/config';
 import { api } from '../core/db';
+import library from '../core/library';
 import { AlbumDTO } from '../model/AlbumDTO';
-const library = require('../core/library');
-const config = require('../core/config');
 
 function getAlbums(req: Request & { user: User }, res: Response) {
   const predicate = req.user && req.user.admin ? {} : {active: true};
@@ -116,7 +116,7 @@ function uploadFile(req: Request & { user: User, swagger: any }, res: Response) 
         console.log(err);
         res.status(500).send();
       } else {
-        library.addFile(req.query.parent, path.join('uploads', file.originalValue.originalname))
+        library.addFile(req.query.parent as string, path.join('uploads', file.originalValue.originalname))
           .then(() => {
             res.status(200).send({});
           });
@@ -154,16 +154,7 @@ function setImagesOrder(req: Request & { user: User, swagger: any }, res: Respon
     });
 }
 
-module.exports = {
-  getImages,
-  getAlbums,
-  getAlbum,
-  uploadFile,
-  createAlbum,
-  updateAlbum,
-  removeAlbum,
-  addImages,
-  removeImages,
-  downloadImage,
-  setImagesOrder,
+export {
+  addImages, createAlbum, downloadImage, getAlbum, getAlbums, getImages, removeAlbum, removeImages, setImagesOrder, updateAlbum, uploadFile
 };
+

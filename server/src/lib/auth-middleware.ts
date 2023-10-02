@@ -1,7 +1,7 @@
-const config = require('../core/config');
+import { NextFunction, Response } from 'express';
+import config from '../core/config';
 
-
-module.exports = () => (req, res, next) => {
+export default () => (req: any, res: Response, next: NextFunction) => {
   const operation = req.swagger ? req.swagger.operation : null;
   if (operation && operation['x-authentication-required']) {
     if (req.isAuthenticated() || !config.authentication) {

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import * as processing from '../core/processing';
+import processing from '../core/processing';
 
 function processImage(req: Request & { swagger: any }, res: Response) {
     const albumId = req.swagger.params.id.value;
@@ -17,8 +17,5 @@ function revertProcessedImages(req: Request & { swagger: any }, res: Response) {
         .then(out => res.send(out));
 }
 
-module.exports = { 
-    processImage,
-    revertProcessedImages
-};
+export { processImage, revertProcessedImages };
   

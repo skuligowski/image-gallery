@@ -1,13 +1,12 @@
-const config = require('./config');
-const jimp = require('jimp');
-const path = require('path');
-const Promise = require('bluebird');
-const db = require('./db');
-const md5 = require('md5');
-const fsp = require('fs').promises;
-const autoRotate = require('../lib/auto-rotate');
+import fsp from 'fs/promises';
+import jimp from 'jimp';
+import md5 from 'md5';
+import path from 'path';
+import autoRotate from '../lib/auto-rotate';
+import config from './config';
+import { api } from './db';
 
-function create(imageUrl) {
+function create(imageUrl: string) {
   const srcFile = path.join(config.libraryDir, imageUrl);
   const url = path.parse(imageUrl);
   const fileName = url.name + '_thumb.jpg';
@@ -18,19 +17,19 @@ function create(imageUrl) {
     size: config.thumbnailWidth, 
     quality: config.thumbnailQuality
   }).then(() => {
-    return db.findAlbums({'images.url': {$in: [imageUrl]}})
+    return api.findAlbums({'images.url': {$in: [imageUrl]}})
       .then(albums => Promise.all(albums.map(album => {
         const imageIndex = album.images.findIndex(image => image.url === imageUrl);
-        const $set = {};
+        const $set: { [key: string]: string } = {};
         if (imageIndex > -1) {
           $set[`images.${imageIndex}.thumbUrl`] = thumbUrl;
         }
-        return db.updateAlbum({ _id: album._id}, { $set });
+        return api.updateAlbum({ _id: album._id}, { $set });
       })));
   });
 }
 
-async function resize(srcImagePath, outImagePath, {size = 360, quality = 92}) {
+async function resize(srcImagePath: string, outImagePath: string, {size = 360, quality = 92}) {
   console.log(`Creating thumbnail ${srcImagePath} -> ${outImagePath}`);
   const fileIn = await fsp.readFile(srcImagePath);
   const buffer = await autoRotate(fileIn);
@@ -40,7 +39,5 @@ async function resize(srcImagePath, outImagePath, {size = 360, quality = 92}) {
   return await image.write(outImagePath);
 }
 
-module.exports = {
-  create
-};
+export default { create };
 
