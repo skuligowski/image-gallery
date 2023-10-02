@@ -8,7 +8,7 @@ function generateHash(text: string) {
     .then((salt: string) => bcrypt.hash(text, salt));
 }
 
-function compare(text: string, hash: string) {
+function compare(text: string, hash: string): Promise<boolean> {
   return bcrypt.compare(text, hash);
 }
 

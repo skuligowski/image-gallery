@@ -2,6 +2,7 @@ import Bluebird, { promisify } from 'bluebird';
 import DataStore from 'nedb';
 import { Album } from '../api';
 import { AlbumDTO } from '../model/AlbumDTO';
+import { UserDTO } from '../model/UserDTO';
 const path = require('path');
 
 
@@ -21,7 +22,7 @@ interface API {
   findAlbums?: any;
   removeAlbum?: any;
   updateAlbum?: any;
-  findUser?: any;
+  findUser: A2<any, UserDTO>;
   findUsers?: any;
   insertUser?: any;
   removeUser?: any;
@@ -32,11 +33,12 @@ const api: API = {
   initialize: initializeDatabase,
   insertAlbum: (el: AlbumDTO) => Bluebird.resolve(el),
   findAlbum: (el: any) => Bluebird.resolve(el),
+  findUser: (el: any) => Bluebird.resolve(el),
 }
 
 interface DB {
     config: any;
-    users: any;
+    users: DataStore<UserDTO>;
     albums: DataStore<AlbumDTO>;
 }
 
@@ -63,7 +65,8 @@ function initializeDatabase(dbDir: string) {
   api.findAlbum = findAlbum;
   api.removeAlbum = promisify(db.albums.remove, {context: db.albums});
   api.updateAlbum = promisify(db.albums.update, {context: db.albums});
-  api.findUser = promisify(db.users.findOne, {context: db.users});
+  const findUser = promisify<UserDTO, any>(db.users.findOne<UserDTO>, {context: db.users});
+  api.findUser = findUser;
   api.findUsers = promisify(db.users.find, {context: db.users});
   api.insertUser = promisify(db.users.insert, {context: db.users});
   api.removeUser = promisify(db.users.remove, {context: db.users});
