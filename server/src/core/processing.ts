@@ -1,13 +1,14 @@
-const jimp = require('jimp');
-const path = require('path');
-const Promise = require('bluebird');
-const db = require('./db');
+import { map } from 'bluebird';
+import fs from 'fs';
+import fsp from 'fs/promises';
+import jimp, { Jimp } from 'jimp';
+import path from 'path';
+import { Image, ProcessingAdjustParams, ProcessingExportParams, ProcessingImage, ProcessingParams, ProcessingResizeParams, ProcessingSharpenParams } from "../api";
+import { api } from './db';
 const config = require('./config');
-const fs = require('fs');
-const fsp = require('fs').promises;
 const autoRotate = require('../lib/auto-rotate');
 
-function getSourceImage(image) {
+function getSourceImage(image: Image): ProcessingImage {
     return image.processing ? image.processing.source : {
         url: image.url, 
         width: image.width, 
@@ -16,7 +17,7 @@ function getSourceImage(image) {
     };
 } 
 
-async function doOpen(srcFile) {
+async function doOpen(srcFile: string): Promise<Jimp> {
     const fileIn = await fsp.readFile(srcFile);
     const buffer = await autoRotate(fileIn);
     return await jimp.read(buffer);
@@ -28,9 +29,9 @@ const resizeModesMapping = {
     'RESIZE_BICUBIC': jimp.RESIZE_BICUBIC,
     'RESIZE_HERMITE': jimp.RESIZE_HERMITE,
     'RESIZE_BEZIER': jimp.RESIZE_BEZIER,
-}
+} as { [key: string]: string };
 
-function doResize(image, {width, height, mode}) {
+function doResize(image: Jimp, {width, height, mode}: ProcessingResizeParams) {
     const resizeMode = resizeModesMapping[mode] || jimp.RESIZE_BILINEAR;
     if (image.bitmap.width > image.bitmap.height) {
         image.resize(width, jimp.AUTO, resizeMode);
@@ -39,7 +40,7 @@ function doResize(image, {width, height, mode}) {
     }
 }
 
-function doSharpen(image, {amount}) {
+function doSharpen(image: Jimp, {amount}: ProcessingSharpenParams) {
     image.convolute(
         [
             [-1*amount, -1*amount, -1*amount], 
@@ -49,7 +50,7 @@ function doSharpen(image, {amount}) {
     );
 }
 
-function doAdjust(image, {exposure, contrast}) {
+function doAdjust(image: Jimp, {exposure, contrast}: ProcessingAdjustParams) {
     if (exposure !== 0) {
         image.brightness(exposure / 100);
     }
@@ -58,7 +59,7 @@ function doAdjust(image, {exposure, contrast}) {
     }
 }
 
-async function doExport(image, outFile, {quality}) {
+async function doExport(image: Jimp, outFile: string, {quality}: ProcessingExportParams) {
     image.quality(quality);
     const outImage = await image.writeAsync(outFile);
     var stats = await fsp.stat(outFile)
@@ -69,8 +70,8 @@ async function doExport(image, outFile, {quality}) {
     }
 }
 
-function processImage(albumId, imageUrl, params) {
-    return db.findAlbum({_id: albumId}).then(album => {
+function processImage(albumId: string, imageUrl: string, params: ProcessingParams) {
+    return api.findAlbum({_id: albumId}).then(album => {
         const imageIndex = album.images.findIndex(image => imageUrl === image.url);
         if (imageIndex === -1) {
             throw new Error(`Image ${imageUrl} not found!`);
@@ -97,7 +98,7 @@ function processImage(albumId, imageUrl, params) {
             sourceImage,
             outImage: { url: fileUrl, ...outImage }
         })).then(processing => {
-            const $set = {};
+            const $set = {} as {[key: string]: Image};
             const toDelete = image.processing ? image.processing.output.url : undefined;
             $set[`images.${imageIndex}`] = {
                 ...image,
@@ -108,7 +109,7 @@ function processImage(albumId, imageUrl, params) {
                     params,
                 }
             }
-            return {$set, toDelete};
+            return {$set, toDelete} as {$set: {[key: string]: Image}, toDelete: string | undefined};
         }).then(({$set, toDelete}) => {
             return db.updateAlbum({ _id: albumId }, { $set })
                 .then(() => {
@@ -117,7 +118,7 @@ function processImage(albumId, imageUrl, params) {
                         fs.unlinkSync(path.join(config.libraryDir, toDelete));    
                     }
                 }).then(() => {
-                    return db.findAlbum({_id: albumId}).then(album => 
+                    return api.findAlbum({_id: albumId}).then(album => 
                         album.images.find(image => image.url === fileUrl)
                     );
                 });
@@ -125,8 +126,8 @@ function processImage(albumId, imageUrl, params) {
     });
 }
 
-function revertImages(albumId, urls, concurrency = 1) {
-    return db.findAlbum({_id: albumId})
+function revertImages(albumId: string, urls: string[], concurrency = 1) {
+    return api.findAlbum({_id: albumId})
         .then(album => 
             album.images.reduce((result, image, index) => {
                 if (urls.includes(image.url) && image.processing) {
@@ -135,26 +136,25 @@ function revertImages(albumId, urls, concurrency = 1) {
                     result.$set[`images.${index}`] = {
                         ...image,
                         ...processing.source,
-                    }
+                    };
                     result.toDelete.push(processing.output.url);
                     result.toReturn.push(processing.source.url);
                 }
                 return result;
-            }, {$set: {}, toDelete: [], toReturn: []})
+            }, {$set: {}, toDelete: [], toReturn: []} as {$set: { [key: string]: Image}, toDelete: string[], toReturn: string[]})
         )
         .then(result => {
-            return db.updateAlbum({ _id: albumId }, { $set: result.$set })
-                .then(() => Promise.map(result.toDelete, file => {
+            return api.updateAlbum({ _id: albumId }, { $set: result.$set })
+                .then(() => map(result.toDelete, file => {
                     console.log(`Removing processed image: ${file}`);
                     fs.unlinkSync(path.join(config.libraryDir, file))
                 }, { concurrency }))
                 .then(() => {
-                    return db.findAlbum({_id: albumId}).then(album => 
+                    return api.findAlbum({_id: albumId}).then(album => 
                         album.images.filter(image => result.toReturn.includes(image.url))
                     );
                 });
         });
 }
 
-exports.processImage = processImage;
-exports.revertImages = revertImages
+export { processImage, revertImages };

@@ -1,11 +1,10 @@
-/// <reference types="node" />
+import sizeOf from 'image-size';
+import jo from 'jpeg-autorotate';
 const piexif = require('piexifjs');
-const sizeOf = require('image-size');
-const jo = require('jpeg-autorotate');
 
-async function autoRotate(imageBuffer) {
+async function autoRotate(imageBuffer: Buffer) {
     const dimensions = sizeOf(imageBuffer);
-    if (dimensions.orientation > 4) {
+    if ((dimensions.orientation || 0) > 4) {
         console.log('Auto rotate because of orientation tag: ' + dimensions.orientation);
         const { buffer} = await jo.rotate(deleteThumbnailFromExif(imageBuffer), {quality: 100});
         return buffer;
@@ -14,7 +13,7 @@ async function autoRotate(imageBuffer) {
     }
 }
   
-function deleteThumbnailFromExif(imageBuffer) {
+function deleteThumbnailFromExif(imageBuffer: Buffer) {
     const imageString = imageBuffer.toString('binary')
     const exifObj = piexif.load(imageString)
     delete exifObj.thumbnail

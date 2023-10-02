@@ -1,6 +1,7 @@
-const processing = require('../core/processing')
+import { Request, Response } from 'express';
+import * as processing from '../core/processing';
 
-function processImage(req, res) {
+function processImage(req: Request & { swagger: any }, res: Response) {
     const albumId = req.swagger.params.id.value;
     processing.processImage(albumId, req.body.url, {
         resize: req.body.resize,
@@ -10,7 +11,7 @@ function processImage(req, res) {
     }).then(out => res.send(out));
 }
 
-function revertProcessedImages(req, res) {
+function revertProcessedImages(req: Request & { swagger: any }, res: Response) {
     const albumId = req.swagger.params.id.value;
     processing.revertImages(albumId, req.body.urls)
         .then(out => res.send(out));
